@@ -1,0 +1,6 @@
+\frametitle {Problem 5.1}
+
+  Put all the functions you have written so far as part of the problems
+  into one module called \typ{iitb.py} and use this module from IPython.
+
+\inctime{20}
