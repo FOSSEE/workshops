@@ -70,7 +70,6 @@
 %    postbreak = \space\dots
 % }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
 \title[]{Matrices and Arrays\\ \& \\2D Plotting}
@@ -286,7 +285,15 @@ array([[ 0.96276665,  0.77174861],
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Problem set 1.0}
+  \frametitle{Problem Set}
+  \begin{lstlisting}
+    >>> from scipy import misc
+    >>> A=misc.imread(name)
+    >>> misc.imshow(A)
+  \end{lstlisting}
+    \begin{enumerate}
+    \item Convert an RGB image to Grayscale. $ Y = 0.5R + 0.25G + 0.25B $
+    \end{enumerate}
 \inctime{15}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
