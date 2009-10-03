@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\lstlisting{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Matrices and Arrays\\ \& \\2D Plotting}
+\title[]{Numerical Computing with Numpy \& Scipy}
 
 \author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
 
@@ -114,14 +114,31 @@
 \begin{document}
 
 \begin{frame}[fragile]
-  \frametitle{Advanced}
+  \frametitle{Broadcasting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Copies \& Views}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{More Numpy Functions \& Methods}
+  More functions
   \begin{itemize}
-  \item Only scratched the surface of \num
-  \item Ufunc methods: \typ{reduce, accumulate, outer, reduceat}
-  \item Typecasting
-  \item More functions: \typ{take, choose, where, compress,
-      concatenate}
-  \item Array broadcasting and \typ{None}
+    \item \typ{take}
+    \item \typ{choose}
+    \item \typ{where}
+    \item \typ{compress}
+    \item \typ{concatenate}
+  \end{itemize}
+  Ufunc methods 
+  \begin{itemize}
+    \item \typ{reduce}
+    \item \typ{accumulate}
+    \item \typ{outer}
+    \item \typ{reduceat}
   \end{itemize}
 \end{frame}
 
@@ -154,6 +171,30 @@
   \item Uses LAPACK, QUADPACK, ODEPACK, FFTPACK etc. from netlib
   \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Linear Algebra}
+
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{ODEs}
+
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Interpolation}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Signal \& Image Processing}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problems}
+
+\end{frame}
+
 
 \end{document}
 
