@@ -330,7 +330,7 @@ array([[ 0.96276665,  0.77174861],
 \inctime{5}
 \end{frame}
        
-\subsection{Plots - Lines, Labels}
+\subsection{Plots - Lines, Labels, Legend}
 \begin{frame}[fragile]
   \frametitle{Basic plotting}
 \begin{lstlisting}
@@ -363,6 +363,20 @@ array([[ 0.96276665,  0.77174861],
              arrowprops=dict(
              facecolor='black', 
              shrink=0.05))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Legends}
+\begin{lstlisting}
+>>> x = linspace(0, 2*pi, 1000)
+>>> plot(x, cos(5*x), 'r--', 
+         label='cosine')
+>>> plot(x, sin(5*x), 'g--', 
+         label='sine')
+>>> legend() 
+# Or use:
+>>> legend(['cosine', 'sine'])
 \end{lstlisting}
 \end{frame}
 
@@ -683,7 +697,7 @@ title('triangular head; scale '\
 \end{frame}
 
 \begin{frame}[fragile] \frametitle{Maps}
-  \includegraphics[height=2.5in, interpolate=true]{data/plotmap}  
+  \includegraphics[height=2.3in, interpolate=true]{data/plotmap}  
   \begin{center}
     \tiny
     For details see \url{http://matplotlib.sourceforge.net/screenshots/plotmap.py}
