@@ -327,11 +327,12 @@ array([[ 0.96276665,  0.77174861],
 \begin{itemize}
   \item Also: PNG, PDF, PS, EPS, SVG, PDF
 \end{itemize}
+\inctime{5}
 \end{frame}
        
-\subsection{Plots - Lines, Labels and Legends}
+\subsection{Plots - Lines, Labels}
 \begin{frame}[fragile]
-  \frametitle{Basic plotting \ldots}
+  \frametitle{Basic plotting}
 \begin{lstlisting}
 # Set properties of objects:
 >>> l, = plot(x, sin(x))
@@ -342,6 +343,26 @@ array([[ 0.96276665,  0.77174861],
 >>> setp(l) # Print properties
 >>> clf() # Clear figure.
 >>> close() # Close figure.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Working with text \ldots}
+%\begin{itemize}
+%  \item We already saw LaTeX markup support!
+%\end{itemize}
+\begin{lstlisting}
+>>> w = arange(-2,2,.1)
+>>> plot(w,exp(-(w*w))*cos)
+>>> ylabel('$f(\omega)$')
+>>> xlabel('$\omega$')
+>>> title(r"$f(\omega)=e^{-\omega^2}
+            cos({\omega^2})$")
+>>> annotate('maxima',xy=(0, 1), 
+             xytext=(1, 0.8), 
+             arrowprops=dict(
+             facecolor='black', 
+             shrink=0.05))
 \end{lstlisting}
 \end{frame}
 
@@ -360,48 +381,6 @@ array([[ 0.96276665,  0.77174861],
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Legends and Annotation}
-\begin{lstlisting}
->>> plot(x, cos(5*x), 'r--', 
-         label='cosine')
->>> plot(x, sin(5*x), 'g--', 
-         label='sine')
->>> legend() 
-# Or use:
->>> legend(['cosine', 'sine'])
-# Annotation:
->>> text(1,0, '(1,0)')
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{More commands \ldots}
-    \begin{lstlisting}
-# semilog, loglog 
->>> x = 10.**(-arange(100)*0.1)
->>> semilogx(x, x)
->>> semilogy(x, x)
->>> loglog(x, x)
->>> loglog(x, x*x)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{More plots \ldots}
-    \begin{lstlisting}
->>> clf()
->>> t = arange(0.1, 4, 0.1)
->>> s = exp(-t)
->>> e = 0.1*abs(randn(len(s)))
->>> errorbar(t, s, e)
-# Scatter plots
->>> clf()
->>> t = randn(len(e))
->>> scatter(t, e, c=s)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
     \frametitle{Note: \typ{pylab} in Python scripts}
 \begin{lstlisting}
 import pylab
@@ -411,6 +390,7 @@ pylab.plot(x, pylab.sin(x))
 # Can also use:
 from pylab import linspace, sin, plot
 \end{lstlisting}
+\inctime{5}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -708,6 +688,7 @@ title('triangular head; scale '\
     \tiny
     For details see \url{http://matplotlib.sourceforge.net/screenshots/plotmap.py}
   \end{center}
+\inctime{5}
 \end{frame}
 
 
@@ -719,7 +700,6 @@ title('triangular head; scale '\
   \item \url{http://matplotlib.sf.net/screenshots.html}
   \end{itemize}
 
-  \inctime{25}
 \end{frame}
 
 \begin{frame}
@@ -766,6 +746,6 @@ title('triangular head; scale '\
       \item Show rate of convergence for a first and second order finite
           difference of sin(x)
 \end{enumerate}
-\inctime{30}
+\inctime{20}
 \end{frame}
 \end{document}
