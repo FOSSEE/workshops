@@ -111,6 +111,7 @@
 \end{frame}
 
 \section{Python}
+
 \subsection{Exercises on Control flow}
 \begin{frame}
   \frametitle{Problem set 1}
@@ -128,7 +129,7 @@ These are called $Armstrong$ numbers.
 \begin{frame}{Problem 1.2 - Collatz sequence}
 \begin{enumerate}
   \item Start with an arbitrary (positive) integer. 
-  \item If the number is even, divide by 2; if the number is odd multiply by 3 and add 1.
+  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
   \item Repeat the procedure with the new number.
   \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
 \end{enumerate}
@@ -158,11 +159,11 @@ These are called $Armstrong$ numbers.
 The number of lines must be obtained from the user as input.\\
 \pause
 When can your code fail?
-\only<2->{\inctime{25}}
+\only<2->{\inctime{20}}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TIME: 25 m, running 105m 
+% TIME: 20 m, running 20m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Functions}
@@ -316,7 +317,7 @@ Write a program to print primitive pythagorean triads. The program should genera
 >>> a[1:3] # A slice.
 [2, 3]
 >>> a[1:-1]
-[2, 3, 4]
+[2, 3]
 >>> a[1:] == a[1:-1]
 False  
 \end{lstlisting}
@@ -341,7 +342,7 @@ What do you think the last one will do?
 \begin{lstlisting}
 >>> a = [1, 2, 3, 4]
 >>> a[:2]
-[1, 3]
+[1, 2]
 >>> a[0:-1:2]
 [1, 3]
 \end{lstlisting}
@@ -378,7 +379,7 @@ What do you think the last one will do?
 >>> a.reverse() # in situ
 >>> a
 [12, 1, 'eggs', 'spam']
->>> a.append(['x', 1]) 
+>>> a.append(['x', 1])
 >>> a
 [12, 1, 'eggs', 'spam', ['x', 1]]
 >>> a.extend([1,2]) # Extend the list.
@@ -412,8 +413,7 @@ True
 >>> t[0] = 1
 Traceback (most recent call last):
   File "<stdin>", line 1, in ?
-TypeError: object does not support item
-           assignment
+TypeError: object does not support item assignment
 \end{lstlisting}  
 \begin{itemize}
     \item Multiple return values are actually a tuple.
@@ -492,18 +492,6 @@ Try: \typ{print enumerate(a)}
   \frametitle{Did we meet the goal?}
   \tableofcontents
   % You might wish to add the option [pausesections]
-  \end{frame}
+\end{frame}
 
-  \begin{frame}
-    {Tomorrow}
-    \begin{itemize}
-      \item Plotting: 2D, 3D
-      \item NumPy, SciPy
-      \item Dictionary, Set
-      \item Debugging
-      \item Testing
-      \item \ldots
-    \end{itemize}
-    11:30--13:00 Discussion of answers to problems OPTIONAL
-  \end{frame}
 \end{document}
