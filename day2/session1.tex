@@ -222,7 +222,7 @@ array([10,11,12,-1])
       exp(x), sqrt(x)} etc.
   \item \typ{sum(x, axis=0), product(x, axis=0), dot(a, bp)}   \inctime{10}
   \end{itemize}
-
+  \inctime{10}
 \end{frame}
 
 \subsection{Array Creation \& Slicing, Striding Arrays}
@@ -331,7 +331,7 @@ array([[ 0.96276665,  0.77174861],
        
 \subsection{Plots - Lines, Labels and Legends}
 \begin{frame}[fragile]
-  \frametitle{Basic plotting \ldots}
+  \frametitle{Basic plotting}
 \begin{lstlisting}
 # Set properties of objects:
 >>> l, = plot(x, sin(x))
@@ -342,6 +342,42 @@ array([[ 0.96276665,  0.77174861],
 >>> setp(l) # Print properties
 >>> clf() # Clear figure.
 >>> close() # Close figure.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+   \frametitle{Working with text \ldots}
+%\begin{itemize}
+%  \item We already saw LaTeX markup support!
+%\end{itemize}
+\begin{lstlisting}
+>>> w = arange(-2,2,.1)
+>>> plot(w,exp(-(w*w))*cos)
+>>> ylabel('$f(\omega)$')
+>>> xlabel('$\omega$')
+>>> title(r"$f(\omega)=e^{-\omega^2}
+            cos({\omega^2})$")
+>>> annotate('maxima',xy=(0, 1), 
+             xytext=(1, 0.8), 
+             arrowprops=dict(
+             facecolor='black', 
+             shrink=0.05))
+\end{lstlisting}
+    
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Legends}
+\begin{lstlisting}
+>>> plot(x, cos(5*x), 'r--', 
+         label='cosine')
+>>> plot(x, sin(5*x), 'g--', 
+         label='sine')
+>>> legend() 
+# Or use:
+>>> legend(['cosine', 'sine'])
+# Annotation:
+>>> text(1,0, '(1,0)')
 \end{lstlisting}
 \end{frame}
 
@@ -357,48 +393,7 @@ array([[ 0.96276665,  0.77174861],
 >>> title('Easy as 1,2,3')
 \end{lstlisting}
     
-\end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Legends and Annotation}
-\begin{lstlisting}
->>> plot(x, cos(5*x), 'r--', 
-         label='cosine')
->>> plot(x, sin(5*x), 'g--', 
-         label='sine')
->>> legend() 
-# Or use:
->>> legend(['cosine', 'sine'])
-# Annotation:
->>> text(1,0, '(1,0)')
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{More commands \ldots}
-    \begin{lstlisting}
-# semilog, loglog 
->>> x = 10.**(-arange(100)*0.1)
->>> semilogx(x, x)
->>> semilogy(x, x)
->>> loglog(x, x)
->>> loglog(x, x*x)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{More plots \ldots}
-    \begin{lstlisting}
->>> clf()
->>> t = arange(0.1, 4, 0.1)
->>> s = exp(-t)
->>> e = 0.1*abs(randn(len(s)))
->>> errorbar(t, s, e)
-# Scatter plots
->>> clf()
->>> t = randn(len(e))
->>> scatter(t, e, c=s)
-    \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -703,7 +698,7 @@ title('triangular head; scale '\
 \end{frame}
 
 \begin{frame}[fragile] \frametitle{Maps}
-  \includegraphics[height=2.5in, interpolate=true]{data/plotmap}  
+  \includegraphics[height=2.3in, interpolate=true]{data/plotmap}  
   \begin{center}
     \tiny
     For details see \url{http://matplotlib.sourceforge.net/screenshots/plotmap.py}
