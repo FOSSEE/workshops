@@ -170,7 +170,6 @@ array([5, 8, 11, 14])
   \item \alert{Note:} \typ{len(arr) != arr.size} in general
   \item \alert{Note:} By default array operations are performed
     \alert{elementwise}
-  \item Indices, slicing: just like lists 
   \end{itemize}
 \end{frame}
 
@@ -192,8 +191,6 @@ dtype('float64')
 >>> print x[0], x[-1]
 10.0 4.0
 \end{lstlisting}
-    
-\inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -223,10 +220,9 @@ array([10,11,12,-1])
     \typ{less (<)}, \typ{greater (>)} etc.
   \item Trig and other functions: \typ{sin(x), arcsin(x), sinh(x),
       exp(x), sqrt(x)} etc.
-  \item \typ{sum(x, axis=0), product(x, axis=0)} 
-  \item \typ{dot(a, bp)}
+  \item \typ{sum(x, axis=0), product(x, axis=0), dot(a, bp)}   \inctime{10}
   \end{itemize}
-  \inctime{10}
+
 \end{frame}
 
 \subsection{Array Creation \& Slicing, Striding Arrays}
@@ -256,6 +252,8 @@ array([2, 3])
 array([[5, 6],
        [8, 9]])
 >>> a[:,2]
+array([3, 6, 9])
+>>> a[...,2]
 array([3, 6, 9])
 \end{lstlisting}
 \end{frame}
@@ -293,6 +291,8 @@ array([[ 0.96276665,  0.77174861],
   \end{lstlisting}
     \begin{enumerate}
     \item Convert an RGB image to Grayscale. $ Y = 0.5R + 0.25G + 0.25B $
+    \item Scale the image to 50\%
+    \item Introduce some random noise?
     \end{enumerate}
 \inctime{15}
 \end{frame}
@@ -723,7 +723,7 @@ title('triangular head; scale '\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem set 1.0}
+  \frametitle{Problem Set}
   \begin{enumerate}
       \item Write a function that plots any n-gon given \typ{n}.
       \item Consider the logistic map, $f(x) = kx(1-x)$, plot it for
@@ -731,9 +731,12 @@ title('triangular head; scale '\
 \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Problem set 1.1}
-  \begin{enumerate}
+\begin{frame}[fragile] 
+\frametitle{Problem Set}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \small{
+    \begin{enumerate}
       \item Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) =
           kx(1-x)$.  Plot the successive iterates of this process.
       \item Plot this using a cobweb plot as follows:
@@ -744,28 +747,12 @@ title('triangular head; scale '\
               \item Draw line to $(x_i, x_i)$
               \item Repeat from 2 for as long as you want 
           \end{enumerate}
-    \end{enumerate}
+    \end{enumerate}}
+    \column{0.35\textwidth}
+    \hspace*{-0.5in}
+  \includegraphics[height=1.6in, interpolate=true]{data/cobweb}  
+\end{columns}
+\inctime{20}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Problem set 1.2}
-  \begin{enumerate}
-
-      \item Plot the Koch snowflake.  Write a function to generate the
-          necessary points given the two points constituting a line.
-          \pause
-          \begin{enumerate}
-              \item Split the line into 4 segments.
-              \item The first and last segments are trivial.
-              \item To rotate the point you can use complex numbers,
-                  recall that $z e^{j \theta}$ rotates a point $z$ in 2D
-                  by $\theta$.
-              \item Do this for all line segments till everything is
-                  done.
-          \end{enumerate}
-      \item Show rate of convergence for a first and second order finite
-          difference of sin(x)
-\end{enumerate}
-\inctime{30}
-\end{frame}
 \end{document}
