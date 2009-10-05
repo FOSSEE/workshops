@@ -47,7 +47,8 @@
 
 \usepackage{listings}
 \lstset{language=Python,
-  commentstyle=\color{red}\itshape,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
   stringstyle=\color{darkgreen},
   showstringspaces=false,
   keywordstyle=\color{blue}\bfseries}
@@ -194,7 +195,7 @@
 
 \subsection{mlab}
 
-\begin{frame}[fragile]
+\begin{frame}
     {Overview}
     \Large
     \begin{itemize}
@@ -237,7 +238,7 @@
     \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
     {Exploring the view}
     \begin{columns}
         \column{0.6\textwidth}
@@ -356,7 +357,7 @@
 
 \subsection{Mayavi2.0}
 
-\begin{frame}[fragile]
+\begin{frame}
   \frametitle{Introduction to Mayavi}
   \begin{itemize}
   \item Most scientists not interested in details of visualization
@@ -371,7 +372,7 @@
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
     {Overview of features}
       \vspace*{-0.3in}
   \begin{center}    
@@ -380,7 +381,7 @@
 \end{frame}
 
 
-\begin{frame}[fragile]
+\begin{frame}
     \frametitle{Mayavi in applications}
       \vspace*{-0.3in}
   \begin{center}    
@@ -469,7 +470,7 @@ x, y, z = mgrid[-50:50:20j,-50:50:20j,
 
 \section{Test Driven Approach}
 
-\begin{frame}[fragile]
+\begin{frame}
     \frametitle{Testing code with \typ{nosetests}}
    
     \begin{itemize}
@@ -481,9 +482,21 @@ x, y, z = mgrid[-50:50:20j,-50:50:20j,
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Need of Testing!}
+   
+    \begin{itemize}
+        \item Quality
+
+        \item Regression
+
+        \item Documentation
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
     \frametitle{Nosetest}
-\begin{lstlisting}
+  \begin{lstlisting}
 def gcd(a, b):
     """Returns gcd of a and b, 
      handles only positive numbers."""
@@ -495,9 +508,76 @@ def lcm(a, b):
 if __name__ == '__main__':
     import nose
     nose.main()
-\end{lstlisting}
+  \end{lstlisting}
+\inctime{15}
+\end{frame}
 
-    \inctime{10} 
+\begin{frame}[fragile]
+    \frametitle{Example}
+    \begin{block}{Problem Statement:}
+      Write a function to check whether a given input
+      string is a palindrome.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Function: code.py}
+\begin{lstlisting}    
+def is_palindrome(input_str):
+  return input_str == input_str[::-1]
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Test for the palindrome: code.py}
+\begin{lstlisting}    
+from code import is_palindrome
+def test_function_normal_words():
+  input = "noon"
+  assert is_palindrome(input) == True
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Running the tests.}
+\begin{lstlisting}    
+$ nosetests test.py 
+.
+----------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise: Including new tests.}
+\begin{lstlisting}    
+def test_function_ignore_cases_words():
+  input = "Noon"
+  assert is_palindrome(input) == True
+\end{lstlisting}
+Check
+
+\PythonCode{$ nosetests test.py} 
+
+Tweak the code to pass this test.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise: Some more tests.}
+\begin{lstlisting}    
+def test_function_ignore_spaces_in_text():
+    input = "ab raca carba"
+    assert is_palindrome(input) == True
+\end{lstlisting}
+Check
+
+\PythonCode{$ nosetests test.py} 
+
+Tweak the code to pass this test.
+
+\inctime{15} 
 \end{frame}
 
 \end{document}
