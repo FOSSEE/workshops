@@ -2,7 +2,7 @@
 % Tutorial slides on Python.
 %
 % Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
-% Copyright (c) 2005-2009, Prabhu Ramachandran
+% Copyright (c) 2005-2008, Prabhu Ramachandran
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {Day 1, Session-3, 10, October 2009}
+\date[] {10, October 2009}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -111,8 +111,6 @@
 \end{frame}
 
 \section{Python}
-
-\subsection{Problem Set based on Lists and Tuples}
 
 \begin{frame}
   {Problem set 3}
@@ -226,11 +224,11 @@ Writing files
     subjects, the student with the maximum mark in each subject and also
     the standard deviation of the marks.  Do this efficiently.
 
-    \inctime{30}
+    \inctime{20}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TIME: 30 m, running 215m 
+% TIME: 20 m, running 205m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Modules}
@@ -337,13 +335,46 @@ def lcm(a, b):
   \frametitle{Problem 5.1}
 
   Put all the functions you have written so far as part of the problems
-  into one module called \typ{bprim.py} and use this module from IPython.
+  into one module called \typ{iitb.py} and use this module from IPython.
 
-\inctime{25}
+\inctime{20}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TIME: 25 m, running 230m 
+% TIME: 20 m, running 225m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Objects}
+\begin{frame}{Objects in Python}
+    \begin{itemize}
+        \item What is an Object? (Types and classes)
+        \item identity
+        \item type
+        \item method
+      \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Why are they useful?}
+  \small
+  \begin{lstlisting}
+for element in (1, 2, 3):
+    print element
+for key in {'one':1, 'two':2}:
+    print key
+for char in "123":
+    print char
+for line in open("myfile.txt"):
+    print line
+for line in urllib2.urlopen('http://site.com'):
+    print line
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{And the winner is \ldots OBJECTS!}
+  All objects providing a similar inteface can be used the same way.\\
+  Functions (and others) are first-class objects. Can be passed to and returned from functions.
+  \inctime{10}
+\end{frame}
 
 \subsection{Coding Style in Python}
 \begin{frame}{Readability and Consistency}
@@ -387,41 +418,6 @@ def lcm(a, b):
         \item Ending the docstrings
         \item One liner docstrings
    \end{itemize}
+\end{frame}
 \inctime{10}
-\end{frame}
-
-
-\subsection{Objects}
-\begin{frame}{Objects in Python}
-    \begin{itemize}
-        \item What is an Object? (Types and classes)
-        \item identity
-        \item type
-        \item method
-      \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Why are they useful?}
-  \small
-  \begin{lstlisting}
-for element in (1, 2, 3):
-    print element
-for key in {'one':1, 'two':2}:
-    print key
-for char in "123":
-    print char
-for line in open("myfile.txt"):
-    print line
-for line in urllib2.urlopen('http://site.com'):
-    print line
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}{And the winner is \ldots OBJECTS!}
-  All objects providing a similar inteface can be used the same way.\\
-  Functions (and others) are first-class objects. Can be passed to and returned from functions.
-  \inctime{10}
-\end{frame}
-
 \end{document}

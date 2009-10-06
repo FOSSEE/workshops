@@ -1,0 +1,8 @@
+\frametitle {Code Layout}
+  \begin{itemize}
+        \item Indentation
+        \item Tabs or Spaces??
+        \item Maximum Line Length
+        \item Blank Lines
+        \item Encodings
+   \end{itemize}

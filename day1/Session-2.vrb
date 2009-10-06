@@ -1,0 +1,12 @@
+\frametitle {\typ{for}: the list companion}
+  \begin{lstlisting}
+In [89]: for p, ch in enumerate( a ):
+   ....:     print p, ch
+   ....:
+   ....:
+0 a
+1 b
+2 c
+  \end{lstlisting}
+Try: \typ{print enumerate(a)}
+\inctime{10}

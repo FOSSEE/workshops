@@ -2,7 +2,7 @@
 % Tutorial slides on Python.
 %
 % Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
-% Copyright (c) 2005-2009, Prabhu Ramachandran
+% Copyright (c) 2005-2008, Prabhu Ramachandran
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {Day 1, Session-1, 10, October 2009}
+\date[] {10, October 2009}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -140,7 +140,6 @@
 	\item[Day 1, Session 2] Sat 11:15--12:45
 	\item[Day 1, Session 3] Sat 13:45--15:15
 	\item[Day 1, Session 4] Sat 15:30--17:00
-        \item[Day 2, Quiz] Sun 09:00--09:30
         \item[Day 2, Session 1] Sun 09:30--11:00
 	\item[Day 2, Session 2] Sun 11:15--12:45
 	\item[Day 2, Session 3] Sun 13:45--15:15
@@ -148,14 +147,16 @@
   \end{description}
 \end{frame}
 
+\section{Agenda}
 \begin{frame}{About the Workshop}
-  \begin{block}{Intended Audience}
-       \item Aimed at Engg., Mathematics and Science teachers.
-       \item Interested students from similar streams.
-  \end{block}  
-
-  \begin{block}{Goal}
+  \begin{block}{Goal of the workshop}
 	Successful participants will be able to use python as their scripting and problem solving language. 
+  \end{block}
+  \begin{block}{Workshop Audience}
+        Aimed at Engg., Mathematics and Science teachers  but should serve a similar purpose for others. 
+  \end{block}
+  \begin{block}{Focus of the workshop}
+        Focus on basic numerics and plotting
   \end{block}
 \end{frame}
 
@@ -172,12 +173,27 @@
 \end{frame}
 
 \section{Overview}
+\begin{frame}{Session 1}
+  \begin{itemize}
+	\item Introduction and motivation
+	\item Using the interpreter(s)
+	\item Basic data types: int, float, string
+	\item Basic data structures: list
+	\item Basic console IO: \texttt{raw\_input(), print}
+    \item Basic control flow: \texttt{if, while}
+	\item Problem set 1
+    \item Functions $\rightarrow$ Problem set 2
+    \item lists, \texttt{for}  $\rightarrow$ Problem set 3
+    \item IO, Modules $\rightarrow$ Problem sets 4,5, \ldots
+  \end{itemize}
+\end{frame}
+
 \begin{frame}
   \frametitle{Introduction}
   \begin{itemize}
   \item Creator and BDFL: Guido van Rossum
   \item December 1989
-  \item ``Python'' as in \it Monty Python's Flying Circus
+  \item ``Python'' as in Monty Python's Flying Circus
   \item 2.6.x
   \item PSF license (like BSD: no strings attached)
   \item Highly cross platform
@@ -593,7 +609,7 @@ else:
   \end{block}
   \begin{block}
     {Console output}
-    \texttt{print} is straight forward. Note the distinction between \texttt{print x} and \texttt{print x,}
+    \texttt{print} is straight forward. Major point to remember is the distinction between \texttt{print x} and \texttt{print x,}
   \end{block}
 \end{frame}
 
