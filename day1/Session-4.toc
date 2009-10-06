@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Python}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Dictionary}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Set}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Functions Reloaded!}{10}{0}{1}
+\beamer@subsectionintoc {1}{4}{Functional programming}{16}{0}{1}
+\beamer@subsectionintoc {1}{5}{Debugging}{18}{0}{1}
