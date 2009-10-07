@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {10, October 2009}
+\date[] {10, October 2009\\Day 1, Session 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -213,8 +213,7 @@ False
   \frametitle{Functions: default arguments}
   \small
   \begin{lstlisting}
-def ask_ok(prompt, retries=4,
-           complaint='Yes or no!'):
+def ask_ok(prompt, complaint='Yes or no!'):
     while True:
         ok = raw_input(prompt)
         if ok in ('y', 'ye', 'yes'): 
@@ -222,10 +221,10 @@ def ask_ok(prompt, retries=4,
         if ok in ('n', 'no', 'nop',
                   'nope'): 
             return False
-        retries = retries - 1
-        if retries < 0: 
-            raise IOError, 'bad user'
         print complaint
+
+ask_ok('?')
+ask_ok('?', '[Y/N]')
   \end{lstlisting}
 \end{frame}
 
@@ -233,49 +232,21 @@ def ask_ok(prompt, retries=4,
   \frametitle{Functions: keyword arguments}
   \small
   \begin{lstlisting}
-def parrot(voltage, state='a stiff', 
-           action='voom', type='Royal Blue'):
-    print "-- This parrot wouldn't", action,
-    print "if you supply", voltage, "Volts."
-    print "-- Lovely plumage, the", type
-    print "-- It's", state, "!"
+def ask_ok(prompt, complaint='Yes or no!'):
+    while True:
+        ok = raw_input(prompt)
+        if ok in ('y', 'ye', 'yes'): 
+            return True
+        if ok in ('n', 'no', 'nop',
+                  'nope'): 
+            return False
+        print complaint
 
-parrot(1000)
-parrot(action = 'VOOOOOM', voltage = 1000000)
-parrot('a thousand',
-       state = 'pushing up the daisies')
-parrot('a million', 'bereft of life', 'jump')
+ask_ok(prompt='?')
+ask_ok(prompt='?', complaint='[Y/N]')
+ask_ok(complaint='[Y/N]', prompt='?')
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Functions: arbitrary argument lists}
-  \begin{itemize}
-  \item Arbitrary number of arguments using \verb+*args+ or
-    \verb+*whatever+
-  \item Keyword arguments using \verb+**kw+
-  \item Given a tuple/dict how do you call a function?
-    \begin{itemize}
-    \item Using argument unpacking
-    \item For positional arguments: \verb+foo(*[5, 10])+
-    \item For keyword args: \verb+foo(**{'a':5, 'b':10})+
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-  \begin{frame}[fragile]
-\begin{lstlisting}
-def foo(a=10, b=100):
-    print a, b
-def func(*args, **keyword):
-    print args, keyword
-# Unpacking:
-args = [5, 10]
-foo(*args)
-kw = {'a':5, 'b':10}
-foo(**kw)
-\end{lstlisting}
-    \inctime{15} 
+\inctime{15} 
 \end{frame}
 
 \subsection{Functional programming}
@@ -286,8 +257,42 @@ Why is it interesting?\\
 \typ{map, reduce, filter}\\
 list comprehension\\
 generators
-    \inctime{15} 
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{List Comprehensions}
+Lets say we want to squares of all the numbers from 1 to 100
+    \begin{lstlisting}
+squares = []
+for i in range(1, 100):
+    squares.append(i * i)
+    \end{lstlisting}
+    \begin{lstlisting}
+# list comprehension
+squares = [i*i for i in range(1, 100)]
+     \end{lstlisting}
+Which is more readable?
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{List Comprehensions}
+What if you had a more complex function?
+Lets say we want squares of numbers from 1 to 100 ending in 1, 2, 5, 7 only
+    \begin{lstlisting}
+squares = []
+for i in range(1, 100):
+    if i % 10 in [1, 2, 5, 7]:
+        squares.append(i * i)
+    \end{lstlisting}
+    \begin{lstlisting}
+# list comprehension
+squares = [i*i for i in range(1, 100)
+           if i % 10 in [1, 2, 5, 7]]
+     \end{lstlisting}
+Which is more readable?
+\inctime{15}
+\end{frame}
+
 
 \subsection{Debugging}
 \begin{frame}[fragile]
@@ -325,7 +330,6 @@ or modulo by zero
         \item Process: Hypothesis, test, refine, rinse-repeat
         \item Using \typ{\%debug} and \typ{\%pdb} in IPython
     \end{itemize}
-    \inctime{15} 
 \end{frame}
 
 \begin{frame}[fragile]
@@ -369,10 +373,23 @@ NameError: global name 'spam' is not defined
       0     print spam
 ipdb>
 \end{lstlisting}
+\inctime{15} 
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Debugging: Exercise}
+\inctime{10}
 \end{frame}
 
+\begin{frame}
+  \frametitle{What did we learn?}
+  \begin{itemize}
+    \item Creating and using Dictionaries
+    \item Creating and using Sets
+    \item Advances Functions: default arguments, keyword arguments
+    \item Functional Programming, list comprehensions
+    \item Errors and Exceptions in Python
+    \item Debugging: How to use pdb, \%pdb and \%debug in IPython
+  \end{itemize}
+\end{frame}
 \end{document}
