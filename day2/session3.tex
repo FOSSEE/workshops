@@ -22,7 +22,7 @@
 
 \mode<presentation>
 {
-  \usetheme{CambridgeUS}
+  \usetheme{Warsaw}
   %\usetheme{Boadilla}
   %\usetheme{default}
   \useoutertheme{split}
@@ -510,7 +510,7 @@ if __name__ == '__main__':
     import nose
     nose.main()
   \end{lstlisting}
-\inctime{15}
+\inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -566,17 +566,20 @@ Tweak the code to pass this test.
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Exercise: Some more tests.}
+    \frametitle{Lets write some test!}
 \begin{lstlisting}    
-def test_function_ignore_spaces_in_text():
-    input = "ab raca carba"
-    assert is_palindrome(input) == True
+#for form of equation y=mx+c
+#given m and c for two equation,
+#finding the intersection point.
+def intersect(m1,c1,m2,c2):
+    x = (c2-c1)/(m1-m2)
+    y = m1*x+c1
+    return (x,y)
 \end{lstlisting}
-Check
 
-\PythonCode{$ nosetests test.py} 
+Create a simple test for this
 
-Tweak the code to pass this test.
+function which will make it fail.
 
 \inctime{15} 
 \end{frame}
