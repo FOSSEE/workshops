@@ -1,8 +1,14 @@
-\frametitle {Code Layout}
-  \begin{itemize}
-        \item Indentation
-        \item Tabs or Spaces??
-        \item Maximum Line Length
-        \item Blank Lines
-        \item Encodings
-   \end{itemize}
+\frametitle {Why are they useful?}
+  \small
+  \begin{lstlisting}
+for element in (1, 2, 3):
+    print element
+for key in {'one':1, 'two':2}:
+    print key
+for char in "123":
+    print char
+for line in open("myfile.txt"):
+    print line
+for line in urllib2.urlopen('http://site.com'):
+    print line
+  \end{lstlisting}

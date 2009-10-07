@@ -1,11 +1,11 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.8.17)  7 OCT 2009 00:28
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.1.21)  7 OCT 2009 15:09
 entering extended mode
  %&-line parsing enabled.
-**Session-3.tex
+**Session-3
 (./Session-3.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, ukrainian, russian, bulgarian, loaded.
+yphenation, loaded.
 (/usr/share/texmf/tex/latex/beamer/base/beamer.cls
 (/usr/share/texmf/tex/latex/beamer/base/beamerbasercs.sty
 Package: beamerbasercs 2007/01/28 (rcs-revision 1.4)
@@ -287,8 +287,7 @@ Package: geometry 2002/07/08 v3.2 Page Geometry
 \Gm@odd@mp=\dimen155
 \Gm@even@mp=\dimen156
 \Gm@dimlist=\toks20
-
-(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+)
 (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2007/02/07 v6.75r Hypertext links for LaTeX
 \@linkdim=\dimen157
@@ -797,20 +796,6 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 13.67995pt on input line 107.
-
-(/usr/share/texmf/tex/context/base/supp-pdf.tex
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count161
-\scratchdimen=\dimen183
-\scratchbox=\box54
-\nofMPsegments=\count162
-\nofMParguments=\count163
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count164
-\MPscratchDim=\dimen184
-\MPnumerator=\count165
-\everyMPtoPDFconversion=\toks43
-)
 -------------------- Geometry parameters
 paper: user defined
 landscape: --
@@ -851,13 +836,14 @@ driver: pdftex
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
 Package hyperref Info: Link coloring OFF on input line 107.
- (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2006/12/27 v2.28 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
 )
-\c@section@level=\count166
+\c@section@level=\count161
 )
 LaTeX Info: Redefining \ref on input line 107.
 LaTeX Info: Redefining \pageref on input line 107.
@@ -961,29 +947,57 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 118.
+(./Session-3.toc) [2
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
+] (./Session-3.toc)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[3
+
+]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 126.
+ (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 118.
- [2
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 126.
 
-] [3
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] [4
+[4
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[5
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[6
 
 ]
 \openout3 = `Session-3.vrb'.
 
-
-(./Session-3.vrb
+ (./Session-3.vrb
 Overfull \hbox (29.67308pt too wide) in paragraph at lines 10--11
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) [5
+)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[7
 
 ]
 \openout3 = `Session-3.vrb'.
@@ -1049,31 +1063,54 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 7.59998pt on input line 4.
-) [6
+)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[8
 
 ]
 \openout3 = `Session-3.vrb'.
 
  (./Session-3.vrb)
-[7
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] (./Session-3.toc) [8
+[9
+
+] (./Session-3.toc)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[10
 
 ]
 \openout3 = `Session-3.vrb'.
 
- (./Session-3.vrb) [9
+ (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[11
 
 ]
 \openout3 = `Session-3.vrb'.
 
- (./Session-3.vrb) [10
+ (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[12
 
 ]
 \openout3 = `Session-3.vrb'.
 
-
-(./Session-3.vrb
+ (./Session-3.vrb
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <14.4> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 4.
 
@@ -1092,26 +1129,51 @@ Overfull \hbox (29.67308pt too wide) in paragraph at lines 10--11
 ][][][][][][] 
  []
 
-) [11
+)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[13
 
 ]
 \openout3 = `Session-3.vrb'.
 
  (./Session-3.vrb)
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 213.
- [12
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 221.
+
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[14
 
 ]
-Overfull \hbox (12.3901pt too wide) in paragraph at lines 220--220
+Overfull \hbox (12.3901pt too wide) in paragraph at lines 228--228
 []\T1/pcr/m/n/14.4 RGN;ID;NAME;MARK1;...;MARK5;TOTAL;PFW  
  []
 
-[13
 
-] [14
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] (./Session-3.toc) [15
+[15
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[16
+
+] (./Session-3.toc)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[17
 
 ]
 \openout3 = `Session-3.vrb'.
@@ -1126,34 +1188,39 @@ Overfull \hbox (12.39293pt too wide) in paragraph at lines 5--6
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) [16
+)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-]
-\openout3 = `Session-3.vrb'.
-
- (./Session-3.vrb) [17
-
-]
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.39996pt on input line 284.
- [18
-
-]
-\openout3 = `Session-3.vrb'.
-
- (./Session-3.vrb) [19
+[18
 
 ]
 \openout3 = `Session-3.vrb'.
 
  (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[19
+
+]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 11.39996pt on input line 292.
+
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
 [20
 
 ]
 \openout3 = `Session-3.vrb'.
 
  (./Session-3.vrb)
-Overfull \vbox (1.35773pt too high) detected at line 332
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
  []
 
 [21
@@ -1161,11 +1228,95 @@ Overfull \vbox (1.35773pt too high) detected at line 332
 ]
 \openout3 = `Session-3.vrb'.
 
- (./Session-3.vrb) [22
+ (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] (./Session-3.toc) [23
+[22
 
-] [24
+]
+\openout3 = `Session-3.vrb'.
+
+ (./Session-3.vrb)
+Overfull \vbox (1.35773pt too high) detected at line 340
+ []
+
+
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[23
+
+]
+\openout3 = `Session-3.vrb'.
+
+ (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[24
+
+] (./Session-3.toc)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[25
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[26
+
+]
+\openout3 = `Session-3.vrb'.
+
+ (./Session-3.vrb)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[27
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[28
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[29
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[30
+
+] (./Session-3.toc)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[31
+
+]
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
+
+[32
 
 ]
 \openout3 = `Session-3.vrb'.
@@ -1178,27 +1329,19 @@ Overfull \hbox (31.11357pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) [25
+)
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] [26
-
-] (./Session-3.toc) [27
-
-] [28
-
-]
-\openout3 = `Session-3.vrb'.
-
- (./Session-3.vrb) [29
-
-] [30
-
-] [31
+[33
 
 ]
-[32
+Overfull \hbox (60.55621pt too wide) has occurred while \output is active
+[]  [] [] [] [] [] []  [] 
+ []
 
-] [33
+[34
 
 ]
 \tf@nav=\write5
@@ -1212,21 +1355,21 @@ Overfull \hbox (31.11357pt too wide) in paragraph at lines 12--13
 
  (./Session-3.aux) ) 
 Here is how much of TeX's memory you used:
- 14031 strings out of 94834
- 239196 string characters out of 1179181
- 307375 words of memory out of 1500000
- 16709 multiletter control sequences out of 10000+50000
+ 13748 strings out of 95086
+ 235298 string characters out of 1183255
+ 307135 words of memory out of 1500000
+ 16414 multiletter control sequences out of 10000+50000
  47906 words of font info for 81 fonts, out of 1200000 for 2000
- 212 hyphenation exceptions out of 8191
- 43i,16n,65p,317b,1186s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 28 hyphenation exceptions out of 8191
+ 43i,16n,65p,313b,1186s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr
 /share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texli
 ve/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.
 pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Session-3.pdf (33 pages, 284619 bytes).
+Output written on Session-3.pdf (34 pages, 302001 bytes).
 PDF statistics:
- 1140 PDF objects out of 1200 (max. 8388607)
- 72 named destinations out of 1000 (max. 131072)
- 143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1221 PDF objects out of 1440 (max. 8388607)
+ 75 named destinations out of 1000 (max. 131072)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

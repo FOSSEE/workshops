@@ -1,7 +1,8 @@
 \beamer@endinputifotherversion {3.07pt}
 \select@language {english}
-\beamer@sectionintoc {1}{Python}{2}{0}{1}
-\beamer@subsectionintoc {1}{1}{IO}{8}{0}{1}
-\beamer@subsectionintoc {1}{2}{Modules}{15}{0}{1}
-\beamer@subsectionintoc {1}{3}{Objects}{23}{0}{1}
-\beamer@subsectionintoc {1}{4}{Coding Style in Python}{27}{0}{1}
+\beamer@sectionintoc {1}{Python}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Problem Set based on Lists and Tuples}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{IO}{10}{0}{1}
+\beamer@subsectionintoc {1}{3}{Modules}{17}{0}{1}
+\beamer@subsectionintoc {1}{4}{Coding Style in Python}{25}{0}{1}
+\beamer@subsectionintoc {1}{5}{Objects}{31}{0}{1}
