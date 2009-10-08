@@ -351,8 +351,10 @@
 >>> interpolate.interp1d?
 >>> x = np.arange(0,2*np.pi,np.pi/4)
 >>> y = np.sin(x)
->>> fl = interpolate.interp1d(x,y,kind='linear')
->>> fc = interpolate.interp1d(x,y,kind='cubic')
+>>> fl = interpolate.interp1d(
+            x,y,kind='linear')
+>>> fc = interpolate.interp1d(
+             x,y,kind='cubic')
 >>> fl(np.pi/3)
 >>> fc(np.pi/3)
   \end{lstlisting}
@@ -413,7 +415,8 @@
   \begin{equation*}
   \frac{d^2x}{dt^2}+\mu(x^2-1)\frac{dx}{dt}+x= 0
   \end{equation*}
-\inctime{25}
+  Make a plot of $\frac{dx}{dt}$ vs. $x$.
+\inctime{30}
 \end{frame}
 
 
