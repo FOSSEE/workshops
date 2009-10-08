@@ -33,7 +33,7 @@
 
 \usepackage{listings}
 \lstset{language=Python,
-    basicstyle=\ttfamily,
+    basicstyle=\ttfamily\bfseries,
     commentstyle=\color{red}\itshape,
   stringstyle=\color{darkgreen},
   showstringspaces=false,
@@ -86,12 +86,12 @@
 
 
 %% Delete this, if you do not want the table of contents to pop up at
-%% the beginning of each subsection:
-\AtBeginSubsection[]
+%% the beginning of each section:
+\AtBeginSection[]
 {
   \begin{frame}<beamer>
     \frametitle{Outline}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection]
   \end{frame}
 }
 
@@ -110,15 +110,7 @@
   \titlepage
 \end{frame}
 
-\begin{frame}
-  \frametitle{Outline}
-  \tableofcontents
-  % You might wish to add the option [pausesections]
-\end{frame}
-
-\section{Python}
-
-\subsection{Problem Set based on Lists and Tuples}
+\section{\typ{for}, Lists and Tuples}
 
 \begin{frame}
   {Problem set 3}
@@ -149,7 +141,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Problem 3.4a (optional)}
+  \frametitle{Problem 3.4a}
 
 Use the \typ{linspace} function and generate a list of N tuples of the form\\
 \typ{[($x_1$,f($x_1$)),($x_2$,f($x_2$)),\ldots,($x_N$,f($x_N$))]}\\for the following functions,\begin{itemize}
@@ -159,7 +151,7 @@ Use the \typ{linspace} function and generate a list of N tuples of the form\\
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Problem 3.4b (optional)}
+  \frametitle{Problem 3.4b}
 
   Using the tuples generated earlier, determine the intervals where the roots of the functions lie.
 
@@ -170,7 +162,7 @@ Use the \typ{linspace} function and generate a list of N tuples of the form\\
 % TIME: 15 m, running 185m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{IO}
+\section{Input/Output}
 
 \begin{frame}[fragile]
   \frametitle{Simple tokenizing and parsing}
@@ -239,7 +231,7 @@ Writing files
 % TIME: 30 m, running 215m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Modules}
+\section{Modules}
 
 \begin{frame}[fragile]
     {Modules}
@@ -347,11 +339,12 @@ def lcm(a, b):
 
 \inctime{25}
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TIME: 25 m, running 230m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Coding Style in Python}
+\section{Coding Style in Python}
 \begin{frame}{Readability and Consistency}
     \begin{itemize}
         \item Readability Counts!-Code is read more often than its written.
@@ -396,8 +389,11 @@ def lcm(a, b):
 \inctime{10}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TIME: 10 m, running 240m 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Objects}
+\section{Objects}
 \begin{frame}{Objects in Python}
     \begin{itemize}
         \item What is an Object? (Types and classes)
@@ -407,8 +403,33 @@ def lcm(a, b):
       \end{itemize}
 \end{frame}
 
+\begin{frame}{Everything is an Object!}
+  \begin{itemize}
+    \item \typ{list, tuple}
+    \item \typ{string, dictionary}
+    \item \typ{function}
+    \item Of course, user defined class objects!
+  \end{itemize}
+\end {frame}
+
+\begin{frame}{Using Objects}
+  \begin{itemize}
+    \item Creating Objects: Initialization
+    \item Object Manipulation: Object methods and ``.'' operator
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
-  \frametitle{Why are they useful?}
+  \frametitle{IPython Examples}
+  \begin{lstlisting}
+In [1]: l = [] #Initialising a list object
+In [2]: l?
+In [3]: l.<tab>
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Objects provide a certain consistency}
   \small
   \begin{lstlisting}
 for element in (1, 2, 3):
@@ -430,9 +451,15 @@ for line in urllib2.urlopen('http://site.com'):
   \inctime{10}
 \end{frame}
 
-\begin{frame}
-  \frametitle{What did we learn?}
-  \tableofcontents
-  % You might wish to add the option [pausesections]
+\section{Summary}
+
+\begin{frame}{What have we learnt so far?}
+  \begin{itemize}
+  \item Writing to and Reading from files using \typ{for}
+  \item Using and writing Python Modules
+  \item Coding Style
+  \item Objects in Python
+  \end{itemize}
 \end{frame}
+
 \end{document}
