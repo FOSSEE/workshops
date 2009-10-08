@@ -22,7 +22,7 @@
 
 \mode<presentation>
 {
-  \usetheme{CambridgeUS}
+  \usetheme{Warsaw}
   %\usetheme{Boadilla}
   %\usetheme{default}
   \useoutertheme{split}
@@ -95,7 +95,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{3D data Vizualization\\ \& \\Test Driven Approach}
+\title[]{3D data Visualization}
 
 \author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
 
@@ -192,7 +192,67 @@
 \inctime{10}
 \end{frame}
 
-\section{Tools at your disposal:}
+\section{Tools at your disposal}
+
+\subsection{Mayavi2.0}
+
+\begin{frame}
+  \frametitle{Introduction to Mayavi}
+  \begin{itemize}
+  \item Most scientists not interested in details of visualization
+  \item Visualization of data files with a nice UI
+  \item Interactive visualization of data (think Matlab)
+  \item Embedding visualizations in applications
+  \item Customization
+  \end{itemize}
+  \pause
+  \begin{block}{The Goal}
+      Provide a \alert{flexible} library/app for every one of these needs!
+  \end{block}
+\end{frame}
+
+\begin{frame}
+    {Overview of features}
+      \vspace*{-0.3in}
+  \begin{center}    
+    \hspace*{-0.2in}\pgfimage[width=5in]{MEDIA/m2/m2_app3_3}
+  \end{center}    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Mayavi in applications}
+      \vspace*{-0.3in}
+  \begin{center}    
+    \hspace*{-0.2in}\pgfimage[width=4.5in]{MEDIA/m2/m2_envisage}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+    {Exploring the documentation}
+    \begin{center}
+    \pgfimage[width=4in]{MEDIA/m2/m2_ug_doc}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Summary}
+      \begin{itemize}
+          \item \url{http://code.enthought.com/projects/mayavi}
+          \item Uses VTK (\url{www.vtk.org})
+          \item BSD license
+          \item Linux, win32 and Mac OS X
+          \item Highly scriptable
+          \item Embed in Traits UIs (wxPython and PyQt4)
+          \item Envisage Plugins
+          \item Debian/Ubuntu/Fedora
+          \item \alert{Pythonic}
+      \end{itemize}
+    
+      \inctime{10}
+
+\end{frame}
 
 \subsection{mlab}
 
@@ -220,7 +280,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Using mlab:}
+    \frametitle{Using mlab}
 
     \begin{lstlisting}
 >>> from enthought.mayavi import mlab
@@ -228,7 +288,7 @@
 
     \vspace*{0.5in}
 
-    \myemph{\Large Try these:}
+    \myemph{\Large Try these}
 
     \vspace*{0.25in}
 
@@ -249,7 +309,7 @@
             \item Mouse
             \item Keyboard
             \item Toolbar
-            \item Mayavi icon(wait for it...) \pgfimage[width=0.2in]{MEDIA/m2/m2_icon}
+            \item Mayavi icon\pgfimage[width=0.2in]{MEDIA/m2/m2_icon}
         \end{itemize}
     \end{columns}
 \end{frame}
@@ -319,7 +379,8 @@
 >>> y = sin(phi)*sin(theta)
 >>> z = cos(phi)
 >>> mlab.mesh(x, y, z, 
-...           representation='wireframe')
+...           representation=
+...           'wireframe')
 \end{lstlisting}
 
 \end{frame}
@@ -354,66 +415,6 @@
 
 \emphbar{\PythonCode{obj = mlab.quiver3d(x, y, z, u, v, w)}}
 \inctime{20}
-\end{frame}
-
-\subsection{Mayavi2.0}
-
-\begin{frame}
-  \frametitle{Introduction to Mayavi}
-  \begin{itemize}
-  \item Most scientists not interested in details of visualization
-  \item Visualization of data files with a nice UI
-  \item Interactive visualization of data (think Matlab)
-  \item Embedding visualizations in applications
-  \item Customization
-  \end{itemize}
-  \pause
-  \begin{block}{The Goal}
-      Provide a \alert{flexible} library/app for every one of these needs!
-  \end{block}
-\end{frame}
-
-\begin{frame}
-    {Overview of features}
-      \vspace*{-0.3in}
-  \begin{center}    
-    \hspace*{-0.2in}\pgfimage[width=5in]{MEDIA/m2/m2_app3_3}
-  \end{center}    
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Mayavi in applications}
-      \vspace*{-0.3in}
-  \begin{center}    
-    \hspace*{0.2in}\pgfimage[width=4.5in]{MEDIA/m2/m2_envisage}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-    {Exploring the documentation}
-    \begin{center}
-    \pgfimage[width=4.5in]{MEDIA/m2/m2_ug_doc}
-    \end{center}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Summary}
-      \begin{itemize}
-          \item \url{http://code.enthought.com/projects/mayavi}
-          \item Uses VTK (\url{www.vtk.org})
-          \item BSD license
-          \item Linux, win32 and Mac OS X
-          \item Highly scriptable
-          \item Embed in Traits UIs (wxPython and PyQt4)
-          \item Envisage Plugins
-          \item Debian/Ubuntu/Fedora
-          \item \alert{Pythonic}
-      \end{itemize}
-    
-      \inctime{10}
-
 \end{frame}
 
 \begin{frame}
@@ -468,118 +469,6 @@ x, y, z = mgrid[-50:50:20j,-50:50:20j,
   \end{lstlisting}
 \inctime{20}
 \end{frame}
-
-\section{Test Driven Approach}
-
-\begin{frame}
-    \frametitle{Testing code with \typ{nosetests}}
-   
-    \begin{itemize}
-        \item Writing tests is really simple!
-
-        \item Using nose
-
-        \item Example!
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Need of Testing!}
-   
-    \begin{itemize}
-        \item Quality
-
-        \item Regression
-
-        \item Documentation
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Nosetest}
-  \begin{lstlisting}
-def gcd(a, b):
-    """Returns gcd of a and b, 
-     handles only positive numbers."""
-    if a%b == 0: return b
-    return gcd(b, a%b)
-def lcm(a, b):
-    return a*b/gcd(a, b)
-
-if __name__ == '__main__':
-    import nose
-    nose.main()
-  \end{lstlisting}
-\inctime{15}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Example}
-    \begin{block}{Problem Statement:}
-      Write a function to check whether a given input
-      string is a palindrome.
-    \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Function: code.py}
-\begin{lstlisting}    
-def is_palindrome(input_str):
-  return input_str == input_str[::-1]
-\end{lstlisting}    
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Test for the palindrome: code.py}
-\begin{lstlisting}    
-from code import is_palindrome
-def test_function_normal_words():
-  input = "noon"
-  assert is_palindrome(input) == True
-\end{lstlisting}    
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Running the tests.}
-\begin{lstlisting}    
-$ nosetests test.py 
-.
-----------------------------------------------
-Ran 1 test in 0.001s
-
-OK
-\end{lstlisting}    
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Exercise: Including new tests.}
-\begin{lstlisting}    
-def test_function_ignore_cases_words():
-  input = "Noon"
-  assert is_palindrome(input) == True
-\end{lstlisting}
-Check
-
-\PythonCode{$ nosetests test.py} 
-
-Tweak the code to pass this test.
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Exercise: Some more tests.}
-\begin{lstlisting}    
-def test_function_ignore_spaces_in_text():
-    input = "ab raca carba"
-    assert is_palindrome(input) == True
-\end{lstlisting}
-Check
-
-\PythonCode{$ nosetests test.py} 
-
-Tweak the code to pass this test.
-
-\inctime{15} 
-\end{frame}
-
+  
 \end{document}
 
