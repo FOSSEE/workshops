@@ -1,0 +1,299 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tutorial slides on Python.
+%
+% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
+% Copyright (c) 2005-2009, Prabhu Ramachandran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[compress,14pt]{beamer}
+% \documentclass[handout]{beamer}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{4 on 1}[a4paper,border, shrink=5mm,landscape]
+\usepackage{tikz}
+\newcommand{\hyperlinkmovie}{}
+%\usepackage{movie15}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note that in presentation mode 
+% \paperwidth  364.19536pt
+% \paperheight 273.14662pt
+% h/w = 0.888
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  %\usetheme{Boadilla}
+  %\usetheme{default}
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+% To remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% Taken from Fernando's slides.
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+\usepackage{pgf}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% My Macros
+\setbeamercolor{postit}{bg=yellow,fg=black}
+\setbeamercolor{emphbar}{bg=blue!20, fg=black}
+\newcommand{\emphbar}[1]
+{\begin{beamercolorbox}[rounded=true]{emphbar} 
+      {#1}
+ \end{beamercolorbox}
+}
+%{\centerline{\fcolorbox{gray!50} {blue!10}{
+%\begin{minipage}{0.9\linewidth}
+%    {#1} 
+%\end{minipage}
+%    }}}
+
+\newcommand{\myemph}[1]{\structure{\emph{#1}}}
+\newcommand{\PythonCode}[1]{\lstinline{#1}}
+
+\newcommand{\tvtk}{\texttt{tvtk}}
+\newcommand{\mlab}{\texttt{mlab}}
+
+\newcounter{time}
+\setcounter{time}{0}
+\newcommand{\inctime}[1]{\addtocounter{time}{#1}{\vspace*{0.1in}\tiny \thetime\ m}}
+
+\newcommand\BackgroundPicture[1]{%
+  \setbeamertemplate{background}{%
+      \parbox[c][\paperheight]{\paperwidth}{%
+      \vfill \hfill
+ \hfill \vfill
+}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuring the theme
+%\setbeamercolor{normal text}{fg=white}
+%\setbeamercolor{background canvas}{bg=black}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[]{Test Driven Approach}
+
+\author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {11, October 2009}
+\date[] % (optional)
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\pgfdeclareimage[height=0.75cm]{iitblogo}{iitblogo}
+%\logo{\pgfuseimage{iitblogo}}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+      \Large
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+%% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT STARTS
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\section{Test Driven Approach}
+
+\begin{frame}
+    \frametitle{Testing code with \typ{nosetests}}
+   
+    \begin{itemize}
+        \item Writing tests is really simple!
+
+        \item Using nose.
+
+        \item Example!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Need of Testing!}
+   
+    \begin{itemize}
+        \item Quality
+
+        \item Regression
+
+        \item Documentation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Nosetest}
+  \begin{lstlisting}
+def gcd(a, b):
+    """Returns gcd of a and b, 
+     handles only positive numbers."""
+    if a%b == 0: return b
+    return gcd(b, a%b)
+def lcm(a, b):
+    return a*b/gcd(a, b)
+
+if __name__ == '__main__':
+    import nose
+    nose.main()
+  \end{lstlisting}
+\inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example}
+    \begin{block}{Problem Statement:}
+      Write a function to check whether a given input
+      string is a palindrome.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Function: palindrome.py}
+\begin{lstlisting}    
+def is_palindrome(input_str):
+  return input_str == input_str[::-1]
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Test for the palindrome: palindrome.py}
+\begin{lstlisting}    
+from plaindrome import is_palindrome
+def test_function_normal_words():
+  input = "noon"
+  assert is_palindrome(input) == True
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Running the tests.}
+\begin{lstlisting}    
+$ nosetests test.py 
+.
+----------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+\end{lstlisting}    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise: Including new tests.}
+\begin{lstlisting}    
+def test_function_ignore_cases_words():
+  input = "Noon"
+  assert is_palindrome(input) == True
+\end{lstlisting}
+     \vspace*{0.25in}
+     Check\\
+     \PythonCode{$ nosetests test.py} \\
+     \begin{block}{Task}
+     Tweak the code to pass this test.
+     \end{block}
+\end{frame}
+
+%\begin{frame}[fragile]
+%    \frametitle{Lets write some test!}
+%\begin{lstlisting}    
+%#for form of equation y=mx+c
+%#given m and c for two equation,
+%#finding the intersection point.
+%def intersect(m1,c1,m2,c2):
+%    x = (c2-c1)/(m1-m2)
+%    y = m1*x+c1
+%    return (x,y)
+%\end{lstlisting}
+%
+%Create a simple test for this
+%
+%function which will make it fail.
+%
+%\inctime{15} 
+%\end{frame}
+%
+
+\begin{frame}[fragile]
+    \frametitle{Exercise}
+    Based on Euclid's theorem:
+        $gcd(a,b)=gcd(b,b\%a)$\\
+    gcd function can be written as:
+    \begin{lstlisting}
+    def gcd(a, b):
+      if a%b == 0: return b
+      return gcd(b, a%b)
+    \end{lstlisting}
+    \begin{block}{Task}
+      For given gcd implementation write
+      at least two tests.
+    \end{block}
+    \begin{block}{Task}
+      Write a non recursive implementation
+      of gcd(), and test it using already 
+      written tests.
+    \end{block}
+    
+\inctime{15} 
+\end{frame}
+
+\begin{frame}{In this session we have covered:}
+  \begin{itemize}
+    \item Need for visualization.
+    \item Tools available.
+    \item How to follow Test Driven Approach.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+    \begin{center}
+        \Huge    
+        Thank you!
+    \end{center}
+\end{frame}
+
+\end{document}
