@@ -39,6 +39,8 @@
   showstringspaces=false,
   keywordstyle=\color{blue}\bfseries}
 
+\usepackage{pgf}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macros
 \setbeamercolor{emphbar}{bg=blue!20, fg=black}
@@ -339,10 +341,10 @@ or modulo by zero
 \begin{frame}[fragile]
     \frametitle{Debugging effectively}
     \begin{itemize}
-        \item  \kwrd{print} based strategy
-        \item Process: Hypothesis, test, refine, rinse-repeat
+        \item \kwrd{print} based strategy
+        \item Process:
     \end{itemize}
-\inctime{15}
+\pgfimage[interpolate=true,width=5cm,height=5cm]{DebugginDiagram.png}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -350,7 +352,27 @@ or modulo by zero
     \begin{itemize}
       \item Using \typ{\%debug} and \typ{\%pdb} in IPython
     \end{itemize}
-\inctime{15}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Debugging in IPython}
+\small
+\begin{lstlisting}
+In [1]: import mymodule
+In [2]: mymodule.test()
+---------------------------------------------
+NameError   Traceback (most recent call last)
+/media/python/iitb/workshops/day1/<ipython console> in <module>()
+/media/python/iitb/workshops/day1/mymodule.py in test()
+      1 def test():
+----> 2     print spam
+NameError: global name 'spam' is not defined
+In [3]: %debug
+> /media/python/iitb/workshops/day1/mymodule.py(2)test()
+      0     print spam
+ipdb> 
+\end{lstlisting}
+\inctime{15} 
 \end{frame}
 
 \begin{frame}[fragile]
@@ -366,7 +388,7 @@ or modulo by zero
     \item Advances Functions: default arguments, keyword arguments
     \item Functional Programming, list comprehensions
     \item Errors and Exceptions in Python
-    \item Debugging: How to use pdb, \%pdb and \%debug in IPython
+    \item Debugging: \%pdb and \%debug in IPython
   \end{itemize}
 \end{frame}
 \end{document}
