@@ -324,7 +324,7 @@
     \item Integrating Functions given fixed samples
     \item Numerical integrators of ODE systems
   \end{itemize}
-  Calculate $\int^1_0(sin(x) + x^2)dx$
+  Calculate the area under $(sin(x) + x^2)$ in the range $(0,1)$
   \begin{lstlisting}
     >>> def f(x):
             return np.sin(x)+x**2
@@ -340,11 +340,11 @@
            x(0)&=2    
   \end{align*}
   \begin{lstlisting}
-    def dx_dt(x,t):
+>>> def dx_dt(x,t):
         return -np.exp(-t)*x**2
 
-    x=integrate.odeint(dx_dt, 2, t)
-    plt.plot(x,t)
+>>> x=integrate.odeint(dx_dt, 2, t)
+>>> plt.plot(x,t)
   \end{lstlisting}
 \inctime{10}
 \end{frame}
@@ -369,15 +369,15 @@
 
 \begin{frame}[fragile]
   \frametitle{Interpolation - Splines}
-  Cubic Spline of $sin(x)$
+  Plot the Cubic Spline of $sin(x)$
   \begin{lstlisting}
-    x = np.arange(0,2*np.pi,np.pi/4)
-    y = np.sin(x)
-    tck = interpolate.splrep(x,y)
-    X = np.arange(0,2*np.pi,np.pi/50)
-    Y = interpolate.splev(X,tck,der=0)
-    plt.plot(x,y,'o',x,y,X,Y)
-    plt.show()
+>>> x = np.arange(0,2*np.pi,np.pi/4)
+>>> y = np.sin(x)
+>>> tck = interpolate.splrep(x,y)
+>>> X = np.arange(0,2*np.pi,np.pi/50)
+>>> Y = interpolate.splev(X,tck,der=0)
+>>> plt.plot(x,y,'o',x,y,X,Y)
+>>> plt.show()
   \end{lstlisting}
 \inctime{10}
 \end{frame}
@@ -403,16 +403,16 @@
   \frametitle{Signal \& Image Processing}
   Applying a simple median filter
   \begin{lstlisting}
-    from scipy import signal, ndimage
-    from scipy import lena
-    A=lena().astype('float32')
-    B=signal.medfilt2d(A)
-    imshow(B)
+>>> from scipy import signal, ndimage
+>>> from scipy import lena
+>>> A=lena().astype('float32')
+>>> B=signal.medfilt2d(A)
+>>> imshow(B)
   \end{lstlisting}
   Zooming an array - uses spline interpolation
   \begin{lstlisting}
-    b=ndimage.zoom(A,0.5)
-    imshow(b)
+>>> b=ndimage.zoom(A,0.5)
+>>> imshow(b)
   \end{lstlisting}
     \inctime{5}
 \end{frame}
