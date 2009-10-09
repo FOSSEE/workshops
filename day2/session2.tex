@@ -116,17 +116,20 @@
 \begin{frame}
   \maketitle
 \end{frame}
+
+\section{Advanced Numpy}
 \begin{frame}[fragile]
   \frametitle{Broadcasting}
   Try it!
   \begin{lstlisting}
     >>> a = np.arange(4)
     >>> b = np.arange(5)
-    >>> a+b
+    >>> a+b #Does this work?
     >>> a+3
     >>> c=np.array([3])
-    >>> a+c
-    >>> b+c
+    >>> a+c #Works!
+    >>> b+c #But how?
+    >>> a.shape, b.shape, c.shape
   \end{lstlisting}
   \begin{itemize}
     \item Enter Broadcasting!
@@ -147,7 +150,7 @@
     \includegraphics[height=0.7in, interpolate=true]{data/broadcast_scalar}
   \end{columns}
   \begin{itemize}
-    \item Allows functions to take inputs not of the same shape
+    \item Allows functions to take inputs that are not of the same shape
     \item 2 rules -
       \begin{enumerate}
       \item 1 is (repeatedly) prepended to shapes of smaller arrays
@@ -174,8 +177,9 @@
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
   Try it!
+  \vspace{-0.1in}
   \begin{lstlisting}
-    >>> a = np.array([[1,2,3],[4,5,6]])
+    >>> a = np.arange(1,9); a.shape=3,3
     >>> b = a
     >>> b is a
     >>> b[0,0]=0; print a
@@ -192,9 +196,8 @@
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
   Try it!
+  \vspace{-0.1in}
   \begin{lstlisting}
-    >>> a = np.arange(1,9)
-    >>> a.shape=3,3
     >>> b = a[0,1:3]
     >>> c = a[0::2,0::2]
     >>> a.flags.owndata
@@ -226,6 +229,8 @@
 \inctime{15}
 \end{frame}
 
+\section{SciPy}
+\subsection{Introduction}
 \begin{frame}
     {Intro to SciPy}
   \begin{itemize}
@@ -266,6 +271,7 @@
   \end{lstlisting}
 \end{frame}
 
+\subsection{Linear Algebra}
 \begin{frame}[fragile]
   \frametitle{Linear Algebra}
   Try it!
@@ -311,6 +317,7 @@
 \inctime{15}
 \end{frame}
 
+\subsection{Integration}
 \begin{frame}[fragile]
   \frametitle{Integrate}
   \begin{itemize}
@@ -318,7 +325,7 @@
     \item Integrating Functions given fixed samples
     \item Numerical integrators of ODE systems
   \end{itemize}
-  Calculate $\int^1_0(sin(x) + x^2)dx$
+  Calculate the area under $(sin(x) + x^2)$ in the range $(0,1)$
   \begin{lstlisting}
     >>> def f(x):
             return np.sin(x)+x**2
@@ -331,48 +338,50 @@
   Numerically solve ODEs\\
   \begin{align*}
   \frac{dx}{dt}&=-e^{-t}x^2\\ 
-           x(0)&=2    
+           x&=2 \quad at \ t=0
   \end{align*}
   \begin{lstlisting}
-    def dx_dt(x,t):
+>>> def dx_dt(x,t):
         return -np.exp(-t)*x**2
-
-    x=integrate.odeint(dx_dt, 2, t)
-    plt.plot(x,t)
+>>> t=np.linspace(0,2,100)
+>>> x=integrate.odeint(dx_dt, 2, t)
+>>> plt.plot(x,t)
   \end{lstlisting}
 \inctime{10}
 \end{frame}
 
+\subsection{Interpolation}
 \begin{frame}[fragile]
   \frametitle{Interpolation}
   Try it!
   \begin{lstlisting}
-    >>> from scipy import interpolate
-    >>> interpolate.interp1d?
-    >>> x = np.arange(0,2*np.pi,np.pi/4)
-    >>> y = np.sin(x)
-    >>> fl = interpolate.interp1d(x,y,kind='linear')
-    >>> fc = interpolate.interp1d(x,y,kind='cubic')
-    >>> fl(np.pi/3)
-    >>> fc(np.pi/3)
+>>> from scipy import interpolate
+>>> interpolate.interp1d?
+>>> x = np.arange(0,2*np.pi,np.pi/4)
+>>> y = np.sin(x)
+>>> fl = interpolate.interp1d(
+            x,y,kind='linear')
+>>> fc = interpolate.interp1d(
+             x,y,kind='cubic')
+>>> fl(np.pi/3)
+>>> fc(np.pi/3)
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Interpolation - Splines}
-  Cubic Spline of $sin(x)$
+  Plot the Cubic Spline of $sin(x)$
   \begin{lstlisting}
-    x = np.arange(0,2*np.pi,np.pi/4)
-    y = np.sin(x)
-    tck = interpolate.splrep(x,y)
-    X = np.arange(0,2*np.pi,np.pi/50)
-    Y = interpolate.splev(X,tck,der=0)
-    plt.plot(x,y,'o',x,y,X,Y)
-    plt.show()
+>>> tck = interpolate.splrep(x,y)
+>>> X = np.arange(0,2*np.pi,np.pi/50)
+>>> Y = interpolate.splev(X,tck,der=0)
+>>> plt.plot(x,y,'o',x,y,X,Y)
+>>> plt.show()
   \end{lstlisting}
 \inctime{10}
 \end{frame}
 
+\subsection{Signal Processing}
 \begin{frame}[fragile]
   \frametitle{Signal \& Image Processing}
     \begin{itemize}
@@ -393,16 +402,16 @@
   \frametitle{Signal \& Image Processing}
   Applying a simple median filter
   \begin{lstlisting}
-    from scipy import signal, ndimage
-    from scipy import lena
-    A=lena().astype('float32')
-    B=signal.medfilt2d(A)
-    imshow(B)
+>>> from scipy import signal, ndimage
+>>> from scipy import lena
+>>> A=lena().astype('float32')
+>>> B=signal.medfilt2d(A)
+>>> imshow(B)
   \end{lstlisting}
   Zooming an array - uses spline interpolation
   \begin{lstlisting}
-    b=ndimage.zoom(A,0.5)
-    imshow(b)
+>>> b=ndimage.zoom(A,0.5)
+>>> imshow(b)
   \end{lstlisting}
     \inctime{5}
 \end{frame}
@@ -413,10 +422,21 @@
   \begin{equation*}
   \frac{d^2x}{dt^2}+\mu(x^2-1)\frac{dx}{dt}+x= 0
   \end{equation*}
-\inctime{25}
+  Make a plot of $\frac{dx}{dt}$ vs. $x$.
+\inctime{30}
 \end{frame}
-
-
+\begin{frame}{Summary}
+  \begin{itemize}
+    \item Advanced NumPy
+    \item SciPy
+      \begin{itemize}
+        \item Linear Algebra
+        \item Integration
+        \item Interpolation
+        \item Signal and Image processing
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 \end{document}
 
 - Numpy arrays (30 mins)
@@ -424,5 +444,3 @@
     - random number generation.
     - Image manipulation: jigsaw puzzle.
     - Monte-carlo integration.
-
-
