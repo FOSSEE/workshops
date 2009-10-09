@@ -1,9 +1,151 @@
-\documentclass[a4paper,10pt]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tutorial slides on Python.
+%
+% Author: FOSSEE <info at fossee  dot in>
+% Copyright (c) 2005-2009, FOSSEE Team
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[14pt,compress]{beamer}
+
+\mode<presentation>
+{
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+\newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[Basic Python]{Python: Quiz}
+
+\author[FOSSEE Team] {FOSSEE Authors}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {11, October 2009\\Day 1, Session 0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{}
+  What is the biggest integer number that can be represented by Python?
+\end{frame}
+
+\begin{frame}{}
+  What is the result of 17.0 / 2?
+\end{frame}
+
+\begin{frame}{}
+  What does '*' * 40 produce?
+\end{frame}
+
+\begin{frame}{}
+  Which of the following is not a type in Python?
+  \begin{enumerate}
+    \item int
+    \item float
+    \item char
+    \item string
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  What happens when we run this code?
+  \begin{lstlisting}
+a = False
+b = True
+c = True
+if a and b or c:
+    print "You are correct!"
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{}
+  What is the difference between print x and print x, ?
+\end{frame}
+
+\begin{frame}{}
+  A single line of CSV file should be separated into fields. What method would you use to achieve this?
+\end{frame}
+
+\begin{frame}{}
+  How many items can a function return?
+\end{frame}
+
+\begin{frame}{}
+  If function returns more than one item/object what is the return type of the function?
+\end{frame}
+
+\begin{frame}{}
+  Given a list a, what will its slice a[:-1] evaluate to?
+\end{frame}
+
+\begin{frame}{}
+  How do you get a slice of the list where the slice has only alternate elements?
+\end{frame}
+
+\begin{frame}{}
+  How do you combine 2 lists?
+\end{frame}
+
+\begin{frame}{}
+  How do you find the presence of a given element in the list?
+\end{frame}
+
+\begin{frame}{}
+  You are given a tuple a = (1, 2, 5, 7). What is the result of a[1] = 3?
+\end{frame}
+
+\begin{frame}{}
+  We use \kwrd{for} to loop through the elements of a list. What do we have to do if we want to iterate through the elements of a list as well as get the index of the elements of the list as we iterate through?
+\end{frame}
+
+\begin{frame}{}
+  What is the difference between import math and from math import *?
+\end{frame}
+
+\begin{frame}{}
+  What can be the keys of a dictionary?
+\end{frame}
+
+\begin{frame}{}
+  What happens when you try to access a key in the dictionary that does not exist?
+\end{frame}
+
+\begin{frame}{}
+  How do you avoid such an exception?
+\end{frame}
+
+\begin{frame}{}
+  How do you obtain all the keys of the dictionary?
+  \pause
+  \\all the values?
+\end{frame}
+
+\begin{frame}{}
+  What will the set contain when you create a set from a list containing duplicate elements?
+\end{frame}
+
+\end{document}
+
 \begin{enumerate}
-  \item Which version of Python were you using? 
+  \item Which version of Python were you using?
   \item List some key differences between IPython and Vanilla Python
   \item What is the biggest integer number that can be represented by Python?
   \item What is the result of 17.0 / 2?
@@ -39,4 +181,3 @@
   \item Name any 2 types of Exception.
   \item Whats are the 2 IPython command you use for debugging?
 \end{enumerate}
-\end{document}

@@ -110,9 +110,9 @@
   \titlepage
 \end{frame}
 
-\section{Functions and basic data structures}
+\section{Control Flow}
 
-\subsection{Exercises on Control flow}
+\subsection{Exercises}
 \begin{frame}
   \frametitle{Problem set 1}
   \begin{itemize}
@@ -123,7 +123,10 @@
 
 \begin{frame}{Problem 1.1}
   Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
+\begin{block}
+{Information...}
 These are called $Armstrong$ numbers.
+\end{block}
 \end{frame}
   
 \begin{frame}{Problem 1.2 - Collatz sequence}
@@ -155,7 +158,8 @@ When can your code fail?
 % TIME: 20 m, running 20m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Functions}
+\section{Functions}
+\subsection{Defining}
 \begin{frame}[fragile]
 \frametitle{Functions: examples}
   \begin{lstlisting}
@@ -229,10 +233,11 @@ def what( n, x ):
   \end{lstlisting}
 \end{frame}
 
+\subsection{Built-in functions}
 \begin{frame}
   {Before writing a function}
   \begin{itemize}
-      \item Builtin functions for various and sundry
+      \item Variety of builtin functions are available
       \item \typ{abs, any, all, len, max, min}
       \item \typ{pow, range, sum, type}
       \item Refer here:
@@ -244,32 +249,29 @@ def what( n, x ):
 % TIME: 10 m, running 30m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Problem set 2}
-  The focus is on writing functions and calling them.
-\end{frame}
-
-\begin{frame}{Problem 2.1}
+\subsection{Exercises}
+\begin{frame}{Problem set 2: Problem 2.1}
   Write a function to return the gcd of two numbers.
 \end{frame}
 
 \begin{frame}{Problem 2.2}
-A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive we mean triads that do not `depend' on others. For example, (4,3,5) is a variant of (3,4,5) and hence is not primitive. And (10,24,26) is easily derived from (5,12,13) and should not be displayed by our program. \\
-Write a program to print primitive pythagorean triads. The program should generate all triads with a, b values in the range 0---100
+Write a program to print all primitive pythagorean triads (a, b, c) where a, b are in the range 1---100 \\
+A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive we mean triads that do not `depend' on others. For example, (4,3,5) is a variant of (3,4,5) and hence is not primitive. And (10,24,26) is easily derived from (5,12,13) and is also not primitive.
 \end{frame}
 
 \begin{frame}{Problem 2.3}
-  Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\\For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).
+  Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\newline\\\emph{For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).}
 \end{frame}
 
 \begin{frame}{Problem 2.4}
-  The aliquot of a number is defined as: the sum of the \emph{proper} divisors of the number. For example, the aliquot(12) = 1 + 2 + 3 + 4 + 6 = 16.\\
+  The aliquot of a number is defined as: the sum of the \emph{proper} divisors of the number. For example, aliquot(12) = 1 + 2 + 3 + 4 + 6 = 16.\\
   Write a function that returns the aliquot number of a given number. 
 \end{frame}
 
 \begin{frame}{Problem 2.5}
   A pair of numbers (a, b) is said to be \alert{amicable} if the aliquot number of a is b and the aliquot number of b is a.\\
   Example: \texttt{220, 284}\\
-  Write a program that prints all five digit amicable pairs.
+  Write a program that prints all four digit amicable pairs.
   \inctime{25}
 \end{frame}
 
@@ -277,8 +279,9 @@ Write a program to print primitive pythagorean triads. The program should genera
 % TIME: 25 m, running 55m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Lists}
+\section{Lists}
 
+\subsection{Manipulating}
 \begin{frame}[fragile]
   \frametitle{List creation and indexing}
 \begin{lstlisting}
@@ -286,8 +289,8 @@ Write a program to print primitive pythagorean triads. The program should genera
 >>> a = [1, 2, 3, 4] # More useful.
 >>> len(a) 
 4
->>> a[0] + a[1] + a[2] + a[-1]
-10
+>>> a[0] + a[1] + a[-1]
+7
 \end{lstlisting}
   \begin{itemize}
   \item Indices start with ?
@@ -366,6 +369,7 @@ What do you think the last one will do?
 % TIME: 10 m, running 65m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Methods}
 \begin{frame}[fragile]
   \frametitle{List methods}
 \begin{lstlisting}
@@ -403,6 +407,7 @@ True
 % TIME: 5 m, running 70m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Tuples}
 \begin{frame}[fragile]
   \frametitle{Tuples: immutable}
 \begin{lstlisting}
@@ -412,7 +417,8 @@ True
 >>> t[0] = 1
 Traceback (most recent call last):
   File "<stdin>", line 1, in ?
-TypeError: object does not support item assignment
+TypeError: object does not support
+item assignment
 \end{lstlisting}  
 \begin{itemize}
     \item Multiple return values are actually a tuple.
@@ -425,6 +431,7 @@ TypeError: object does not support item assignment
 % TIME: 5 m, running 75m 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{for and range()}
 \begin{frame}[fragile]
   \frametitle{\typ{range()} function}
   \begin{lstlisting}
@@ -494,12 +501,13 @@ Try: \typ{print enumerate(a)}
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item Defining functions and calling them
-    \item Lists: Creating, Indexing, Slicing and List methods
+    \item Control flow in action
+    \item Functions
+    \item Manipulating Lists 
     \item Tuples
     \item range() function
     \item for loops
-    \item iterating lists with for, for...range()
+    \item for...range() idiom
   \end{itemize}
 \end{frame}
 \end{document}
