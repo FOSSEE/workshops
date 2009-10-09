@@ -89,11 +89,11 @@
 
 %% Delete this, if you do not want the table of contents to pop up at
 %% the beginning of each subsection:
-\AtBeginSubsection[]
+\AtBeginSection[]
 {
   \begin{frame}<beamer>
     \frametitle{Outline}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection,subsections]
   \end{frame}
 }
 
@@ -297,17 +297,6 @@ squares = [i*i for i in range(1, 100)
            if i % 10 in [1, 2, 5, 7]]
      \end{lstlisting}
 Which is more readable?
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{map() function}
-    map() function accomplishes the same as list comprehensions
-    \begin{lstlisting}
->>> def square(x): return x*x
-...
->>> map(square, range(1, 100))
-[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
-    \end{lstlisting}
 \inctime{15}
 \end{frame}
 

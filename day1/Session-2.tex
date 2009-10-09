@@ -87,11 +87,11 @@
 
 %% Delete this, if you do not want the table of contents to pop up at
 %% the beginning of each subsection:
-\AtBeginSubsection[]
+\AtBeginSection[]
 {
   \begin{frame}<beamer>
     \frametitle{Outline}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection,subsections]
   \end{frame}
 }
 
@@ -123,10 +123,8 @@
 
 \begin{frame}{Problem 1.1}
   Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
-\begin{block}
-{Information...}
-These are called $Armstrong$ numbers.
-\end{block}
+\vspace*{0.2in}
+\emphbar{These are called $Armstrong$ numbers.}
 \end{frame}
   
 \begin{frame}{Problem 1.2 - Collatz sequence}
@@ -150,7 +148,7 @@ These are called $Armstrong$ numbers.
   \end{lstlisting}
 The number of lines must be obtained from the user as input.\\
 \pause
-When can your code fail?
+\emphbar{When can your code fail?}
 \only<2->{\inctime{20}}
 \end{frame}
 
@@ -189,7 +187,7 @@ def pad( n, size ):
     return padSize * SPACE + s
   \end{lstlisting}
 \pause
-What about \%3d?
+\emphbar{What about \% formatting?}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -326,7 +324,7 @@ Explain last result
 >>> a[-1::-1]
 \end{lstlisting}
 What do you think the last one will do?
-  \emphbar{Note: Strings also use same indexing and slicing.}
+  \emphbar{Strings also use same indexing and slicing.}
 \end{frame}
 
 \begin{frame}[fragile]
