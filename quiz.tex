@@ -30,10 +30,10 @@
 % Title page
 \title[Basic Python]{Python: Quiz}
 
-\author[FOSSEE Team] {FOSSEE Authors}
+\author[FOSSEE Team] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {11, October 2009\\Day 1, Session 0}
+\date[] {11, October 2009\\Day 2, Session 0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -44,7 +44,7 @@
 \end{frame}
 
 \begin{frame}{}
-  What is the biggest integer number that can be represented by Python?
+  What is the largest integer value that can be represented by Python?
 \end{frame}
 
 \begin{frame}{}
@@ -77,59 +77,82 @@ if a and b or c:
 \end{frame}
 
 \begin{frame}{}
-  What is the difference between print x and print x, ?
+  What is the difference between \kwrd{print} \emph{x} and \kwrd{print} \emph{x,} ?
 \end{frame}
 
 \begin{frame}{}
-  A single line of CSV file should be separated into fields. What method would you use to achieve this?
+  A sample line from a Comma Separated Values (CSV) file:\\
+  \vspace*{0.2in}
+  \emph{Rossum, Guido, 42, 56, 34, 54}\\
+  \vspace*{0.2in}
+  What method would you use to separate the line into fields?
 \end{frame}
 
 \begin{frame}{}
   How many items can a function return?
 \end{frame}
 
-\begin{frame}{}
-  If function returns more than one item/object what is the return type of the function?
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> a = [1, 2, 5, 9]
+  >>> a[:-1]
+  \end{lstlisting}
+  What is the output?
 \end{frame}
 
 \begin{frame}{}
-  Given a list a, what will its slice a[:-1] evaluate to?
+  How do you get the alternate elements of a list?
 \end{frame}
 
 \begin{frame}{}
-  How do you get a slice of the list where the slice has only alternate elements?
+  How do you combine the two lists \emph{a} and \emph{b}?
 \end{frame}
 
 \begin{frame}{}
-  How do you combine 2 lists?
+  How do you find the presence of an element \emph{x} in the list \emph{a}?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> a = (1, 2, 5, 7)
+  >>> a[1]
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  for x in "abcd":
+      print x
+
+  a
+  b
+  c
+  d
+  \end{lstlisting}
+  How do you get the following output? 
+  \begin{lstlisting}
+    0 a
+    1 b
+    2 c
+    3 d
+  \end{lstlisting}
+  by doing a small modification in the same two lines of code above?
 \end{frame}
 
 \begin{frame}{}
-  How do you find the presence of a given element in the list?
+  What can you use as the keys of a dictionary?
 \end{frame}
 
-\begin{frame}{}
-  You are given a tuple a = (1, 2, 5, 7). What is the result of a[1] = 3?
-\end{frame}
-
-\begin{frame}{}
-  We use \kwrd{for} to loop through the elements of a list. What do we have to do if we want to iterate through the elements of a list as well as get the index of the elements of the list as we iterate through?
-\end{frame}
-
-\begin{frame}{}
-  What is the difference between import math and from math import *?
-\end{frame}
-
-\begin{frame}{}
-  What can be the keys of a dictionary?
-\end{frame}
-
-\begin{frame}{}
-  What happens when you try to access a key in the dictionary that does not exist?
-\end{frame}
-
-\begin{frame}{}
-  How do you avoid such an exception?
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> d = {
+      'a': 1,
+      'b': 2
+      }
+  >>> print d['c']
+  \end{lstlisting}
+  What is the output?
 \end{frame}
 
 \begin{frame}{}
@@ -138,8 +161,11 @@ if a and b or c:
   \\all the values?
 \end{frame}
 
-\begin{frame}{}
-  What will the set contain when you create a set from a list containing duplicate elements?
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> set([1, 2, 8, 2, 13, 8, 9])
+  \end{lstlisting}
+  What is the output?
 \end{frame}
 
 \end{document}
