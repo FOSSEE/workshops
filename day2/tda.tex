@@ -261,7 +261,7 @@ def test_function_ignore_cases_words():
 
 \begin{frame}[fragile]
     \frametitle{Exercise}
-    Based on Euclid's theorem:
+    Based on Euclid's algorithm:
         $gcd(a,b)=gcd(b,b\%a)$\\
     gcd function can be written as:
     \begin{lstlisting}
@@ -269,14 +269,15 @@ def test_function_ignore_cases_words():
       if a%b == 0: return b
       return gcd(b, a%b)
     \end{lstlisting}
+    \vspace*{-0.15in}
     \begin{block}{Task}
-      For given gcd implementation write
-      at least two tests.
-    \end{block}
-    \begin{block}{Task}
-      Write a non recursive implementation
+      \begin{itemize}
+      \item Write at least 
+        two tests for above mentioned function.
+      \item Write a non recursive implementation
       of gcd(), and test it using already 
       written tests.
+      \end{itemize}
     \end{block}
     
 \inctime{15} 
