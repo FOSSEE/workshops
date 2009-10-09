@@ -124,11 +124,12 @@
   \begin{lstlisting}
     >>> a = np.arange(4)
     >>> b = np.arange(5)
-    >>> a+b
+    >>> a+b #Does this work?
     >>> a+3
     >>> c=np.array([3])
-    >>> a+c
-    >>> b+c
+    >>> a+c #Works!
+    >>> b+c #But how?
+    >>> a.shape, b.shape, c.shape
   \end{lstlisting}
   \begin{itemize}
     \item Enter Broadcasting!
