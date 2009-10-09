@@ -102,6 +102,9 @@
   \end{frame}
 }
 
+\newcommand{\num}{\texttt{numpy}}
+
+
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
 %\beamerdefaultoverlayspecification{<+->}
@@ -124,12 +127,10 @@
 
 \section{Matrices and Arrays}
 
-\subsection{Basic \typ{numpy} }
-
-\newcommand{\num}{\texttt{numpy}}
+\subsection{Basic \typ{numpy}}
 
 \begin{frame}
-  \frametitle{The \num\ module}
+  \frametitle{The \num module}
   \begin{itemize}
       \item Why?
   \item What:
@@ -250,10 +251,11 @@ array([10,11,12,-1])
 \end{frame}
 
 \subsection{Array Creation \& Slicing, Striding Arrays}
+
 \begin{frame}[fragile]
   \frametitle{Array creation functions}
   \begin{itemize}
-    \item {\typ{np.array(object,dtype=None,...)}
+    \item \typ{np.array(object,dtype=None,...)}
     \begin{lstlisting}
 >>> np.array([2,3,4])  
 array([2, 3, 4])
