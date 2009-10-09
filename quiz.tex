@@ -1,11 +1,209 @@
-\documentclass[a4paper,10pt]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tutorial slides on Python.
+%
+% Author: FOSSEE <info at fossee  dot in>
+% Copyright (c) 2005-2009, FOSSEE Team
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[14pt,compress]{beamer}
+
+\mode<presentation>
+{
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+\newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[Basic Python]{Python: Quiz}
+
+\author[FOSSEE Team] {FOSSEE}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {11, October 2009\\Day 2, Session 0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
-Which version of Python were you using? 
-List some key differences between IPython and Vanilla Python
-What is the biggest integer number that can be represented by Python?
-What is the result of 17.0 / 2?
-What does '*' * 40 produce?
- 
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{}
+  What is the largest integer value that can be represented by Python?
+\end{frame}
+
+\begin{frame}{}
+  What is the result of 17.0 / 2?
+\end{frame}
+
+\begin{frame}{}
+  What does '*' * 40 produce?
+\end{frame}
+
+\begin{frame}{}
+  Which of the following is not a type in Python?
+  \begin{enumerate}
+    \item int
+    \item float
+    \item char
+    \item string
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  What happens when we run this code?
+  \begin{lstlisting}
+a = False
+b = True
+c = True
+if a and b or c:
+    print "You are correct!"
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{}
+  What is the difference between \kwrd{print} \emph{x} and \kwrd{print} \emph{x,} ?
+\end{frame}
+
+\begin{frame}{}
+  A sample line from a Comma Separated Values (CSV) file:\\
+  \vspace*{0.2in}
+  \emph{Rossum, Guido, 42, 56, 34, 54}\\
+  \vspace*{0.2in}
+  What method would you use to separate the line into fields?
+\end{frame}
+
+\begin{frame}{}
+  How many items can a function return?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> a = [1, 2, 5, 9]
+  >>> a[:-1]
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}{}
+  How do you get the alternate elements of a list?
+\end{frame}
+
+\begin{frame}{}
+  How do you combine the two lists \emph{a} and \emph{b}?
+\end{frame}
+
+\begin{frame}{}
+  How do you find the presence of an element \emph{x} in the list \emph{a}?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> a = (1, 2, 5, 7)
+  >>> a[1]
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  for x in "abcd":
+      print x
+
+  a
+  b
+  c
+  d
+  \end{lstlisting}
+  How do you get the following output? 
+  \begin{lstlisting}
+    0 a
+    1 b
+    2 c
+    3 d
+  \end{lstlisting}
+  by doing a small modification in the same two lines of code above?
+\end{frame}
+
+\begin{frame}{}
+  What can you use as the keys of a dictionary?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> d = {
+      'a': 1,
+      'b': 2
+      }
+  >>> print d['c']
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}{}
+  How do you obtain all the keys of the dictionary?
+  \pause
+  \\all the values?
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{lstlisting}
+  >>> set([1, 2, 8, 2, 13, 8, 9])
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
 \end{document}
+
+\begin{enumerate}
+  \item Which version of Python were you using?
+  \item List some key differences between IPython and Vanilla Python
+  \item What is the biggest integer number that can be represented by Python?
+  \item What is the result of 17.0 / 2?
+  \item What does '*' * 40 produce?
+  \item List all the basic types available in Python.
+  \item What happens when we run this code?
+  a = False
+  b = True
+  c = True
+  if a and b or c:
+      print ``You are correct!''
+  \item Select last 3 alternative elements in any given list.
+  \item Give the difference between print x and print x,
+  \item A single line of CSV file should be separated into fields. What method would you use to achieve this?
+  \item How many items can a function return?
+  \item If function returns more than one item/object what is the return type of the function?
+  \item How do you document a function?
+  \item Given a list l, what will its slice l[:-1] evaluate to?
+  \item How do you get a slice of the list where the slice has only alternate elements?
+  \item How do you add another list at the end of a given list?
+  \item How do you find if a given element is present in the list or not?
+  \item You are given a tuple a = (1, 2, 5, 7). What happens when you do a[1] = 3?
+  \item We use for to loop through the list elements. What do we have to do if we want to iterate through the elements of the list as well as get the index of the elements of the list as we iterate through?
+  \item What is the difference between import math and from math import *?
+  \item List at least 5 Standard Library Modules.
+  \item How do you create a Python module of your own?
+  \item What can be the keys of a dictionary?
+  \item What happens when you try to access a key in the dictionary that does not exist?
+  \item How do you avoid such an exception?
+  \item How do you obtain all the keys of the dictionary?
+  \item How do you obtain all the values of the dictionary?
+  \item What will the set contain when you create a set from a list containing duplicate elements?
+  \item Name any 2 types of Exception.
+  \item Whats are the 2 IPython command you use for debugging?
+\end{enumerate}

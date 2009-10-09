@@ -338,12 +338,12 @@
   Numerically solve ODEs\\
   \begin{align*}
   \frac{dx}{dt}&=-e^{-t}x^2\\ 
-           x(0)&=2    
+           x&=2 \quad at \ t=0
   \end{align*}
   \begin{lstlisting}
 >>> def dx_dt(x,t):
         return -np.exp(-t)*x**2
-
+>>> t=np.linspace(0,2,100)
 >>> x=integrate.odeint(dx_dt, 2, t)
 >>> plt.plot(x,t)
   \end{lstlisting}
@@ -372,8 +372,6 @@
   \frametitle{Interpolation - Splines}
   Plot the Cubic Spline of $sin(x)$
   \begin{lstlisting}
->>> x = np.arange(0,2*np.pi,np.pi/4)
->>> y = np.sin(x)
 >>> tck = interpolate.splrep(x,y)
 >>> X = np.arange(0,2*np.pi,np.pi/50)
 >>> Y = interpolate.splev(X,tck,der=0)
