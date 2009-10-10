@@ -120,7 +120,6 @@
 \section{Advanced Numpy}
 \begin{frame}[fragile]
   \frametitle{Broadcasting}
-  Try it!
   \begin{lstlisting}
     >>> a = np.arange(4)
     >>> b = np.arange(5)
@@ -176,7 +175,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
-  Try it!
   \vspace{-0.1in}
   \begin{lstlisting}
     >>> a = np.arange(1,9); a.shape=3,3
@@ -195,7 +193,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
-  Try it!
   \vspace{-0.1in}
   \begin{lstlisting}
     >>> b = a[0,1:3]
@@ -274,12 +271,11 @@
 \subsection{Linear Algebra}
 \begin{frame}[fragile]
   \frametitle{Linear Algebra}
-  Try it!
   \begin{lstlisting}
     >>> import scipy as sp
     >>> from scipy import linalg
-    >>> A=sp.mat(np.arange(1,10))
-    >>> A.shape=3,3
+    >>> A = sp.array(sp.arange(1,10))
+    >>> A.shape = 3,3
     >>> linalg.inv(A)
     >>> linalg.det(A)
     >>> linalg.norm(A)
@@ -290,10 +286,9 @@
 
 \begin{frame}[fragile]
   \frametitle{Linear Algebra ...}
-  Try it!
   \begin{lstlisting}
-    >>> A = sp.mat(np.arange(1,10))
-    >>> A.shape=3,3
+    >>> A = sp.array(sp.arange(1,10))
+    >>> A.shape = 3,3
     >>> linalg.lu(A)
     >>> linalg.eig(A)
     >>> linalg.eigvals(A)
@@ -302,6 +297,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Solving Linear Equations}
+  \vspace{-0.2in}
   \begin{align*}
     3x + 2y - z  & = 1 \\
     2x - 2y + 4z  & = -2 \\
@@ -309,10 +305,12 @@
   \end{align*}
   To Solve this, 
   \begin{lstlisting}
-    >>> A = sp.mat([[3,2,-1],[2,-2,4]
+    >>> A = sp.array([[3,2,-1],[2,-2,4]
                   ,[-1,1/2,-1]])
-    >>> B = sp.mat([[1],[-2],[0]])
-    >>> linalg.solve(A,B)
+    >>> b = sp.array([1,-2,0])
+    >>> x = linalg.solve(A,b)
+    >>> Ax = sp.dot(A,x)
+    >>> sp.allclose(Ax, b)
   \end{lstlisting}
 \inctime{15}
 \end{frame}
@@ -343,8 +341,8 @@
   \begin{lstlisting}
 >>> def dx_dt(x,t):
         return -np.exp(-t)*x**2
->>> t=np.linspace(0,2,100)
->>> x=integrate.odeint(dx_dt, 2, t)
+>>> t = np.linspace(0,2,100)
+>>> x = integrate.odeint(dx_dt, 2, t)
 >>> plt.plot(x,t)
   \end{lstlisting}
 \inctime{10}
@@ -353,7 +351,6 @@
 \subsection{Interpolation}
 \begin{frame}[fragile]
   \frametitle{Interpolation}
-  Try it!
   \begin{lstlisting}
 >>> from scipy import interpolate
 >>> interpolate.interp1d?
@@ -373,9 +370,9 @@
   Plot the Cubic Spline of $sin(x)$
   \begin{lstlisting}
 >>> tck = interpolate.splrep(x,y)
->>> X = np.arange(0,2*np.pi,np.pi/50)
->>> Y = interpolate.splev(X,tck,der=0)
->>> plt.plot(x,y,'o',x,y,X,Y)
+>>> xs = np.arange(0,2*np.pi,np.pi/50)
+>>> ys = interpolate.splev(X,tck,der=0)
+>>> plt.plot(x,y,'o',x,y,xs,ys)
 >>> plt.show()
   \end{lstlisting}
 \inctime{10}
@@ -404,13 +401,13 @@
   \begin{lstlisting}
 >>> from scipy import signal, ndimage
 >>> from scipy import lena
->>> A=lena().astype('float32')
->>> B=signal.medfilt2d(A)
+>>> A = lena().astype('float32')
+>>> B = signal.medfilt2d(A)
 >>> imshow(B)
   \end{lstlisting}
   Zooming an array - uses spline interpolation
   \begin{lstlisting}
->>> b=ndimage.zoom(A,0.5)
+>>> b = ndimage.zoom(A,0.5)
 >>> imshow(b)
   \end{lstlisting}
     \inctime{5}

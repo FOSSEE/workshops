@@ -237,14 +237,14 @@ array([10,11,12,-1])
 \begin{frame}[fragile]
   \frametitle{Array math cont.}
   \begin{itemize}
-  \item Logical operations: \typ{np.equal (==)}, \typ{np.not\_equal (!=)},
-    \typ{np.less (<)}, \typ{np.greater (>)} etc.
+  \item Logical operations: \typ{==}, \typ{!=},
+    \typ{<}, \typ{>} etc.
   \item Trig and other functions: \typ{np.sin(x),}
         \typ{np.arcsin(x), np.sinh(x),}
       \typ{np.exp(x), np.sqrt(x)} etc.
   \end{itemize}
 \begin{lstlisting}
->>> np.greater(a,4)
+>>> a<4, a!=3
 >>> np.sqrt(a)
 \end{lstlisting}
 \inctime{10}
@@ -260,7 +260,7 @@ array([10,11,12,-1])
 >>> np.array([2,3,4])  
 array([2, 3, 4])
     \end{lstlisting}
-    \item \typ{np.linspace(start,stop,...)}
+    \item \typ{np.linspace(start,stop,num)}
     \begin{lstlisting}
 >>> np.linspace(0, 2, 4)   
 array([0.,0.6666667,1.3333333,2.])
@@ -274,7 +274,7 @@ array([0.,0.6666667,1.3333333,2.])
   \begin{itemize}  
   \item \typ{np.ones(shape, dtype=None, ...)}  
   \begin{lstlisting} 
->>>np.ones([2,2])
+>>>np.ones((2,2))
 array([[ 1.,  1.],
      [ 1.,  1.]])
   \end{lstlisting}  
@@ -376,10 +376,10 @@ array([[ 0.96276665,  0.77174861],
 # LaTeX markup!
 >>> ylabel(r'sin($\chi$)', color='r')
 >>> title('Simple figure', fontsize=20)
->>> savefig('/tmp/test.eps')
+>>> savefig('/tmp/test.png')
 \end{lstlisting}
 \begin{itemize}
-  \item Also: PNG, PDF, PS, EPS, SVG, PDF
+  \item Also: PDF, PS, EPS, SVG, PDF
 \end{itemize}
 \inctime{5}
 \end{frame}
@@ -786,13 +786,12 @@ title('triangular head; scale '\
     \column{0.6\textwidth}
     \small{
     \begin{enumerate}
-      \item Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) =
-          kx(1-x)$.  Plot the successive iterates of this process.
+      \item Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) = kx(1-x)$.  Plot the successive iterates of this process.
       \item Plot this using a cobweb plot as follows:
           \begin{enumerate}
               \item Start at $(x_0, 0)$
               \item Draw line to $(x_i, f(x_i))$; 
-              \item Set $x_{i+1} = f(x_i)$
+              \item Set $x_i = f(x_i)$
               \item Draw line to $(x_i, x_i)$
               \item Repeat from 2 for as long as you want 
           \end{enumerate}
