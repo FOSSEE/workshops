@@ -72,9 +72,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Matrices and Arrays\\ \& \\2D Plotting}
+\title[]{Arrays\\ \& \\2D Plotting}
 
-\author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
+\author[FOSSEE Team] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {11, October 2009}
@@ -102,6 +102,9 @@
   \end{frame}
 }
 
+\newcommand{\num}{\texttt{numpy}}
+
+
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
 %\beamerdefaultoverlayspecification{<+->}
@@ -122,14 +125,12 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
-\section{Matrices and Arrays}
+\section{Arrays}
 
-\subsection{Basic \typ{numpy} }
-
-\newcommand{\num}{\texttt{numpy}}
+\subsection{Basic \typ{numpy}}
 
 \begin{frame}
-  \frametitle{The \num\ module}
+  \frametitle{The \num\  module}
   \begin{itemize}
       \item Why?
   \item What:
@@ -144,9 +145,9 @@
   \frametitle{Examples of \num}
 \begin{lstlisting}
 # Simple array math example
->>> import numpy as np
->>> a = np.array([1,2,3,4])
->>> b = np.arange(2,6)
+>>> from numpy import *
+>>> a = array([1,2,3,4])
+>>> b = arange(2,6)
 >>> b
 array([2,3,4,5])
 >>> a*2 + b + 1 # Basic math!
@@ -158,17 +159,85 @@ array([5, 8, 11, 14])
   \frametitle{Examples of \num}
 \begin{lstlisting}
 # Pi and e are defined.
->>> x = np.linspace(0.0, 10.0, 1000)
->>> x *= 2*np.pi/10 # inplace.
+>>> x = linspace(0.0, 10.0, 1000)
+>>> x *= 2*pi/10 # inplace.
 # apply functions to array.
->>> y = np.sin(x)
->>> z = np.exp(y)
+>>> y = sin(x)
+>>> z = exp(y)
 \end{lstlisting}
 \inctime{5}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{More examples of \num}
+\vspace*{-8pt}
+\begin{lstlisting}
+>>> x = array([1., 2, 3, 4])
+>>> size(x)
+4
+>>> x.dtype # What is a.dtype?
+dtype('float64')
+>>> x.shape
+(4,)
+>>> print x.itemsize
+8
+>>> x[0] = 10
+>>> print x[0], x[-1]
+10.0 4.0
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Multi-dimensional arrays}
+\begin{lstlisting}
+>>> a = array([[ 0, 1, 2, 3],
+...            [10,11,12,13]])
+>>> a.shape # (rows, columns)
+(2, 4)
+>>> a.shape=4,2
+# Accessing and setting values
+>>> a[1][3] 
+>>> a[1,3] 
+>>> a[1,3] = -1
+>>> a[1] # The second row
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Array math}
+  \begin{itemize}
+  \item Basic \alert{elementwise} math (given two arrays \typ{a, b}):
+      \typ{+, -, *, /, \%}
+  \item Inplace operators: \typ{a += b}
+  \item \typ{sum(x, axis=0)}, 
+        \typ{product(x, axis=0)},
+        \typ{dot(a, bp)}   
+  \end{itemize}
+\begin{lstlisting}
+>>> x = array([[0,2,4,2],[1,2,3,4]])
+>>> sum(x)
+>>> sum(x,axis=1)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Array math cont.}
+  \begin{itemize}
+  \item Logical operations: \typ{==}, \typ{!=},
+    \typ{<}, \typ{>} etc.
+  \item Trig and other functions: \typ{sin(x),}
+        \typ{arcsin(x), sinh(x),}
+      \typ{exp(x), sqrt(x)} etc.
+  \end{itemize}
+\begin{lstlisting}
+>>> a<4, a!=3
+>>> sqrt(a)
+\end{lstlisting}
+\inctime{10}
+\end{frame}
+
 \begin{frame}
-  \frametitle{Basic concepts}
+  \frametitle{Summary of Concepts}
   \begin{itemize}
   \item fixed size (\typ{arr.size});
   \item Same type (\typ{arr.dtype}) of data
@@ -180,107 +249,41 @@ array([5, 8, 11, 14])
   \end{itemize}
 \end{frame}
 
-
-\begin{frame}[fragile]
-  \frametitle{More examples of \num}
-\vspace*{-8pt}
-\begin{lstlisting}
->>> x = np.array([1., 2, 3, 4])
->>> np.size(x)
-4
->>> x.dtype # What is a.dtype?
-dtype('float64')
->>> x.shape
-(4,)
->>> print np.rank(x), x.itemsize
-1 8
->>> x[0] = 10
->>> print x[0], x[-1]
-10.0 4.0
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Multi-dimensional arrays}
-\begin{lstlisting}
->>> a = np.array([[ 0, 1, 2, 3],
-...            [10,11,12,13]])
->>> a.shape # (rows, columns)
-(2, 4)
-# Accessing and setting values
->>> a[1,3] 
-13
->>> a[1,3] = -1
->>> a[1] # The second row
-array([10,11,12,-1])
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Array math}
-  \begin{itemize}
-  \item Basic \alert{elementwise} math (given two arrays \typ{a, b}):
-      \typ{+, -, *, /, \%}
-  \item Inplace operators: \typ{a += b}, or \typ{np.add(a, b, a)} etc. 
-  \item \typ{np.sum(x, axis=0)}, 
-        \typ{np.product(x, axis=0)},
-        \typ{np.dot(a, bp)}   
-  \end{itemize}
-\begin{lstlisting}
->>> b=np.array([[0,2,4,2],[1,2,3,4]])
->>> np.add(a,b,a)
->>> np.sum(x,axis=1)
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Array math cont.}
-  \begin{itemize}
-  \item Logical operations: \typ{np.equal (==)}, \typ{np.not\_equal (!=)},
-    \typ{np.less (<)}, \typ{np.greater (>)} etc.
-  \item Trig and other functions: \typ{np.sin(x),}
-        \typ{np.arcsin(x), np.sinh(x),}
-      \typ{np.exp(x), np.sqrt(x)} etc.
-  \end{itemize}
-\begin{lstlisting}
->>> np.greater(a,4)
->>> np.sqrt(a)
-\end{lstlisting}
-\inctime{10}
-\end{frame}
-
 \subsection{Array Creation \& Slicing, Striding Arrays}
+
 \begin{frame}[fragile]
   \frametitle{Array creation functions}
   \begin{itemize}
-    \item {\typ{np.array(object,dtype=None,...)}
+    \item \typ{array?} \alert{\#Doc string reading}
+    \item \typ{array(object,dtype=None,...)}
     \begin{lstlisting}
->>> np.array([2,3,4])  
+>>> array([2,3,4])  
 array([2, 3, 4])
     \end{lstlisting}
-    \item \typ{np.linspace(start,stop,...)}
+    \item \typ{linspace(start,stop,num)}
     \begin{lstlisting}
->>> np.linspace(0, 2, 4)   
+>>> linspace(0, 2, 4)   
 array([0.,0.6666667,1.3333333,2.])
     \end{lstlisting}
-    \item Also try \typ{np.arange}
+    \item \typ{arange?}
+      \alert{\# float version of range}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Array creation functions cont.}
   \begin{itemize}  
-  \item \typ{np.ones(shape, dtype=None, ...)}  
+  \item \typ{ones(shape, dtype=None, ...)}  
   \begin{lstlisting} 
->>>np.ones([2,2])
+>>> ones((2,2))
 array([[ 1.,  1.],
      [ 1.,  1.]])
   \end{lstlisting}  
-  \item \typ{np.identity(n)} 
-  \item \typ{np.ones\_like(x)}  
+  \item \typ{identity(n)} 
+  \item \typ{ones\_like(x)}  
   \begin{lstlisting} 
->>>a = np.array([[1,2,3],[4,5,6]])
->>>np.ones_like(a)
+>>> a = array([[1,2,3],[4,5,6]])
+>>> ones_like(a)
 array([[1, 1, 1],
        [1, 1, 1]])
   \end{lstlisting}
@@ -291,7 +294,7 @@ array([[1, 1, 1],
 \begin{frame}[fragile]
   \frametitle{Slicing arrays}
 \begin{lstlisting}
->>> a = np.array([[1,2,3], [4,5,6], 
+>>> a = array([[1,2,3], [4,5,6], 
                [7,8,9]])
 >>> a[0,1:3]
 array([2, 3])
@@ -299,8 +302,6 @@ array([2, 3])
 array([[5, 6],
        [8, 9]])
 >>> a[:,2]
-array([3, 6, 9])
->>> a[...,2]
 array([3, 6, 9])
 \end{lstlisting}
 \end{frame}
@@ -319,21 +320,41 @@ array([[1, 3],
 \begin{frame}[fragile]
 \frametitle{Random Numbers}
 \begin{lstlisting}
->>> np.random.rand(3,2)
+>>> random.random()
+0.94134734326214331
+>>> random.random(2)
+array([ 0.73955352,  0.49463645])
+>>> random.random(3,2)
 array([[ 0.96276665,  0.77174861],
        [ 0.35138557,  0.61462271],
        [ 0.16789255,  0.43848811]])
->>> np.random.randint(1,100)
-42
 \end{lstlisting}
 \inctime{15}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Problem Set}
+  \frametitle{Problem}
+  Finite difference
+  \begin{equation*}
+  \frac{sin(x+h)-sin(x)}{h}
+  \end{equation*}
+  \begin{lstlisting}
+  >>> x = linspace(0,2*pi,100)
+  >>> y = sin(x)
+  >>> deltax = x[1]-x[0]
+  \end{lstlisting}
+  \pause
+    \begin{enumerate}
+      \item Given this, get the finite difference of sin in the range 0 to 2*pi
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Advanced Problem}
   \begin{lstlisting}
     >>> from scipy import misc
-    >>> A=misc.imread(name)
+    >>> A=misc.imread('filename')
     >>> misc.imshow(A)
   \end{lstlisting}
     \begin{enumerate}
@@ -353,7 +374,7 @@ array([[ 0.96276665,  0.77174861],
 
 \begin{frame}
     {IPython's \typ{pylab} mode}
-\begin{block}{Immediate use:}
+\begin{block}{Immediate use -}
  \typ{\$ ipython -pylab}
 \end{block}
 \begin{itemize}
@@ -374,10 +395,10 @@ array([[ 0.96276665,  0.77174861],
 # LaTeX markup!
 >>> ylabel(r'sin($\chi$)', color='r')
 >>> title('Simple figure', fontsize=20)
->>> savefig('/tmp/test.eps')
+>>> savefig('/tmp/test.png')
 \end{lstlisting}
 \begin{itemize}
-  \item Also: PNG, PDF, PS, EPS, SVG, PDF
+  \item Also: PS, EPS, SVG, PDF
 \end{itemize}
 \inctime{5}
 \end{frame}
@@ -410,11 +431,6 @@ array([[ 0.96276665,  0.77174861],
 >>> xlabel('$\omega$')
 >>> title(r"$f(\omega)=e^{-\omega^2}
             cos({\omega^2})$")
->>> annotate('maxima',xy=(0, 1), 
-             xytext=(1, 0.8), 
-             arrowprops=dict(
-             facecolor='black', 
-             shrink=0.05))
 \end{lstlisting}
     
 \end{frame}
@@ -422,7 +438,7 @@ array([[ 0.96276665,  0.77174861],
 \begin{frame}[fragile]
   \frametitle{Legends}
 \begin{lstlisting}
->>> x = linspace(0, 2*np.pi, 1000)
+>>> x = linspace(0, 2*pi, 1000)
 >>> plot(x, cos(5*x), 'r--', 
          label='cosine')
 >>> plot(x, sin(5*x), 'g--', 
@@ -771,11 +787,11 @@ title('triangular head; scale '\
 
 \begin{frame}
   \frametitle{Problem Set}
-  \begin{enumerate}
-      \item Write a function that plots any regular n-gon given \typ{n}.
-      \item Consider the logistic map, $f(x) = kx(1-x)$, plot it for
+  \begin{itemize}
+      \item[1] Write a function that plots any regular n-gon given \typ{n}.
+      \item[2] Consider the logistic map, $f(x) = kx(1-x)$, plot it for
           $k=2.5, 3.5$ and $4$ in the same plot.
-\end{enumerate}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile] 
@@ -783,24 +799,29 @@ title('triangular head; scale '\
   \begin{columns}
     \column{0.6\textwidth}
     \small{
-    \begin{enumerate}
-      \item Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) =
-          kx(1-x)$.  Plot the successive iterates of this process.
-      \item Plot this using a cobweb plot as follows:
-          \begin{enumerate}
-              \item Start at $(x_0, 0)$
-              \item Draw line to $(x_i, f(x_i))$; 
-              \item Set $x_{i+1} = f(x_i)$
-              \item Draw line to $(x_i, x_i)$
-              \item Repeat from 2 for as long as you want 
-          \end{enumerate}
-    \end{enumerate}}
+    \begin{itemize}
+      \item[3] Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) = kx(1-x)$.  Plot the successive iterates of this process as explained below. 
+    \end{itemize}}
     \column{0.35\textwidth}
     \hspace*{-0.5in}
   \includegraphics[height=1.6in, interpolate=true]{data/cobweb}  
 \end{columns}
+\end{frame}
+
+\begin{frame}
+  
+  Plot the cobweb plot as follows:
+  \begin{enumerate}
+    \item Start at $(x_0, 0)$ ($\implies$ i=0)
+    \item Draw a line to $(x_i, f(x_i))$
+    \item Set $x_{i+1} = f(x_i)$
+    \item Draw a line to $(x_{i+1}, x_{i+1})$
+    \item $(i\implies i+1)$ 
+    \item Repeat from 2 for as long as you want 
+  \end{enumerate}
 \inctime{20}
 \end{frame}
+
 \begin{frame}{Summary}
   \begin{itemize}
   \item Basics of Numpy.

@@ -75,7 +75,7 @@
 % Title page
 \title[]{Numerical Computing with Numpy \& Scipy}
 
-\author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
+\author[FOSSEE Team] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {11, October 2009}
@@ -120,13 +120,12 @@
 \section{Advanced Numpy}
 \begin{frame}[fragile]
   \frametitle{Broadcasting}
-  Try it!
   \begin{lstlisting}
-    >>> a = np.arange(4)
-    >>> b = np.arange(5)
+    >>> a = arange(4)
+    >>> b = arange(5)
     >>> a+b #Does this work?
     >>> a+3
-    >>> c=np.array([3])
+    >>> c = array([3])
     >>> a+c #Works!
     >>> b+c #But how?
     >>> a.shape, b.shape, c.shape
@@ -142,29 +141,21 @@
     \column{0.65\textwidth}
     \hspace*{-1.5in}
     \begin{lstlisting}
-      >>> a = np.arange(4)
+      >>> a = arange(4)
       >>> a+3
       array([3, 4, 5, 6])
     \end{lstlisting}
     \column{0.35\textwidth}
     \includegraphics[height=0.7in, interpolate=true]{data/broadcast_scalar}
   \end{columns}
-  \begin{itemize}
-    \item Allows functions to take inputs that are not of the same shape
-    \item 2 rules -
-      \begin{enumerate}
-      \item 1 is (repeatedly) prepended to shapes of smaller arrays
-      \item Size 1 in a dimension changed to Largest size in that dimension
-      \end{enumerate}
-  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Broadcasting in 3D}
     \begin{lstlisting}
-      >>> x = np.ones((3, 5))
-      >>> y = np.ones(8)
-      >>> (x[..., None] + y).shape
+      >>> x = ones((3, 5, 1))
+      >>> y = ones(8)
+      >>> (x + y).shape
       (3, 5, 8)
     \end{lstlisting}
     \begin{figure}
@@ -176,10 +167,9 @@
 
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
-  Try it!
   \vspace{-0.1in}
   \begin{lstlisting}
-    >>> a = np.arange(1,9); a.shape=3,3
+    >>> a = arange(1,9); a.shape=3,3
     >>> b = a
     >>> b is a
     >>> b[0,0]=0; print a
@@ -195,7 +185,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Copies \& Views}
-  Try it!
   \vspace{-0.1in}
   \begin{lstlisting}
     >>> b = a[0,1:3]
@@ -214,12 +203,10 @@
 \begin{frame}[fragile]
   \frametitle{Copies contd \ldots}
   \begin{lstlisting}
-    >>> b = a[np.array([0,1,2])]
-    array([[1, 2, 3],
-           [4, 5, 6],
-           [7, 8, 9]])
+    >>> a = arange(1, 10, 2)
+    >>> b = a[array([0,2,3])]
     >>> b.flags.owndata
-    >>> abool=np.greater(a,2)
+    >>> abool=a>5
     >>> c = a[abool]
     >>> c.flags.owndata
   \end{lstlisting}
@@ -274,12 +261,11 @@
 \subsection{Linear Algebra}
 \begin{frame}[fragile]
   \frametitle{Linear Algebra}
-  Try it!
   \begin{lstlisting}
     >>> import scipy as sp
     >>> from scipy import linalg
-    >>> A=sp.mat(np.arange(1,10))
-    >>> A.shape=3,3
+    >>> A = sp.array(sp.arange(1,10))
+    >>> A.shape = 3,3
     >>> linalg.inv(A)
     >>> linalg.det(A)
     >>> linalg.norm(A)
@@ -290,10 +276,9 @@
 
 \begin{frame}[fragile]
   \frametitle{Linear Algebra ...}
-  Try it!
   \begin{lstlisting}
-    >>> A = sp.mat(np.arange(1,10))
-    >>> A.shape=3,3
+    >>> A = sp.array(sp.arange(1,10))
+    >>> A.shape = 3,3
     >>> linalg.lu(A)
     >>> linalg.eig(A)
     >>> linalg.eigvals(A)
@@ -302,6 +287,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Solving Linear Equations}
+  \vspace{-0.2in}
   \begin{align*}
     3x + 2y - z  & = 1 \\
     2x - 2y + 4z  & = -2 \\
@@ -309,10 +295,12 @@
   \end{align*}
   To Solve this, 
   \begin{lstlisting}
-    >>> A = sp.mat([[3,2,-1],[2,-2,4]
+    >>> A = sp.array([[3,2,-1],[2,-2,4]
                   ,[-1,1/2,-1]])
-    >>> B = sp.mat([[1],[-2],[0]])
-    >>> linalg.solve(A,B)
+    >>> b = sp.array([1,-2,0])
+    >>> x = linalg.solve(A,b)
+    >>> Ax = sp.dot(A,x)
+    >>> sp.allclose(Ax, b)
   \end{lstlisting}
 \inctime{15}
 \end{frame}
@@ -328,7 +316,7 @@
   Calculate the area under $(sin(x) + x^2)$ in the range $(0,1)$
   \begin{lstlisting}
     >>> def f(x):
-            return np.sin(x)+x**2
+            return sin(x)+x**2
     >>> integrate.quad(f, 0, 1)
   \end{lstlisting}
 \end{frame}
@@ -342,9 +330,9 @@
   \end{align*}
   \begin{lstlisting}
 >>> def dx_dt(x,t):
-        return -np.exp(-t)*x**2
->>> t=np.linspace(0,2,100)
->>> x=integrate.odeint(dx_dt, 2, t)
+        return -exp(-t)*x**2
+>>> t = linspace(0,2,100)
+>>> x = integrate.odeint(dx_dt, 2, t)
 >>> plt.plot(x,t)
   \end{lstlisting}
 \inctime{10}
@@ -353,18 +341,17 @@
 \subsection{Interpolation}
 \begin{frame}[fragile]
   \frametitle{Interpolation}
-  Try it!
   \begin{lstlisting}
 >>> from scipy import interpolate
 >>> interpolate.interp1d?
->>> x = np.arange(0,2*np.pi,np.pi/4)
->>> y = np.sin(x)
+>>> x = arange(0,2*pi,pi/4)
+>>> y = sin(x)
 >>> fl = interpolate.interp1d(
             x,y,kind='linear')
 >>> fc = interpolate.interp1d(
              x,y,kind='cubic')
->>> fl(np.pi/3)
->>> fc(np.pi/3)
+>>> fl(pi/3)
+>>> fc(pi/3)
   \end{lstlisting}
 \end{frame}
 
@@ -373,9 +360,9 @@
   Plot the Cubic Spline of $sin(x)$
   \begin{lstlisting}
 >>> tck = interpolate.splrep(x,y)
->>> X = np.arange(0,2*np.pi,np.pi/50)
->>> Y = interpolate.splev(X,tck,der=0)
->>> plt.plot(x,y,'o',x,y,X,Y)
+>>> xs = arange(0,2*pi,pi/50)
+>>> ys = interpolate.splev(X,tck,der=0)
+>>> plt.plot(x,y,'o',x,y,xs,ys)
 >>> plt.show()
   \end{lstlisting}
 \inctime{10}
@@ -386,15 +373,12 @@
   \frametitle{Signal \& Image Processing}
     \begin{itemize}
      \item Convolution
-     \item B-splines
      \item Filtering
      \item Filter design
      \item IIR filter design
      \item Linear Systems
-     \item LTI Reresentations
-     \item Waveforms
+     \item LTI Representations
      \item Window functions
-     \item Wavelets
     \end{itemize}
 \end{frame}
 
@@ -404,14 +388,15 @@
   \begin{lstlisting}
 >>> from scipy import signal, ndimage
 >>> from scipy import lena
->>> A=lena().astype('float32')
->>> B=signal.medfilt2d(A)
+>>> A = lena().astype('float32')
+>>> B = signal.medfilt2d(A)
 >>> imshow(B)
   \end{lstlisting}
   Zooming an array - uses spline interpolation
   \begin{lstlisting}
->>> b=ndimage.zoom(A,0.5)
+>>> b = ndimage.zoom(A,0.5)
 >>> imshow(b)
+>>> b = ndimage.zoom(A,2)
   \end{lstlisting}
     \inctime{5}
 \end{frame}
