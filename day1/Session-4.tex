@@ -89,11 +89,11 @@
 
 %% Delete this, if you do not want the table of contents to pop up at
 %% the beginning of each subsection:
-\AtBeginSubsection[]
+\AtBeginSection[]
 {
   \begin{frame}<beamer>
     \frametitle{Outline}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection,subsections]
   \end{frame}
 }
 
@@ -112,7 +112,7 @@
   \titlepage
 \end{frame}
 
-\section{Advanced Data structures, Functions and Debugging}
+\section{Advanced Data structures}
 
 \subsection{Dictionary}
 \begin{frame}{Dictionary}
@@ -120,7 +120,7 @@
     \item lists and tuples index: 0 \ldots n
     \item dictionaries index using strings
     \item \typ{ d = \{ ``Hitchhiker's guide'' : 42, ``Terminator'' : ``I'll be back''\}}
-    \item \typ{d[``Terminator'']\\``I'll be back''}
+    \item \typ{d[``Terminator''] => ``I'll be back''}
     \item aka associative array, key-value pair, hashmap, hashtable \ldots    
     \item what can be keys?
   \end{itemize}
@@ -131,7 +131,7 @@
     \item \alert{Unordered}
       \begin{block}{Standard usage}
         for key in dict:\\
-            <use> dict[key] \# => value
+        \ \ \ \ print dict[key]
       \end{block}
     \item \typ{d.keys()} returns a list
     \item can we have duplicate keys?
@@ -189,7 +189,6 @@ False
 \inctime{5}
 \end{frame}
 
-
 \begin{frame}
   \frametitle{Problem set 6.2}
   \begin{description}
@@ -199,7 +198,8 @@ False
 \inctime{10}
 \end{frame}
 
-\subsection{Functions Reloaded!}
+
+\section{Functions Reloaded!}
 \begin{frame}[fragile]
     \frametitle{Advanced functions}
     \begin{itemize}
@@ -211,6 +211,7 @@ False
       \end{itemize}
 \end{frame}
 
+\subsection{Default arguments}
 \begin{frame}[fragile]
   \frametitle{Functions: default arguments}
   \small
@@ -230,6 +231,7 @@ ask_ok('?', '[Y/N]')
   \end{lstlisting}
 \end{frame}
 
+\subsection{Keyword arguments}
 \begin{frame}[fragile]
   \frametitle{Functions: keyword arguments}
   \small
@@ -251,16 +253,19 @@ ask_ok(complaint='[y/n]', prompt='?')
 \inctime{15} 
 \end{frame}
 
-\subsection{Functional programming}
+\section{Functional programming}
 \begin{frame}[fragile]
     \frametitle{Functional programming}
-What is the basic idea?\\
-Why is it interesting?\\
-\typ{map, reduce, filter}\\
-list comprehension\\
-generators
+    \begin{itemize}
+      \item What is the basic idea?
+      \item Why is it interesting?
+      \item \typ{map, reduce, filter}
+      \item list comprehension
+      \item generators
+    \end{itemize}
 \end{frame}
 
+\subsection{List comprehensions}
 \begin{frame}[fragile]
     \frametitle{List Comprehensions}
 Lets say we want to squares of all the numbers from 1 to 100
@@ -295,8 +300,8 @@ Which is more readable?
 \inctime{15}
 \end{frame}
 
-
-\subsection{Debugging}
+\section{Debugging}
+\subsection{Errors and Exceptions}
 \begin{frame}[fragile]
  \frametitle{Errors}
  \begin{lstlisting}
@@ -338,6 +343,7 @@ or modulo by zero
 \end{lstlisting}
 \end{frame}
 
+\subsection{Strategy}
 \begin{frame}[fragile]
     \frametitle{Debugging effectively}
     \begin{itemize}
@@ -350,7 +356,7 @@ or modulo by zero
 \begin{frame}[fragile]
     \frametitle{Debugging effectively}
     \begin{itemize}
-      \item Using \typ{\%debug} and \typ{\%pdb} in IPython
+      \item Using \typ{\%debug} in IPython
     \end{itemize}
 \end{frame}
 
@@ -362,33 +368,51 @@ In [1]: import mymodule
 In [2]: mymodule.test()
 ---------------------------------------------
 NameError   Traceback (most recent call last)
-/media/python/iitb/workshops/day1/<ipython console> in <module>()
-/media/python/iitb/workshops/day1/mymodule.py in test()
+<ipython console> in <module>()
+mymodule.py in test()
       1 def test():
 ----> 2     print spam
 NameError: global name 'spam' is not defined
+
 In [3]: %debug
-> /media/python/iitb/workshops/day1/mymodule.py(2)test()
+> mymodule.py(2)test()
       0     print spam
 ipdb> 
 \end{lstlisting}
 \inctime{15} 
 \end{frame}
 
+\subsection{Exercise}
 \begin{frame}[fragile]
 \frametitle{Debugging: Exercise}
+\small
+\begin{lstlisting}
+import keyword
+f = open('/path/to/file')
+
+freq = {}
+for line in f:
+    words = line.split()
+    for word in words:
+        key = word.strip(',.!;?()[]: ')
+        if keyword.iskeyword(key):
+            value = freq[key]
+            freq[key] = value + 1
+
+print freq
+\end{lstlisting}
 \inctime{10}
 \end{frame}
 
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item Creating and using Dictionaries
-    \item Creating and using Sets
-    \item Advances Functions: default arguments, keyword arguments
+    \item Dictionaries
+    \item Sets
+    \item Default and keyword arguments
     \item Functional Programming, list comprehensions
     \item Errors and Exceptions in Python
-    \item Debugging: \%pdb and \%debug in IPython
+    \item Debugging: \%debug in IPython
   \end{itemize}
 \end{frame}
 \end{document}

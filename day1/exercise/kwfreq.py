@@ -1,5 +1,5 @@
 import keyword
-f = open('/home/madhu/pyprogs/pytriads.py')
+f = open('/path/to/file')
 
 freq = {}
 for line in f:
@@ -7,7 +7,7 @@ for line in f:
     for word in words:
         key = word.strip(',.!;?()[]: ')
         if keyword.iskeyword(key):
-            value = freq.get(key, 1)
+            value = freq[key]
             freq[key] = value + 1
 
 print freq

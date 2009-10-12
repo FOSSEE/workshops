@@ -10,9 +10,12 @@ def gcd(a, b):
     else:
         return gcd(b, a%b)
 
-for a in range(3, 100):
-    for b in range(a+1, 100):
-        ips, c = is_perfect_square((a * a) + (b * b))
-        if ips and gcd(a, b) == 1:
+a = 3
+while a < 100:
+    b = a + 1
+    while b < 100:
+        is_ps, c = is_perfect_square((a * a) + (b * b))
+        if is_ps and gcd(a, b) == 1:
             print a, b, c
-
+        b += 1
+    a += 1

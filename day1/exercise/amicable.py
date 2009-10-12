@@ -1,18 +1,25 @@
-import math
+def is_perfect_square(n):
+    i = 1
+    while i * i < n:
+        i += 1
+    return i * i == n, i
 
 def aliquot(n):
-    sum = 0
-    for i in range(1, int(math.sqrt(n))+1):
+    sum = 1
+    i = 2
+
+    is_ps, root = is_perfect_square(n)
+    while i < root:
         if n % i == 0:
-            sum += i + n/i
+            sum += i + (n / i)
+        i += 1
     return sum
 
 amicable = []
-for n in range(10000, 100000):
+
+n = 1000
+while n < 10000:
     m = aliquot(n)
-    if aliquot(m) == n:
-        amicable.append((m, n))
-
-print amicable
-
-# please please please profile this.
+    if m > n and aliquot(m) == n:
+        print m, n
+    n += 1
