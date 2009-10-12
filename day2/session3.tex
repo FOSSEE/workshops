@@ -97,12 +97,12 @@
 % Title page
 \title[]{3D data Visualization}
 
-\author[FOSSEE Team] {Asokan Pichai\\Prabhu Ramachandran}
+\author[FOSSEE Team] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {11, October 2009}
-\date[] % (optional)
-}
+\date[]{11, October 2009}
+%\date[] % (optional)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitblogo}{iitblogo}
@@ -111,8 +111,7 @@
 \AtBeginSection[]
 {
   \begin{frame}<beamer>
-    \frametitle{Outline}
-      \Large
+    \frametitle{Outline}      
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
@@ -144,7 +143,6 @@
 
 \begin{frame}
   \frametitle{Outline}
-  \Large
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
@@ -476,6 +474,24 @@ x, y, z = mgrid[-50:50:20j,-50:50:20j,
                 -10:60:20j]
   \end{lstlisting}
 \inctime{20}
+
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Solution}
+  \begin{lstlisting}
+def lorenz(x,y,z,s=10.,r=28.,b=8./3.):
+    u = s*(y-x)
+    v = r*x-y-x*z
+    w = x*y-b*z
+    return u,v,w
+x,y,z = mgrid [-50:50:20j,-50:50:20j,
+                    -10:60:20j ]
+u,v,w = lorenz( x , y , z )
+# Your plot here
+#
+mlab.show()
+
+  \end{lstlisting}
 \end{frame}
   
 \end{document}
