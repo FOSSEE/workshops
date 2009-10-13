@@ -159,32 +159,23 @@ The number of lines must be obtained from the user as input.\\
 \section{Functions}
 \subsection{Defining}
 \begin{frame}[fragile]
-\frametitle{Functions: examples}
-  \begin{lstlisting}
-def signum( r ):
-    """returns 0 if r is zero
-    -1 if r is negative
-    +1 if r is positive"""
-    if r < 0:
-        return -1
-    elif r > 0:
-        return 1
-    else:
-        return 0
-  \end{lstlisting}
+\frametitle{Functions: Definition}
+\begin{itemize}
+  \item \kwrd{def} keyword
+  \item 
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Functions: examples}
   \begin{lstlisting}
-def pad( n, size ): 
-    """pads integer n with spaces
-    into a string of length size
-    """
-    SPACE = ' '
-    s = str( n )
-    padSize = size - len( s )
-    return padSize * SPACE + s
+In [35]: def plot_sinx():
+   ....:     x = linspace(0, 2*pi, 100)
+   ....:     plt.plot(x, sin(x))
+   ....:     plt.show()
+   ....:    
+
+In [36]: plot_sinx()
   \end{lstlisting}
 \pause
 \emphbar{What about \% formatting?}
