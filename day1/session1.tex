@@ -133,13 +133,13 @@
 \end{verbatim}
 Exiting
 \begin{lstlisting}     
-  In [1]: print "Hello, World!"
-  In [2]: ^D
+  In []: print "Hello, World!"
+  In []: ^D
   Do you really want to exit ([y]/n)? y
 \end{lstlisting}
 Breaking out of loops
 \begin{lstlisting}     
-  In [1]: while True:
+  In []: while True:
     ...:     print "Hello, World!"
     ...:     
   Hello, World!
@@ -150,13 +150,13 @@ Breaking out of loops
 \begin{frame}[fragile]
 \frametitle{First Plot}
 \begin{lstlisting}
-  In [2]: x = linspace(0, 2*pi, 51)
+  In []: x = linspace(0, 2*pi, 51)
 \end{lstlisting}
 \typ{linspace(start, stop, num)} \\
 returns \typ{num} evenly spaced points, in the interval [\typ{start}, \typ{stop}].
 \begin{lstlisting}
 
-  In [3]: plot(x,sin(x))
+  In []: plot(x,sin(x))
 \end{lstlisting}
 \typ{plot(x, y)}\\
 plots \typ{x} and \typ{y} using default line style and color
@@ -165,12 +165,12 @@ plots \typ{x} and \typ{y} using default line style and color
 \begin{frame}[fragile]
 \frametitle{Adding Labels}
   \begin{lstlisting}
-In [4]: xlabel('x')
+In []: xlabel('x')
   \end{lstlisting}
 \typ{xlabel(s)} sets the label of the \typ{x}-axis to \typ{s}
 
   \begin{lstlisting}
-In [5]: ylabel('sin(x)')
+In []: ylabel('sin(x)')
   \end{lstlisting}
 \typ{ylabel(s)} sets the label of the \typ{y}-axis to \typ{s}
 \end{frame}
@@ -178,33 +178,75 @@ In [5]: ylabel('sin(x)')
 \begin{frame}[fragile]
 \frametitle{Another example}
   \begin{lstlisting}
-In [6]: clf()
-
-In [7]: y = linspace(0, 2*pi, 51)
-
-In [8]: plot(y, -2*sin(-y))
-
-In [9]: xlabel('y')
-
-In [10]: ylabel('-2sin(-y)')
+In []: clf()
+In []: y = linspace(0, 2*pi, 51)
+In []: plot(y, -2*sin(-y))
+In []: xlabel('y')
+In []: ylabel('-2sin(-y)')
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Title and Legends}
 \begin{lstlisting}
-In [11]: title('Sinusoids')
+In []: title('Sinusoids')
+# When plot made with label
+# plot(y, -2*sin(-y), label='sin')
+In []: legend() 
+# When no label, or to change
+In []: legend(['sin'])
+\end{lstlisting}
+\end{frame}
 
-In [12]: legend(['-2sin(-y)'])
+\begin{frame}[fragile]
+\frametitle{Changing Legend Placement}
+\begin{lstlisting}
+In []: legend(['sin'], loc=5) 
+#or 
+In []: legend(['sin'], loc='right') 
+#or
+In []: legend(['sin'], loc=(x,y)) 
+#(x,y) is position of lower-left 
+#corner of legend in the axes co-ords
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Changing Legend Placement}
+\vspace{-0.15in}
+\begin{lstlisting}
+Location String   Code
+===============   ====
+'best'            0
+'upper right'     1
+'upper left'      2
+'lower left'      3
+'lower right'     4
+'right'           5
+'center left'     6
+'center right'    7
+'lower center'    8
+'upper center'    9
+'center'          10
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Saving \& Closing}
+\begin{lstlisting}
+In []: savefig('sin.png')
+
+In []: close()
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Saving \& Closing}
 \begin{lstlisting}
-In [13]: savefig('2siny.png')
+In []: savefig('sin.png')
 
-In [14]: close()
+In []: close()
 \end{lstlisting}
 \end{frame}
 
@@ -225,6 +267,14 @@ In []: title('sin(x)'))
 \begin{lstlisting}
 In []: plot(y, sin(y), 'g')
 In []: plot(y, sin(y), linewidth=2)  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Annotating}
+\begin{lstlisting}
+In []: annotate('Sample point',
+                (50,200))
 \end{lstlisting}
 \end{frame}
 
