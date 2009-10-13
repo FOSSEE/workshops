@@ -507,7 +507,7 @@ In [6]: a.split()
 Out[6]: ['hello', 'world']
 In [7]: ''.join(['a', 'b', 'c'])
 Out[7]: 'abc'
-In [8] 'd' in ''.join( 'a', 'b', 'c')
+In [8] 'd' in ''.join(['a', 'b', 'c'])
 Out[8]: False
   \end{lstlisting}
   \begin{block}{Try:}
@@ -518,7 +518,7 @@ Out[8]: False
 
 \begin{frame}[fragile]\frametitle{String formatting}
   \begin{lstlisting}
-In [11]: x, y = 1, 1.2
+In [11]: x, y = 1, 1.234
 In [12]: 'x is %s, y is %s' %(x, y)
 Out[12]: 'x is 1, y is 1.234'
   \end{lstlisting}
@@ -568,7 +568,7 @@ In [22]: b = 8
 In [23]: if a > b:
    ....:    print 'Hello'
    ....: else:
-   ....:     print 'World'
+   ....:    print 'World'
    ....:
    ....:
 World
