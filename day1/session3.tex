@@ -28,6 +28,7 @@
 \usepackage{ae,aecompl}
 \usepackage{mathpazo,courier,euler}
 \usepackage[scaled=.95]{helvet}
+\usepackage{amsmath}
 
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 
@@ -72,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Interactive Plotting}
+\title[]{Arrays \& Least Squares Fit}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -125,168 +126,155 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-
-\begin{frame}[fragile]
-\frametitle{Starting up...}
-\begin{verbatim}
-  $ ipython -pylab  
-\end{verbatim}
-Exiting
-\begin{lstlisting}     
-  In []: print "Hello, World!"
-  In []: ^D
-  Do you really want to exit ([y]/n)? y
-\end{lstlisting}
-Breaking out of loops
-\begin{lstlisting}     
-  In []: while True:
-    ...:     print "Hello, World!"
-    ...:     
-  Hello, World!
-  Hello, World!^C
-\end{lstlisting}
+\begin{frame}
+\frametitle{Least Squares Fit}
+In this session - 
+\begin{itemize}
+\item We shall plot a least squares fit curve for time-period(T) squared vs. length(L) plot of a Simple Pendulum. 
+\item Given a file containing L and T values
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{First Plot}
+\frametitle{Least Squares Fit \ldots}
+Machinery Required -
+\begin{itemize}
+\item Reading files and parsing data
+\item Plotting points, lines
+\item Calculating the Coefficients of the Least Squares Fit curve
+\begin{itemize}
+  \item Arrays
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Reading pendulum.txt}
+\begin{itemize}
+  \item The file has two columns
+  \item Column1 - L; Column2 - T
+\end{itemize}
 \begin{lstlisting}
-  In []: x = linspace(0, 2*pi, 51)
+In []: L = []
+In []: T = []
+In []: for line in open('pendulum.txt'):
+  ....     len, t = line.split()
+  ....     L.append(float(len))
+  ....     T.append(float(t))
 \end{lstlisting}
-\typ{linspace(start, stop, num)} \\
-returns \typ{num} evenly spaced points, in the interval [\typ{start}, \typ{stop}].
+We now have two lists L and T
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Calculating $T^2$}
+\begin{itemize}
+\item Each element of the list T must be squared
+\item Iterating over each element of the list works
+\item But very slow \ldots
+\item Instead, we use arrays
+\end{itemize}
 \begin{lstlisting}
-
-  In []: plot(x,sin(x))
+In []: array(L)
+In []: T = array(T)
+In []: Tsq = T*T
+In []: plot(L, Tsq, 'o')
 \end{lstlisting}
-\typ{plot(x, y)}\\
-plots \typ{x} and \typ{y} using default line style and color
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Adding Labels}
-  \begin{lstlisting}
-In []: xlabel('x')
-  \end{lstlisting}
-\typ{xlabel(s)} sets the label of the \typ{x}-axis to \typ{s}
-
-  \begin{lstlisting}
-In []: ylabel('sin(x)')
-  \end{lstlisting}
-\typ{ylabel(s)} sets the label of the \typ{y}-axis to \typ{s}
+\frametitle{Arrays}
+\begin{itemize}
+\item T is now a \typ{numpy array}
+\item \typ{numpy} arrays are very efficient and powerful 
+\item Very easy to perform element-wise operations
+\item \typ{+, -, *, /, \%}
+\item More about arrays later
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Another example}
-  \begin{lstlisting}
-In []: clf()
-In []: y = linspace(0, 2*pi, 51)
-In []: plot(y, -2*sin(-y))
-In []: xlabel('y')
-In []: ylabel('-2sin(-y)')
-  \end{lstlisting}
+\frametitle{Least Square Polynomial}
+\begin{enumerate}
+\item $T^2 = \frac{4\pi^2}{g}L$
+\item $T^2$ and $L$ have a linear relationship
+\item We find an approximate solution to $Ax = y$, where A is the Van der Monde matrix to get coefficients of the least squares fit line. 
+\end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Title and Legends}
+\frametitle{Van der Monde Matrix}
+Van der Monde matrix of order M
+\begin{equation*}
+  \begin{bmatrix}
+  l_1^{M-1} & \ldots & l_1 & 1 \\
+  l_2^{M-1} & \ldots &l_2 & 1 \\
+  \vdots & \ldots & \vdots & \vdots\\
+  l_N^{M-1} & \ldots & l_N & 1 \\
+  \end{bmatrix}
+\end{equation*}
 \begin{lstlisting}
-In []: title('Sinusoids')
-# When plot made with label
-# plot(y, -2*sin(-y), label='sin')
-In []: legend() 
-# When no label, or to change
-In []: legend(['sin'])
+In []: A=vander(L,2)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Changing Legend Placement}
+\frametitle{Least Square Fit Line}
+\begin{itemize}
+\item We use the \typ{lstsq} function of pylab
+\item It returns the 
+\begin{enumerate}
+\item Least squares solution
+\item Sum of residues
+\item Rank of matrix A
+\item Singular values of A
+\end{enumerate}
+\end{itemize}
 \begin{lstlisting}
-In []: legend(['sin'], loc=5) 
-#or 
-In []: legend(['sin'], loc='right') 
-#or
-In []: legend(['sin'], loc=(x,y)) 
-#(x,y) is position of lower-left 
-#corner of legend in the axes co-ords
+coeffs, res, rank, sing = lstsq(A,Tsq)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Changing Legend Placement}
-\vspace{-0.15in}
+\frametitle{Least Square Fit Line \ldots}
+\begin{itemize}
+\item Use the poly1d function of pylab, to create a function for the line equation using the coefficients obtained
 \begin{lstlisting}
-Location String   Code
-===============   ====
-'best'            0
-'upper right'     1
-'upper left'      2
-'lower left'      3
-'lower right'     4
-'right'           5
-'center left'     6
-'center right'    7
-'lower center'    8
-'upper center'    9
-'center'          10
+p=poly1d(coeffs)
 \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Saving \& Closing}
+\item Get new $T^2$ values using the function \typ{p} obtained
 \begin{lstlisting}
-In []: savefig('sin.png')
-
-In []: close()
+Tline = p(L)
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Multiple Figures}
+\item Now plot Tline vs. L, to get the Least squares fit line. 
 \begin{lstlisting}
-In []: figure(1)
-In []: plot(x, sin(x))
-In []: figure(2)
-In []: plot(x, cos(x))
-In []: figure(1)
-In []: title('sin(x)'))
+plot(L, Tline)
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Showing it better}
-\begin{lstlisting}
-In []: plot(y, sin(y), 'g')
-In []: plot(y, sin(y), linewidth=2)  
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Annotating}
-\begin{lstlisting}
-In []: annotate('Sample point',
-                (50,200))
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Axes lengths}
-  \begin{lstlisting}
-#Get the limits
-In []: xmin, xmax = xlim() 
-In []: ymin, ymax = ylim() 
-
-#Set the limits
-In []: xlim( xmin, xmax ) 
-In []: ylim( ymin, ymax ) 
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \begin{center}
-  End of Session-1\\
-  \alert{Don't Close \typ{IPython}}
-  \end{center}
+\end{itemize}
 \end{frame}
 
 \end{document}
+
+Least squares: Smooth curve fit. 
+Array Operations: Mean, average (etc region wise like district wise and state wise from SSLC.txt) 
+Subject wise average. Introduce idea of dictionary. 
+
+Session 3
+
+import scipy
+from scipy import linalg.
+
+choose some meaningful plot. ??
+Newton's law of cooling. 
+u, v, f - optics
+hooke's law
+Least fit curves. 
+
+
+Choose a named problem. 
+ODE - first order. Whatever. 
+
+
+arrays, etc etc. 
+sum, average, mean. whatever. statistical
+sslc data
+numpy load text??
