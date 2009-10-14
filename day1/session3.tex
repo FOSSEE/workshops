@@ -135,7 +135,7 @@ In this session -
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Least Squares Fit \ldots}
 Machinery Required -
 \begin{itemize}
@@ -166,7 +166,7 @@ We now have two lists L and T
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Calculating T^2}
+\frametitle{Calculating $T^2$}
 \begin{itemize}
 \item Each element of the list T must be squared
 \item Iterating over each element of the list works
@@ -241,7 +241,7 @@ coeffs, res, rank, sing = lstsq(A,Tsq)
 \begin{lstlisting}
 p=poly1d(coeffs)
 \end{lstlisting}
-\item Get new T^2 values using the function \typ{p} obtained
+\item Get new $T^2$ values using the function \typ{p} obtained
 \begin{lstlisting}
 Tline = p(L)
 \end{lstlisting}
@@ -249,6 +249,7 @@ Tline = p(L)
 \begin{lstlisting}
 plot(L, Tline)
 \end{lstlisting}
+\end{itemize}
 \end{frame}
 
 \end{document}
