@@ -1,0 +1,179 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tutorial slides on Python.
+%
+% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
+% Copyright (c) 2005-2009, Prabhu Ramachandran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[14pt,compress]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[compress,handout]{beamer}
+%\usepackage{pgfpages} 
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+% Modified from: generic-ornate-15min-45min.de.tex
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% Taken from Fernando's slides.
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+\setbeamercolor{emphbar}{bg=blue!20, fg=black}
+\newcommand{\emphbar}[1]
+{\begin{beamercolorbox}[rounded=true]{emphbar} 
+      {#1}
+ \end{beamercolorbox}
+}
+\newcounter{time}
+\setcounter{time}{0}
+\newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
+
+\newcommand{\typ}[1]{\lstinline{#1}}
+
+\newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
+
+%%% This is from Fernando's setup.
+% \usepackage{color}
+% \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+% % Use and configure listings package for nicely formatted code
+% \usepackage{listings}
+% \lstset{
+%    language=Python,
+%    basicstyle=\small\ttfamily,
+%    commentstyle=\ttfamily\color{blue},
+%    stringstyle=\ttfamily\color{orange},
+%    showstringspaces=false,
+%    breaklines=true,
+%    postbreak = \space\dots
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[]{Arrays \& Least Squares Fit}
+
+\author[FOSSEE] {FOSSEE}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {31, October 2009}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
+%\logo{\pgfuseimage{iitmlogo}}
+
+
+%% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\newcommand{\num}{\texttt{numpy}}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+%\beamerdefaultoverlayspecification{<+->}
+
+%\includeonlyframes{current,current1,current2,current3,current4,current5,current6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT STARTS
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Outline}
+%%   \tableofcontents
+%%   % You might wish to add the option [pausesections]
+%% \end{frame}
+
+\begin{frame}
+\frametitle{Least Squares Fit}
+In this session - 
+\begin{itemize}
+\item We shall plot a least squares fit curve for time-period(T) squared vs. length(L) plot of a Simple Pendulum. 
+\item Given a file containing L and T values
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Least Squares Fit \ldots}
+Machinery Required -
+\begin{itemize}
+\item Reading files and parsing data
+\item Plotting points, lines
+\item Calculating the Coefficients of the Least Squares Fit curve
+\begin{itemize}
+  \item Arrays
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Arrays}
+\end{frame}
+
+\end{document}
+
+Least squares: Smooth curve fit. 
+Array Operations: Mean, average (etc region wise like district wise and state wise from SSLC.txt) 
+Subject wise average. Introduce idea of dictionary. 
+
+Session 3
+
+import scipy
+from scipy import linalg.
+
+choose some meaningful plot. ??
+Newton's law of cooling. 
+u, v, f - optics
+hooke's law
+Least fit curves. 
+
+
+Choose a named problem. 
+ODE - first order. Whatever. 
+
+
+arrays, etc etc. 
+sum, average, mean. whatever. statistical
+sslc data
+numpy load text??
