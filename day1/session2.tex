@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\texttt{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Basic Python]{Python:Basic Overview\\}
+\title[Basic Python]{Basic Overview\\}
 
 \author[FOSEE Team] {The FOSSEE Group}
 
@@ -133,25 +133,25 @@
 \begin{frame}[fragile]
 \frametitle{Functions: Example 1}
   \begin{lstlisting}
-In [1]: def plot_sinx():
+In []: def plot_sinx():
    ....:     x = linspace(0, 2*pi, 100)
    ....:     plt.plot(x, sin(x))
    ....:     plt.show()
    ....:    
 
-In [2]: plot_sinx()
+In []: plot_sinx()
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Functions: Example 2}
   \begin{lstlisting}
-In [3]: def f(x):
+In []: def f(x):
    ....:     return sin(x*x*x)+(3*x*x)
 
-In [4]: x = linspace(0,2*pi, 1000)
+In []: x = linspace(0,2*pi, 1000)
 
-In [5]: plt.plot(x, f(x))
+In []: plt.plot(x, f(x))
   \end{lstlisting}
   \inctime{10}
 \end{frame}
@@ -167,7 +167,7 @@ In [5]: plt.plot(x, f(x))
     \item aka scripts
     \item use your editor
     \item extension \typ{.py}
-    \item run with \texttt{python hello.py} at the command line
+    \item run with \typ{python hello.py} at the command line
     \item in IPython using \kwrd{\%run}
   \end{itemize}
 \inctime{5}
@@ -177,17 +177,19 @@ In [5]: plt.plot(x, f(x))
 \begin{frame}[fragile]
   \frametitle{Basic File Operations}
 Opening and Reading files
+\begin{small}
 \begin{lstlisting}
-In [6]: f = open('/path/to/file_name')
-In [7]: data = f.read() # Read entire file.
-In [8]: line = f.readline() # Read one line.
-In [9]: f.close() # close the file.
+In []: f = open('hello.py')
+In []: data = f.read() # Read entire file.
+In []: line = f.readline() # Read 1 line.
+In []: f.close() # close the file.
 \end{lstlisting}
+\end{small}
 Writing files
 \begin{lstlisting}
-In [10]: f = open('/path/to/file_name', 'w')
-In [11]: f.write('hello world\n')
-In [12]: f.close()
+In []: f = open('hello.txt', 'w')
+In []: f.write('hello world\n')
+In []: f.close()
 \end{lstlisting}
 \begin{itemize}
     \item Everything read or written is a string
@@ -197,9 +199,9 @@ In [12]: f.close()
 \begin{frame}[fragile]
     \frametitle{File and \kwrd{for}}
 \begin{lstlisting}
-In [13]: f = open('dummyfile')
+In []: f = open('dummyfile')
 
-In [14]: for line in f:
+In []: for line in f:
     ...:     print line
     ...:  
 \end{lstlisting}
@@ -224,17 +226,17 @@ not need to be escaped at the end and
 
 \begin{frame}[fragile]\frametitle{Strings and \typ{split()}}
   \begin{lstlisting}
-In [15]: a = 'hello world'
+In []: a = 'hello world'
 
-In [16]: a.split()
-Out[17]: ['hello', 'world']
+In []: a.split()
+Out[]: ['hello', 'world']
   \end{lstlisting}
 Now try this:
   \begin{lstlisting}
-In [18]: b = 'KD, Madhu, Punchagan, Shantanu, Vattam'
+In []: b = 'KD, MCS, PC, SC, SV'
 
-In [19]: b.split(',')
-Out[20]: ['KD', ' Madhu', ' Punchagan', ' Shantanu', ' Vattam']
+In []: b.split(',')
+Out[]: ['KD', 'MCS', 'PC', 'SC', 'SV']
   \end{lstlisting}
 \inctime{5}
 \end{frame}
@@ -244,8 +246,8 @@ Out[20]: ['KD', ' Madhu', ' Punchagan', ' Shantanu', ' Vattam']
 \frametitle{How to plot points?}
 We saw how to plot graphs, lets now look at how to plot points.\\
 \begin{lstlisting}
-In [21]: plt.plot(x, sin(x), 'ro')
-Out[22]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+In []: plt.plot(x, sin(x), 'ro')
+Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 \end{lstlisting}
 \begin{itemize}
   \item \kwrd{'r'},\kwrd{'g'},\kwrd{'b'} for red, green and blue
@@ -261,15 +263,16 @@ Out[22]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 \begin{frame}[fragile]
   \frametitle{List creation and indexing}
 \begin{lstlisting}
-In [23]: lst = [] #Empty list
+In []: lst = [] #Empty list
 
-In [24]: lst = [1,2,3,4] #More useful list
+In []: lst = [1,2,3,4] 
+#More useful list
 
-In [25]: len(lst)
-Out[26]: 4
+In []: len(lst)
+Out[]: 4
 
-In [27]: lst[0]+lst[1]+lst[-1]
-Out[27]: 7
+In []: lst[0]+lst[1]+lst[-1]
+Out[]: 7
 \end{lstlisting}
 \begin{itemize}
   \item Indices start with ?
@@ -285,14 +288,14 @@ Out[27]: 7
   \item  The step is optional
   \end{itemize}
 \begin{lstlisting}
-In [28]: lst[1:3]  # A slice.
-Out[28]: [2, 3]
+In []: lst[1:3]  # A slice.
+Out[]: [2, 3]
 
-In [29]: lst[1:-1]
-Out[29]: [2, 3]
+In []: lst[1:-1]
+Out[]: [2, 3]
 
-In [30]: lst[1:] == lst[1:-1]
-Out[30]: False
+In []: lst[1:] == lst[1:-1]
+Out[]: False
 \end{lstlisting}
 Explain last result
 \end{frame}
@@ -300,13 +303,13 @@ Explain last result
 \begin{frame}[fragile]
   \frametitle{List: more slices}
 \begin{lstlisting}
-In [31]: lst[0:-1:2] # Notice the step!
-Out[31]: [1, 3]
+In []: lst[0:-1:2] # Notice the step!
+Out[]: [1, 3]
 
-In [31]: lst[::2]
-Out[31]: [1, 3]
+In []: lst[::2]
+Out[]: [1, 3]
 
-In [32]: lst[-1::-1]
+In []: lst[-1::-1]
 \end{lstlisting}
 What do you think the last one will do?
 \end{frame}
@@ -314,33 +317,30 @@ What do you think the last one will do?
 \begin{frame}[fragile]
   \frametitle{List methods}
 \begin{lstlisting}
-In [33]: lst.append(5)
+In []: lst.append(5)
+In []: lst
+Out[]: [1, 2, 3, 4, 5]
 
-In [34]: lst
-Out[34]: [1, 2, 3, 4, 5]
+In []: lst.append([6,7])
+In []: lst
+Out[]: [1, 2, 3, 4, 5, [6, 7]]
 
-In [35]: lst.append([6,7])
-
-In [36]: lst
-Out[36]: [1, 2, 3, 4, 5, [6, 7]]
-
-In [37]: lst.extend([8,9])
-
-In [38]: lst
-Out[38]: [1, 2, 3, 4, 5, [6, 7], 8, 9]
+In []: lst.extend([8,9])
+In []: lst
+Out[]: [1, 2, 3, 4, 5, [6, 7], 8, 9]
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{List containership}
   \begin{lstlisting}
-In [39]: animals = ['cat', 'dog', 'rat', 'croc']
+In []: animals = ['cat', 'dog', 'rat', 'croc']
 
-In [40]: 'dog' in animals
-Out[40]: True
+In []: 'dog' in animals
+Out[]: True
 
-In [41]: 'snake' in animals
-Out[41]: False
+In []: 'snake' in animals
+Out[]: False
   \end{lstlisting}
   \inctime{10}
 \end{frame}
