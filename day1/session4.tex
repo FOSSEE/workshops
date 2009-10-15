@@ -184,6 +184,28 @@
 \end{lstlisting}
 \end{frame}
 
+\section{Solving linear equations}
+\begin{frame}[fragile]
+\frametitle{Solution of equations}
+Example problem: Consider the set of equations
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+
+  To Solve this, 
+  \begin{lstlisting}
+    In []: A = array([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
+    In []: b = array([1, -2, 0])
+    In []: x = linalg.solve(A, b)
+    In []: Ax = dot(A, x)
+    In []: allclose(Ax, b)
+    Out[]: True
+  \end{lstlisting}
+\end{frame}
+
+
 \begin{frame}[fragile]
 \frametitle{ODE Integration}
 We shall use the simple ODE of a simple pendulum. 
