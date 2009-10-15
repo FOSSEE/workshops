@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {31, October 2009}
+\date[] {31, October 2009\\Day 1, Session 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -230,7 +230,7 @@ In []: A=vander(L,2)
 \end{enumerate}
 \end{itemize}
 \begin{lstlisting}
-coeffs, res, rank, sing = lstsq(A,Tsq)
+In []: coef, res, r, s = lstsq(A,Tsq)
 \end{lstlisting}
 \end{frame}
 
@@ -239,15 +239,15 @@ coeffs, res, rank, sing = lstsq(A,Tsq)
 \begin{itemize}
 \item Use the poly1d function of pylab, to create a function for the line equation using the coefficients obtained
 \begin{lstlisting}
-p=poly1d(coeffs)
+In []: p=poly1d(coef)
 \end{lstlisting}
 \item Get new $T^2$ values using the function \typ{p} obtained
 \begin{lstlisting}
-Tline = p(L)
+In []: Tline = p(L)
 \end{lstlisting}
 \item Now plot Tline vs. L, to get the Least squares fit line. 
 \begin{lstlisting}
-plot(L, Tline)
+In []: plot(L, Tline)
 \end{lstlisting}
 \end{itemize}
 \end{frame}
@@ -417,27 +417,3 @@ for k in data:
 
 \end{document}
 
-Least squares: Smooth curve fit. 
-Array Operations: Mean, average (etc region wise like district wise and state wise from SSLC.txt) 
-Subject wise average. Introduce idea of dictionary. 
-
-Session 3
-
-import scipy
-from scipy import linalg.
-
-choose some meaningful plot. ??
-Newton's law of cooling. 
-u, v, f - optics
-hooke's law
-Least fit curves. 
-
-
-Choose a named problem. 
-ODE - first order. Whatever. 
-
-
-arrays, etc etc. 
-sum, average, mean. whatever. statistical
-sslc data
-numpy load text??
