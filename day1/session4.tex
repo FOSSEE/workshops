@@ -95,13 +95,13 @@
   \end{frame}
 }
 
-%%\AtBeginSection[]
-%%{
-  %%\begin{frame}<beamer>
-%%    \frametitle{Outline}
-  %%  \tableofcontents[currentsection,currentsubsection]
-  %%\end{frame}
-%%}
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
@@ -181,6 +181,27 @@
           [-0.52532209, -0.08675134, -0.81649658],
           [-0.8186735 ,  0.61232756,  0.40824829]]))
 \end{lstlisting}
+\end{frame}
+
+\section{Solving linear equations}
+\begin{frame}[fragile]
+\frametitle{Solution of equations}
+Example problem: Consider the set of equations
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+
+  To Solve this, 
+  \begin{lstlisting}
+    In []: A = array([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
+    In []: b = array([1, -2, 0])
+    In []: x = linalg.solve(A, b)
+    In []: Ax = dot(A, x)
+    In []: allclose(Ax, b)
+    Out[]: True
+  \end{lstlisting}
 \end{frame}
 
 \end{document}
