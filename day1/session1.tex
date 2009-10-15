@@ -190,11 +190,14 @@ In []: ylabel('-2sin(-y)')
 \frametitle{Title and Legends}
 \begin{lstlisting}
 In []: title('Sinusoids')
+#Sets the title of the figure
+
+In []: legend() 
 # When plot made with label
 # plot(y, -2*sin(-y), label='sin')
-In []: legend() 
-# When no label, or to change
 In []: legend(['sin'])
+# When no label, or to change
+
 \end{lstlisting}
 \end{frame}
 
@@ -257,7 +260,10 @@ In []: title('sin(x)'))
 \frametitle{Showing it better}
 \begin{lstlisting}
 In []: plot(y, sin(y), 'g')
-In []: plot(y, sin(y), linewidth=2)  
+# plots the curve using green color
+
+In []: plot(y, sin(y), linewidth=2)
+# sets the linewidth to 2  
 \end{lstlisting}
 \end{frame}
 
@@ -266,17 +272,19 @@ In []: plot(y, sin(y), linewidth=2)
 \begin{lstlisting}
 In []: annotate('Sample point',
                 (50,200))
+# Adds the note 'Sample point' at 
+# the point (50, 200)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Axes lengths}
   \begin{lstlisting}
-#Get the limits
+#Get the axes limits
 In []: xmin, xmax = xlim() 
 In []: ymin, ymax = ylim() 
 
-#Set the limits
+#Set the axes limits
 In []: xlim( xmin, xmax ) 
 In []: ylim( ymin, ymax ) 
   \end{lstlisting}
