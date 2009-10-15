@@ -23,6 +23,7 @@
 \usepackage[latin1]{inputenc}
 %\usepackage{times}
 \usepackage[T1]{fontenc}
+\usepackage{amsmath}
 
 % Taken from Fernando's slides.
 \usepackage{ae,aecompl}
@@ -120,7 +121,7 @@
 \begin{frame}
   \frametitle{Outline}
   \tableofcontents
-  \pausesections
+%  \pausesections
 \end{frame}
 
 \section{Matrices}
@@ -183,4 +184,30 @@
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{ODE Integration}
+We shall use the simple ODE of a simple pendulum. 
+\begin{equation*}
+\ddot{\theta} = -\frac{g}{L}sin(\theta)
+\end{equation*}
+\begin{itemize}
+\item This equation can be written as a system of two first order ODEs
+\item $\dot{\theta} = \omega$
+\item $\dot{\omega} = -\frac{g}{L}sin(\theta)$
+\item At $t = 0$  \\
+$\theta = \theta_0$ \&
+$\omega = 0$
+\end{itemize}
+\begin{lstlisting}
+\end{lstlisting}
+\end{frame}
+
+
+
 \end{document}
+
+\begin{frame}[fragile]
+\frametitle{}
+\begin{lstlisting}
+\end{lstlisting}
+\end{frame}
