@@ -258,7 +258,8 @@ plot(L, Tline)
   \begin{itemize}
     \item Average total marks scored in each region
     \item Subject wise average score of each region
-    \item ??Subject wise average score for all regions combined??
+    \item \alert{??Subject wise average score for all regions combined??}
+    \item Find the subject wise standard deviation of scores for each region
   \end{itemize}
 \end{frame}
 
@@ -354,31 +355,63 @@ for record in open('sslc1.txt'):
 
 \begin{frame}[fragile]
   \frametitle{Dictionary - Building parsed data \ldots}
-  \small
   \begin{lstlisting}
-data[fields[0]]['marks'] = append(
-    data[fields[0]]['marks'], 
-    [int(fields[3]), int(fields[4]),
-    int(fields[5]), int(fields[6]),
-    int(fields[7])
-    ])
+marks = []
+for field in fields[3:8]:
+    score_str = field.strip()
+    score = 0 if score_str == 'AA'
+        or score_str == 'AAA'
+        or score_str == ''
+        else int(score_str)
+    marks.append(score)
 
-data[fields[0]]['total'].append(fields[8])
+data[fields[0]]['marks'].append(marks)
+  \end{lstlisting}
+\end{frame}
 
-pfw_key = fields[9] or fields[10] or fields[11]
+\begin{frame}[fragile]
+  \frametitle{Dictionary - Building parsed data \ldots}
+  \begin{lstlisting}
+total = 0 if score_str == 'AA'
+    or score_str == 'AAA'
+    or score_str == ''
+    else int(fields[8])
+data[fields[0]]['total'].append(total)
+
+pfw_key = fields[9]
+    or fields[10]
+    or 'F'
+data[fields[0]][pfw_key] += 1
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionary - Building parsed data \ldots}
+  \begin{lstlisting}
+pfw_key = fields[9]
+    or fields[10]
+    or 'F'
 data[fields[0]][pfw_key] += 1
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Calculations}
+  \small
   \begin{lstlisting}
-all_sub_avg = array([])
-for k, v in data:
+for k in data:
+    data[k]['marks'] = array(data[k]['marks'])
+    data[k]['total'] = array(data[k]['total'])
+
     data[k]['avg'] = average(
         data[k]['total'])
-    data[k]['sub_avg'] = average(
-        data[k]['marks'], axis=1)
+    marks = data[k]['marks']
+    sub_avg = average(marks, axis=1)
+    sub_std = sqrt(sum(square(
+        sub_avg[:,newaxis] - marks), axis=0) /
+        len(marks))
+    data[k]['sub_avg'] = sub_avg
+    data[k]['sub_std'] = sub_std
   \end{lstlisting}
 \end{frame}
 
