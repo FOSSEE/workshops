@@ -343,11 +343,11 @@ Out[]: [8, 7, 6, 5, 4, 3, 2, 1]
 
 In []: lst.extend([0, -1, -2])
 In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2]
+Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1]
 
 In []: lst.remove(0)
 In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1, -2]
+Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1]
 \end{lstlisting}
 \end{frame}
 
@@ -392,16 +392,16 @@ Out[]: 13
 \frametitle{Dictionaries}
   \alert {lists and tuples: integer indexes :: dictionaries: string indexes}
 \begin{lstlisting}
-In []: player = {'Mat': 134, 'Inn': 233, 'Runs': 10823, 'Avg': 52.53}
+In []: player = {'Mat': 134,'Inn': 233, 
+           'Runs': 10823, 'Avg': 52.53}
 
 In []: player['Avg']
 Out[]: 52.530000000000001
-
 In []: player.keys()
 Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
-
 In []: player.values()
-Out[]: [10823, 233, 52.530000000000001, 134]
+Out[]: [10823, 233, 
+       52.530000000000001, 134]
 \end{lstlisting}
 \end{frame}
 

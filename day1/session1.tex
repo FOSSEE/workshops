@@ -125,51 +125,87 @@
 
 \begin{frame}[fragile]
 \frametitle{Starting up...}
+\begin{block}{}
 \begin{verbatim}
   $ ipython -pylab  
 \end{verbatim}
-Exiting
+\end{block}
 \begin{lstlisting}     
   In []: print "Hello, World!"
-  In []: ^D
-  Do you really want to exit ([y]/n)? y
+  Hello, World!
 \end{lstlisting}
+Exiting
+\begin{lstlisting}     
+  In []: ^D(Ctrl-D)
+  Do you really want to exit([y]/n)? y
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Loops}
 Breaking out of loops
 \begin{lstlisting}     
   In []: while True:
     ...:     print "Hello, World!"
     ...:     
   Hello, World!
-  Hello, World!^C
+  Hello, World!^C(Ctrl-C)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{First Plot}
+\begin{columns}
+    \column{0.25\textwidth}
+    \hspace*{-0.5in}
+  \includegraphics[height=2in, interpolate=true]{data/firstplot}  
+    \column{0.7\textwidth}
+    \begin{block}{Code}
+    \small
 \begin{lstlisting}
-  In []: x = linspace(0, 2*pi, 51)
+In []: x=linspace(0,2*pi,51)
+In []: plot(x,sin(x))
 \end{lstlisting}
-\typ{linspace(start, stop, num)} \\
-returns \typ{num} evenly spaced points, in the interval [\typ{start}, \typ{stop}].
-\begin{lstlisting}
+    \small
+    \end{block}
+\end{columns}
+\end{frame}
 
-  In []: plot(x,sin(x))
-\end{lstlisting}
-\typ{plot(x, y)}\\
+
+\begin{frame}[fragile]
+\frametitle{Walkthrough}
+\begin{block}{\typ{linspace(start, stop, num)} }
+returns \typ{num} evenly spaced points, in the interval [\typ{start}, \typ{stop}].
+\end{block}
+\vspace*{.5in}
+\begin{block}{\typ{plot(x, y)}}
 plots \typ{x} and \typ{y} using default line style and color
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Adding Labels}
+\begin{columns}
+  \column{0.25\textwidth}
+  \hspace*{-0.45in}
+  \includegraphics[height=2in, interpolate=true]{data/label}  
+  \hspace*{0.5in}
+  \column{0.55\textwidth}
+  \begin{block}{}
+  \small
   \begin{lstlisting}
 In []: xlabel('x')
-  \end{lstlisting}
-\typ{xlabel(s)} sets the label of the \typ{x}-axis to \typ{s}
 
-  \begin{lstlisting}
 In []: ylabel('sin(x)')
   \end{lstlisting}
-\typ{ylabel(s)} sets the label of the \typ{y}-axis to \typ{s}
+  \small
+%  \end{lstlisting}
+%\typ{xlabel(s)} sets the label of the \typ{x}-axis to \typ{s}
+
+%  \begin{lstlisting}
+  \end{block}
+%\typ{ylabel(s)} sets the label of the \typ{y}-axis to \typ{s}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -177,60 +213,75 @@ In []: ylabel('sin(x)')
   \begin{lstlisting}
 In []: clf()
 In []: y = linspace(0, 2*pi, 51)
-In []: plot(y, -2*sin(-y))
+In []: plot(y, sin(2*y))
 In []: xlabel('y')
-In []: ylabel('-2sin(-y)')
+In []: ylabel('sin(2y)')
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Title and Legends}
+\vspace*{-0.15in}
+%  \begin{block}{}
+%  \small
 \begin{lstlisting}
 In []: title('Sinusoids')
 #Sets the title of the figure
-
-In []: legend() 
-# Shows a legend in the figure
-# Used when plot was made with label
-# plot(y, -2*sin(-y), label='sin')
-In []: legend(['sin'])
-# When no labels were used
-# Or to change the labels
-
+In []: legend(['sin(2y)'])
+# When no label, or to change
 \end{lstlisting}
+%  \small
+%  \end{block}
+  \vspace*{-0.1in}
+  \begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/legend}  
+  \end{center}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Changing Legend Placement}
+\vspace*{-0.1in}
 \begin{lstlisting}
-In []: legend(['sin'], loc=5) 
-#or 
-In []: legend(['sin'], loc='right') 
-#or
-In []: legend(['sin'], loc=(x,y)) 
+In []: legend(['sin(2y)'], loc=(0.75,0.1)) 
 #(x,y) is position of lower-left 
-#corner of legend in the axes co-ords
+#corner of legend.
 \end{lstlisting}
+%\vspace*{-0.2in}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/loc}  
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Changing Legend Placement}
-\vspace{-0.15in}
+\begin{columns}
+    \column{0.6\textwidth}
+\begin{block}{}
+    \small
 \begin{lstlisting}
-Location String   Code
-===============   ====
-'best'            0
-'upper right'     1
-'upper left'      2
-'lower left'      3
-'lower right'     4
-'right'           5
-'center left'     6
-'center right'    7
-'lower center'    8
-'upper center'    9
-'center'          10
+In []: legend(['sin(2y)'], 
+         loc='right')
 \end{lstlisting}
+    \small
+\end{block}
+\column{0.45\textwidth}
+\vspace{-0.2in}
+\begin{lstlisting}
+Location String   
+===============   
+'best'            
+'upper right'     
+'upper left'      
+'lower left'      
+'lower right'     
+'right'           
+'center left'     
+'center right'    
+'lower center'    
+'upper center'    
+'center'          
+\end{lstlisting}
+\end{columns}
 \end{frame}
 
 
@@ -251,12 +302,13 @@ In []: plot(x, sin(x))
 In []: figure(2)
 In []: plot(x, cos(x))
 In []: figure(1)
-In []: title('sin(x)'))
+In []: title('sin(x)')
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Showing it better}
+\vspace{-0.15in}
 \begin{lstlisting}
 In []: plot(y, sin(y), 'g')
 # plots the curve using green color
@@ -264,16 +316,26 @@ In []: plot(y, sin(y), 'g')
 In []: plot(y, sin(y), linewidth=2)
 # sets the linewidth to 2  
 \end{lstlisting}
+\vspace*{-0.2in}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/green}  
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Annotating}
+\vspace*{-0.15in}
 \begin{lstlisting}
-In []: annotate('Sample point',
-                (50,200))
-# Adds the note 'Sample point' at 
-# the point (50, 200)
+In []: annotate('local max', 
+       xy=(2, 1), 
+       xytext=(3, 1.5),
+       arrowprops=dict(
+       shrink=0.05),)
 \end{lstlisting}
+\vspace*{-0.2in}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/annotate}  
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -284,8 +346,8 @@ In []: xmin, xmax = xlim()
 In []: ymin, ymax = ylim() 
 
 #Set the axes limits
-In []: xlim( xmin, xmax ) 
-In []: ylim( ymin, ymax ) 
+In []: xlim(xmin, xmax) 
+In []: ylim(ymin, ymax) 
   \end{lstlisting}
 \end{frame}
 
@@ -297,3 +359,4 @@ In []: ylim( ymin, ymax )
 \end{frame}
 
 \end{document}
+
