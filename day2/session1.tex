@@ -1,0 +1,416 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Tutorial slides on Python.
+%
+% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
+% Copyright (c) 2005-2009, Prabhu Ramachandran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[14pt,compress]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[compress,handout]{beamer}
+%\usepackage{pgfpages} 
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+% Modified from: generic-ornate-15min-45min.de.tex
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% Taken from Fernando's slides.
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+\setbeamercolor{emphbar}{bg=blue!20, fg=black}
+\newcommand{\emphbar}[1]
+{\begin{beamercolorbox}[rounded=true]{emphbar} 
+      {#1}
+ \end{beamercolorbox}
+}
+\newcounter{time}
+\setcounter{time}{0}
+\newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
+
+\newcommand{\typ}[1]{\texttt{#1}}
+
+\newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
+
+%%% This is from Fernando's setup.
+% \usepackage{color}
+% \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+% % Use and configure listings package for nicely formatted code
+% \usepackage{listings}
+% \lstset{
+%    language=Python,
+%    basicstyle=\small\ttfamily,
+%    commentstyle=\ttfamily\color{blue},
+%    stringstyle=\ttfamily\color{orange},
+%    showstringspaces=false,
+%    breaklines=true,
+%    postbreak = \space\dots
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[Basic Python]{Python:\\A formal approach}
+
+\author[FOSSEE Team] {The FOSSEE Group}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {1, November 2009\\Day 2, Session 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
+%\logo{\pgfuseimage{iitmlogo}}
+
+
+%% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+%\beamerdefaultoverlayspecification{<+->}
+
+%\includeonlyframes{current,current1,current2,current3,current4,current5,current6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT STARTS
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+\section{Data types}
+
+\begin{frame}
+  \frametitle{Primitive Data types}
+  \begin{itemize}
+    \item Numbers: float, int, complex
+    \item Strings
+    \item Boolean
+  \end{itemize}
+\end{frame}
+
+\subsection{Numbers}
+\begin{frame}[fragile]
+  \frametitle{Numbers}
+  \begin{itemize}
+    \item \kwrd{int}\\ Any whole number is an \kwrd{int}, no matter what the size!
+  \begin{lstlisting}
+In []: a = 13
+
+In []: a = 99999999999999999999
+  \end{lstlisting}
+    \item \kwrd{float}
+  \begin{lstlisting}
+In []: fl = 3.141592
+  \end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Complex numbers}
+  \begin{lstlisting}
+In []: cplx = 3+4j
+
+In []: abs(cplx)
+Out[]: 5.0
+
+In []: cplx.imag
+Out[]: 4.0
+
+In []: cplx.real
+Out[]: 3.0
+  \end{lstlisting}
+\end{frame}
+
+\subsection{Boolean}
+\begin{frame}{Boolean}
+  \begin{itemize}
+    \item \kwrd{True}
+    \item \kwrd{False}
+    \item \kwrd{not}
+    \item \kwrd{and}
+    \item \kwrd{or}
+  \end{itemize}
+\end{frame}
+
+\subsection{Strings}
+\begin{frame}[fragile]
+  \frametitle{String methods}
+Strings were introduced previously, let us now look at them in a little more detail.
+  \begin{lstlisting}
+In []: a = 'hello world'
+
+In []: a.startswith('hell')
+Out[]: True
+
+In []: a.endswith('ld')
+Out[]: True
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Still with strings}
+We saw split() previously. join() is the opposite of split()
+  \begin{lstlisting}
+In []: ''.join(['a', 'b', 'c'])
+Out[]: 'abc'
+  \end{lstlisting}
+  \begin{block}{Note:}
+Strings are immutable.\\ That is string variables cannot be changed.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{String formatting}
+  \begin{lstlisting}
+In []: x, y = 1, 1.234
+In []: 'x is %s, y is %s' %(x, y)
+Out[]: 'x is 1, y is 1.234'
+  \end{lstlisting}
+  \small
+\url{docs.python.org/lib/typesseq-strings.html}\\
+\inctime{10}
+\end{frame}
+
+\section{Relational and logical operators}
+\begin{frame}[fragile]
+  \frametitle{Relational and logical operators}
+  \begin{lstlisting}
+In []: pos, zer, neg = 1, 0, -1
+In []: pos == neg
+Out[]: False
+
+In []: pos >= neg
+Out[]: True
+
+In []: neg < zer < pos
+Out[]: True
+
+In []: pos + neg != zer
+Out[]: False
+  \end{lstlisting}
+\inctime{5}
+\end{frame}
+
+\begin{frame}
+  {A classic problem}
+  \begin{block}
+    {Interchange values}
+    How to interchange values of two variables? 
+  \end{block}
+  \pause
+  \begin{block}{Note:}
+    This Python idiom works for all types of variables.\\
+They need not be of the same type!
+  \end{block}
+  \inctime{}
+\end{frame}
+
+\section{Control flow}
+\begin{frame}
+  \frametitle{Control flow constructs}  
+  \begin{itemize}
+  \item \kwrd{if/elif/else}: branching
+  \item \kwrd{while}: looping
+  \item \kwrd{for}: iterating 
+  \item \kwrd{break, continue}: modify loop 
+  \item \kwrd{pass}: syntactic filler
+  \end{itemize}
+\end{frame}
+
+\subsection{Basic Conditional flow}
+\begin{frame}[fragile]
+  \frametitle{\typ{If...elif...else} example}
+\begin{lstlisting}
+x = int(raw_input("Enter an integer:"))
+if x < 0:
+     print 'Be positive!'
+elif x == 0:
+     print 'Zero'
+elif x == 1:
+     print 'Single'
+else:
+     print 'More'
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Simple IO}
+  \begin{block}
+    {Console Input}
+    \texttt{raw\_input()} waits for user input.\\Prompt string is optional.\\
+    All keystrokes are Strings!\\\texttt{int()} converts string to int.
+  \end{block}
+  \begin{block}
+    {Console output}
+    \texttt{print} is straight forward. Note the distinction between \texttt{print x} and \texttt{print x,}
+  \end{block}
+\end{frame}
+
+\subsection{Basic Looping}
+\begin{frame}[fragile]
+  \frametitle{\kwrd{while}}
+Example: Fibonacci series
+  \begin{lstlisting}
+# the sum of two elements
+# defines the next
+a, b = 0, 1
+while b < 10:
+    print b,
+    a, b = b, a + b 
+\end{lstlisting}
+\typ{1 1 2 3 5 8}\\  
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\kwrd{range()}}
+\kwrd{range([start,] stop[, step])}\\
+\begin{itemize}
+  \item \alert {range() returns a list of integers}
+  \item \alert {The start and the step arguments are optional}  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\kwrd{for}}
+Example: print squares of first \typ{n} numbers
+  \begin{lstlisting}
+In []: for i in range(5):
+ ....:     print i, i * i
+ ....:     
+ ....:     
+0 0
+1 1
+2 4
+3 9
+4 16
+\end{lstlisting}
+\inctime{15}
+\end{frame}
+
+\section{Lists}
+\begin{frame}[fragile]
+\frametitle{More List methods}
+\begin{lstlisting}
+In []: lst = [1,2,3,4,5,6,7,8]
+In []: lst.reverse()
+In []: lst
+Out[]: [8, 7, 6, 5, 4, 3, 2, 1]
+
+In []: lst.extend([0, -1, -2])
+In []: lst
+Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2]
+
+In []: lst.remove(0)
+In []: lst
+Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1, -2]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{List containership}
+\begin{lstlisting}
+In []: a = 8
+
+In []: a in lst
+Out[]: True
+
+In []: b = 10
+In []: b in lst
+Out[]: False
+
+In []: b not in lst
+Out[]: True
+\end{lstlisting}
+\inctime{10}
+\end{frame}
+
+\section{Tuples}
+\begin{frame}[fragile]
+\frametitle{Tuples: Immutable lists}
+\begin{lstlisting}
+In []: tup = (1,2,3,4,5,6,7,8)
+In []: tup[0]+tup[3]+tup[-1]
+Out[]: 13
+\end{lstlisting}
+\begin{block}{Note:}
+\begin{itemize}
+\item Tuples are immutable - cannot be changed
+\item Multiple return values in a function are actually tuples
+\item Tuples are working behind the scenes in exchanging values - Tuple Unpacking
+\end{itemize}
+\end{block}
+\inctime{5}
+\end{frame}
+
+\section{Dictionaries}
+\begin{frame}[fragile]
+\frametitle{Dictionaries}
+  \alert {lists and tuples: integer indexes :: dictionaries: string indexes}
+\begin{lstlisting}
+In []: player = {'Mat': 134, 'Inn': 233, 'Runs': 10823, 'Avg': 52.53}
+
+In []: player['Avg']
+Out[]: 52.530000000000001
+
+In []: player.keys()
+Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
+
+In []: player.values()
+Out[]: [10823, 233, 52.530000000000001, 134]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Dictionaries}
+\begin{itemize}
+\item Duplicate keys are not allowed!
+\item Dictionaries are iterable through keys.
+\end{itemize}
+\inctime{5}
+\end{frame}
+
+\end{document}
