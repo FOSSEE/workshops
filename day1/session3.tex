@@ -126,12 +126,11 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
+
 \begin{frame}
 \frametitle{Least Squares Fit}
-In this session - 
 \begin{itemize}
-\item We shall plot a least squares fit curve for time-period(T) squared vs. length(L) plot of a Simple Pendulum. 
-\item Given a file containing L and T values
+\item Plot a least squares fit line
 \end{itemize}
 \end{frame}
 
@@ -148,22 +147,6 @@ Machinery Required -
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Reading pendulum.txt}
-\begin{itemize}
-  \item The file has two columns
-  \item Column1 - L; Column2 - T
-\end{itemize}
-\begin{lstlisting}
-In []: L = []
-In []: T = []
-In []: for line in open('pendulum.txt'):
-  ....     ln, t = line.split()
-  ....     L.append(float(ln))
-  ....     T.append(float(t))
-\end{lstlisting}
-We now have two lists L and T
-\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Calculating $T^2$}

@@ -224,10 +224,10 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{So what did we learn here??}
+\begin{frame}{New Concepts}
   \begin{itemize}
     \item lists
-    \item \alert{\kwrd{for}}
+    \item \typ{for}
   \end{itemize}
 \end{frame}
 
@@ -283,39 +283,119 @@ In []: for num in lst:
 \end{lstlisting}
 \end{frame}
 
-\section{File Handling}
 \begin{frame}[fragile]
-    \frametitle{File and \kwrd{for}}
+\frametitle{Reading pendulum.txt}
+\begin{itemize}
+  \item We now wish to repeat the plot using the values from a file
+  \item Given a file containing L vs. T values 
+  \item Column1 - L; Column2 - T  
+  \item Read the file
+  \item Plot points for L vs. $T^2$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Reading pendulum.txt}
 \begin{lstlisting}
-In []: f = open('dummyfile')
-
-In []: for line in f:
-    ...:     print line
-    ...:  
+In []: L = []
+In []: T = []
+In []: for line in open('pendulum.txt'):
+  ....     points = line.split()
+  ....     L.append(float(points[0]))
+  ....     T.append(float(points[1]))
 \end{lstlisting}
-\inctime{5}
+\begin{itemize}
+\item We now have two lists L and T
+\item Now, Repeat previous steps for plotting
+\end{itemize}
 \end{frame}
 
-\section{Strings}
-\begin{frame}{Strings}
+\begin{frame}[fragile]
+\frametitle{Plotting from pendulum.txt}
+\begin{lstlisting}
+In []: TSq = []
+
+In []: for t in T:
+ ....:     TSq.append(t*t)
+
+In []: plot(L, TSq, '.')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{New Concepts}
+  \begin{itemize}
+    \item File handling
+    \item Strings
+    \item Data-type conversion
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Reading files \ldots}
+\typ{In []: for line in open('pendulum.txt'):}
+\begin{itemize}
+\item opening file `pendulum.txt'
+\item iterating through file using variable \typ{line}
+\item \typ{line} is a \kwrd{string} variable
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Strings}
 Anything within ``quotes'' is a string!
+\begin{lstlisting}
+' This is a string '  
+" This too! "
+""" This one too! """
+''' And one more! '''
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Strings and \typ{split()}}
+\begin{frame}[fragile]
+\frametitle{Strings and \typ{split()}}
   \begin{lstlisting}
-In []: a = 'hello world'
+In []: line = 'hello world'
 
 In []: a.split()
 Out[]: ['hello', 'world']
   \end{lstlisting}
-Now try this:
+This is what happens with \typ{line}
   \begin{lstlisting}
-In []: b = 'KD, MCS, PC, SC, SV'
+In []: line = '1.2000e-01 7.4252e-01'
 
-In []: b.split(',')
-Out[]: ['KD', 'MCS', 'PC', 'SC', 'SV']
+In []: line.split()
+Out[]: ['1.2000e-01', '7.4252e-01']
   \end{lstlisting}
-\inctime{5}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Getting floats from strings}
+  \begin{lstlisting}
+In []: type(points[0])
+Out[]: <type 'str'>
+  \end{lstlisting}
+But, we need floating point numbers
+  \begin{lstlisting}
+In []: t = float(point[0])
+
+In []: type(t)
+Out[]: <type 'float'>
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{figure}
+\includegraphics[width=3.5in]{data/L-Tsq.png}
+\end{figure}
+\vspace{-0.2in}
+Coming up - \alert{Least Square Fit \ldots}
+\end{frame}
+
+
+
+
 \end{document}
+
+
+
+
