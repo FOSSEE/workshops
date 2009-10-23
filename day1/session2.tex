@@ -193,16 +193,26 @@ In []: T = [0.6529, 0.8485, 1.0590,
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Plotting Attributes}
+\frametitle{Additional Plotting Attributes}
 \begin{itemize}
   \item \kwrd{'o'} - Dots
+  \item \kwrd{'.'} - Smaller Dots
   \item \kwrd{'-'} - Lines
   \item \kwrd{'- -'} - Dashed lines
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Plotting \it{L} vs \it{T^2}}
+\frametitle{Plotting $L$ vs. $T^2$}
+\begin{itemize}
+\item We must square each of the values in T
+\item How to do it?
+\item T is a \kwrd{list} and we use a \kwrd{for} loop to iterate over it
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting $L$ vs $T^2$}
 \begin{lstlisting}
 In []: TSq = []
 
@@ -225,6 +235,8 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \begin{frame}[fragile]
   \frametitle{How to create and use lists?}
 \begin{lstlisting}
+In []: mtlist = [] #Empty List
+
 In []: lst = [1,2,3,4] 
 
 In []: lst[0]+lst[1]+lst[-1]
@@ -305,8 +317,5 @@ Out[]: ['KD', 'MCS', 'PC', 'SC', 'SV']
   \end{lstlisting}
 \inctime{5}
 \end{frame}
-
-\section{Plotting points}
-
 
 \end{document}
