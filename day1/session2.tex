@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: The FOSSEE Group
-% Copyright (c) 2009, The FOSSEE Group, IIT Bombay
+% Author: FOSSEE
+% Copyright (c) 2009, FOSSEE, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -75,7 +75,7 @@
 % Title page
 \title[Plotting using Python]{Plotting experimental data\\}
 
-\author[FOSSEE Team] {The FOSSEE Group}
+\author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {31, October 2009\\Day 1, Session 2}
@@ -148,6 +148,61 @@
   \end{itemize}
 \end{frame}
 
+\section{Plotting Points}
+\begin{frame}[fragile]
+\frametitle{Simple Pendulum - L and T}
+  \begin{itemize}
+    \item Given data of Length and Time-period of a Simple pendulum 
+    \item We wish to plot L vs. \alert{$T^2$}
+  \end{itemize}    
+\begin{lstlisting}
+In []: L = [0.1,  0.2,  0.3,  
+            0.4,  0.5,  0.6,  
+            0.7,  0.8,  0.9]
+In []: T = [0.6529, 0.8485, 1.0590, 
+            1.2390, 1.4124, 1.5061, 
+            1.6441, 1.7949, 1.8758]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simple Pendulum \ldots}
+\begin{itemize}
+\item Let us begin with $L$ vs. \alert{$T$}
+\end{itemize}
+\begin{lstlisting}
+  In []: plot(L, T)
+\end{lstlisting}
+\begin{itemize}
+\item But we wish to plot points!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting points}
+\begin{lstlisting}
+  In []: clf()
+
+  In []: plot(L, T, 'o')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+
+  In []: clf()
+  In []: plot(L, T, '.')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting Attributes}
+\begin{itemize}
+  \item \kwrd{'o'} - Dots
+  \item \kwrd{'-'} - Lines
+  \item \kwrd{'- -'} - Dashed lines
+\end{itemize}
+\end{frame}
+
+
+
 \section{File Handling}
 \begin{frame}[fragile]
     \frametitle{File and \kwrd{for}}
@@ -184,20 +239,6 @@ Out[]: ['KD', 'MCS', 'PC', 'SC', 'SV']
 \end{frame}
 
 \section{Plotting points}
-\begin{frame}[fragile]
-\frametitle{How to plot points?}
-\begin{lstlisting}
-In []: plt.plot(x, sin(x), 'ro')
-Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-\end{lstlisting}
-\begin{itemize}
-  \item \kwrd{'r'},\kwrd{'g'},\kwrd{'b'} for red, green and blue
-  \item \kwrd{'o'} - Dots
-  \item \kwrd{'-'} - Lines
-  \item \kwrd{'- -'} - Dashed lines
-\end{itemize}
-\inctime{5}
-\end{frame}
 
 \section{Lists}
 
