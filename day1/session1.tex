@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Tutorial slides on Python.
+%Tutorial slides on Python.
 %
-% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
-% Copyright (c) 2005-2009, Prabhu Ramachandran
+% Author: FOSSEE 
+% Copyright (c) 2009, FOSSEE, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -150,6 +150,9 @@ Breaking out of loops
     ...:     
   Hello, World!
   Hello, World!^C(Ctrl-C)
+  ------------------------------------
+  KeyboardInterrupt                   
+
 \end{lstlisting}
 \end{frame}
 
@@ -159,12 +162,12 @@ Breaking out of loops
     \column{0.25\textwidth}
     \hspace*{-0.5in}
   \includegraphics[height=2in, interpolate=true]{data/firstplot}  
-    \column{0.7\textwidth}
-    \begin{block}{Code}
+    \column{0.8\textwidth}
+    \begin{block}{}
     \small
 \begin{lstlisting}
-In []: x=linspace(0,2*pi,51)
-In []: plot(x,sin(x))
+In []: x = linspace(0, 2*pi, 51)
+In []: plot(x, sin(x))
 \end{lstlisting}
     \small
     \end{block}
@@ -242,9 +245,9 @@ In []: legend(['sin(2y)'])
 \frametitle{Changing Legend Placement}
 \vspace*{-0.1in}
 \begin{lstlisting}
-In []: legend(['sin(2y)'], loc=(0.75,0.1)) 
+In []: legend(['sin(2y)'], loc=(.8,.1)) 
 #(x,y) is position of lower-left 
-#corner of legend.
+#corner of legend box.
 \end{lstlisting}
 %\vspace*{-0.2in}
 \begin{center}
@@ -298,11 +301,13 @@ In []: close()
 \frametitle{Multiple Figures}
 \begin{lstlisting}
 In []: figure(1)
-In []: plot(x, sin(x))
+In []: plot(y, sin(y))
 In []: figure(2)
-In []: plot(x, cos(x))
+In []: plot(y, cos(y))
 In []: figure(1)
-In []: title('sin(x)')
+In []: title('sin(y)')
+In []: close()
+In []: close()
 \end{lstlisting}
 \end{frame}
 
@@ -311,14 +316,13 @@ In []: title('sin(x)')
 \vspace{-0.15in}
 \begin{lstlisting}
 In []: plot(y, sin(y), 'g')
-# plots the curve using green color
 
+In []: clf()
 In []: plot(y, sin(y), linewidth=2)
-# sets the linewidth to 2  
 \end{lstlisting}
 \vspace*{-0.2in}
 \begin{center}
-  \includegraphics[height=2in, interpolate=true]{data/green}  
+  \includegraphics[height=2.2in, interpolate=true]{data/green}  
 \end{center}
 \end{frame}
 
@@ -327,8 +331,8 @@ In []: plot(y, sin(y), linewidth=2)
 \vspace*{-0.15in}
 \begin{lstlisting}
 In []: annotate('local max', 
-       xy=(2, 1), 
-       xytext=(3, 1.5),
+       xy=(1.5, 1), 
+       xytext=(2.5, .8),
        arrowprops=dict(
        shrink=0.05),)
 \end{lstlisting}
@@ -345,10 +349,48 @@ In []: annotate('local max',
 In []: xmin, xmax = xlim() 
 In []: ymin, ymax = ylim() 
 
+In []: xmax = 2*pi
 #Set the axes limits
 In []: xlim(xmin, xmax) 
 In []: ylim(ymin, ymax) 
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Review Problem}
+\begin{enumerate}
+\item Plot x, -x, sin(x), xsin(x) in the range $-5\pi$ to $5\pi$
+\item Add a legend
+\item Annotate the origin
+\item Set axis limits to the range of x
+\end{enumerate}
+\begin{lstlisting}
+In []: x=linspace(-5*pi, 5*pi, 501)
+In []: plot(x, x, 'b')
+In []: plot(x, -x, 'b')
+\end{lstlisting}
+$\vdots$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Review Problem \ldots}
+\small{
+\begin{lstlisting}
+In []: plot(x, sin(x), 'g', linewidth=2)
+In []: plot(x, x*sin(x), 'r', linewidth=3)
+\end{lstlisting}
+
+\begin{lstlisting}
+In []: legend(['x', '-x', 'sin(x)', 'xsin(x)'])
+In []: annotate('origin', 
+                 xy=(0, 0), 
+                 xytext=(0, -7),
+                 arrowprops=dict(
+                 shrink=0.05))
+In []: xlim(5*pi, 5*pi)
+In []: ylim(5*pi, 5*pi)
+\end{lstlisting}
+}
 \end{frame}
 
 \begin{frame}[fragile]

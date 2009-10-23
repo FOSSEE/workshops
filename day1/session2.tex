@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: The FOSSEE Group
-% Copyright (c) 2009, The FOSSEE Group, IIT Bombay
+% Author: FOSSEE
+% Copyright (c) 2009, FOSSEE, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -73,9 +73,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Basic Python]{Basic Overview\\}
+\title[Plotting using Python]{Plotting experimental data\\}
 
-\author[FOSSEE Team] {The FOSSEE Group}
+\author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {31, October 2009\\Day 1, Session 2}
@@ -123,49 +123,85 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
-\section{Functions}
-\begin{frame}{Functions: Definition}
+\section{Creating and running scripts}
+\begin{frame}[fragile]
+\frametitle{Python Scripts}
 \begin{itemize}
-  \item \kwrd{def} keyword
+\item Let us now put all the commands used in the review problem into a file. 
+\item The following commands of IPython help us do this. 
+\end{itemize}
+\begin{lstlisting}
+  In []: %hist
+  In []: %hist -n
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Python Scripts\ldots}
+  \begin{itemize}
+    \item Open a new file in an \alert{editor}
+    \item Copy and paste required lines from the output of \typ{\%hist -n}
+    \item Save the file as \typ{first_plot.py}
+  \end{itemize}
+  \begin{itemize}
+  \item run the file in IPython using \typ{\%run first_plot.py}\\
+  \end{itemize}
+\end{frame}
+
+\section{Plotting Points}
+\begin{frame}[fragile]
+\frametitle{Simple Pendulum - L and T}
+  \begin{itemize}
+    \item Given data of Length and Time-period of a Simple pendulum 
+    \item We wish to plot L vs. \alert{$T^2$}
+  \end{itemize}    
+\begin{lstlisting}
+In []: L = [0.1,  0.2,  0.3,  
+            0.4,  0.5,  0.6,  
+            0.7,  0.8,  0.9]
+In []: T = [0.6529, 0.8485, 1.0590, 
+            1.2390, 1.4124, 1.5061, 
+            1.6441, 1.7949, 1.8758]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simple Pendulum \ldots}
+\begin{itemize}
+\item Let us begin with $L$ vs. \alert{$T$}
+\end{itemize}
+\begin{lstlisting}
+  In []: plot(L, T)
+\end{lstlisting}
+\begin{itemize}
+\item But we wish to plot points!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Functions: Example 1}
-  \begin{lstlisting}
-In []: def plot_sinx():
-   ....:     x = linspace(0, 2*pi, 100)
-   ....:     plt.plot(x, sin(x))
-   ....:     plt.show()
-   ....:    
+\frametitle{Plotting points}
+\begin{lstlisting}
+  In []: clf()
 
-In []: plot_sinx()
-  \end{lstlisting}
+  In []: plot(L, T, 'o')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+
+  In []: clf()
+  In []: plot(L, T, '.')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Functions: Example 2}
-  \begin{lstlisting}
-In []: def f(x):
-   ....:     return sin(x*x*x)+(3*x*x)
-
-In []: x = linspace(0,2*pi, 1000)
-
-In []: plt.plot(x, f(x))
-  \end{lstlisting}
-  \inctime{10}
+\frametitle{Plotting Attributes}
+\begin{itemize}
+  \item \kwrd{'o'} - Dots
+  \item \kwrd{'-'} - Lines
+  \item \kwrd{'- -'} - Dashed lines
+\end{itemize}
 \end{frame}
 
-\section{Creating and running scripts}
-\begin{frame}
-  {Creating python files}
-  \begin{itemize}
-    \item use your editor
-    \item extension \typ{.py}
-    \item in IPython using \kwrd{\%run}
-  \end{itemize}
-\inctime{5}
-\end{frame}
+
 
 \section{File Handling}
 \begin{frame}[fragile]
@@ -203,20 +239,6 @@ Out[]: ['KD', 'MCS', 'PC', 'SC', 'SV']
 \end{frame}
 
 \section{Plotting points}
-\begin{frame}[fragile]
-\frametitle{How to plot points?}
-\begin{lstlisting}
-In []: plt.plot(x, sin(x), 'ro')
-Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-\end{lstlisting}
-\begin{itemize}
-  \item \kwrd{'r'},\kwrd{'g'},\kwrd{'b'} for red, green and blue
-  \item \kwrd{'o'} - Dots
-  \item \kwrd{'-'} - Lines
-  \item \kwrd{'- -'} - Dashed lines
-\end{itemize}
-\inctime{5}
-\end{frame}
 
 \section{Lists}
 
@@ -254,17 +276,6 @@ In []: lst
 Out[]: [1, 2, 3, 4, 5, [6, 7]]
 \end{lstlisting}
 \inctime{10}
-\end{frame}
-
-\section{Modules and import}
-\begin{frame}{Modules and \typ{import}}
-  \begin{itemize}
-    \item \kwrd{import} x
-    \item \kwrd{from} x \kwrd{import} y
-  \end{itemize}
-\pause
-Whats the difference??
-\inctime{5}
 \end{frame}
 
 \end{document}
