@@ -124,14 +124,28 @@
 \end{frame}
 
 \section{Creating and running scripts}
+\begin{frame}[fragile]
+\frametitle{Python Scripts}
+\begin{itemize}
+\item Let us now put all the commands used in the review problem into a file. 
+\item The following commands of IPython help us do this. 
+\end{itemize}
+\begin{lstlisting}
+  In []: %hist
+  In []: %hist -n
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
-  {Creating python files}
+\frametitle{Python Scripts\ldots}
   \begin{itemize}
-    \item use your editor
-    \item extension \typ{.py}
-    \item in IPython using \kwrd{\%run}
+    \item Open a new file in an \alert{editor}
+    \item Copy and paste required lines from the output of \typ{\%hist -n}
+    \item Save the file as \typ{first_plot.py}
   \end{itemize}
-\inctime{5}
+  \begin{itemize}
+  \item run the file in IPython using \typ{\%run first_plot.py}\\
+  \end{itemize}
 \end{frame}
 
 \section{File Handling}
