@@ -153,6 +153,7 @@
 \frametitle{Simple Pendulum - L and T}
   \begin{itemize}
     \item Given data of Length and Time-period of a Simple pendulum 
+    \item $T^2 = \frac{4\pi^2}{g}L$\\ \alert{{$L$} and {$T^2$} vary linearly}
     \item We wish to plot L vs. \alert{$T^2$}
   \end{itemize}    
 \begin{lstlisting}
@@ -163,43 +164,6 @@ In []: T = [0.6529, 0.8485, 1.0590,
             1.2390, 1.4124, 1.5061, 
             1.6441, 1.7949, 1.8758]
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Simple Pendulum \ldots}
-\begin{itemize}
-\item Let us begin with $L$ vs. \alert{$T$}
-\end{itemize}
-\begin{lstlisting}
-  In []: plot(L, T)
-\end{lstlisting}
-\begin{itemize}
-\item But we wish to plot points!
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Plotting points}
-\begin{lstlisting}
-  In []: clf()
-
-  In []: plot(L, T, 'o')
-  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-
-  In []: clf()
-  In []: plot(L, T, '.')
-  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Additional Plotting Attributes}
-\begin{itemize}
-  \item \kwrd{'o'} - Dots
-  \item \kwrd{'.'} - Smaller Dots
-  \item \kwrd{'-'} - Lines
-  \item \kwrd{'- -'} - Dashed lines
-\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -219,9 +183,36 @@ In []: TSq = []
 In []: for t in T:
  ....:     TSq.append(t*t)
 
-In []: plot(L, TSq, '.')
+In []: plot(L, TSq)
 Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting points}
+\begin{itemize}
+\item But we want to plot points!
+\end{itemize}
+\begin{lstlisting}
+  In []: clf()
+
+  In []: plot(L, TSq, 'o')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+
+  In []: clf()
+  In []: plot(L, TSq, '.')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Additional Plotting Attributes}
+\begin{itemize}
+  \item \kwrd{'o'} - Dots
+  \item \kwrd{'.'} - Smaller Dots
+  \item \kwrd{'-'} - Lines
+  \item \kwrd{'- -'} - Dashed lines
+\end{itemize}
 \end{frame}
 
 \begin{frame}{New Concepts}
@@ -385,17 +376,10 @@ Out[]: <type 'float'>
 
 \begin{frame}[fragile]
 \begin{figure}
-\includegraphics[width=3.5in]{data/L-Tsq.png}
+%\includegraphics[width=3.5in]{data/L-Tsq.png}
 \end{figure}
 \vspace{-0.2in}
 Coming up - \alert{Least Square Fit \ldots}
 \end{frame}
 
-
-
-
 \end{document}
-
-
-
-
