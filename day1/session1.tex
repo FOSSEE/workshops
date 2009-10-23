@@ -357,6 +357,43 @@ In []: ylim(ymin, ymax)
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Review Problem}
+\begin{enumerate}
+\item Plot x, -x, sin(x), xsin(x) in the range $-5\pi$ to $5\pi$
+\item Add a legend
+\item Annotate the origin
+\item Set axis limits to the range of x
+\end{enumerate}
+\begin{lstlisting}
+In []: x=linspace(-5*pi, 5*pi, 501)
+In []: plot(x, x, 'b')
+In []: plot(x, -x, 'b')
+\end{lstlisting}
+$\vdots$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Review Problem \ldots}
+\small{
+\begin{lstlisting}
+In []: plot(x, sin(x), 'g', linewidth=2)
+In []: plot(x, x*sin(x), 'r', linewidth=3)
+\end{lstlisting}
+
+\begin{lstlisting}
+In []: legend(['x', '-x', 'sin(x)', 'xsin(x)'])
+In []: annotate('origin', 
+                 xy=(0, 0), 
+                 xytext=(0, -7),
+                 arrowprops=dict(
+                 shrink=0.05))
+In []: xlim(5*pi, 5*pi)
+In []: ylim(5*pi, 5*pi)
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
   \begin{center}
   End of Session-1\\
   \alert{Don't Close \typ{IPython}}
