@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: FOSSEE 
-% Copyright (c) 2009, FOSSEE, IIT Bombay
+% Author: The FOSSEE Group
+% Copyright (c) 2009, The FOSSEE Group, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -75,7 +75,7 @@
 % Title page
 \title[Plotting using Python]{Plotting experimental data\\}
 
-\author[FOSSEE] {FOSSEE}
+\author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {31, October 2009\\Day 1, Session 2}
@@ -121,39 +121,6 @@
   \frametitle{Outline}
   \tableofcontents
   % You might wish to add the option [pausesections]
-\end{frame}
-
-\section{Functions}
-\begin{frame}{Functions: Definition}
-\begin{itemize}
-  \item \kwrd{def} keyword
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Functions: Example 1}
-  \begin{lstlisting}
-In []: def plot_sinx():
-   ....:     x = linspace(0, 2*pi, 100)
-   ....:     plt.plot(x, sin(x))
-   ....:     plt.show()
-   ....:    
-
-In []: plot_sinx()
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Functions: Example 2}
-  \begin{lstlisting}
-In []: def f(x):
-   ....:     return sin(x*x*x)+(3*x*x)
-
-In []: x = linspace(0,2*pi, 1000)
-
-In []: plt.plot(x, f(x))
-  \end{lstlisting}
-  \inctime{10}
 \end{frame}
 
 \section{Creating and running scripts}
@@ -254,17 +221,6 @@ In []: lst
 Out[]: [1, 2, 3, 4, 5, [6, 7]]
 \end{lstlisting}
 \inctime{10}
-\end{frame}
-
-\section{Modules and import}
-\begin{frame}{Modules and \typ{import}}
-  \begin{itemize}
-    \item \kwrd{import} x
-    \item \kwrd{from} x \kwrd{import} y
-  \end{itemize}
-\pause
-Whats the difference??
-\inctime{5}
 \end{frame}
 
 \end{document}
