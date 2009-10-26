@@ -215,11 +215,13 @@ In []: ylabel('sin(x)')
 \frametitle{Another example}
   \begin{lstlisting}
 In []: clf()
+#Clears the plot area.
 In []: y = linspace(0, 2*pi, 51)
 In []: plot(y, sin(2*y))
 In []: xlabel('y')
 In []: ylabel('sin(2y)')
   \end{lstlisting}
+\emphbar{By default plots would be overlayed!}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -231,7 +233,6 @@ In []: ylabel('sin(2y)')
 In []: title('Sinusoids')
 #Sets the title of the figure
 In []: legend(['sin(2y)'])
-# When no label, or to change
 \end{lstlisting}
 %  \small
 %  \end{block}
@@ -243,30 +244,17 @@ In []: legend(['sin(2y)'])
 
 \begin{frame}[fragile]
 \frametitle{Changing Legend Placement}
-\vspace*{-0.1in}
-\begin{lstlisting}
-In []: legend(['sin(2y)'], loc=(.8,.1)) 
-#(x,y) is position of lower-left 
-#corner of legend box.
-\end{lstlisting}
-%\vspace*{-0.2in}
-\begin{center}
-  \includegraphics[height=2in, interpolate=true]{data/loc}  
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Changing Legend Placement}
 \begin{columns}
     \column{0.6\textwidth}
 \begin{block}{}
     \small
 \begin{lstlisting}
 In []: legend(['sin(2y)'], 
-         loc='right')
+         loc='center')
 \end{lstlisting}
     \small
 \end{block}
+ \includegraphics[height=2in, interpolate=true]{data/position}  
 \column{0.45\textwidth}
 \vspace{-0.2in}
 \begin{lstlisting}
@@ -287,6 +275,19 @@ Location String
 \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{For placing legend at $(x,y)$}
+\vspace*{-0.1in}
+\begin{lstlisting}
+In []: legend(['sin(2y)'], loc=(.8,.1)) 
+#(x,y) is position of lower-left 
+#corner of legend box.
+\end{lstlisting}
+%\vspace*{-0.2in}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/loc}  
+\end{center}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Saving \& Closing}
@@ -298,7 +299,7 @@ In []: close()
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Multiple Figures}
+\frametitle{Plotting seprate figures}
 \begin{lstlisting}
 In []: figure(1)
 In []: plot(y, sin(y))
@@ -359,7 +360,7 @@ In []: ylim(ymin, ymax)
 \begin{frame}[fragile]
 \frametitle{Review Problem}
 \begin{enumerate}
-\item Plot x, -x, sin(x), xsin(x) in the range $-5\pi$ to $5\pi$
+\item Plot x, -x, sin(x), xsin(x) in range $-5\pi$ to $5\pi$
 \item Add a legend
 \item Annotate the origin
 \item Set axis limits to the range of x
@@ -392,7 +393,14 @@ In []: ylim(5*pi, 5*pi)
 \end{lstlisting}
 }
 \end{frame}
-
+\begin{frame}
+  \frametitle{Things we have learned}
+  \begin{itemize}
+  \item Creating plots.
+  \item Handling labels and legends.
+  \item Changing properties of plot.
+  \end{itemize}
+\end{frame}
 \begin{frame}[fragile]
   \begin{center}
   End of Session-1\\
