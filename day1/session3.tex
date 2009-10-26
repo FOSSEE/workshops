@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Arrays \& Least Squares Fit}
+\title[]{Least Squares Fit\\Statistical Plotting}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -126,35 +126,23 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Least Squares Fit}
-\begin{itemize}
-\item Plot a least squares fit line
-\end{itemize}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Least Squares Fit \ldots}
-Machinery Required -
+\frametitle{Calculating $T^2$ Efficiently}
+\begin{lstlisting}
+In []: for t in T:
+ ....:     Tsq.append(t*t)
+\end{lstlisting}
 \begin{itemize}
-\item Reading files and parsing data
-\item Plotting points, lines
-\item Calculating the Coefficients of the Least Squares Fit curve
-\begin{itemize}
-  \item Arrays
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Calculating $T^2$}
-\begin{itemize}
-\item Each element of the list T must be squared
-\item Iterating over each element of the list works
-\item But very slow \ldots
-\item Instead, we use arrays
+\item This is not very efficient
+\item We use arrays to make it efficient
 \end{itemize}
 \begin{lstlisting}
 In []: L = array(L)
@@ -167,25 +155,50 @@ In []: plot(L, Tsq, 'o')
 \begin{frame}[fragile]
 \frametitle{Arrays}
 \begin{itemize}
-\item T is now a \typ{numpy array}
-\item \typ{numpy} arrays are very efficient and powerful 
+\item \typ{T} and \typ{L} are now arrays
+\item arrays are very efficient and powerful 
 \item Very easy to perform element-wise operations
 \item \typ{+, -, *, /, \%}
 \item More about arrays later
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Least Square Polynomial}
-\begin{enumerate}
-\item $T^2 = \frac{4\pi^2}{g}L$
+\begin{frame}
+\frametitle{Least Square Fit Curve}
+\begin{itemize}
 \item $T^2$ and $L$ have a linear relationship
-\item We find an approximate solution to $Ax = y$, where A is the Van der Monde matrix to get coefficients of the least squares fit line. 
-\end{enumerate}
+\item Hence, Least Square Fit Curve is a line
+\item we shall use the \typ{lstsq} function
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{lstsq}}
+\begin{itemize}
+\item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
+\item The equation can be re-written as $T^2 = A \cdot p$
+\item where A is   
+  $\begin{bmatrix}
+  L_1 & 1 \\
+  L_2 & 1 \\
+  \vdots & \vdots\\
+  L_N & 1 \\
+  \end{bmatrix}$
+  and p is 
+  $\begin{bmatrix}
+  m\\
+  c\\
+  \end{bmatrix}$
+\item We need to find $p$ to plot the line
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Van der Monde Matrix}
+\begin{itemize}
+\item A is also called a Van der Monde matrix
+\item It can be generated using \typ{vander}
+\end{itemize}
 Van der Monde matrix of order M
 \begin{equation*}
   \begin{bmatrix}
@@ -196,21 +209,15 @@ Van der Monde matrix of order M
   \end{bmatrix}
 \end{equation*}
 \begin{lstlisting}
-In []: A=vander(L,2)
+In []: A = vander(L,2)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Least Square Fit Line}
+\frametitle{\typ{lstsq} \ldots}
 \begin{itemize}
-\item We use the \typ{lstsq} function of pylab
-\item It returns the 
-\begin{enumerate}
-\item Least squares solution
-\item Sum of residues
-\item Rank of matrix A
-\item Singular values of A
-\end{enumerate}
+\item Now use the \typ{lstsq} function
+\item Along with a lot of things, it returns the least squares solution
 \end{itemize}
 \begin{lstlisting}
 In []: coef, res, r, s = lstsq(A,Tsq)
@@ -219,20 +226,16 @@ In []: coef, res, r, s = lstsq(A,Tsq)
 
 \begin{frame}[fragile]
 \frametitle{Least Square Fit Line \ldots}
+We get the points of the line from \typ{coef}
+\begin{lstlisting}
+In []: Tline = coef[0]*L + coef[1]
+\end{lstlisting}
 \begin{itemize}
-\item Use the poly1d function of pylab, to create a function for the line equation using the coefficients obtained
-\begin{lstlisting}
-In []: p=poly1d(coef)
-\end{lstlisting}
-\item Get new $T^2$ values using the function \typ{p} obtained
-\begin{lstlisting}
-In []: Tline = p(L)
-\end{lstlisting}
 \item Now plot Tline vs. L, to get the Least squares fit line. 
+\end{itemize}
 \begin{lstlisting}
 In []: plot(L, Tline)
 \end{lstlisting}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
