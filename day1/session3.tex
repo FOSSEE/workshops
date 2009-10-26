@@ -290,26 +290,25 @@ for record in open('sslc1.txt'):
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary}
+  \frametitle{Dictionary - Building parsed data}
   \begin{itemize}
-    \item lists index: 0 \ldots n
-    \item dictionaries index using any hashable objects
-    \item d = \{ ``Hitchhiker's guide'' : 42, ``Terminator'' : ``I'll be back''\}
-    \item d[``Terminator''] => ``I'll be back''
-    \item ``Terminator'' is called the key of \typ{d}
-    \item ``I'll be back'' is called the value of the key ``Terminator''
+    \item Let the parsed data be stored in dictionary \typ{data}
+    \item \begin{lstlisting}
+data = {}  # is an empty dictionary
+\end{lstlisting}
+    \item Index of a dictionary is called a \emph{key}
+    \item \emph{Keys} of \typ{data} are strings - region codes
+    \item Value of a \emph{key} can be any Python object
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data}
+  \frametitle{Dictionary - Building parsed data...}
   \begin{itemize}
-    \item Let the parsed data be stored in dictionary \typ{data}
-    \item Keys of \typ{data} are strings - region codes
-    \item Value of the key is another dictionary.
+    \item In this problem let the value of a \emph{key} be another dictionary.
     \item This dictionary contains:
     \begin{itemize}
-      \item 'marks': A list of NumPy arrays
+      \item 'marks': A \emph{list} of NumPy arrays
       \item 'total': Total marks of each student
       \item 'P': Number of passes
       \item 'F': Number of failures
@@ -327,8 +326,8 @@ for record in open('sslc1.txt'):
     fields = record.split(';')
     if fields[0] not in data:
         data[fields[0]] = {
-            'marks': array([]),
-            'total': array([]),
+            'marks': [],
+            'total': [],
             'P': 0,
             'F': 0,
             'W': 0
@@ -398,5 +397,16 @@ for k in data:
   \end{lstlisting}
 \end{frame}
 
-\end{document}
+\begin{frame}[fragile]
+  \frametitle{New Concepts}
+  \begin{itemize}
+   \item Dictionaries
+   \item Slicing lists
+   \item New type of conditional
+   \item NumPy arrays
+   \item Slicing NumPy arrays
+   \item NumPy array operations - square, average, sqrt
+  \end{itemize}
+\end{frame}
 
+\end{document}
