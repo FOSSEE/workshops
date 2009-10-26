@@ -126,118 +126,6 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Least Squares Fit}
-\vspace{-0.15in}
-\begin{figure}
-\includegraphics[width=4in]{data/least-sq-fit.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Calculating $T^2$ Efficiently}
-\begin{lstlisting}
-In []: for t in T:
- ....:     Tsq.append(t*t)
-\end{lstlisting}
-\begin{itemize}
-\item This is not very efficient
-\item We use arrays to make it efficient
-\end{itemize}
-\begin{lstlisting}
-In []: L = array(L)
-In []: T = array(T)
-In []: Tsq = T*T
-In []: plot(L, Tsq, 'o')
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Arrays}
-\begin{itemize}
-\item \typ{T} and \typ{L} are now arrays
-\item arrays are very efficient and powerful 
-\item Very easy to perform element-wise operations
-\item \typ{+, -, *, /, \%}
-\item More about arrays later
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Least Square Fit Curve}
-\begin{itemize}
-\item $T^2$ and $L$ have a linear relationship
-\item Hence, Least Square Fit Curve is a line
-\item we shall use the \typ{lstsq} function
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\typ{lstsq}}
-\begin{itemize}
-\item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
-\item The equation can be re-written as $T^2 = A \cdot p$
-\item where A is   
-  $\begin{bmatrix}
-  L_1 & 1 \\
-  L_2 & 1 \\
-  \vdots & \vdots\\
-  L_N & 1 \\
-  \end{bmatrix}$
-  and p is 
-  $\begin{bmatrix}
-  m\\
-  c\\
-  \end{bmatrix}$
-\item We need to find $p$ to plot the line
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Van der Monde Matrix}
-\begin{itemize}
-\item A is also called a Van der Monde matrix
-\item It can be generated using \typ{vander}
-\end{itemize}
-Van der Monde matrix of order M
-\begin{equation*}
-  \begin{bmatrix}
-  l_1^{M-1} & \ldots & l_1 & 1 \\
-  l_2^{M-1} & \ldots &l_2 & 1 \\
-  \vdots & \ldots & \vdots & \vdots\\
-  l_N^{M-1} & \ldots & l_N & 1 \\
-  \end{bmatrix}
-\end{equation*}
-\begin{lstlisting}
-In []: A = vander(L,2)
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\typ{lstsq} \ldots}
-\begin{itemize}
-\item Now use the \typ{lstsq} function
-\item Along with a lot of things, it returns the least squares solution
-\end{itemize}
-\begin{lstlisting}
-In []: coef, res, r, s = lstsq(A,Tsq)
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Least Square Fit Line \ldots}
-We get the points of the line from \typ{coef}
-\begin{lstlisting}
-In []: Tline = coef[0]*L + coef[1]
-\end{lstlisting}
-\begin{itemize}
-\item Now plot Tline vs. L, to get the Least squares fit line. 
-\end{itemize}
-\begin{lstlisting}
-In []: plot(L, Tline)
-\end{lstlisting}
-\end{frame}
-
 \begin{frame}
   \frametitle{Statistical Analysis and Parsing}
   Read the data supplied in \emph{sslc1.txt} and obtain the following statistics:
@@ -417,6 +305,118 @@ for k in data:
    \item Slicing NumPy arrays
    \item NumPy array functions - square, average, sqrt
   \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Squares Fit}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Calculating $T^2$ Efficiently}
+\begin{lstlisting}
+In []: for t in T:
+ ....:     Tsq.append(t*t)
+\end{lstlisting}
+\begin{itemize}
+\item This is not very efficient
+\item We use arrays to make it efficient
+\end{itemize}
+\begin{lstlisting}
+In []: L = array(L)
+In []: T = array(T)
+In []: Tsq = T*T
+In []: plot(L, Tsq, 'o')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Arrays}
+\begin{itemize}
+\item \typ{T} and \typ{L} are now arrays
+\item arrays are very efficient and powerful 
+\item Very easy to perform element-wise operations
+\item \typ{+, -, *, /, \%}
+\item More about arrays later
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Least Square Fit Curve}
+\begin{itemize}
+\item $T^2$ and $L$ have a linear relationship
+\item Hence, Least Square Fit Curve is a line
+\item we shall use the \typ{lstsq} function
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{lstsq}}
+\begin{itemize}
+\item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
+\item The equation can be re-written as $T^2 = A \cdot p$
+\item where A is   
+  $\begin{bmatrix}
+  L_1 & 1 \\
+  L_2 & 1 \\
+  \vdots & \vdots\\
+  L_N & 1 \\
+  \end{bmatrix}$
+  and p is 
+  $\begin{bmatrix}
+  m\\
+  c\\
+  \end{bmatrix}$
+\item We need to find $p$ to plot the line
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Van der Monde Matrix}
+\begin{itemize}
+\item A is also called a Van der Monde matrix
+\item It can be generated using \typ{vander}
+\end{itemize}
+Van der Monde matrix of order M
+\begin{equation*}
+  \begin{bmatrix}
+  l_1^{M-1} & \ldots & l_1 & 1 \\
+  l_2^{M-1} & \ldots &l_2 & 1 \\
+  \vdots & \ldots & \vdots & \vdots\\
+  l_N^{M-1} & \ldots & l_N & 1 \\
+  \end{bmatrix}
+\end{equation*}
+\begin{lstlisting}
+In []: A = vander(L,2)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{lstsq} \ldots}
+\begin{itemize}
+\item Now use the \typ{lstsq} function
+\item Along with a lot of things, it returns the least squares solution
+\end{itemize}
+\begin{lstlisting}
+In []: coef, res, r, s = lstsq(A,Tsq)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Square Fit Line \ldots}
+We get the points of the line from \typ{coef}
+\begin{lstlisting}
+In []: Tline = coef[0]*L + coef[1]
+\end{lstlisting}
+\begin{itemize}
+\item Now plot Tline vs. L, to get the Least squares fit line. 
+\end{itemize}
+\begin{lstlisting}
+In []: plot(L, Tline)
+\end{lstlisting}
 \end{frame}
 
 \end{document}
