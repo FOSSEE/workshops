@@ -311,8 +311,8 @@ data = {}  # is an empty dictionary
     \item In this problem let the value of a \emph{key} be another dictionary.
     \item This dictionary contains:
     \begin{itemize}
-      \item 'marks': A \emph{list} of NumPy arrays
-      \item 'total': Total marks of each student
+      \item 'marks': A \emph{List} of \emph{Lists} containing all marks
+      \item 'total': A \emph{List} of total marks of each student
       \item 'P': Number of passes
       \item 'F': Number of failures
       \item 'W': Number of withdrawls
@@ -362,11 +362,6 @@ total = 0 if score_str == 'AA'
     or score_str == ''
     else int(fields[8])
 data[fields[0]]['total'].append(total)
-
-pfw_key = fields[9]
-    or fields[10]
-    or 'F'
-data[fields[0]][pfw_key] += 1
   \end{lstlisting}
 \end{frame}
 
@@ -381,13 +376,25 @@ data[fields[0]][pfw_key] += 1
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{NumPy arrays}
+  \centerline{\alert{But I lied!?!?!?}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Calculations}
+  \begin{lstlisting}
+for k in data:
+    data[k]['marks'] = array(
+        data[k]['marks'])
+    data[k]['total'] = array(
+        data[k]['total'])
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Calculations}
   \small
   \begin{lstlisting}
-for k in data:
-    data[k]['marks'] = array(data[k]['marks'])
-    data[k]['total'] = array(data[k]['total'])
-
     data[k]['avg'] = average(
         data[k]['total'])
     marks = data[k]['marks']
@@ -408,7 +415,7 @@ for k in data:
    \item New type of conditional
    \item NumPy arrays
    \item Slicing NumPy arrays
-   \item NumPy array operations - square, average, sqrt
+   \item NumPy array functions - square, average, sqrt
   \end{itemize}
 \end{frame}
 
