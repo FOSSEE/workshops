@@ -210,7 +210,58 @@ Example problem: Consider the set of equations
   \end{lstlisting}
 \end{frame}
 
+
 \section{Integration}
+
+\subsection{Quadrature}
+
+\begin{frame}[fragile]
+\frametitle{Quadrature}
+\begin{itemize}
+\item We wish to find area under a curve
+\item Area under $(sin(x) + x^2)$ in $(0,1)$
+\item scipy has functions to do that
+\end{itemize}
+\small{\typ{In []: from scipy.integrate import quad}}
+\begin{itemize}
+\item Inputs - function to integrate, limits
+\end{itemize}
+\begin{lstlisting}
+In []: x = 0
+In []: integrate.quad(sin(x)+x**2, 0, 1)
+\end{lstlisting}
+\alert{\typ{error:}}
+\typ{First argument must be a callable function.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions - Definition}
+\begin{lstlisting}
+In []: def f(x):
+           return sin(x)+x**2
+In []: integrate.quad(f, 0, 1)
+\end{lstlisting}
+\begin{itemize}
+\item \typ{def}
+\item arguments
+\item \typ{return}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{More on functions}
+  \begin{itemize}
+  \item Support default and keyword arguments
+  \item Scope of variables in the function is local
+  \item Mutable items are \alert{passed by reference}
+  \item First line after definition may be a documentation string
+    (\alert{recommended!})
+  \item Function definition and execution defines a name bound to the
+    function
+  \item You \emph{can} assign a variable to a function!
+  \end{itemize}
+\end{frame}
+
 
 \subsection{ODEs}
 
@@ -270,19 +321,6 @@ In []: pend_sol = odeint(pend_int,
                          initial,t, 
                          args=(p,))
 \end{lstlisting}
-\end{frame}
-
-\subsection{Quadrature}
-
-\begin{frame}[fragile]
-\frametitle{Quadrature}
-Calculate the area under $(sin(x) + x^2)$ in the range $(0,1)$
-\small{\typ{In []: from scipy.integrate import quad}}
-  \begin{lstlisting}
-In []: f(x):
-        return sin(x)+x**2
-In []: integrate.quad(f, 0, 1)
-  \end{lstlisting}
 \end{frame}
 
 \end{document}
