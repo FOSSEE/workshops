@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Plotting using Python]{Plotting experimental data\\}
+\title[Plotting using Python]{Python for Science and Egg. Plotting experimental data}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -126,16 +126,17 @@
 \begin{frame}
 \frametitle{Why we didn't close the IPython??}
 \begin{itemize}
-  \item Because all the command history is lost
-  \item We can go back, edit, and re-execute our commands
+  \item IPython provides a convenient feature
+  \item To go back, edit, and re-run commands
+  \item But when you close, this is lost
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{But its impractical..}
 \begin{itemize}
-  \item Because we can't always keep running the IPython shell for days
-  \item And lets admit it, its a pain to go back and edit
+  \item We can't keep running the IPython shell for days
+  \item And its a pain to go back and edit
 \end{itemize}
 And the solution is..\\
 \begin{center}
@@ -143,12 +144,12 @@ And the solution is..\\
 \end{center}
 \end{frame}
 
-\section{Creating and running scripts}
+\section{Scripts}
 \begin{frame}[fragile]
 \frametitle{Python Scripts}
 \begin{itemize}
-\item Let us now put all the commands used in the review problem into a file. 
-\item The following commands of IPython help us do this. 
+\item Put all commands used in review problem into a file. 
+\item use hist command of IPython.
 \end{itemize}
 \begin{lstlisting}
   In []: %hist
@@ -169,8 +170,8 @@ And the solution is..\\
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{How often do we plot analytical functions?}
-Let us look at a small example:
+  \frametitle{Why would I plot f(x)?}
+How often do we plot analytical functions?\\We plot experimental data more.
 \begin{lstlisting}
 In []: x = [0, 1, 2, 3]
 
@@ -184,7 +185,7 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 \begin{frame}[fragile]
 \frametitle{Plotting points}
 \begin{itemize}
-\item What if we want to plot points!
+\item What if we want to plot the points!
 \end{itemize}
 \begin{lstlisting}
   In []: clf()
@@ -210,7 +211,7 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 
 \section{Lists}
 \begin{frame}[fragile]
-  \frametitle{How to create?}
+  \frametitle{How to create the data?}
 What are \typ{x} and \typ{y} here??\\
 \begin{center}
 \alert{\typ{lists!!}}
@@ -286,15 +287,9 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{New Concepts}
-  \begin{itemize}
-    \item lists
-    \item \typ{for}
-  \end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\texttt{for}}
+\frametitle{More of \texttt{for}}
 Used to iterate over lists\\ Let us look at another example.
 \begin{lstlisting}
 In []: lst = [1,2,3,4,5,6]
