@@ -236,8 +236,6 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \end{lstlisting}
 \end{small}
 \end{frame}
-
-
 \section{Integration}
 
 \subsection{Quadrature}
@@ -251,7 +249,7 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \end{itemize}
 \small{\typ{In []: from scipy.integrate import quad}}
 \begin{itemize}
-\item Inputs - function to integrate, limits
+\item Inputs - function to integrate, limits of integration
 \end{itemize}
 \begin{lstlisting}
 In []: x = 0
@@ -351,7 +349,7 @@ Returns the integral and an estimate of the absolute error in the result.
 
 \begin{frame}[fragile]
 \frametitle{ODE Integration}
-We shall use the simple ODE of a simple pendulum. 
+We shall look at the motion of a simple pendulum. 
 \begin{equation*}
 \ddot{\theta} = -\frac{g}{L}sin(\theta)
 \end{equation*}
