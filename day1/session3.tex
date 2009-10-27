@@ -303,7 +303,7 @@ savefig('/tmp/all_regions.png')
 \frametitle{Dealing with data whole-sale}
 \begin{lstlisting}
 In []: for t in T:
- ....:     Tsq.append(t*t)
+ ....:     TSq.append(t*t)
 \end{lstlisting}
 \begin{itemize}
 \item This is not very efficient
@@ -313,7 +313,7 @@ In []: for t in T:
 \begin{lstlisting}
 In []: L = array(L)
 In []: T = array(T)
-In []: Tsq = T*T
+In []: TSq = T*T
 \end{lstlisting}
 \end{frame}
 
@@ -401,7 +401,7 @@ In []: A = vander(L,2)
 \item Along with a lot of things, it returns the least squares solution
 \end{itemize}
 \begin{lstlisting}
-In []: coef, res, r, s = lstsq(A,Tsq)
+In []: coef, res, r, s = lstsq(A,TSq)
 \end{lstlisting}
 \end{frame}
 
@@ -424,6 +424,9 @@ In []: plot(L, Tline)
   \begin{itemize}
    \item Dictionaries
    \item Drawing pie charts
+   \item Arrays
+   \item Least Square fitting
+   \item Intro to Matrices
   \end{itemize}
 \end{frame}
 \end{document}
