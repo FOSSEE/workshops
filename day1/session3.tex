@@ -140,6 +140,7 @@
   \begin{itemize}
     \item Draw a pie chart representing the number of students who scored more than 90\% in Science per region.
     \item Draw a pie chart representing the number of students who scored more than 90\% per subject(All regions combined).
+    \item Print mean, median, mode and standard deviation of math scores for all regions combined.
   \end{itemize}
 \end{frame}
 
@@ -147,8 +148,11 @@
   \frametitle{Statistical Analysis and Parsing \ldots}
   Machinery Required -
   \begin{itemize}
-    \item File reading and parsing
+    \item File reading
+    \item Parsing
     \item Dictionaries
+    \item NumPy arrays
+    \item Statistical operations
   \end{itemize}
 \end{frame}
 
@@ -156,8 +160,8 @@
   \frametitle{File reading and parsing}
   Understanding the structure of sslc1.txt
   \begin{itemize}
-    \item Each line in the file, i.e each row of a file is a single record.
-    \item Each record corresponds to a record of a single student
+    \item Each line in the file corresponds to one student's details
+    \item aka record
     \item Each record consists of several fields separated by a ';'
   \end{itemize}
 \end{frame}
@@ -169,11 +173,10 @@
     \item Region Code
     \item Roll Number
     \item Name
-    \item Marks of 5 subjects
+    \item Marks of 5 subjects: English, Hindi, Maths, Science, Social
     \item Total marks
-    \item Pass (P)
+    \item Pass/Fail (P/F)
     \item Withdrawn (W)
-    \item Fail (F)
   \end{itemize}
 \end{frame}
 
@@ -186,44 +189,83 @@ for record in open('sslc1.txt'):
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data}
+  \frametitle{Dictionary: Introduction}
   \begin{itemize}
-    \item Let the parsed data be stored in list of dictionaries.
-    \item d = \{\} is an empty dictionary
+    \item lists index: 0 \ldots n
+    \item dictionaries index using strings
   \end{itemize}
+\begin{block}{Example}
+d = \{ ``Hitchhiker's guide'' : 42,
+     ``Terminator'' : ``I'll be back''\}\\
+d[``Terminator''] => ``I'll be back''
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data}
+  \frametitle{Dictionary: Introduction}
 \begin{lstlisting}
-ninety_percents = [{}, {}, {}, {}, {}]
+In [1]: d = {"Hitchhiker's guide" : 42,
+      "Terminator" : "I'll be back"}
+
+In [2]: d["Hitchhiker's guide"]
+Out[2]: 42
+
+In [3]: "Hitchhiker's guide" in d
+Out[3]: True
+
+In [4]: "Guido" in d
+Out[4]: False
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data}
-  \begin{itemize}
-    \item Index of a dictionary is called a \emph{key}
-    \item \emph{Keys} of these dictionaries are strings - region codes
-  \end{itemize}
+  \frametitle{Dictionary: Introduction}
+\begin{lstlisting}
+In [5]: d.keys()
+Out[5]: ['Terminator', "Hitchhiker's 
+                              guide"]
+
+In [6]: d.values()
+Out[6]: ["I'll be back", 42]
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data \ldots}
+  \frametitle{enumerate: Iterating through list indices}
+\begin{lstlisting}
+In [1]: names = ["Guido","Alex", "Tim"]
+
+In [2]: for i, name in enumerate(names):
+   ...:     print i, name
+   ...: 
+0 Guido
+1 Alex
+2 Tim
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionary: Building parsed data}
+    Let our dictionary be:
+    \begin{lstlisting}
+science = {} # is an empty dictionary
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionary - Building parsed data}
   \begin{itemize}
-    \item Value of a \emph{key} can be any legal Python value
-    \item In this problem let the value of a \emph{key} be another an integer
-    \item This dictionary contains:
+    \item \emph{Keys} of \emph{science} will be region codes
+    \item Value of a \emph{science} will be the number students who scored more than 90\% in that region
   \end{itemize}
-'region code': Number of students who scored more than 90\% in this region for this subject
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Building parsed data \ldots}
   \begin{lstlisting}
-from pylab import *
+from pylab import pie
 
-ninety_percents = [{}, {}, {}, {}, {}]
+science = {}
 
 for record in open('sslc1.txt'):
     record = record.strip()
@@ -235,17 +277,92 @@ for record in open('sslc1.txt'):
 
 \begin{frame}[fragile]
   \frametitle{Building parsed data \ldots}
+  \begin{lstlisting}
+if region_code not in science:
+    science[region_code] = 0
+
+score_str = fields[4].strip()
+
+score = int(score_str) if
+    score_str != 'AA' else 0
+
+if score > 90:
+    science[region_code] += 1
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pie charts}
+  \small
+  \begin{lstlisting}
+figure(1)
+pie(science.values(), 
+    labels=science.keys())
+title('Students scoring 90% and above 
+      in science by region')
+savefig('/tmp/science.png')
+  \end{lstlisting}
+\begin{columns}
+    \column{5.25\textwidth}
+    \hspace*{1.1in}
+\includegraphics[height=2in, interpolate=true]{data/science}
+    \column{0.8\textwidth}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Building data for all subjects \ldots}
+  \begin{lstlisting}
+from pylab import pie
+from scipy import mean, median, std
+from scipy import stats
+
+scores = [[]] * 5
+ninety_percents = [{}] * 5
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Building data for all subjects \ldots}
+  \begin{lstlisting}
+from pylab import pie
+from scipy import mean, median, std
+from scipy import stats
+  \end{lstlisting}
+
+  \begin{block}{Repeating list items}
+    \begin{lstlisting}
+scores = [[]] * 5
+ninety_percents = [{}] * 5
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Building data for all subjects \ldots}
+  \begin{lstlisting}
+for record in open('sslc1.txt'):
+    record = record.strip()
+    fields = record.split(';')
+
+    region_code = fields[0].strip()
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Building data for all subjects \ldots}
   \small
   \begin{lstlisting}
 for i, field in enumerate(fields[3:8]):
-
     if region_code not in ninety_percents[i]:
         ninety_percents[i][region_code] = 0
 
     score_str = field.strip()
+    score = int(score_str) if
+      score_str != 'AA' else 0
 
-    score = 0 if score_str == 'AA' else 
-                         int(score_str)
+    scores[i].append(score)
+
     if score > 90:
         ninety_percents[i][region_code] += 1
   \end{lstlisting}
@@ -259,25 +376,6 @@ for subject in ninety_percents:
     subj_total.append(sum(
          subject.values()))
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Pie charts}
-  \small
-  \begin{lstlisting}
-figure(1)
-pie(ninety_percents[4].values(), 
-    labels=ninety_percents[1].keys())
-title('Students scoring 90% and above 
-      in science by region')
-savefig('/tmp/science.png')
-  \end{lstlisting}
-\begin{columns}
-    \column{5.25\textwidth}
-    \hspace*{1.1in}
-\includegraphics[height=2in, interpolate=true]{data/science}
-    \column{0.8\textwidth}
-\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -306,6 +404,32 @@ Let's go back to the L vs $T^2$ plot
 \item We first look at obtaining $T^2$ from T
 \item Then, we look at plotting a Least Squares fit
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Obtaining statistics}
+  \begin{lstlisting}
+math_scores = array(scores[2])
+
+print "Mean: ", mean(math_scores)
+
+print "Median: ", median(math_scores)
+
+print "Mode: ", stats.mode(math_scores)
+
+print "Standard Deviation: ",
+              std(math_scores)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{What tools did we use?}
+  \begin{itemize}
+   \item Dictionaries for storing data
+   \item Facilities for drawing pie charts
+   \item NumPy arrays for efficient array manipulations
+   \item Functions for statistical computations - mean, median, mode, standard deviation
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -428,14 +552,4 @@ In []: plot(L, Tline)
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{What did we learn?}
-  \begin{itemize}
-   \item Dictionaries
-   \item Drawing pie charts
-   \item Arrays
-   \item Least Square fitting
-   \item Intro to Matrices
-  \end{itemize}
-\end{frame}
 \end{document}
