@@ -124,54 +124,14 @@
 %  \pausesections
 \end{frame}
 
-\section{Solving linear equations}
-\begin{frame}[fragile]
-\frametitle{Solution of equations}
-Consider,
-  \begin{align*}
-    3x + 2y - z  & = 1 \\
-    2x - 2y + 4z  & = -2 \\
-    -x + \frac{1}{2}y -z & = 0
-  \end{align*}
-Solution:
-  \begin{align*}
-    x & = 1 \\
-    y & = -2 \\
-    z & = -2
-  \end{align*}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving using Matrices}
-Let us now look at how to solve this using \kwrd{matrices}
-  \begin{lstlisting}
-    In []: A = matrix([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
-    In []: b = matrix([[1], [-2], [0]])
-    In []: x = linalg.solve(A, b)
-    In []: Ax = dot(A, x)
-    In []: allclose(Ax, b)
-    Out[]: True
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solution:}
-\begin{lstlisting}
-In []: x
-Out[]: 
-array([[ 1.],
-       [-2.],
-       [-2.]])
-
-In []: Ax
-Out[]: 
-matrix([[  1.00000000e+00],
-        [ -2.00000000e+00],
-        [  2.22044605e-16]])
-\end{lstlisting}
-\end{frame}
-
 \section{Matrices}
+
+\begin{frame}
+\frametitle{Matrices: Introduction}
+We looked at the Van der Monde matrix in the previous session,\\ 
+let us now look at matrices in a little more detail.
+\end{frame}
+
 \subsection{Initializing}
 \begin{frame}[fragile]
 \frametitle{Matrices: Initializing}
@@ -237,6 +197,53 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \end{small}
 \end{frame}
 
+\section{Solving linear equations}
+
+\begin{frame}[fragile]
+\frametitle{Solution of equations}
+Consider,
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+Solution:
+  \begin{align*}
+    x & = 1 \\
+    y & = -2 \\
+    z & = -2
+  \end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving using Matrices}
+Let us now look at how to solve this using \kwrd{matrices}
+  \begin{lstlisting}
+    In []: A = matrix([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
+    In []: b = matrix([[1], [-2], [0]])
+    In []: x = linalg.solve(A, b)
+    In []: Ax = dot(A, x)
+    In []: allclose(Ax, b)
+    Out[]: True
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution:}
+\begin{lstlisting}
+In []: x
+Out[]: 
+array([[ 1.],
+       [-2.],
+       [-2.]])
+
+In []: Ax
+Out[]: 
+matrix([[  1.00000000e+00],
+        [ -2.00000000e+00],
+        [  2.22044605e-16]])
+\end{lstlisting}
+\end{frame}
 
 \section{Integration}
 
