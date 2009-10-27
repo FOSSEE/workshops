@@ -308,28 +308,20 @@ for k in data:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Least Squares Fit}
-\vspace{-0.15in}
-\begin{figure}
-\includegraphics[width=4in]{data/least-sq-fit.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Calculating $T^2$ Efficiently}
+\frametitle{Dealing with data whole-sale}
 \begin{lstlisting}
 In []: for t in T:
  ....:     Tsq.append(t*t)
 \end{lstlisting}
 \begin{itemize}
 \item This is not very efficient
-\item We use arrays to make it efficient
+\item We are squaring element after element
+\item We use arrays to make this efficient
 \end{itemize}
 \begin{lstlisting}
 In []: L = array(L)
 In []: T = array(T)
 In []: Tsq = T*T
-In []: plot(L, Tsq, 'o')
 \end{lstlisting}
 \end{frame}
 
@@ -342,6 +334,22 @@ In []: plot(L, Tsq, 'o')
 \item \typ{+, -, *, /, \%}
 \item More about arrays later
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Squares Fit}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/L-Tsq-Line.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Squares Fit}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}
