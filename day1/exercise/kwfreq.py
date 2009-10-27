@@ -1,5 +1,5 @@
 import keyword
-f = open('/path/to/file')
+f = open('amicable.py')
 
 freq = {}
 for line in f:
@@ -7,8 +7,10 @@ for line in f:
     for word in words:
         key = word.strip(',.!;?()[]: ')
         if keyword.iskeyword(key):
-            value = freq[key]
-            freq[key] = value + 1
+            if key in freq:
+                freq[key] += 1
+            else:
+                freq[key] = 1
 
 print freq
 

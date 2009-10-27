@@ -72,7 +72,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Interactive Plotting}
+\title[Interactive Plotting]{Python for Science and Engg: Interactive Plotting}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -161,7 +161,7 @@ Breaking out of loops
 \begin{columns}
     \column{0.25\textwidth}
     \hspace*{-0.5in}
-  \includegraphics[height=2in, interpolate=true]{data/firstplot}  
+  \includegraphics[height=2in, interpolate=true]{data/firstplot}
     \column{0.8\textwidth}
     \begin{block}{}
     \small
@@ -177,10 +177,14 @@ In []: plot(x, sin(x))
 
 \begin{frame}[fragile]
 \frametitle{Walkthrough}
-\begin{block}{\typ{linspace(start, stop, num)} }
+\begin{block}{\typ{x = linspace(start, stop, num)} }
 returns \typ{num} evenly spaced points, in the interval [\typ{start}, \typ{stop}].
 \end{block}
-\vspace*{.5in}
+\begin{lstlisting}
+x[0] = start
+x[num - 1] = end
+\end{lstlisting}
+\vspace*{.35in}
 \begin{block}{\typ{plot(x, y)}}
 plots \typ{x} and \typ{y} using default line style and color
 \end{block}
@@ -221,7 +225,7 @@ In []: plot(y, sin(2*y))
 In []: xlabel('y')
 In []: ylabel('sin(2y)')
   \end{lstlisting}
-\emphbar{By default plots would be overlayed!}
+\emphbar{By default plots would be overlaid!}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -243,45 +247,42 @@ In []: legend(['sin(2y)'])
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Changing Legend Placement}
-\begin{columns}
-    \column{0.6\textwidth}
+\frametitle{Legend Placement}
+
 \begin{block}{}
     \small
 \begin{lstlisting}
-In []: legend(['sin(2y)'], 
-         loc='center')
+In []: legend(['sin(2y)'], loc='center')
 \end{lstlisting}
-    \small
 \end{block}
+
+\begin{columns}
+    \column{0.6\textwidth}
  \includegraphics[height=2in, interpolate=true]{data/position}  
+\begin{lstlisting}
+'best', 'right', 'center'
+\end{lstlisting}
 \column{0.45\textwidth}
 \vspace{-0.2in}
 \begin{lstlisting}
-Location String   
-===============   
-'best'            
 'upper right'     
 'upper left'      
 'lower left'      
 'lower right'     
-'right'           
 'center left'     
 'center right'    
 'lower center'    
 'upper center'    
-'center'          
 \end{lstlisting}
 \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{For placing legend at $(x,y)$}
+  \frametitle{For arbitrary location}
 \vspace*{-0.1in}
 \begin{lstlisting}
 In []: legend(['sin(2y)'], loc=(.8,.1)) 
-#(x,y) is position of lower-left 
-#corner of legend box.
+# Specify south-east corner position
 \end{lstlisting}
 %\vspace*{-0.2in}
 \begin{center}
@@ -299,7 +300,7 @@ In []: close()
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Plotting seprate figures}
+\frametitle{Plotting separate figures}
 \begin{lstlisting}
 In []: figure(1)
 In []: plot(y, sin(y))
@@ -396,9 +397,10 @@ In []: ylim(5*pi, 5*pi)
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
-  \item Creating plots.
-  \item Handling labels and legends.
-  \item Changing properties of plot.
+  \item Creating simple plots.
+  \item Adding labels and legends.
+  \item Annotating plots.
+  \item Changing the looks: size, linewidth
   \end{itemize}
 \end{frame}
 \begin{frame}[fragile]
