@@ -207,6 +207,13 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 \end{frame}
 
 \begin{frame}[fragile]
+\begin{figure}
+\includegraphics[width=2in]{data/stline_dots.png}
+\includegraphics[width=2in]{data/stline_points.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Additional Plotting Attributes}
 \begin{itemize}
   \item \kwrd{'o'} - Dots
@@ -328,6 +335,12 @@ This gives the list \kwrd{TSq} which is the list of squares of T values.
 \end{frame}
 
 \begin{frame}[fragile]
+\begin{figure}
+\includegraphics[width=3.5in]{data/L-TSq-limited.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{More of \texttt{for}}
 \begin{itemize}
 \item Used to iterate over lists
@@ -348,11 +361,11 @@ In []: for num in lst:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Whats unusual about the previous example??}
+\frametitle{What about larger data sets??}
 \alert{Data is usually present in a file!} \\
 Lets look at the pendulum.txt file.
 \begin{lstlisting}
-cat data/pendulum.txt
+$cat data/pendulum.txt
 1.0000e-01 6.9004e-01
 1.1000e-01 6.9497e-01
 1.2000e-01 7.4252e-01
@@ -400,6 +413,12 @@ In []: for t in T:
 
 In []: plot(L, TSq, '.')
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{figure}
+\includegraphics[width=3.5in]{data/L-Tsq.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -454,14 +473,6 @@ In []: t = float(point[0])
 In []: type(t)
 Out[]: <type 'float'>
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\begin{figure}
-\includegraphics[width=3.5in]{data/L-Tsq.png}
-\end{figure}
-\vspace{-0.2in}
-Coming up - \alert{Least Square Fit \ldots}
 \end{frame}
 
 \section {Summary}
