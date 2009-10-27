@@ -135,7 +135,7 @@
 \begin{frame}
 \frametitle{But its impractical..}
 \begin{itemize}
-  \item We can't keep running the IPython shell for days
+  \item We can't keep running IPython for days
   \item And its a pain to go back and edit
 \end{itemize}
 And the solution is..\\
@@ -233,6 +233,9 @@ Out[]: 7
 
 \begin{frame}[fragile]
   \frametitle{List: Slicing}
+  \begin{block}{Remember\ldots}
+	In []: lst = [1,2,3,4,5] 
+  \end{block}
 \alert{\typ{list[initial:final:step]}}
 \begin{lstlisting}
 In []: lst[1:3]  # A slice.
@@ -244,7 +247,7 @@ Out[]: [2, 3]
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{List concatenation and list methods}
+  \frametitle{List operations}
 \begin{lstlisting}
 In []: anthrlst = [6,7,8,9]
 In []: lnglst = lst + anthrlst
