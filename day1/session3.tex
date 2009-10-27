@@ -127,13 +127,19 @@
 %% \end{frame}
 
 \begin{frame}
+  \frametitle{More on data processing}
+  \begin{block}{}
+    What do we do if we want to draw Pie charts for the data in a huge data file?
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Statistical Analysis and Parsing}
   Read the data supplied in \emph{sslc1.txt} and obtain the following statistics:
   \begin{itemize}
-    \item Average total marks scored in each region
-    \item Subject wise average score of each region
-    \item \alert{??Subject wise average score for all regions combined??}
-    \item Find the subject wise standard deviation of scores for each region
+    \item Draw a pie chart representing the number of students who scored more than 90\% in Science per region.
+    \item Draw a pie chart representing the number of students who scored more than 90\% per subject(All regions combined).
   \end{itemize}
 \end{frame}
 
@@ -142,7 +148,6 @@
   Machinery Required -
   \begin{itemize}
     \item File reading and parsing
-    \item NumPy arrays - sum by rows and sum by coloumns
     \item Dictionaries
   \end{itemize}
 \end{frame}
@@ -183,135 +188,122 @@ for record in open('sslc1.txt'):
 \begin{frame}[fragile]
   \frametitle{Dictionary - Building parsed data}
   \begin{itemize}
-    \item Let the parsed data be stored in dictionary \typ{data}
-    \item \begin{lstlisting}
-data = {}  # is an empty dictionary
+    \item Let the parsed data be stored in list of dictionaries.
+    \item d = \{\} is an empty dictionary
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionary - Building parsed data}
+\begin{lstlisting}
+ninety_percents = [{}, {}, {}, {}, {}]
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionary - Building parsed data}
+  \begin{itemize}
     \item Index of a dictionary is called a \emph{key}
-    \item \emph{Keys} of \typ{data} are strings - region codes
-    \item Value of a \emph{key} can be any Python object
+    \item \emph{Keys} of these dictionaries are strings - region codes
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data...}
+  \frametitle{Dictionary - Building parsed data \ldots}
   \begin{itemize}
-    \item In this problem let the value of a \emph{key} be another dictionary.
+    \item Value of a \emph{key} can be any legal Python value
+    \item In this problem let the value of a \emph{key} be another an integer
     \item This dictionary contains:
-    \begin{itemize}
-      \item 'marks': A \emph{List} of \emph{Lists} containing all marks
-      \item 'total': A \emph{List} of total marks of each student
-      \item 'P': Number of passes
-      \item 'F': Number of failures
-      \item 'W': Number of withdrawls
-    \end{itemize}
   \end{itemize}
+'region code': Number of students who scored more than 90\% in this region for this subject
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data \ldots}
-  \small
+  \frametitle{Building parsed data \ldots}
   \begin{lstlisting}
-data = {}
+from pylab import *
+
+ninety_percents = [{}, {}, {}, {}, {}]
+
 for record in open('sslc1.txt'):
+    record = record.strip()
     fields = record.split(';')
-    if fields[0] not in data:
-        data[fields[0]] = {
-            'marks': [],
-            'total': [],
-            'P': 0,
-            'F': 0,
-            'W': 0
-            }
+
+    region_code = fields[0].strip()
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data \ldots}
-  \begin{lstlisting}
-marks = []
-for field in fields[3:8]:
-    score_str = field.strip()
-    score = 0 if score_str == 'AA'
-        or score_str == 'AAA'
-        or score_str == ''
-        else int(score_str)
-    marks.append(score)
-
-data[fields[0]]['marks'].append(marks)
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data \ldots}
-  \begin{lstlisting}
-total = 0 if score_str == 'AA'
-    or score_str == 'AAA'
-    or score_str == ''
-    else int(fields[8])
-data[fields[0]]['total'].append(total)
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data \ldots}
-  \begin{lstlisting}
-pfw_key = fields[9]
-    or fields[10]
-    or 'F'
-data[fields[0]][pfw_key] += 1
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{NumPy arrays}
-  \centerline{\alert{But I lied!?!?!?}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Calculations}
-  \begin{lstlisting}
-for k in data:
-    data[k]['marks'] = array(
-        data[k]['marks'])
-    data[k]['total'] = array(
-        data[k]['total'])
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Calculations}
+  \frametitle{Building parsed data \ldots}
   \small
   \begin{lstlisting}
-    data[k]['avg'] = average(
-        data[k]['total'])
-    marks = data[k]['marks']
-    sub_avg = average(marks, axis=1)
-    sub_std = sqrt(sum(square(
-        sub_avg[:,newaxis] - marks), axis=0) /
-        len(marks))
-    data[k]['sub_avg'] = sub_avg
-    data[k]['sub_std'] = sub_std
+for i, field in enumerate(fields[3:8]):
+
+    if region_code not in ninety_percents[i]:
+        ninety_percents[i][region_code] = 0
+
+    score_str = field.strip()
+
+    score = 0 if score_str == 'AA' else 
+                         int(score_str)
+    if score > 90:
+        ninety_percents[i][region_code] += 1
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{New Concepts}
-  \begin{itemize}
-   \item Dictionaries
-   \item Slicing lists
-   \item New type of conditional
-   \item NumPy arrays
-   \item Slicing NumPy arrays
-   \item NumPy array functions - square, average, sqrt
-  \end{itemize}
+  \frametitle{Consolidating data}
+  \begin{lstlisting}
+subj_total = []
+for subject in ninety_percents:
+    subj_total.append(sum(
+         subject.values()))
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pie charts}
+  \small
+  \begin{lstlisting}
+figure(1)
+pie(ninety_percents[4].values(), 
+    labels=ninety_percents[1].keys())
+title('Students scoring 90% and above 
+      in science by region')
+savefig('/tmp/science.png')
+  \end{lstlisting}
+\begin{columns}
+    \column{5.25\textwidth}
+    \hspace*{1.1in}
+\includegraphics[height=2in, interpolate=true]{data/science}
+    \column{0.8\textwidth}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pie charts}
+  \begin{lstlisting}
+figure(2)
+pie(subj_total, labels=['English',
+    'Hindi', 'Maths', 'Science',
+    'Social'])
+title('Students scoring more than
+      90% by subject(All regions
+      combined).')
+savefig('/tmp/all_regions.png')
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pie charts}
+  \includegraphics[height=3in, interpolate=true]{data/all_regions}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Dealing with data whole-sale}
 \begin{lstlisting}
 In []: for t in T:
- ....:     Tsq.append(t*t)
+ ....:     TSq.append(t*t)
 \end{lstlisting}
 \begin{itemize}
 \item This is not very efficient
@@ -321,7 +313,7 @@ In []: for t in T:
 \begin{lstlisting}
 In []: L = array(L)
 In []: T = array(T)
-In []: Tsq = T*T
+In []: TSq = T*T
 \end{lstlisting}
 \end{frame}
 
@@ -409,7 +401,7 @@ In []: A = vander(L,2)
 \item Along with a lot of things, it returns the least squares solution
 \end{itemize}
 \begin{lstlisting}
-In []: coef, res, r, s = lstsq(A,Tsq)
+In []: coef, res, r, s = lstsq(A,TSq)
 \end{lstlisting}
 \end{frame}
 
@@ -427,4 +419,14 @@ In []: plot(L, Tline)
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{What did we learn?}
+  \begin{itemize}
+   \item Dictionaries
+   \item Drawing pie charts
+   \item Arrays
+   \item Least Square fitting
+   \item Intro to Matrices
+  \end{itemize}
+\end{frame}
 \end{document}
