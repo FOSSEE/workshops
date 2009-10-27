@@ -170,6 +170,7 @@ And the solution is..\\
 
 \begin{frame}[fragile]
 \frametitle{How often do we plot analytical functions?}
+Plotting experimental data is done more often and also more useful.\\
 Let us look at a small example:
 \begin{lstlisting}
 In []: x = [0, 1, 2, 3]
@@ -226,7 +227,7 @@ In []: lst = [1,2,3,4,5]
 \frametitle{Accessing elements of a list}
 \begin{lstlisting}
 In []: lst[0]+lst[1]+lst[-1]
-Out[]: 7
+Out[]: 8
 \end{lstlisting}
 \end{frame}
 
@@ -262,14 +263,43 @@ Out[]: [1, 2, 3, 4, 5, 6]
 \begin{frame}[fragile]
 \frametitle{Simple Pendulum - L and T}
 Let us look at a more realistic example of the Simple Pendulum experiment.
+\begin{center}
+\begin{small}
+\begin{tabular}{| l | c | r |}
+\hline
+L & T & T^2 \\ \hline
+0.1 & 0.6900 & \\ \hline
+0.2 & 0.8989 & \\ \hline
+0.3 & 1.1867 & \\ \hline
+0.4 & 1.2991 & \\ \hline
+0.5 & 1.4656 & \\ \hline
+0.6 & 1.5843 & \\ \hline
+0.7 & 1.7706 & \\ \hline
+0.8 & 1.8296 & \\ \hline
+0.9 & 1.9440 & \\ \hline
+\end{tabular}
+\end{small}\\
+\alert{$L$ \alpha $T^2$}
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Plotting $L$ vs. $T^2$}
+\frametitle{Lets use lists}
+\begin{lstlisting}
+In []: L = [0.1, 0.2, 0.3, 0.4, 0.5, 
+0.6, 0.7, 0.8, 0.9]
+
+In []: T = [0.69, 0.8989, 1.1867, 
+1.2991, 1.4656, 1.5843, 1.7706, 1.8296, 1.9440]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting $L$ vs $T^2$}
 \begin{itemize}
 \item We must square each of the values in T
 \item How to do it?
-\item T is a \kwrd{list} and we use a \kwrd{for} loop to iterate over it
+\item We use a \kwrd{for} loop to iterate over T
 \end{itemize}
 \end{frame}
 
@@ -284,18 +314,15 @@ In []: for t in T:
 In []: plot(L, TSq)
 Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}{New Concepts}
-  \begin{itemize}
-    \item lists
-    \item \typ{for}
-  \end{itemize}
+This gives the list \kwrd{TSq} which is the list of squares of T values.
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{for}}
-Used to iterate over lists\\ Let us look at another example.
+\begin{itemize}
+\item Used to iterate over lists
+\item Let us look at another example.
+\end{itemize}
 \begin{lstlisting}
 In []: lst = [1,2,3,4,5,6]
 In []: for num in lst:
@@ -308,6 +335,22 @@ In []: for num in lst:
 5 25
 6 36
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Whats unusual about the previous example??}
+\alert{Data is usually present in a file!} \\
+Lets look at the pendulum.txt file.
+\begin{lstlisting}
+cat data/pendulum.txt
+1.0000e-01 6.9004e-01
+1.1000e-01 6.9497e-01
+1.2000e-01 7.4252e-01
+1.3000e-01 7.5360e-01
+1.4000e-01 8.3568e-01
+1.5000e-01 8.6789e-01
+\end{lstlisting}
+\ldots
 \end{frame}
 
 \begin{frame}[fragile]
@@ -349,14 +392,6 @@ In []: plot(L, TSq, '.')
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{New Concepts}
-  \begin{itemize}
-    \item File handling
-    \item Strings
-    \item Data-type conversion
-  \end{itemize}
-\end{frame}
-
 \begin{frame}[fragile]
   \frametitle{Reading files \ldots}
 \typ{In []: for line in open('pendulum.txt'):}
@@ -367,6 +402,7 @@ In []: plot(L, TSq, '.')
 \end{itemize}
 \end{frame}
 
+\section{Strings}
 \begin{frame}[fragile]
 \frametitle{Strings}
 Anything within ``quotes'' is a string!
@@ -412,10 +448,24 @@ Out[]: <type 'float'>
 
 \begin{frame}[fragile]
 \begin{figure}
-%\includegraphics[width=3.5in]{data/L-Tsq.png}
+\includegraphics[width=3.5in]{data/L-Tsq.png}
 \end{figure}
 \vspace{-0.2in}
 Coming up - \alert{Least Square Fit \ldots}
+\end{frame}
+
+\section {Summary}
+\begin{frame}
+\frametitle{Summary}
+So what did we learn in this session??
+\begin{itemize}
+  \item Creating and running Python scripts
+  \item Plotting points and Plotting attributes
+  \item Lists
+  \item \kwrd{for}
+  \item Reading files
+  \item Strings
+\end{itemize}
 \end{frame}
 
 \end{document}
