@@ -124,6 +124,53 @@
 %  \pausesections
 \end{frame}
 
+\section{Solving linear equations}
+\begin{frame}[fragile]
+\frametitle{Solution of equations}
+Consider,
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+Solution:
+  \begin{align*}
+    x & = 1 \\
+    y & = -2 \\
+    z & = -2
+  \end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving using Matrices}
+Let us now look at how to solve this using \kwrd{matrices}
+  \begin{lstlisting}
+    In []: A = matrix([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
+    In []: b = matrix([[1], [-2], [0]])
+    In []: x = linalg.solve(A, b)
+    In []: Ax = dot(A, x)
+    In []: allclose(Ax, b)
+    Out[]: True
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution:}
+\begin{lstlisting}
+In []: x
+Out[]: 
+array([[ 1.],
+       [-2.],
+       [-2.]])
+
+In []: Ax
+Out[]: 
+matrix([[  1.00000000e+00],
+        [ -2.00000000e+00],
+        [  2.22044605e-16]])
+\end{lstlisting}
+\end{frame}
+
 \section{Matrices}
 \subsection{Initializing}
 \begin{frame}[fragile]
@@ -144,13 +191,15 @@
 \subsection{Basic Operations}
 \begin{frame}[fragile]
 \frametitle{Inverse of a Matrix}
+
 \begin{small}
 \begin{lstlisting}
-  In []: linalg.inv(a)
-  Out[]: 
-  matrix([[  3.15221191e+15,  -6.30442381e+15,   3.15221191e+15],
-          [ -6.30442381e+15,   1.26088476e+16,  -6.30442381e+15],
-          [  3.15221191e+15,  -6.30442381e+15,   3.15221191e+15]])
+In []: linalg.inv(A)
+Out[]: 
+matrix([[ 0.07734807,  0.01657459,  0.32044199],
+        [ 0.09944751, -0.12154696, -0.01657459],
+        [-0.02762431, -0.07734807,  0.17127072]])
+
 \end{lstlisting}
 \end{small}
 \end{frame}
@@ -176,38 +225,16 @@
 \begin{small}
 \begin{lstlisting}
   In []: linalg.eigvals(a)
-  Out[]: array([  1.61168440e+01,  -1.11684397e+00,  -1.22196337e-15])
+  Out[]: array([1.61168440e+01, -1.11684397e+00, -1.22196337e-15])
 
   In []: linalg.eig(a)
   Out[]: 
-  (array([  1.61168440e+01,  -1.11684397e+00,  -1.22196337e-15]),
+  (array([ 1.61168440e+01, -1.11684397e+00, -1.22196337e-15]),
    matrix([[-0.23197069, -0.78583024,  0.40824829],
           [-0.52532209, -0.08675134, -0.81649658],
           [-0.8186735 ,  0.61232756,  0.40824829]]))
 \end{lstlisting}
 \end{small}
-\end{frame}
-
-\section{Solving linear equations}
-\begin{frame}[fragile]
-\frametitle{Solution of equations}
-Example problem: Consider the set of equations
-\vspace{-0.1in}
-  \begin{align*}
-    3x + 2y - z  & = 1 \\
-    2x - 2y + 4z  & = -2 \\
-    -x + \frac{1}{2}y -z & = 0
-  \end{align*}
-\vspace{-0.08in}
-  To Solve this, 
-  \begin{lstlisting}
-    In []: A = array([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
-    In []: b = array([1, -2, 0])
-    In []: x = linalg.solve(A, b)
-    In []: Ax = dot(A, x)
-    In []: allclose(Ax, b)
-    Out[]: True
-  \end{lstlisting}
 \end{frame}
 
 

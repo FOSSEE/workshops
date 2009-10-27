@@ -123,6 +123,26 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
+\begin{frame}
+\frametitle{Why we didn't close the IPython??}
+\begin{itemize}
+  \item Because all the command history is lost
+  \item We can go back, edit, and re-execute our commands
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{But its impractical..}
+\begin{itemize}
+  \item Because we can't always keep running the IPython shell for days
+  \item And lets admit it, its a pain to go back and edit
+\end{itemize}
+And the solution is..\\
+\begin{center}
+\alert {\typ{Scripts!!}}
+\end{center}
+\end{frame}
+
 \section{Creating and running scripts}
 \begin{frame}[fragile]
 \frametitle{Python Scripts}
@@ -141,29 +161,107 @@
   \begin{itemize}
     \item Open a new file in an \alert{editor}
     \item Copy and paste required lines from the output of \typ{\%hist -n}
-    \item Save the file as \typ{first_plot.py}
+    \item Save the file as \typ{sine_plot.py}
   \end{itemize}
   \begin{itemize}
-  \item run the file in IPython using \typ{\%run first_plot.py}\\
+  \item run the file in IPython using \typ{\%run sine_plot.py}\\
   \end{itemize}
 \end{frame}
 
-\section{Plotting Points}
+\begin{frame}[fragile]
+\frametitle{How often do we plot analytical functions?}
+Let us look at a small example:
+\begin{lstlisting}
+In []: x = [0, 1, 2, 3]
+
+In []: y = [7, 11, 15, 19]
+
+In []: plot(x, y)
+Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Plotting points}
+\begin{itemize}
+\item What if we want to plot points!
+\end{itemize}
+\begin{lstlisting}
+  In []: clf()
+
+  In []: plot(L, TSq, 'o')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+
+  In []: clf()
+  In []: plot(L, TSq, '.')
+  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Additional Plotting Attributes}
+\begin{itemize}
+  \item \kwrd{'o'} - Dots
+  \item \kwrd{'.'} - Smaller Dots
+  \item \kwrd{'-'} - Lines
+  \item \kwrd{'- -'} - Dashed lines
+\end{itemize}
+\end{frame}
+
+\section{Lists}
+\begin{frame}[fragile]
+  \frametitle{How to create?}
+What are \typ{x} and \typ{y} here??\\
+\begin{center}
+\alert{\typ{lists!!}}
+\end{center}
+\begin{lstlisting}
+In []: mtlist = [] #Empty List
+
+In []: lst = [1,2,3,4,5] 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Accessing elements of a list}
+\begin{lstlisting}
+In []: lst[0]+lst[1]+lst[-1]
+Out[]: 7
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{List: Slicing}
+\alert{\typ{list[initial:final:step]}}
+\begin{lstlisting}
+In []: lst[1:3]  # A slice.
+Out[]: [2, 3]
+
+In []: lst[1:-1]
+Out[]: [2, 3]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{List concatenation and list methods}
+\begin{lstlisting}
+In []: anthrlst = [6,7,8,9]
+In []: lnglst = lst + anthrlst
+
+In []: lnglst
+Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+In []: lst.append(6)
+In []: lst
+Out[]: [1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+%\inctime{10}
+\end{frame}
+
+\section{Simple Pendulum}
 \begin{frame}[fragile]
 \frametitle{Simple Pendulum - L and T}
-  \begin{itemize}
-    \item Given data of Length and Time-period of a Simple pendulum 
-    \item $T^2 = \frac{4\pi^2}{g}L$\\ \alert{{$L$} and {$T^2$} vary linearly}
-    \item We wish to plot L vs. \alert{$T^2$}
-  \end{itemize}    
-\begin{lstlisting}
-In []: L = [0.1,  0.2,  0.3,  
-            0.4,  0.5,  0.6,  
-            0.7,  0.8,  0.9]
-In []: T = [0.6529, 0.8485, 1.0590, 
-            1.2390, 1.4124, 1.5061, 
-            1.6441, 1.7949, 1.8758]
-\end{lstlisting}
+Let us look at a more realistic example of the Simple Pendulum experiment.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -188,73 +286,11 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Plotting points}
-\begin{itemize}
-\item But we want to plot points!
-\end{itemize}
-\begin{lstlisting}
-  In []: clf()
-
-  In []: plot(L, TSq, 'o')
-  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-
-  In []: clf()
-  In []: plot(L, TSq, '.')
-  Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Additional Plotting Attributes}
-\begin{itemize}
-  \item \kwrd{'o'} - Dots
-  \item \kwrd{'.'} - Smaller Dots
-  \item \kwrd{'-'} - Lines
-  \item \kwrd{'- -'} - Dashed lines
-\end{itemize}
-\end{frame}
-
 \begin{frame}{New Concepts}
   \begin{itemize}
     \item lists
     \item \typ{for}
   \end{itemize}
-\end{frame}
-
-\section{Lists}
-\begin{frame}[fragile]
-  \frametitle{How to create and use lists?}
-\begin{lstlisting}
-In []: mtlist = [] #Empty List
-
-In []: lst = [1,2,3,4] 
-
-In []: lst[0]+lst[1]+lst[-1]
-Out[]: 7
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{List: Slicing}
-list[initial:final:step]
-\begin{lstlisting}
-In []: lst[1:3]  # A slice.
-Out[]: [2, 3]
-
-In []: lst[1:-1]
-Out[]: [2, 3]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{List methods}
-\begin{lstlisting}
-In []: lst.append(6)
-In []: lst
-Out[]: [1, 2, 3, 4, 5, 6]
-\end{lstlisting}
-%\inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
