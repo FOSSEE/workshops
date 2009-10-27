@@ -255,7 +255,7 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \end{itemize}
 \begin{lstlisting}
 In []: x = 0
-In []: integrate.quad(sin(x)+x**2, 0, 1)
+In []: quad(sin(x)+x**2, 0, 1)
 \end{lstlisting}
 \alert{\typ{error:}}
 \typ{First argument must be a callable function.}
@@ -266,7 +266,7 @@ In []: integrate.quad(sin(x)+x**2, 0, 1)
 \begin{lstlisting}
 In []: def f(x):
            return sin(x)+x**2
-In []: integrate.quad(f, 0, 1)
+In []: quad(f, 0, 1)
 \end{lstlisting}
 \begin{itemize}
 \item \typ{def}
@@ -338,9 +338,13 @@ Out[]: 1.0
 \begin{frame}[fragile]
 \frametitle{Quadrature \ldots}
 \begin{lstlisting}
-In []: integrate.quad(f, 0, 1)
+In []: quad(f, 0, 1)
 \end{lstlisting}
 Returns the integral and an estimate of the absolute error in the result.
+\begin{itemize}
+\item Use \typ{dblquad} for Double integrals
+\item Use \typ{tplquad} for Triple integrals
+\end{itemize}
 \end{frame}
 
 \subsection{ODEs}
@@ -401,6 +405,26 @@ In []: pend_sol = odeint(pend_int,
                          initial,t, 
                          args=(p,))
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Things we have learned}
+  \begin{itemize}
+  \item
+  \item
+  \item Functions
+    \begin{itemize}
+    \item Definition
+    \item Calling
+    \item Default Arguments
+    \item Keyword Arguments
+    \end{itemize}
+    \item Integration
+    \begin{itemize}
+      \item Quadrature
+      \item ODEs
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \end{document}
