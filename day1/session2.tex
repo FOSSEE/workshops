@@ -282,9 +282,9 @@ Out[]: [1, 2, 3, 4, 5, 6]
 Let us look at a more realistic example of the Simple Pendulum experiment.
 \begin{center}
 \begin{small}
-\begin{tabular}{| l | c | r |}
+\begin{tabular}{| c | c | c |}
 \hline
-L & T & T^2 \\ \hline
+L & T & $T^2$ \\ \hline
 0.1 & 0.6900 & \\ \hline
 0.2 & 0.8989 & \\ \hline
 0.3 & 1.1867 & \\ \hline
@@ -296,7 +296,7 @@ L & T & T^2 \\ \hline
 0.9 & 1.9440 & \\ \hline
 \end{tabular}
 \end{small}\\
-\alert{$L$ \alpha $T^2$}
+\alert{$L \alpha T^2$}
 \end{center}
 \end{frame}
 
@@ -365,7 +365,10 @@ In []: for num in lst:
 \alert{Data is usually present in a file!} \\
 Lets look at the pendulum.txt file.
 \begin{lstlisting}
-$cat data/pendulum.txt
+$cat data/pendulum.txt 
+\end{lstlisting} 
+%%$
+\begin{lstlisting}
 1.0000e-01 6.9004e-01
 1.1000e-01 6.9497e-01
 1.2000e-01 7.4252e-01
