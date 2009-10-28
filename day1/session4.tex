@@ -225,13 +225,17 @@ Out[66]: 80.0
 \frametitle{Eigen Values and Eigen Matrix}
 \begin{small}
 \begin{lstlisting}
-In []: linalg.eig(A)
+In []: E = matrix([[3,2,4],[2,0,2],[4,2,3]])
+
+In []: linalg.eig(E)
 Out[]: 
-(array([ 11.41026155,   3.71581643,  -0.81723144,  -2.30884654]),
- matrix([[ 0.12300187, -0.53899627,  0.63269982,  0.56024583],
-        [ 0.8225266 , -0.67562403, -0.63919634, -0.20747251],
-        [-0.04763219, -0.47575453, -0.3709497 , -0.80066041],
-        [-0.55321941, -0.16331814, -0.23133374,  0.04497415]]))
+(array([-1.,  8., -1.]),
+ matrix([[-0.74535599,  0.66666667, -0.1931126 ],
+        [ 0.2981424 ,  0.33333333, -0.78664085],
+        [ 0.59628479,  0.66666667,  0.58643303]]))
+
+In []: linalg.eigvals(E)
+Out[]: array([-1.,  8., -1.])
 \end{lstlisting}
 \end{small}
 \end{frame}
@@ -239,8 +243,8 @@ Out[]:
 \begin{frame}[fragile]
 \frametitle{Computing Norms}
 \begin{lstlisting}
-In []: linalg.norm(A)
-Out[]: 14.0
+In []: linalg.norm(E)
+Out[]: 8.1240384046359608
 \end{lstlisting}
 \end{frame}
 
@@ -248,19 +252,19 @@ Out[]: 14.0
   \frametitle{Single Value Decomposition}
   \begin{small}
   \begin{lstlisting}
-In []: linalg.svd(A)
-Out[]: 
-(matrix([[-0.08588113,  0.29164297, -0.74892678,  0.58879325],
-        [-0.79093255,  0.39530483, -0.11188116, -0.45347812],
-        [ 0.1523891 ,  0.78799358,  0.51966138,  0.29290907],
-        [ 0.58636823,  0.37113957, -0.39565558, -0.60156827]]),
- array([ 13.17656506,   3.76954116,   2.79959047,   0.57531379]),
- matrix([[-0.05893795, -0.42858358,  0.12442679,  0.89295039],
-        [ 0.80364672,  0.51537891,  0.03774111,  0.29514767],
-        [-0.11752501,  0.14226922, -0.96333552,  0.19476145],
-        [-0.58040171,  0.72832696,  0.23468759,  0.27855956]]))
-\end{lstlisting}
+In [76]: linalg.svd(E)
+Out[76]: 
+(matrix(
+[[ -6.66666667e-01,  -1.23702565e-16,   7.45355992e-01],
+ [ -3.33333333e-01,  -8.94427191e-01,  -2.98142397e-01],
+ [ -6.66666667e-01,   4.47213595e-01,  -5.96284794e-01]]),
+ array([ 8.,  1.,  1.]),
+ matrix([[-0.66666667, -0.33333333, -0.66666667],
+        [-0.        ,  0.89442719, -0.4472136 ],
+        [-0.74535599,  0.2981424 ,  0.59628479]]))
+  \end{lstlisting}
   \end{small}
+\inctime{15}
 \end{frame}
 
 \section{Solving linear equations}
@@ -322,17 +326,13 @@ We can use \kwrd{allclose()} to check.
 In []: allclose(Ax, b)
 Out[]: True
 \end{lstlisting}
+\inctime{15}
 \end{frame}
 
 \subsection{Exercises}
 
 \begin{frame}[fragile]
-\frametitle{Problem}
-
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Problem}
+\frametitle{Problem Set 4: Problem 4.1}
 Solve the set of equations:
 \begin{align*}
   x + y + 2z -w & = 3\\
@@ -340,6 +340,25 @@ Solve the set of equations:
   2x + y -z + 3w & = -11 \\
   x - 3y + 2z + 7w & = -5\\
 \end{align*}
+\inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+Solution:
+\begin{lstlisting}
+\begin{align*}
+  x & = -5\\
+  y & = 2\\
+  z & = 3\\
+  w & = 0\\
+\end{align*}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Problem 4.2}
+
 \end{frame}
 
 \section{Summary}
