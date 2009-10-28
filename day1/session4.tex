@@ -282,8 +282,6 @@ Let us now look at how to solve this using \kwrd{matrices}
     In []: b = matrix([[1], [-2], [0]])
     In []: x = linalg.solve(A, b)
     In []: Ax = dot(A, x)
-    In []: allclose(Ax, b)
-    Out[]: True
   \end{lstlisting}
 \end{frame}
 
@@ -295,13 +293,31 @@ Out[]:
 array([[ 1.],
        [-2.],
        [-2.]])
+\end{lstlisting}
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Let's check!}
+\begin{lstlisting}
 In []: Ax
 Out[]: 
 matrix([[  1.00000000e+00],
         [ -2.00000000e+00],
         [  2.22044605e-16]])
 \end{lstlisting}
+\begin{block}{}
+The last term in the matrix is actually \alert{0}!\\
+We can use \kwrd{allclose()} to check.
+\end{block}
+\begin{lstlisting}
+In []: allclose(Ax, b)
+Out[]: True
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercises}
+
 \end{frame}
 
 \section{Summary}
