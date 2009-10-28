@@ -124,9 +124,148 @@
 %  \pausesections
 \end{frame}
 
-\section{Integration}
+\section{Interpolation}
 
-\subsection{Quadrature}
+\begin{frame}[fragile]
+\frametitle{Interpolation}
+\begin{itemize}
+\item Let us begin with interpolation
+\item Let's use the L and T arrays and interpolate this data to obtain data at new points
+\end{itemize}
+\begin{lstlisting}
+In []: L = []
+In []: T = []
+In []: for line in open('pendulum.txt'):
+           l, t = line.split()
+           L.append(float(l))
+           T.append(float(t))
+In []: L = array(L)
+In []: T = array(T)
+In []: Tsq = T*T
+\end{lstlisting}
+\end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{small}
+%%   \typ{In []: from scipy.interpolate import interp1d}
+%% \end{small}
+%% \begin{itemize}
+%% \item The \typ{interp1d} function returns a function
+%% \begin{lstlisting}
+%%   In []: f = interp1d(L, T)
+%% \end{lstlisting}
+%% \item Functions can be assigned to variables 
+%% \item This function interpolates between known data values to obtain unknown
+%% \end{itemize}
+%% \end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{lstlisting}
+%% In []: Ln = arange(0.1,0.99,0.005)
+%% # Interpolating! 
+%% # The new values in range of old data
+%% In []: plot(L, T, 'o', Ln, f(Ln), '-')
+%% In []: f = interp1d(L, T, kind='cubic')
+%% # When kind not specified, it's linear
+%% # Others are ...
+%% # 'nearest', 'zero', 
+%% # 'slinear', 'quadratic'
+%% \end{lstlisting}
+%% \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Spline Interpolation}
+\begin{small}
+\begin{lstlisting}
+In []: from scipy.interpolate import splrep
+In []: from scipy.interpolate import splev
+\end{lstlisting}
+\end{small}
+\begin{itemize}
+\item Involves two steps
+  \begin{enumerate}
+  \item Find out the spline curve, coefficients
+  \item Evaluate the spline at new points
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{splrep}}
+To find the B-spline representation
+\begin{lstlisting}
+In []: tck = splrep(L, T)
+\end{lstlisting}
+Returns a tuple containing 
+\begin{enumerate}
+\item the vector of knots, 
+\item the B-spline coefficients 
+\item the degree of the spline (default=3)
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{splev}}
+To Evaluate a B-spline and it's derivatives
+\begin{lstlisting}
+In []: Lnew = arange(0.1,1,0.005)
+In []: Tnew = splev(Lnew, tck)
+
+#To obtain derivatives of the spline
+#use der=1, 2,.. for 1st, 2nd,.. order
+In []: Tnew = splev(Lnew, tck, der=1)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{}
+\end{frame}
+
+\section{Differentiation}
+
+\begin{frame}[fragile]
+\frametitle{Numerical Differentiation}
+\begin{itemize}
+\item Given function $f(x)$ or data points $y=f(x)$
+\item We wish to calculate $f^{'}(x)$ at points $x$
+\item Taylor series - finite difference approximations
+\end{itemize}
+\begin{center}
+\begin{tabular}{l l}
+$f(x+h)=f(x)+h.f^{'}(x)$ &Forward \\
+$f(x-h)=f(x)-h.f^{'}(x)$ &Backward
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Forward Difference}
+\begin{lstlisting}
+In []: x = linspace(0, 2*pi, 100)
+In []: y = sin(x)
+In []: deltax = x[1] - x[0]
+\end{lstlisting}
+Obtain the finite forward difference of y
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Forward Difference \ldots}
+\begin{lstlisting}
+In []: fD = (y[1:] - y[:-1]) / deltax
+In []: plot(x, y, x[:-1], fD)
+\end{lstlisting}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/fwdDiff}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{}
+\end{frame}
+
+\section{Quadrature}
 
 \begin{frame}[fragile]
 \frametitle{Quadrature}
@@ -135,7 +274,9 @@
 \item Area under $(sin(x) + x^2)$ in $(0,1)$
 \item scipy has functions to do that
 \end{itemize}
-\small{\typ{In []: from scipy.integrate import quad}}
+\begin{small}
+  \typ{In []: from scipy.integrate import quad}
+\end{small}
 \begin{itemize}
 \item Inputs - function to integrate, limits
 \end{itemize}
@@ -143,12 +284,15 @@
 In []: x = 0
 In []: quad(sin(x)+x**2, 0, 1)
 \end{lstlisting}
+\begin{small}
 \alert{\typ{error:}}
 \typ{First argument must be a callable function.}
+\end{small}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Functions - Definition}
+We have been using them all along. Now let's see how to define them.
 \begin{lstlisting}
 In []: def f(x):
            return sin(x)+x**2
@@ -233,69 +377,11 @@ Returns the integral and an estimate of the absolute error in the result.
 \end{itemize}
 \end{frame}
 
-\subsection{ODEs}
-
-\begin{frame}[fragile]
-\frametitle{ODE Integration}
-We shall use the simple ODE of a simple pendulum. 
-\begin{equation*}
-\ddot{\theta} = -\frac{g}{L}sin(\theta)
-\end{equation*}
-\begin{itemize}
-\item This equation can be written as a system of two first order ODEs
-\end{itemize}
-\begin{align}
-\dot{\theta} &= \omega \\
-\dot{\omega} &= -\frac{g}{L}sin(\theta) \\
- \text{At}\ t &= 0 : \nonumber \\
- \theta = \theta_0\quad & \&\quad  \omega = 0 \nonumber
-\end{align}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy}
-\begin{itemize}
-\item We use the \typ{odeint} function from scipy to do the integration
-\item Define a function as below
-\end{itemize}
-\begin{lstlisting}
-In []: def pend_int(unknown, t, p):
-  ....     theta, omega = unknown
-  ....     g, L = p
-  ....     f=[omega, -(g/L)*sin(theta)]
-  ....     return f
-  ....
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-\begin{itemize}
-\item \typ{t} is the time variable \\ 
-\item \typ{p} has the constants \\
-\item \typ{initial} has the initial values
-\end{itemize}
-\begin{lstlisting}
-In []: t = linspace(0, 10, 101)
-In []: p=(-9.81, 0.2)
-In []: initial = [10*2*pi/360, 0]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-
-\small{\typ{In []: from scipy.integrate import odeint}}
-\begin{lstlisting}
-In []: pend_sol = odeint(pend_int, 
-                         initial,t, 
-                         args=(p,))
-\end{lstlisting}
-\end{frame}
-
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
+  \item Interpolation
+  \item Differentiation
   \item Functions
     \begin{itemize}
     \item Definition
@@ -306,6 +392,5 @@ In []: pend_sol = odeint(pend_int,
   \item Quadrature
   \end{itemize}
 \end{frame}
-
 \end{document}
 

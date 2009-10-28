@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{Finding Roots}
+\title[]{ODEs \& Finding Roots}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -123,6 +123,68 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
+\section{ODEs}
+
+\begin{frame}[fragile]
+\frametitle{ODE Integration}
+We shall use the simple ODE of a simple pendulum. 
+\begin{equation*}
+\ddot{\theta} = -\frac{g}{L}sin(\theta)
+\end{equation*}
+\begin{itemize}
+\item This equation can be written as a system of two first order ODEs
+\end{itemize}
+\begin{align}
+\dot{\theta} &= \omega \\
+\dot{\omega} &= -\frac{g}{L}sin(\theta) \\
+ \text{At}\ t &= 0 : \nonumber \\
+ \theta = \theta_0\quad & \&\quad  \omega = 0 \nonumber
+\end{align}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy}
+\begin{itemize}
+\item We use the \typ{odeint} function from scipy to do the integration
+\item Define a function as below
+\end{itemize}
+\begin{lstlisting}
+In []: def pend_int(unknown, t, p):
+  ....     theta, omega = unknown
+  ....     g, L = p
+  ....     f=[omega, -(g/L)*sin(theta)]
+  ....     return f
+  ....
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy \ldots}
+\begin{itemize}
+\item \typ{t} is the time variable \\ 
+\item \typ{p} has the constants \\
+\item \typ{initial} has the initial values
+\end{itemize}
+\begin{lstlisting}
+In []: t = linspace(0, 10, 101)
+In []: p=(-9.81, 0.2)
+In []: initial = [10*2*pi/360, 0]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy \ldots}
+\begin{small}
+  \typ{In []: from scipy.integrate import odeint}
+\end{small}
+\begin{lstlisting}
+In []: pend_sol = odeint(pend_int, 
+                         initial,t, 
+                         args=(p,))
+\end{lstlisting}
+\end{frame}
+
+\section{Finding Roots}
 
 \begin{frame}[fragile]
 \frametitle{Roots of $f(x)=0$}
