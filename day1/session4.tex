@@ -136,30 +136,73 @@ let us now look at matrices in a little more detail.
 \begin{frame}[fragile]
 \frametitle{Matrices: Initializing}
 \begin{lstlisting}
-  In []: a = matrix([[1,2,3],
-                     [4,5,6],
-                     [7,8,9]])
+In []: A = ([[5, 2, 4], 
+            [-3, 6, 2], 
+            [3, -3, 1]])
 
-  In []: a
-  Out[]: 
-  matrix([[1, 2, 3],
-         [4, 5, 6],
-         [7, 8, 9]])
+In []: A
+Out[]: [[5, 2, 4], 
+        [-3, 6, 2], 
+        [3, -3, 1]]
 \end{lstlisting}
 \end{frame}
 
 \subsection{Basic Operations}
+
+\begin{frame}[fragile]
+\frametitle{Transpose of a Matrix}
+\begin{lstlisting}
+In []: linalg.transpose(A)
+Out[]: 
+matrix([[ 5, -3,  3],
+        [ 2,  6, -3],
+        [ 4,  2,  1]])
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Sum of all elements}
+  \begin{lstlisting}
+In []: linalg.sum(A)
+Out[]: 17
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Matrix Addition}
+  \begin{lstlisting}
+In []: B = matrix([[3,2,-1],
+                   [2,-2,4],
+                   [-1, 0.5, -1]])
+
+In []: linalg.add(A, B)
+Out[]: 
+matrix([[ 8. ,  4. ,  3. ],
+        [-1. ,  4. ,  6. ],
+        [ 2. , -2.5,  0. ]])
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Matrix Multiplication}
+\begin{lstlisting}
+In []: linalg.multiply(A, B)
+Out[]: 
+matrix([[ 15. ,   4. ,  -4. ],
+        [ -6. , -12. ,   8. ],
+        [ -3. ,  -1.5,  -1. ]])
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}[fragile]
 \frametitle{Inverse of a Matrix}
-
 \begin{small}
 \begin{lstlisting}
 In []: linalg.inv(A)
 Out[]: 
-matrix([[ 0.07734807,  0.01657459,  0.32044199],
-        [ 0.09944751, -0.12154696, -0.01657459],
-        [-0.02762431, -0.07734807,  0.17127072]])
-
+array([[ 0.28571429, -0.33333333, -0.47619048],
+       [ 0.21428571, -0.16666667, -0.52380952],
+       [-0.21428571,  0.5       ,  0.85714286]])
 \end{lstlisting}
 \end{small}
 \end{frame}
@@ -167,16 +210,8 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \begin{frame}[fragile]
 \frametitle{Determinant}
 \begin{lstlisting}
-  In []: linalg.det(a)
-  Out[]: -9.5171266700777579e-16
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Computing Norms}
-\begin{lstlisting}
-  In []: linalg.norm(a)
-  Out[]: 16.881943016134134
+In []: det(A)
+Out[]: 42.0
 \end{lstlisting}
 \end{frame}
 
@@ -184,17 +219,39 @@ matrix([[ 0.07734807,  0.01657459,  0.32044199],
 \frametitle{Eigen Values and Eigen Matrix}
 \begin{small}
 \begin{lstlisting}
-  In []: linalg.eigvals(a)
-  Out[]: array([1.61168440e+01, -1.11684397e+00, -1.22196337e-15])
-
-  In []: linalg.eig(a)
-  Out[]: 
-  (array([ 1.61168440e+01, -1.11684397e+00, -1.22196337e-15]),
-   matrix([[-0.23197069, -0.78583024,  0.40824829],
-          [-0.52532209, -0.08675134, -0.81649658],
-          [-0.8186735 ,  0.61232756,  0.40824829]]))
+In []: linalg.eig(A)
+Out[]: 
+(array([ 7.,  2.,  3.]),
+ matrix([[-0.57735027,  0.42640143,  0.37139068],
+        [ 0.57735027,  0.63960215,  0.74278135],
+        [-0.57735027, -0.63960215, -0.55708601]]))
 \end{lstlisting}
 \end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Computing Norms}
+\begin{lstlisting}
+  In []: linalg.norm(A)
+  Out[]: 10.63014581273465
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Single Value Decomposition}
+  \begin{small}
+  \begin{lstlisting}
+In []: linalg.svd(A)
+Out[]: 
+(matrix([[-0.13391246, -0.94558684, -0.29653495],
+        [ 0.84641267, -0.26476432,  0.46204486],
+        [-0.51541542, -0.18911737,  0.83581192]]),
+ array([ 7.96445022,  7.        ,  0.75334767]),
+ matrix([[-0.59703387,  0.79815896,  0.08057807],
+        [-0.64299905, -0.41605821, -0.64299905],
+        [-0.47969029, -0.43570384,  0.7616163 ]]))
+  \end{lstlisting}
+  \end{small}
 \end{frame}
 
 \section{Solving linear equations}
@@ -219,7 +276,9 @@ Solution:
 \frametitle{Solving using Matrices}
 Let us now look at how to solve this using \kwrd{matrices}
   \begin{lstlisting}
-    In []: A = matrix([[3,2,-1],[2,-2,4],[-1, 0.5, -1]])
+    In []: A = matrix([[3,2,-1],
+                       [2,-2,4],
+                       [-1, 0.5, -1]])
     In []: b = matrix([[1], [-2], [0]])
     In []: x = linalg.solve(A, b)
     In []: Ax = dot(A, x)
@@ -251,9 +310,18 @@ matrix([[  1.00000000e+00],
 So what did we learn??
   \begin{itemize}
   \item Matrices
+    \begin{itemize}
+      \item Transpose
+      \item Addition
+      \item Multiplication
+      \item Inverse of a matrix
+      \item Determinant
+      \item Eigen values and Eigen matrix
+      \item Norms
+      \item Single Value Decomposition
+    \end{itemize}
   \item Solving linear equations
   \end{itemize}
 \end{frame}
 
 \end{document}
-
