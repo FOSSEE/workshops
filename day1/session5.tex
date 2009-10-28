@@ -141,7 +141,6 @@ In []: for line in open('pendulum.txt'):
            T.append(float(t))
 In []: L = array(L)
 In []: T = array(T)
-In []: Tsq = T*T
 \end{lstlisting}
 \end{frame}
 
@@ -300,6 +299,7 @@ In []: quad(f, 0, 1)
 \end{lstlisting}
 \begin{itemize}
 \item \typ{def}
+\item name
 \item arguments
 \item \typ{return}
 \end{itemize}
@@ -319,50 +319,7 @@ Out[]: 0.0
 In []: f(1)
 Out[]: 1.8414709848078965
 \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Functions - Default Arguments}
-\begin{lstlisting}
-In []: def f(x=1):
-           return sin(x)+x**2
-In []: f(10)
-Out[]: 99.455978889110625
-In []: f(1)
-Out[]: 1.8414709848078965
-In []: f()
-Out[]: 1.8414709848078965
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Functions - Keyword Arguments}
-\begin{lstlisting}
-In []: def f(x=1, y=pi):
-           return sin(y)+x**2
-In []: f()
-Out[]: 1.0000000000000002
-In []: f(2)
-Out[]: 4.0
-In []: f(y=2)
-Out[]: 1.9092974268256817
-In []: f(y=pi/2,x=0)
-Out[]: 1.0
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{More on functions}
-  \begin{itemize}
-  \item Scope of variables in the function is local
-  \item Mutable items are \alert{passed by reference}
-  \item First line after definition may be a documentation string
-    (\alert{recommended!})
-  \item Function definition and execution defines a name bound to the
-    function
-  \item You \emph{can} assign a variable to a function!
-  \end{itemize}
+More on Functions later \ldots
 \end{frame}
 
 \begin{frame}[fragile]
@@ -392,5 +349,6 @@ Returns the integral and an estimate of the absolute error in the result.
   \item Quadrature
   \end{itemize}
 \end{frame}
+
 \end{document}
 

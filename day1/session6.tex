@@ -198,8 +198,8 @@ In []: pend_sol = odeint(pend_int,
 \begin{frame}[fragile]
 \frametitle{Initial Estimates}
 \begin{itemize}
-\item Find the roots of $cosx-x^2$ between $-\pi/2$ and $\pi/2$
-\item We shall use a crude method to get an initial estimate first
+\item Find roots of $cosx-x^2$ in $(-\pi/2, \pi/2)$
+\item How to get a rough initial estimate?
 \end{itemize}
 \begin{enumerate}
 \item Check for change of signs of $f(x)$ in the given interval
@@ -350,15 +350,28 @@ In []: pend_sol = odeint(pend_int,
 
 \begin{frame}[fragile]
 \frametitle{Scipy Methods \dots}
-\small{
+\begin{small}
 \begin{lstlisting}
 In []: from scipy.optimize import fixed_point
 
 In []: from scipy.optimize import bisect
 
 In []: from scipy.optimize import newton
-\end{lstlisting}}
+\end{lstlisting}
+\end{small}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Things we have learned}
+  \begin{itemize}
+  \item Solving ODEs
+  \item Finding Roots
+    \begin{itemize}
+    \item Estimating Interval
+    \item Newton Raphson
+    \item Scipy methods
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
 \end{document}
