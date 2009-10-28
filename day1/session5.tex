@@ -96,13 +96,13 @@
   \end{frame}
 }
 
-%%\AtBeginSection[]
-%%{
-  %%\begin{frame}<beamer>
-%%    \frametitle{Outline}
-  %%  \tableofcontents[currentsection,currentsubsection]
-  %%\end{frame}
-%%}
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+   \frametitle{Outline}
+   \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
@@ -218,9 +218,12 @@ In []: Tnew = splev(Lnew, tck, der=1)
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{}
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{itemize}
+%% \item 
+%% \end{itemize}
+%% \end{frame}
 
 \section{Differentiation}
 
@@ -261,7 +264,60 @@ In []: plot(x, y, x[:-1], fD)
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{}
+\frametitle{Example}
+\begin{itemize}
+\item Given x, y positions of a particle in \typ{pos.txt}
+\item Find velocity \& acceleration in x, y directions
+\end{itemize}
+\small{
+\begin{center}
+\begin{tabular}{| c | c | c |}
+\hline
+$X$ & $Y$ \\ \hline
+0.     &  0.\\ \hline
+0.25   &  0.47775\\ \hline
+0.5    &  0.931\\ \hline
+0.75   &  1.35975\\ \hline
+1.     &  1.764\\ \hline
+1.25   &  2.14375\\ \hline
+\vdots & \vdots\\ \hline
+\end{tabular}
+\end{center}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example \ldots}
+\begin{itemize}
+\item Read the file
+\item Obtain an array of x, y
+\item Obtain velocity and acceleration
+\item use \typ{deltaT = 0.05}
+\end{itemize}
+\begin{lstlisting}
+In []: X = []
+In []: Y = []
+In []: for line in open('location.txt'):
+  ....     points = line.split()
+  ....     X.append(float(points[0]))
+  ....     Y.append(float(points[1]))
+In []: S = array([X, Y])
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Example \ldots}
+\begin{itemize}
+\item use \typ{deltaT = 0.05}
+\end{itemize}
+\begin{lstlisting}
+In []: deltaT = 0.05
+
+In []: v = (S[:,1:]-S[:,:-1])/deltaT
+
+In []: a = (v[:,1:]-v[:,:-1])/deltaT
+\end{lstlisting}
+Try Plotting the position, velocity \& acceleration.
 \end{frame}
 
 \section{Quadrature}
@@ -329,7 +385,7 @@ In []: quad(f, 0, 1)
 \end{lstlisting}
 Returns the integral and an estimate of the absolute error in the result.
 \begin{itemize}
-\item Use \typ{dblquad} for Double integrals
+\item Look at \typ{dblquad} for Double integrals
 \item Use \typ{tplquad} for Triple integrals
 \end{itemize}
 \end{frame}
