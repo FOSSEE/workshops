@@ -97,7 +97,7 @@
 % Title page
 \title[]{3D data Visualization}
 
-\author[FOSSEE Team] {FOSSEE}
+\author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {1, November 2009\\Day 2, Session 3}
@@ -157,22 +157,22 @@
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Is this new?}    
-    \begin{center}
-    We have moved from:
-    \end{center}
-    \begin{columns}
-    \column{}
-    \hspace*{-1in}    
-    \includegraphics[width=1.75in,height=1.75in, interpolate=true]{data/3832}      
-    \column{}\hspace*{-0.25in}
-    To
-    \column{}
-    \hspace*{-1in}
-    \includegraphics[width=1.75in, height=1.75in, interpolate=true]{data/torus}  
-    \end{columns}
-\end{frame}
+%% \begin{frame}
+%%     \frametitle{Is this new?}    
+%%     \begin{center}
+%%     We have moved from:
+%%     \end{center}
+%%     \begin{columns}
+%%     \column{}
+%%     \hspace*{-1in}    
+%%     \includegraphics[width=1.75in,height=1.75in, interpolate=true]{data/3832}      
+%%     \column{}\hspace*{-0.25in}
+%%     To
+%%     \column{}
+%%     \hspace*{-1in}
+%%     \includegraphics[width=1.75in, height=1.75in, interpolate=true]{data/torus}  
+%%     \end{columns}
+%% \end{frame}
 
 \begin{frame}
     \frametitle{3D visualization}
@@ -238,7 +238,7 @@
     \frametitle{Using mlab}
 
     \begin{lstlisting}
->>> from enthought.mayavi import mlab
+In []:from enthought.mayavi import mlab
     \end{lstlisting}
 
     \vspace*{0.5in}
@@ -248,9 +248,9 @@
     \vspace*{0.25in}
 
     \begin{lstlisting}
->>> mlab.test_<TAB>
->>> mlab.test_contour3d()
->>> mlab.test_contour3d??
+In []: mlab.test_<TAB>
+In []: mlab.test_contour3d()
+In []: mlab.test_contour3d??
     \end{lstlisting}
 \end{frame}
 
@@ -270,72 +270,31 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{plotting 3-D Surface: $x^2+y^2-z^2=1$}
-    \begin{lstlisting}
-u,v = mgrid[-2:2:100j, -pi:pi:100j]
-x=sqrt(u*u+1)*cos(v)
-y=sqrt(u*u+1)*sin(v)
-z=u
-mlab.mesh(x,y,z)
-    \end{lstlisting}
-\begin{figure}
-\includegraphics[width=1in, height=1in, interpolate=true]{data/hyperboloid}
-\end{figure}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{mgrid}    
-    \begin{itemize}
-      \item Creates a multidimensional ``meshgrid''
-      
-      \item In this particular case, creates 2 2D arrays: u,v.
-    \end{itemize}      
-    \begin{lstlisting}
-In []: mgrid[0:3,0:3]
-Out[]: 
-array([[[0, 0, 0],
-        [1, 1, 1],
-        [2, 2, 2]],
-
-       [[0, 1, 2],
-        [0, 1, 2],
-        [0, 1, 2]]])
-    \end{lstlisting}    
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{mesh}
-      \begin{itemize}
-        \item Plots a surface from data supplied as 2D arrays.
-      \end{itemize}      
-\end{frame}
-
-\begin{frame}[fragile]
     \frametitle{\mlab\ plotting functions}
     \begin{columns}
         \column{0.25\textwidth}
-        \myemph{Points in 3D space}
+        \myemph{\Large 0D data}
         \column{0.5\textwidth}
     \pgfimage[width=2in]{MEDIA/m2/mlab/points3d_ex}
     \end{columns}
 
     \begin{lstlisting}
->>> from numpy import *
->>> t = linspace(0, 2*pi, 50)
->>> u = cos(t)*pi
->>> x, y, z = sin(u), cos(u), sin(t)
+In []: from numpy import *
+In []: t = linspace(0, 2*pi, 50)
+In []: u = cos(t) * pi
+in []: x, y, z = sin(u), cos(u), sin(t)
     \end{lstlisting}
-    \emphbar{\PythonCode{>>> mlab.points3d(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.points3d(x, y, z)}}
 \end{frame}
 
 \begin{frame}
   \begin{columns}
         \column{0.25\textwidth}
-        \myemph{Connected points in 3D space}
+        \myemph{\Large 1D data}
         \column{0.5\textwidth}
         \pgfimage[width=2.5in]{MEDIA/m2/mlab/plot3d_ex}
   \end{columns}
-  \emphbar{\PythonCode{>>> mlab.plot3d(x, y, z, t)}}
+  \emphbar{\PythonCode{In []: mlab.plot3d(x, y, z, t)}}
 
     Plots lines between the points
     
@@ -349,11 +308,11 @@ array([[[0, 0, 0],
         \pgfimage[width=2in]{MEDIA/m2/mlab/surf_ex}
     \end{columns}            
     \begin{lstlisting}
->>> x, y = mgrid[-3:3:100j,-3:3:100j]
->>> z = sin(x*x + y*y)
+In []: x, y = mgrid[-3:3:100j,-3:3:100j]
+In []: z = sin(x*x + y*y)
     \end{lstlisting}
 
-    \emphbar{\PythonCode{>>> mlab.surf(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.surf(x, y, z)}}
 
     \alert{Assumes the points are rectilinear}
 
@@ -363,18 +322,18 @@ array([[[0, 0, 0],
     \myemph{\Large 2D data: \texttt{mlab.mesh}}
     \vspace*{0.25in}
 
-    \emphbar{\PythonCode{>>> mlab.mesh(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.mesh(x, y, z)}}
 
     \alert{Points needn't be regular}
 
     \vspace*{0.25in}
 \begin{lstlisting}
->>> phi, theta = numpy.mgrid[0:pi:20j, 
+In []: phi, theta = numpy.mgrid[0:pi:20j, 
 ...                         0:2*pi:20j]
->>> x = sin(phi)*cos(theta)
->>> y = sin(phi)*sin(theta)
->>> z = cos(phi)
->>> mlab.mesh(x, y, z, 
+In []: x = sin(phi)*cos(theta)
+In []: y = sin(phi)*sin(theta)
+In []: z = cos(phi)
+In []: mlab.mesh(x, y, z, 
 ...           representation=
 ...           'wireframe')
 \end{lstlisting}
@@ -390,10 +349,10 @@ array([[[0, 0, 0],
         \pgfimage[width=1.5in]{MEDIA/m2/mlab/contour3d}\\        
     \end{columns}
 \begin{lstlisting}
->>> x, y, z = ogrid[-5:5:64j, 
+In []: x, y, z = ogrid[-5:5:64j, 
 ...                -5:5:64j, 
 ...                -5:5:64j]
->>> mlab.contour3d(x*x*0.5 + y*y + 
+In []: mlab.contour3d(x*x*0.5 + y*y + 
                    z*z*2)
 \end{lstlisting}
 \end{frame}
@@ -406,7 +365,7 @@ array([[[0, 0, 0],
     \pgfimage[width=2in]{MEDIA/m2/mlab/quiver3d_ex}\\
     
 \begin{lstlisting}
->>> mlab.test_quiver3d()
+In []: mlab.test_quiver3d()
 \end{lstlisting}
 
 \emphbar{\PythonCode{obj = mlab.quiver3d(x, y, z, u, v, w)}}
@@ -552,6 +511,15 @@ mlab.show()
 
   \end{lstlisting}
 \end{frame}
-  
+
+\begin{frame}
+  \frametitle{We have covered:}
+  \begin{itemize}
+  \item Need of visualization.
+  \item Using mlab to create 3 D plots.
+  \item Mayavi Toolkit.
+  \end{itemize}
+\end{frame}
+
 \end{document}
 

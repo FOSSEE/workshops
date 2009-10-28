@@ -140,13 +140,13 @@
   \begin{itemize}
     \item \kwrd{int}\\ Any whole number is an \kwrd{int}, no matter what the size!
   \begin{lstlisting}
-In []: a = 13
+In [1]: a = 13
 
-In []: a = 99999999999999999999
+In [2]: b = 99999999999999999999
   \end{lstlisting}
     \item \kwrd{float}
   \begin{lstlisting}
-In []: fl = 3.141592
+In [3]: fl = 3.141592
   \end{lstlisting}
   \end{itemize}
 \end{frame}
@@ -154,101 +154,254 @@ In []: fl = 3.141592
 \begin{frame}[fragile]
 \frametitle{Complex numbers}
   \begin{lstlisting}
-In []: cplx = 3+4j
+In [1]: cplx = 3+4j
 
-In []: abs(cplx)
-Out[]: 5.0
+In [2]: abs(cplx)
+Out[2]: 5.0
 
-In []: cplx.imag
-Out[]: 4.0
+In [3]: cplx.imag
+Out[3]: 4.0
 
-In []: cplx.real
-Out[]: 3.0
+In [4]: cplx.real
+Out[4]: 3.0
   \end{lstlisting}
 \end{frame}
 
 \subsection{Boolean}
-\begin{frame}{Boolean}
-  \begin{itemize}
-    \item \kwrd{True}
-    \item \kwrd{False}
-    \item \kwrd{not}
-    \item \kwrd{and}
-    \item \kwrd{or}
-  \end{itemize}
+\begin{frame}[fragile]
+  \frametitle{Boolean}
+  \begin{lstlisting}
+In [1]: t = True
+
+In [2]: f = not t
+Out[2]: False
+
+In [3]: f or t
+Out[3]: True
+
+In [4]: f and t
+Out[4]: False
+  \end{lstlisting}
 \end{frame}
 
 \subsection{Strings}
+
 \begin{frame}[fragile]
-  \frametitle{String methods}
+  \frametitle{Strings}
 Strings were introduced previously, let us now look at them in a little more detail.
   \begin{lstlisting}
-In []: a = 'hello world'
+In [1]: w = "hello"
 
-In []: a.startswith('hell')
-Out[]: True
+In [2]: print w[0] + w[2] + w[-1]
+Out[2]: hlo
 
-In []: a.endswith('ld')
-Out[]: True
+In [3]: len(w) # guess what
+Out[3]: 5
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Strings \ldots}
+  \begin{lstlisting}
+In [1]: w[0] = 'H' # Can't do that!
+--------------------------------------------
+TypeError  Traceback (most recent call last)
+
+/<ipython console> in <module>()
+
+TypeError: 'str' object does not
+         support item assignment
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{String methods}
+  \begin{lstlisting}
+In [1]: a = 'Hello World'
+In [2]: a.startswith('Hell')
+Out[2]: True
+
+In [3]: a.endswith('ld')
+Out[3]: True
+
+In [4]: a.upper()
+Out[4]: 'HELLO WORLD'
+
+In [5]: a.lower()
+Out[5]: 'hello world'
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Still with strings}
-We saw split() previously. join() is the opposite of split()
+  \begin{itemize}
+    \item We saw split() yesterday
+    \item join() is the opposite of split()
+  \end{itemize}
   \begin{lstlisting}
-In []: ''.join(['a', 'b', 'c'])
-Out[]: 'abc'
+In [1]: ''.join(['a', 'b', 'c'])
+Out[1]: 'abc'
   \end{lstlisting}
-  \begin{block}{Note:}
-Strings are immutable.\\ That is string variables cannot be changed.
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{String formatting}
   \begin{lstlisting}
-In []: x, y = 1, 1.234
-In []: 'x is %s, y is %s' %(x, y)
-Out[]: 'x is 1, y is 1.234'
+In [1]: x, y = 1, 1.234
+
+In [2]: 'x is %s, y is %s' %(x, y)
+Out[2]: 'x is 1, y is 1.234'
   \end{lstlisting}
-  \small
-\url{docs.python.org/lib/typesseq-strings.html}\\
+\emphbar{
+\url{http://docs.python.org/library/stdtypes.html}\\
+}
 \inctime{10}
 \end{frame}
 
-\section{Relational and logical operators}
+\section{Operators}
+\begin{frame}[fragile]
+  \frametitle{Arithematic operators}
+  \begin{lstlisting}
+In [1]: 1786 % 12
+Out[1]: 10
+
+In [2]: 3124 * 126789
+Out[2]: 396088836
+
+In [3]: a = 3124 * 126789
+
+In [4]: big = 1234567891234567890 ** 3
+
+In [5]: verybig = big * big * big * big
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arithematic operators \ldots}
+  \begin{lstlisting}
+In [1]: 17/2
+Out[1]: 8
+
+In [2]: 17/2.0
+Out[2]: 8.5
+
+In [3]: 17.0/2
+Out[3]: 8.5
+
+In [4]: 17.0/8.5
+Out[4]: 2.0
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{String operations}
+  \begin{lstlisting}
+In [1]: s = 'Hello '
+
+In [2]: p = 'World'
+
+In [3]: s + p 
+Out[3]: 'Hello World'
+
+In [4]: s * 12 
+Out[4]: 'Hello Hello Hello Hello ...'
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{String operations \ldots}
+  \begin{lstlisting}
+In [1]: s * s
+--------------------------------------------
+TypeError  Traceback (most recent call last)
+
+/<ipython console> in <module>()
+
+TypeError: can't multiply sequence by
+                non-int of type 'str'
+  \end{lstlisting}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Relational and logical operators}
   \begin{lstlisting}
-In []: pos, zer, neg = 1, 0, -1
-In []: pos == neg
-Out[]: False
+In [1]: pos, zer, neg = 1, 0, -1
+In [2]: pos == neg
+Out[2]: False
 
-In []: pos >= neg
-Out[]: True
+In [3]: pos >= neg
+Out[3]: True
 
-In []: neg < zer < pos
-Out[]: True
+In [4]: neg < zer < pos
+Out[4]: True
 
-In []: pos + neg != zer
-Out[]: False
+In [5]: pos + neg != zer
+Out[5]: False
   \end{lstlisting}
 \inctime{5}
 \end{frame}
 
-\begin{frame}
-  {A classic problem}
-  \begin{block}
-    {Interchange values}
-    How to interchange values of two variables? 
-  \end{block}
+\begin{frame}[fragile]
+  \frametitle{Built-ins}
+  \begin{lstlisting}
+In [1]: int(17/2.0)
+Out[1]: 8
+
+In [2]: float(17/2)  # Recall
+Out[2]: 8.0
+
+In [3]: str(17/2.0)
+Out[3]: '8.5'
+
+In [4]: round( 7.5 )
+Out[4]: 8.0
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Odds and ends}
+  \begin{itemize}
+    \item Case sensitive
+    \item Dynamically typed $\Rightarrow$ need not specify a type
+      \begin{lstlisting}
+In [1]: a = 1
+In [2]: a = 1.1
+In [3]: a = "Now I am a string!"
+      \end{lstlisting}
+    \item Comments:
+      \begin{lstlisting}
+In [4]: a = 1  # In-line comments
+In [5]: # Comment in a line to itself.
+In [6]: a = "# This is not a comment!"
+      \end{lstlisting}
+  \end{itemize}
+  \inctime{15}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{A question of good style}
+  \begin{lstlisting}
+    amount = 12.68
+    denom = 0.05
+    nCoins = round(amount/denom)
+    rAmount = nCoins * denom
+  \end{lstlisting}
   \pause
-  \begin{block}{Note:}
-    This Python idiom works for all types of variables.\\
-They need not be of the same type!
+  \begin{block}{Style Rule \#1}
+    Naming is 80\% of programming
   \end{block}
-  \inctime{10}
+\end{frame}
+
+\section{Simple IO}
+\begin{frame}{Simple IO}
+  \begin{block}
+    {Console Input}
+    \texttt{raw\_input()} waits for user input.\\Prompt string is optional.\\
+    All keystrokes are Strings!\\\texttt{int()} converts string to int.
+  \end{block}
+  \begin{block}
+    {Console output}
+    \texttt{print} is straight forward. Note the distinction between \texttt{print x} and \texttt{print x,}
+  \end{block}
 \end{frame}
 
 \section{Control flow}
@@ -279,21 +432,9 @@ else:
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Simple IO}
-  \begin{block}
-    {Console Input}
-    \texttt{raw\_input()} waits for user input.\\Prompt string is optional.\\
-    All keystrokes are Strings!\\\texttt{int()} converts string to int.
-  \end{block}
-  \begin{block}
-    {Console output}
-    \texttt{print} is straight forward. Note the distinction between \texttt{print x} and \texttt{print x,}
-  \end{block}
-\end{frame}
-
 \subsection{Basic Looping}
 \begin{frame}[fragile]
-  \frametitle{\kwrd{while}}
+  \frametitle{\typ{while}}
 Example: Fibonacci series
   \begin{lstlisting}
 # the sum of two elements
@@ -307,7 +448,7 @@ while b < 10:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\kwrd{range()}}
+\frametitle{\typ{range()}}
 \kwrd{range([start,] stop[, step])}\\
 \begin{itemize}
   \item \alert {range() returns a list of integers}
@@ -316,7 +457,7 @@ while b < 10:
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\kwrd{for}}
+  \frametitle{\typ{for} \ldots \typ{range()}}
 Example: print squares of first \typ{n} numbers
   \begin{lstlisting}
 In []: for i in range(5):
@@ -332,85 +473,44 @@ In []: for i in range(5):
 \inctime{15}
 \end{frame}
 
-\section{Lists}
-\begin{frame}[fragile]
-\frametitle{More List methods}
-\begin{lstlisting}
-In []: lst = [1,2,3,4,5,6,7,8]
-In []: lst.reverse()
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1]
-
-In []: lst.extend([0, -1, -2])
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1]
-
-In []: lst.remove(0)
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1]
-\end{lstlisting}
+\subsection{Exercises}
+\begin{frame}
+  \frametitle{Problem set 1}
+  \begin{itemize}
+    \item All the problems can be\\
+      solved using \kwrd{if} and \kwrd{while} 
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{List containership}
-\begin{lstlisting}
-In []: a = 8
+\begin{frame}{Problem 1.1}
+  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
+\vspace*{0.2in}
+\emphbar{These are called $Armstrong$ numbers.}
+\end{frame}
+  
+\begin{frame}{Problem 1.2 - Collatz sequence}
+\begin{enumerate}
+  \item Start with an arbitrary (positive) integer. 
+  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
+  \item Repeat the procedure with the new number.
+  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
+\end{enumerate}
+    Write a program that accepts the starting value and prints out the Collatz sequence.
 
-In []: a in lst
-Out[]: True
-
-In []: b = 10
-In []: b in lst
-Out[]: False
-
-In []: b not in lst
-Out[]: True
-\end{lstlisting}
-\inctime{10}
 \end{frame}
 
-\section{Tuples}
-\begin{frame}[fragile]
-\frametitle{Tuples: Immutable lists}
-\begin{lstlisting}
-In []: tup = (1,2,3,4,5,6,7,8)
-In []: tup[0]+tup[3]+tup[-1]
-Out[]: 13
-\end{lstlisting}
-\begin{block}{Note:}
-\begin{itemize}
-\item Tuples are immutable - cannot be changed
-\item Multiple return values in a function are actually tuples
-\item Tuples are working behind the scenes in exchanging values - Tuple Unpacking
-\end{itemize}
-\end{block}
-\inctime{5}
-\end{frame}
-
-\section{Dictionaries}
-\begin{frame}[fragile]
-\frametitle{Dictionaries}
-  \alert {lists and tuples: integer indexes :: dictionaries: string indexes}
-\begin{lstlisting}
-In []: player = {'Mat': 134,'Inn': 233, 
-           'Runs': 10823, 'Avg': 52.53}
-
-In []: player['Avg']
-Out[]: 52.530000000000001
-In []: player.keys()
-Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
-In []: player.values()
-Out[]: [10823, 233, 
-       52.530000000000001, 134]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}{Dictionaries}
-\begin{itemize}
-\item Duplicate keys are not allowed!
-\item Dictionaries are iterable through keys.
-\end{itemize}
-\inctime{5}
+\begin{frame}[fragile]{Problem 1.4}
+  Write a program that prints the following pyramid on the screen. 
+  \begin{lstlisting}
+1
+2  2
+3  3  3
+4  4  4  4
+  \end{lstlisting}
+The number of lines must be obtained from the user as input.\\
+\pause
+\emphbar{When can your code fail?}
+\only<2->{\inctime{20}}
 \end{frame}
 
 \end{document}

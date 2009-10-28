@@ -147,14 +147,14 @@
 
 \begin{frame}[fragile]
   \frametitle{Problem set 4}
-  Finite difference
+  Central difference
   \begin{equation*}
-  \frac{sin(x+h)-sin(x)}{h}
+  \frac{sin(x+h)-sin(x-h)}{2h}
   \end{equation*}
   \begin{lstlisting}
-  >>> x = linspace(0,2*pi,100)
-  >>> y = sin(x)
-  >>> deltax = x[1] - x[0]
+  In []: x = linspace(0, 2*pi, 100)
+  In []: y = sin(x)
+  In []: deltax = x[1] - x[0]
   \end{lstlisting}
   \pause
     \begin{enumerate}
