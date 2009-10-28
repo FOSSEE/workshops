@@ -129,18 +129,28 @@
 \begin{frame}[fragile]
 \frametitle{Interpolation}
 \begin{itemize}
-\item Let's use the L and T arrays and interpolate this data to obtain data at new points
+  \item Given data file \typ{points.txt}.
+  \item It contains x,y position of particle.
+  \item Plot the given points.
+%%  \item Interpolate the missing region.
 \end{itemize}
+\emphbar{Loading data (revisited)}
 \begin{lstlisting}
-In []: L = []
-In []: T = []
-In []: for line in open('pendulum.txt'):
-           l, t = line.split()
-           L.append(float(l))
-           T.append(float(t))
-In []: L = array(L)
-In []: T = array(T)
+In []: data = loadtxt('points.txt')
+In []: data.shape
+Out[]: (40, 2)
+In []: x = data[:,0]
+In []: y = data[:,1]
+In []: plot(x, y, '.')
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\typ{loadtxt}}
+  \begin{itemize}
+  \item Load data from a text file.
+  \item Each row must have same number of values.
+  \end{itemize}
 \end{frame}
 
 %% \begin{frame}[fragile]
@@ -192,29 +202,29 @@ In []: from scipy.interpolate import splev
 
 \begin{frame}[fragile]
 \frametitle{\typ{splrep}}
-To find the B-spline representation
+To find the spline curve
 \begin{lstlisting}
-In []: tck = splrep(L, T)
+In []: tck = splrep(x, y)
 \end{lstlisting}
-Returns 
-\begin{enumerate}
-\item the vector of knots, 
-\item the B-spline coefficients 
-\item the degree of the spline (default=3)
-\end{enumerate}
+\typ{tck} contains parameters required for representing the spline curve!
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\typ{splev}}
 To Evaluate a B-spline and it's derivatives
 \begin{lstlisting}
-In []: Lnew = arange(0.1,1,0.005)
-In []: Tnew = splev(Lnew, tck)
+In []: Xnew = arange(0.01,3,0.02)
+In []: Ynew = splev(Xnew, tck)
 
-#To obtain derivatives of the spline
-#use der=1, 2,.. for 1st, 2nd,.. order
-In []: Tnew = splev(Lnew, tck, der=1)
+In []: y.shape
+Out[]: (40,)
+
+In []: Ynew.shape
+Out[]: (150,)
+ 
+In []: plot(Xnew, Ynew)
 \end{lstlisting}
+
 \end{frame}
 
 %% \begin{frame}[fragile]
