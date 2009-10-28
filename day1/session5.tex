@@ -118,14 +118,33 @@
   \titlepage
 \end{frame}
 
-\begin{frame}
-  \frametitle{Outline}
-  \tableofcontents
-%  \pausesections
+%% \begin{frame}
+%%   \frametitle{Outline}
+%%   \tableofcontents
+%% %  \pausesections
+%% \end{frame}
+
+
+\section{\typ{loadtxt}}
+
+\begin{frame}[fragile]
+  \frametitle{\typ{loadtxt}}
+  \begin{itemize}
+  \item Load data from a text file.
+  \item Each row must have same number of values.
+  \end{itemize}
+\begin{lstlisting}
+In []: data = loadtxt('pendulum.txt')
+In []: L = data[:,0]
+In []: T = data[:,1]
+\end{lstlisting}
 \end{frame}
 
-\section{Interpolation}
+%% \begin{frame}[fragile]
+%%   \frametitle{\typ{loadtxt}}
+%% \end{frame}
 
+\section{Interpolation}
 \begin{frame}[fragile]
 \frametitle{Interpolation}
 \begin{itemize}
@@ -143,14 +162,6 @@ In []: x = data[:,0]
 In []: y = data[:,1]
 In []: plot(x, y, '.')
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\typ{loadtxt}}
-  \begin{itemize}
-  \item Load data from a text file.
-  \item Each row must have same number of values.
-  \end{itemize}
 \end{frame}
 
 %% \begin{frame}[fragile]
