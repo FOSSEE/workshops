@@ -196,50 +196,23 @@ In []: pend_sol = odeint(pend_int,
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Initial Estimates}
+\frametitle{Roots of $f(x)=0$}
 \begin{itemize}
-\item Find roots of $cosx-x^2$ in $(-\pi/2, \pi/2)$
-\item How to get a rough initial estimate?
-\end{itemize}
-\begin{enumerate}
-\item Check for change of signs of $f(x)$ in the given interval
-\item A root lies in the interval where the sign change occurs
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Initial Estimates \ldots}
-\begin{lstlisting}
-  In []: def our_f(x):
-   ....:     return cos(x)-x**2
-   ....: 
-  In []: x = linspace(-pi/2, pi/2, 11)
-\end{lstlisting}
-\begin{itemize}
-\item Get the intervals of x, where sign changes occur
+\item Given function $cosx-x^2$ 
+\item First we find \alert{a} root in $(-\pi/2, \pi/2)$
+\item Then we find \alert{all} roots in $(-\pi/2, \pi/2)$
 \end{itemize}
 \end{frame}
 
 %% \begin{frame}[fragile]
-%% \frametitle{Initial Estimates \ldots}
-%% \begin{lstlisting}
-%% In []: pos = y[:-1]*y[1:] < 0
-%% In []: rpos = zeros(x.shape, dtype=bool)
-%% In []: rpos[:-1] = pos
-%% In []: rpos[1:] += pos
-%% In []: rts = x[rpos]
-%% \end{lstlisting}
+%% \frametitle{Fixed Point Method}
+%% \begin{enumerate}
+%% \item Convert $f(x)=0$ to the form $x=g(x)$
+%% \item Start with an initial value of $x$ and iterate successively
+%% \item $x_{n+1}=g(x_n)$ and $x_0$ is our initial guess
+%% \item Iterate until $x_{n+1}-x_n \le tolerance$
+%% \end{enumerate}
 %% \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Fixed Point Method}
-\begin{enumerate}
-\item Convert $f(x)=0$ to the form $x=g(x)$
-\item Start with an initial value of $x$ and iterate successively
-\item $x_{n+1}=g(x_n)$ and $x_0$ is our initial guess
-\item Iterate until $x_{n+1}-x_n \le tolerance$
-\end{enumerate}
-\end{frame}
 
 %% \begin{frame}[fragile]
 %% \frametitle{Fixed Point \dots}
@@ -259,13 +232,14 @@ In []: pend_sol = odeint(pend_int,
 \begin{frame}[fragile]
 \frametitle{Bisection Method}
 \begin{enumerate}
-\item Start with an interval $(a, b)$ within which a root exists
+\item Start with the given interval $(-\pi/2, \pi/2)$ ($(a, b)$)
 \item $f(a)\cdot f(b) < 0$
 \item Bisect the interval. $c = \frac{a+b}{2}$
 \item Change the interval to $(a, c)$ if $f(a)\cdot f(c) < 0$
 \item Else, change the interval to $(c, b)$
 \item Go back to 3 until $(b-a) \le$ tolerance
 \end{enumerate}
+\alert{\typ{tolerance = 1e-5}}
 \end{frame}
 
 %% \begin{frame}[fragile]
@@ -309,15 +283,53 @@ In []: pend_sol = odeint(pend_int,
 %% \end{lstlisting}
 %% \end{frame}
 
+%% \begin{frame}[fragile]
+%% \frametitle{Newton-Raphson \ldots}
+%% \begin{itemize}
+%% \item What if $f^{'}(x) = 0$?
+%% \item Can you write a better version of the Newton-Raphson?
+%% \item What if the differential is not easy to calculate?
+%% \item Look at Secant Method
+%% \end{itemize}
+%% \end{frame}
+
 \begin{frame}[fragile]
-\frametitle{Newton-Raphson \ldots}
+\frametitle{Initial Estimates}
 \begin{itemize}
-\item What if $f^{'}(x) = 0$?
-\item Can you write a better version of the Newton-Raphson?
-\item What if the differential is not easy to calculate?
-\item Look at Secant Method
+\item Given an interval
+\item How to find \alert{all} the roots?
+\end{itemize}
+\begin{enumerate}
+\item Check for change of signs of $f(x)$ in the given interval
+\item A root lies in the interval where the sign change occurs
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Initial Estimates \ldots}
+\begin{lstlisting}
+  In []: def our_f(x):
+   ....:     return cos(x)-x**2
+   ....: 
+  In []: x = linspace(-pi/2, pi/2, 11)
+\end{lstlisting}
+\begin{itemize}
+\item Get the intervals of x, where sign changes occur
 \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Initial Estimates \ldots}
+\begin{lstlisting}
+In []: pos = y[:-1]*y[1:] < 0
+In []: rpos = zeros(x.shape, dtype=bool)
+In []: rpos[:-1] = pos
+In []: rpos[1:] += pos
+In []: rts = x[rpos]
+\end{lstlisting}
+Now use Newton-Raphson?
+\end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{Scipy Methods - \typ{roots}}
