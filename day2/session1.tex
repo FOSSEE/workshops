@@ -391,20 +391,6 @@ In [6]: a = "# This is not a comment!"
   \end{block}
 \end{frame}
 
-\begin{frame}
-  {A classic problem}
-  \begin{block}
-    {Interchange values}
-    How to interchange values of two variables? 
-  \end{block}
-  \pause
-  \begin{block}{Note:}
-    This Python idiom works for all types of variables.\\
-They need not be of the same type!
-  \end{block}
-  \inctime{10}
-\end{frame}
-
 \section{Simple IO}
 \begin{frame}{Simple IO}
   \begin{block}
@@ -487,76 +473,44 @@ In []: for i in range(5):
 \inctime{15}
 \end{frame}
 
-\section{Lists}
-\begin{frame}[fragile]
-\frametitle{More List methods}
-\begin{lstlisting}
-In []: lst = [1,2,3,4,5,6,7,8]
-In []: lst.reverse()
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1]
-
-In []: lst.extend([0, -1, -2])
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1]
-
-In []: lst.remove(0)
-In []: lst
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1]
-\end{lstlisting}
+\subsection{Exercises}
+\begin{frame}
+  \frametitle{Problem set 1}
+  \begin{itemize}
+    \item All the problems can be\\
+      solved using \kwrd{if} and \kwrd{while} 
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{List containership}
-\begin{lstlisting}
-In []: a = 8
+\begin{frame}{Problem 1.1}
+  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
+\vspace*{0.2in}
+\emphbar{These are called $Armstrong$ numbers.}
+\end{frame}
+  
+\begin{frame}{Problem 1.2 - Collatz sequence}
+\begin{enumerate}
+  \item Start with an arbitrary (positive) integer. 
+  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
+  \item Repeat the procedure with the new number.
+  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
+\end{enumerate}
+    Write a program that accepts the starting value and prints out the Collatz sequence.
 
-In []: a in lst
-Out[]: True
-
-In []: b = 10
-In []: b in lst
-Out[]: False
-
-In []: b not in lst
-Out[]: True
-\end{lstlisting}
-\inctime{10}
 \end{frame}
 
-\section{Tuples}
-\begin{frame}[fragile]
-\frametitle{Tuples: Immutable lists}
-\begin{lstlisting}
-In []: tup = (1,2,3,4,5,6,7,8)
-In []: tup[0]+tup[3]+tup[-1]
-Out[]: 13
-\end{lstlisting}
-\begin{block}{Note:}
-\begin{itemize}
-\item Tuples are immutable - cannot be changed
-\item Multiple return values in a function are actually tuples
-\item Tuples are working behind the scenes in exchanging values - Tuple Unpacking
-\end{itemize}
-\end{block}
-\inctime{5}
-\end{frame}
-
-\section{Dictionaries}
-\begin{frame}[fragile]
-\frametitle{Dictionary: Recall}
-  \alert {lists and tuples: integer indexes :: dictionaries: string indexes}
-\begin{lstlisting}
-In []: player = {'Mat': 134,'Inn': 233, 
-           'Runs': 10823, 'Avg': 52.53}
-
-In []: player['Avg']
-Out[]: 52.530000000000001
-\end{lstlisting}
-\begin{itemize}
-\item Duplicate keys are not allowed!
-\item Dictionaries are iterable through keys.
-\end{itemize}
+\begin{frame}[fragile]{Problem 1.4}
+  Write a program that prints the following pyramid on the screen. 
+  \begin{lstlisting}
+1
+2  2
+3  3  3
+4  4  4  4
+  \end{lstlisting}
+The number of lines must be obtained from the user as input.\\
+\pause
+\emphbar{When can your code fail?}
+\only<2->{\inctime{20}}
 \end{frame}
 
 \end{document}
