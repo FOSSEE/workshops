@@ -317,25 +317,9 @@ from pylab import pie
 from scipy import mean, median, std
 from scipy import stats
 
-scores = [[]] * 5
-ninety_percents = [{}] * 5
+scores = [[], [], [], [], []]
+ninety_percents = [{}, {}, {}, {}, {}]
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Building data for all subjects \ldots}
-  \begin{lstlisting}
-from pylab import pie
-from scipy import mean, median, std
-from scipy import stats
-  \end{lstlisting}
-
-  \begin{block}{Repeating list items}
-    \begin{lstlisting}
-scores = [[]] * 5
-ninety_percents = [{}] * 5
-    \end{lstlisting}
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
