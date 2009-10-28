@@ -97,7 +97,7 @@
 % Title page
 \title[]{3D data Visualization}
 
-\author[FOSSEE Team] {FOSSEE}
+\author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 \date[] {1, November 2009\\Day 2, Session 3}
@@ -157,22 +157,22 @@
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Is this new?}    
-    \begin{center}
-    We have moved from:
-    \end{center}
-    \begin{columns}
-    \column{}
-    \hspace*{-1in}    
-    \includegraphics[width=1.75in,height=1.75in, interpolate=true]{data/3832}      
-    \column{}\hspace*{-0.25in}
-    To
-    \column{}
-    \hspace*{-1in}
-    \includegraphics[width=1.75in, height=1.75in, interpolate=true]{data/torus}  
-    \end{columns}
-\end{frame}
+%% \begin{frame}
+%%     \frametitle{Is this new?}    
+%%     \begin{center}
+%%     We have moved from:
+%%     \end{center}
+%%     \begin{columns}
+%%     \column{}
+%%     \hspace*{-1in}    
+%%     \includegraphics[width=1.75in,height=1.75in, interpolate=true]{data/3832}      
+%%     \column{}\hspace*{-0.25in}
+%%     To
+%%     \column{}
+%%     \hspace*{-1in}
+%%     \includegraphics[width=1.75in, height=1.75in, interpolate=true]{data/torus}  
+%%     \end{columns}
+%% \end{frame}
 
 \begin{frame}
     \frametitle{3D visualization}
@@ -238,7 +238,7 @@
     \frametitle{Using mlab}
 
     \begin{lstlisting}
-In []: from enthought.mayavi import mlab
+In []:from enthought.mayavi import mlab
     \end{lstlisting}
 
     \vspace*{0.5in}
@@ -250,7 +250,7 @@ In []: from enthought.mayavi import mlab
     \begin{lstlisting}
 In []: mlab.test_<TAB>
 In []: mlab.test_contour3d()
-in []: mlab.test_contour3d??
+In []: mlab.test_contour3d??
     \end{lstlisting}
 \end{frame}
 
@@ -513,11 +513,13 @@ mlab.show()
 \end{frame}
 
 \begin{frame}
-    \begin{center}
-        \Huge    
-        Thank you!
-    \end{center}
+  \frametitle{We have covered:}
+  \begin{itemize}
+  \item Need of visualization.
+  \item Using mlab to create 3 D plots.
+  \item Mayavi Toolkit.
+  \end{itemize}
 \end{frame}
-  
+
 \end{document}
 
