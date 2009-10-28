@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Basic Python]{Python:\\A formal approach}
+\title[Basic Python]{Python language: Basics}
 
 \author[FOSSEE Team] {The FOSSEE Group}
 
@@ -138,7 +138,7 @@
 \begin{frame}[fragile]
   \frametitle{Numbers}
   \begin{itemize}
-    \item \kwrd{int}\\ Any whole number is an \kwrd{int}, no matter what the size!
+    \item \kwrd{int}\\ \kwrd{int} = whole number, no matter what the size!
   \begin{lstlisting}
 In [1]: a = 13
 
@@ -302,8 +302,8 @@ In [2]: p = 'World'
 In [3]: s + p 
 Out[3]: 'Hello World'
 
-In [4]: s * 12 
-Out[4]: 'Hello Hello Hello Hello ...'
+In [4]: s * 4
+Out[4]: 'Hello Hello Hello Hello'
   \end{lstlisting}
 \end{frame}
 
@@ -369,24 +369,36 @@ In [3]: a = "Now I am a string!"
     \item Comments:
       \begin{lstlisting}
 In [4]: a = 1  # In-line comments
-In [5]: # Comment in a line to itself.
-In [6]: a = "# This is not a comment!"
+In [5]: # A comment line.
+In [6]: a = "# Not a comment!"
       \end{lstlisting}
   \end{itemize}
   \inctime{15}
 \end{frame}
 
 \section{Simple IO}
-\begin{frame}{Simple IO}
-  \begin{block}
-    {Console Input}
-    \texttt{raw\_input()} waits for user input.\\Prompt string is optional.\\
-    All keystrokes are Strings!\\\texttt{int()} converts string to int.
-  \end{block}
-  \begin{block}
-    {Console output}
-    \texttt{print} is straight forward. Note the distinction between \texttt{print x} and \texttt{print x,}
-  \end{block}
+\begin{frame}[fragile]
+  \frametitle{Simple IO: Console Input}
+  \begin{itemize}
+    \item raw\_input() waits for user input.
+      \begin{lstlisting}
+In [1]: a = raw_input()
+5
+
+In [2]: a = raw_input('prompt > ')
+prompt > 5
+      \end{lstlisting}
+    \item Prompt string is optional.
+    \item All keystrokes are Strings!
+    \item \texttt{int()} converts string to int.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Simple IO: Console output}
+  \begin{itemize}
+    \item \texttt{print} is straight forward
+    \item Note the distinction between \texttt{print x} and \texttt{print x,}
+  \end{itemize}
 \end{frame}
 
 \section{Control flow}
@@ -437,8 +449,9 @@ while b < 10:
 \frametitle{\typ{range()}}
 \kwrd{range([start,] stop[, step])}\\
 \begin{itemize}
-  \item \alert {range() returns a list of integers}
-  \item \alert {The start and the step arguments are optional}  
+  \item range() returns a list of integers
+  \item The \emph{start} and the \emph{step} arguments are optional
+  \item \emph{stop} argument is not included in the list
 \end{itemize}
 \end{frame}
 
@@ -448,8 +461,8 @@ Example: print squares of first \typ{n} numbers
   \begin{lstlisting}
 In []: for i in range(5):
  ....:     print i, i * i
- ....:     
- ....:     
+ ....:
+ ....:
 0 0
 1 1
 2 4
@@ -460,20 +473,13 @@ In []: for i in range(5):
 \end{frame}
 
 \subsection{Exercises}
-\begin{frame}
-  \frametitle{Problem set 1}
-  \begin{itemize}
-    \item All the problems can be\\
-      solved using \kwrd{if} and \kwrd{while} 
-  \end{itemize}
-\end{frame}
 
-\begin{frame}{Problem 1.1}
+\begin{frame}{Problem set 1: Problem 1.1}
   Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
 \vspace*{0.2in}
 \emphbar{These are called $Armstrong$ numbers.}
 \end{frame}
-  
+
 \begin{frame}{Problem 1.2 - Collatz sequence}
 \begin{enumerate}
   \item Start with an arbitrary (positive) integer. 
@@ -495,14 +501,14 @@ In []: for i in range(5):
 The number of lines must be obtained from the user as input.\\
 \pause
 \emphbar{When can your code fail?}
-\only<2->{\inctime{10}}
+\inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
     \item Basic data types
-    \item Arithematic, logical and relational operations
+    \item Operators
     \item Conditional structures
     \item Loops
   \end{itemize}

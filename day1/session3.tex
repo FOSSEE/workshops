@@ -126,7 +126,7 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-\section{Statistics}
+\section{Processing voluminous data}
 \begin{frame}
   \frametitle{More on data processing}
   \begin{block}{}
@@ -136,13 +136,31 @@
 
 
 \begin{frame}
-  \frametitle{Statistical Analysis and Parsing}
-  Read the data supplied in \emph{sslc1.txt} and obtain the following statistics:
-  \begin{itemize}
-    \item Draw a pie chart representing the number of students who scored more than 90\% in Science per region.
-    \item Draw a pie chart representing the number of students who scored more than 90\% per subject(All regions combined).
+  \frametitle{Statistical Analysis: Problem statement}
+  Read the data supplied in \emph{sslc1.txt} and carry out the following:
+  \begin{enumerate}
+    \item Draw a pie chart representing the proportion of students who scored more than 90\% in each region in Science.
+    \item Draw a pie chart representing the proportion of students who scored more than 90\% in each subject across regions.
     \item Print mean, median, mode and standard deviation of math scores for all regions combined.
-  \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem statement: explanation}
+    \emphbar{Draw a pie chart representing the proportion of students who scored more than 90\% in each region in Science.}
+    \begin{enumerate}
+      \item Complete(100\%) data - Number of students who scored more than 90\% in Science
+      \item Each slice - Number of students who scored more than 90\% in Science in one region
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem statement: explanation}
+    \emphbar{Draw a pie chart representing the proportion of students who scored more than 90\% in each subject across regions.}
+    \begin{enumerate}
+      \item Complete(100\%) data - Number of students who scored more than 90\% across all regions
+      \item Each slice - Number of students who scored more than 90\% in each subject across all regions
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -161,9 +179,9 @@
   \frametitle{File reading and parsing}
   Understanding the structure of sslc1.txt
   \begin{itemize}
-    \item Each line in the file corresponds to one student's details
+    \item One line in file corresponds to a student's details
     \item aka record
-    \item Each record consists of several fields separated by a ';'
+    \item Each record consists of fields separated by ';'
   \end{itemize}
 \end{frame}
 
@@ -235,6 +253,19 @@ Out[6]: ["I'll be back", 42]
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Back to lists: Iterating}
+  \begin{itemize}
+    \item Python's \kwrd{for} loop iterates through list items
+    \item In other languages (C/C++) we run through indices and pick items from the array using these indices
+    \item In Python, while iterating through list items current position is not available
+  \end{itemize}
+  \begin{block}{Iterating through indices}
+    What if we want the index of an item of a list?
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{enumerate: Iterating through list indices}
   \begin{lstlisting}
 In [1]: names = ["Guido","Alex", "Tim"]
@@ -250,7 +281,7 @@ In [2]: for i, name in enumerate(names):
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary: Building parsed data}
+  \frametitle{Continuing with our Dictionary}
   Let our dictionary be:
   \begin{lstlisting}
 science = {} # is an empty dictionary
@@ -296,7 +327,7 @@ if score > 90:
   \end{lstlisting}
 \end{frame}
 
-\subsection{Visualizing the data}
+\subsection{Visualizing data}
 \begin{frame}[fragile]
   \frametitle{Pie charts}
   \small
@@ -388,7 +419,59 @@ savefig('/tmp/all_regions.png')
   \includegraphics[height=3in, interpolate=true]{data/all_regions}
 \end{frame}
 
-\subsection{Obtaining stastics}
+\subsection{Obtaining statistics}
+\begin{frame}[fragile]
+  \frametitle{Obtaining statistics}
+  \begin{block}{Statistics: Mean}
+    Obtain the mean of Math scores
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Obtaining statistics: Solution}
+  \begin{block}{Statistics: Mean}
+    Obtain the mean of Math scores
+  \end{block}
+  \begin{lstlisting}
+math_scores = scores[2]
+total = 0
+for i, score in enumerate(math_scores):
+    total += score
+
+mean = total / (i + 1)
+print "Mean: ", mean
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Obtaining statistics: Another solution}
+  \begin{block}{Statistics: Mean}
+    Obtain the mean of Math scores
+  \end{block}
+  \begin{lstlisting}
+math_scores = scores[2]
+mean = sum(math_scores) /
+          len(math_scores)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{NumPy arrays}
+  \begin{itemize}
+    \item NumPy provides arrays
+    \item arrays are very efficient and powerful 
+    \item Very easy to perform element-wise operations - \typ{+, -, *, /, \%}
+    \begin{lstlisting}
+In [1]: a = array([1, 2, 3])
+In [2]: b = array([4, 5, 6])
+
+In [3]: a + b
+Out[3]: array([5, 7, 9])
+    \end{lstlisting}
+    \item Very easy to compute statistics
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
   \begin{lstlisting}
@@ -416,6 +499,7 @@ print "Standard Deviation: ",
   \end{itemize}
 \end{frame}
 
+\section{Least square fit}
 \begin{frame}
 \frametitle{L vs $T^2$ \ldots}
 Let's go back to the L vs $T^2$ plot
@@ -441,17 +525,6 @@ In []: L = array(L)
 In []: T = array(T)
 In []: TSq = T*T
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Arrays}
-\begin{itemize}
-\item \typ{T} and \typ{L} are now arrays
-\item arrays are very efficient and powerful 
-\item Very easy to perform element-wise operations
-\item \typ{+, -, *, /, \%}
-\item More about arrays later
-\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -508,6 +581,7 @@ In []: TSq = T*T
 \end{itemize}
 \end{frame}
 
+\subsection{Van der Monde matrix generation}
 \begin{frame}[fragile]
 \frametitle{Van der Monde Matrix}
 \begin{itemize}
@@ -540,6 +614,7 @@ In []: coef, res, r, s = lstsq(A,TSq)
 \end{lstlisting}
 \end{frame}
 
+\subsection{Plotting}
 \begin{frame}[fragile]
 \frametitle{Least Square Fit Line \ldots}
 We get the points of the line from \typ{coef}
@@ -552,6 +627,15 @@ In []: Tline = coef[0]*L + coef[1]
 \begin{lstlisting}
 In []: plot(L, Tline)
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{What did we learn?}
+  \begin{itemize}
+   \item Least square fit
+   \item Van der Monde matrix generation
+   \item Plotting the least square fit curve
+  \end{itemize}
 \end{frame}
 
 \end{document}

@@ -159,27 +159,23 @@
   \end{itemize}
   \end{block}  
 
-  \begin{block}{Goal}
-	Successful participants will be able to 
-        \begin{itemize}
-          \item use Python as their scripting and problem solving language. 
-          \item train the students to use Python for the same
-        \end{itemize}
+  \begin{block}{Goal: Successful participants will be able to}
+    \begin{itemize}
+      \item Use Python as plotting, computational toolkit
+      \item Understand how Python can be used as scripting and problem solving language.
+      \item Train the students to use Python for the same
+    \end{itemize}
   \end{block}
 \end{frame}
 
-
+\section{Getting started}
 \begin{frame}
-\frametitle{Bucketlist}  
-  \begin{block}{IPython}
-    Type ipython at the command line. Is it available?
-  \end{block}
-  \begin{block}{Editor}
-    We recommend scite.
-  \end{block}
-  \begin{block}{Data files}
-    Make sure you have all data files.
-  \end{block}
+\frametitle{Checklist}
+  \begin{enumerate}
+    \item IPython: Type ipython at the command line. Is it available?
+    \item Editor: We recommend scite.
+    \item Data files: Make sure you have all data files.
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -215,6 +211,9 @@ Breaking out of loops
 \end{lstlisting}
 \end{frame}
 
+\section{Plotting}
+
+\subsection{Drawing plots}
 \begin{frame}[fragile]
 \frametitle{First Plot}
 \begin{columns}
@@ -249,6 +248,7 @@ plots \typ{x} and \typ{y} using default line style and color
 \end{block}
 \end{frame}
 
+\subsection{Decoration}
 \begin{frame}[fragile]
 \frametitle{Adding Labels}
 \begin{columns}
@@ -287,6 +287,7 @@ In []: ylabel('sin(2y)')
 \emphbar{By default plots would be overlaid!}
 \end{frame}
 
+\subsection{More decoration}
 \begin{frame}[fragile]
 \frametitle{Title and Legends}
 \vspace*{-0.15in}
@@ -358,6 +359,7 @@ In []: close()
 \end{lstlisting}
 \end{frame}
 
+\section{Multiple plots}
 \begin{frame}[fragile]
 \frametitle{Plotting separate figures}
 \begin{lstlisting}
@@ -433,6 +435,7 @@ In []: plot(x, -x, 'b')
 $\vdots$
 \end{frame}
 
+\section{Exercises}
 \begin{frame}[fragile]
 \frametitle{Review Problem \ldots}
 \small{
@@ -454,19 +457,16 @@ In []: ylim(5*pi, 5*pi)
 }
 \end{frame}
 \begin{frame}
-  \frametitle{Things we have learned}
+  \frametitle{What did we learn?}
   \begin{itemize}
-  \item Creating simple plots.
-  \item Adding labels and legends.
-  \item Annotating plots.
-  \item Changing the looks: size, linewidth
+    \item Creating simple plots.
+    \item Adding labels and legends.
+    \item Annotating plots.
+    \item Changing the looks: size, linewidth
   \end{itemize}
-\end{frame}
-\begin{frame}[fragile]
-  \begin{center}
-  End of Session-1\\
-  \alert{Don't Close \typ{IPython}}
-  \end{center}
+  \begin{block}{Note}
+    \centerline{\alert{Don't Close \typ{IPython}}}
+  \end{block}
 \end{frame}
 
 \end{document}
