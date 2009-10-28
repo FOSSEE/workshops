@@ -285,7 +285,7 @@ In []: pend_sol = odeint(pend_int,
 %% \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Newton Raphson Method}
+\frametitle{Newton-Raphson Method}
 \begin{enumerate}
 \item Start with an initial guess of x for the root
 \item $\Delta x = -f(x)/f^{'}(x)$
@@ -295,7 +295,7 @@ In []: pend_sol = odeint(pend_int,
 \end{frame}
 
 %% \begin{frame}[fragile]
-%% \frametitle{Newton Raphson \dots}
+%% \frametitle{Newton-Raphson \dots}
 %% \begin{lstlisting}
 %% In []: def our_df(x):
 %%  ....:     return -sin(x)-2*x
@@ -310,10 +310,10 @@ In []: pend_sol = odeint(pend_int,
 %% \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Newton Raphson \ldots}
+\frametitle{Newton-Raphson \ldots}
 \begin{itemize}
 \item What if $f^{'}(x) = 0$?
-\item Can you write a better version of the Newton Raphson?
+\item Can you write a better version of the Newton-Raphson?
 \item What if the differential is not easy to calculate?
 \item Look at Secant Method
 \end{itemize}
@@ -368,7 +368,7 @@ In []: from scipy.optimize import newton
   \item Finding Roots
     \begin{itemize}
     \item Estimating Interval
-    \item Newton Raphson
+    \item Newton-Raphson
     \item Scipy methods
     \end{itemize}
   \end{itemize}

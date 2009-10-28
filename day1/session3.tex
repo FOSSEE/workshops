@@ -514,18 +514,19 @@ In []: TSq = T*T
 \item A is also called a Van der Monde matrix
 \item It can be generated using \typ{vander}
 \end{itemize}
-Van der Monde matrix of order M
+\begin{lstlisting}
+In []: A = vander(L, 2)
+\end{lstlisting}
+Gives the required Van der Monde matrix
 \begin{equation*}
   \begin{bmatrix}
-  l_1^{M-1} & \ldots & l_1 & 1 \\
-  l_2^{M-1} & \ldots &l_2 & 1 \\
-  \vdots & \ldots & \vdots & \vdots\\
-  l_N^{M-1} & \ldots & l_N & 1 \\
+    l_1 & 1 \\
+    l_2 & 1 \\
+    \vdots & \vdots\\
+    l_N & 1 \\
   \end{bmatrix}
 \end{equation*}
-\begin{lstlisting}
-In []: A = vander(L,2)
-\end{lstlisting}
+
 \end{frame}
 
 \begin{frame}[fragile]
