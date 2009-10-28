@@ -238,7 +238,7 @@
     \frametitle{Using mlab}
 
     \begin{lstlisting}
->>> from enthought.mayavi import mlab
+In []: from enthought.mayavi import mlab
     \end{lstlisting}
 
     \vspace*{0.5in}
@@ -248,9 +248,9 @@
     \vspace*{0.25in}
 
     \begin{lstlisting}
->>> mlab.test_<TAB>
->>> mlab.test_contour3d()
->>> mlab.test_contour3d??
+In []: mlab.test_<TAB>
+In []: mlab.test_contour3d()
+in []: mlab.test_contour3d??
     \end{lstlisting}
 \end{frame}
 
@@ -279,12 +279,12 @@
     \end{columns}
 
     \begin{lstlisting}
->>> from numpy import *
->>> t = linspace(0, 2*pi, 50)
->>> u = cos(t)*pi
->>> x, y, z = sin(u), cos(u), sin(t)
+In []: from numpy import *
+In []: t = linspace(0, 2*pi, 50)
+In []: u = cos(t) * pi
+in []: x, y, z = sin(u), cos(u), sin(t)
     \end{lstlisting}
-    \emphbar{\PythonCode{>>> mlab.points3d(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.points3d(x, y, z)}}
 \end{frame}
 
 \begin{frame}
@@ -294,7 +294,7 @@
         \column{0.5\textwidth}
         \pgfimage[width=2.5in]{MEDIA/m2/mlab/plot3d_ex}
   \end{columns}
-  \emphbar{\PythonCode{>>> mlab.plot3d(x, y, z, t)}}
+  \emphbar{\PythonCode{In []: mlab.plot3d(x, y, z, t)}}
 
     Plots lines between the points
     
@@ -308,11 +308,11 @@
         \pgfimage[width=2in]{MEDIA/m2/mlab/surf_ex}
     \end{columns}            
     \begin{lstlisting}
->>> x, y = mgrid[-3:3:100j,-3:3:100j]
->>> z = sin(x*x + y*y)
+In []: x, y = mgrid[-3:3:100j,-3:3:100j]
+In []: z = sin(x*x + y*y)
     \end{lstlisting}
 
-    \emphbar{\PythonCode{>>> mlab.surf(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.surf(x, y, z)}}
 
     \alert{Assumes the points are rectilinear}
 
@@ -322,18 +322,18 @@
     \myemph{\Large 2D data: \texttt{mlab.mesh}}
     \vspace*{0.25in}
 
-    \emphbar{\PythonCode{>>> mlab.mesh(x, y, z)}}
+    \emphbar{\PythonCode{In []: mlab.mesh(x, y, z)}}
 
     \alert{Points needn't be regular}
 
     \vspace*{0.25in}
 \begin{lstlisting}
->>> phi, theta = numpy.mgrid[0:pi:20j, 
+In []: phi, theta = numpy.mgrid[0:pi:20j, 
 ...                         0:2*pi:20j]
->>> x = sin(phi)*cos(theta)
->>> y = sin(phi)*sin(theta)
->>> z = cos(phi)
->>> mlab.mesh(x, y, z, 
+In []: x = sin(phi)*cos(theta)
+In []: y = sin(phi)*sin(theta)
+In []: z = cos(phi)
+In []: mlab.mesh(x, y, z, 
 ...           representation=
 ...           'wireframe')
 \end{lstlisting}
@@ -349,10 +349,10 @@
         \pgfimage[width=1.5in]{MEDIA/m2/mlab/contour3d}\\        
     \end{columns}
 \begin{lstlisting}
->>> x, y, z = ogrid[-5:5:64j, 
+In []: x, y, z = ogrid[-5:5:64j, 
 ...                -5:5:64j, 
 ...                -5:5:64j]
->>> mlab.contour3d(x*x*0.5 + y*y + 
+In []: mlab.contour3d(x*x*0.5 + y*y + 
                    z*z*2)
 \end{lstlisting}
 \end{frame}
@@ -365,7 +365,7 @@
     \pgfimage[width=2in]{MEDIA/m2/mlab/quiver3d_ex}\\
     
 \begin{lstlisting}
->>> mlab.test_quiver3d()
+In []: mlab.test_quiver3d()
 \end{lstlisting}
 
 \emphbar{\PythonCode{obj = mlab.quiver3d(x, y, z, u, v, w)}}
@@ -510,6 +510,13 @@ u,v,w = lorenz( x , y , z )
 mlab.show()
 
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge    
+        Thank you!
+    \end{center}
 \end{frame}
   
 \end{document}
