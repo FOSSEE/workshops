@@ -126,6 +126,7 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
+\section{Statistics}
 \begin{frame}
   \frametitle{More on data processing}
   \begin{block}{}
@@ -178,8 +179,10 @@
     \item Pass/Fail (P/F)
     \item Withdrawn (W)
   \end{itemize}
+  \inctime{5}
 \end{frame}
 
+\subsection{Data processing}
 \begin{frame}[fragile]
   \frametitle{File reading and parsing \ldots}
   \begin{lstlisting}
@@ -188,22 +191,23 @@ for record in open('sslc1.txt'):
   \end{lstlisting}
 \end{frame}
 
+\subsection{Dictionary}
 \begin{frame}[fragile]
   \frametitle{Dictionary: Introduction}
   \begin{itemize}
     \item lists index: 0 \ldots n
     \item dictionaries index using strings
   \end{itemize}
-\begin{block}{Example}
+  \begin{block}{Example}
 d = \{ ``Hitchhiker's guide'' : 42,
      ``Terminator'' : ``I'll be back''\}\\
 d[``Terminator''] => ``I'll be back''
-\end{block}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Dictionary: Introduction}
-\begin{lstlisting}
+  \begin{lstlisting}
 In [1]: d = {"Hitchhiker's guide" : 42,
       "Terminator" : "I'll be back"}
 
@@ -215,24 +219,24 @@ Out[3]: True
 
 In [4]: "Guido" in d
 Out[4]: False
-\end{lstlisting}
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Dictionary: Introduction}
-\begin{lstlisting}
+  \begin{lstlisting}
 In [5]: d.keys()
 Out[5]: ['Terminator', "Hitchhiker's 
                               guide"]
 
 In [6]: d.values()
 Out[6]: ["I'll be back", 42]
-\end{lstlisting}
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{enumerate: Iterating through list indices}
-\begin{lstlisting}
+  \begin{lstlisting}
 In [1]: names = ["Guido","Alex", "Tim"]
 
 In [2]: for i, name in enumerate(names):
@@ -241,15 +245,16 @@ In [2]: for i, name in enumerate(names):
 0 Guido
 1 Alex
 2 Tim
-\end{lstlisting}
+  \end{lstlisting}
+  \inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Dictionary: Building parsed data}
-    Let our dictionary be:
-    \begin{lstlisting}
+  Let our dictionary be:
+  \begin{lstlisting}
 science = {} # is an empty dictionary
-    \end{lstlisting}
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -291,6 +296,7 @@ if score > 90:
   \end{lstlisting}
 \end{frame}
 
+\subsection{Visualizing the data}
 \begin{frame}[fragile]
   \frametitle{Pie charts}
   \small
@@ -308,6 +314,7 @@ savefig('/tmp/science.png')
 \includegraphics[height=2in, interpolate=true]{data/science}
     \column{0.8\textwidth}
 \end{columns}
+  \inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -381,6 +388,7 @@ savefig('/tmp/all_regions.png')
   \includegraphics[height=3in, interpolate=true]{data/all_regions}
 \end{frame}
 
+\subsection{Obtaining stastics}
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
   \begin{lstlisting}
@@ -395,6 +403,7 @@ print "Mode: ", stats.mode(math_scores)
 print "Standard Deviation: ",
               std(math_scores)
   \end{lstlisting}
+  \inctime{15}
 \end{frame}
 
 \begin{frame}[fragile]
