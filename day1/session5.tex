@@ -79,7 +79,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {31, October 2009\\Day 1, Session 4}
+\date[] {31, October 2009\\Day 1, Session 5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -96,13 +96,13 @@
   \end{frame}
 }
 
-%%\AtBeginSection[]
-%%{
-  %%\begin{frame}<beamer>
-%%    \frametitle{Outline}
-  %%  \tableofcontents[currentsection,currentsubsection]
-  %%\end{frame}
-%%}
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+   \frametitle{Outline}
+   \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
@@ -124,9 +124,203 @@
 %  \pausesections
 \end{frame}
 
-\section{Integration}
+\section{Interpolation}
 
-\subsection{Quadrature}
+\begin{frame}[fragile]
+\frametitle{Interpolation}
+\begin{itemize}
+\item Let us begin with interpolation
+\item Let's use the L and T arrays and interpolate this data to obtain data at new points
+\end{itemize}
+\begin{lstlisting}
+In []: L = []
+In []: T = []
+In []: for line in open('pendulum.txt'):
+           l, t = line.split()
+           L.append(float(l))
+           T.append(float(t))
+In []: L = array(L)
+In []: T = array(T)
+\end{lstlisting}
+\end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{small}
+%%   \typ{In []: from scipy.interpolate import interp1d}
+%% \end{small}
+%% \begin{itemize}
+%% \item The \typ{interp1d} function returns a function
+%% \begin{lstlisting}
+%%   In []: f = interp1d(L, T)
+%% \end{lstlisting}
+%% \item Functions can be assigned to variables 
+%% \item This function interpolates between known data values to obtain unknown
+%% \end{itemize}
+%% \end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{lstlisting}
+%% In []: Ln = arange(0.1,0.99,0.005)
+%% # Interpolating! 
+%% # The new values in range of old data
+%% In []: plot(L, T, 'o', Ln, f(Ln), '-')
+%% In []: f = interp1d(L, T, kind='cubic')
+%% # When kind not specified, it's linear
+%% # Others are ...
+%% # 'nearest', 'zero', 
+%% # 'slinear', 'quadratic'
+%% \end{lstlisting}
+%% \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Spline Interpolation}
+\begin{small}
+\begin{lstlisting}
+In []: from scipy.interpolate import splrep
+In []: from scipy.interpolate import splev
+\end{lstlisting}
+\end{small}
+\begin{itemize}
+\item Involves two steps
+  \begin{enumerate}
+  \item Find out the spline curve, coefficients
+  \item Evaluate the spline at new points
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{splrep}}
+To find the B-spline representation
+\begin{lstlisting}
+In []: tck = splrep(L, T)
+\end{lstlisting}
+Returns a tuple containing 
+\begin{enumerate}
+\item the vector of knots, 
+\item the B-spline coefficients 
+\item the degree of the spline (default=3)
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{splev}}
+To Evaluate a B-spline and it's derivatives
+\begin{lstlisting}
+In []: Lnew = arange(0.1,1,0.005)
+In []: Tnew = splev(Lnew, tck)
+
+#To obtain derivatives of the spline
+#use der=1, 2,.. for 1st, 2nd,.. order
+In []: Tnew = splev(Lnew, tck, der=1)
+\end{lstlisting}
+\end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Interpolation \ldots}
+%% \begin{itemize}
+%% \item 
+%% \end{itemize}
+%% \end{frame}
+
+\section{Differentiation}
+
+\begin{frame}[fragile]
+\frametitle{Numerical Differentiation}
+\begin{itemize}
+\item Given function $f(x)$ or data points $y=f(x)$
+\item We wish to calculate $f^{'}(x)$ at points $x$
+\item Taylor series - finite difference approximations
+\end{itemize}
+\begin{center}
+\begin{tabular}{l l}
+$f(x+h)=f(x)+h.f^{'}(x)$ &Forward \\
+$f(x-h)=f(x)-h.f^{'}(x)$ &Backward
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Forward Difference}
+\begin{lstlisting}
+In []: x = linspace(0, 2*pi, 100)
+In []: y = sin(x)
+In []: deltax = x[1] - x[0]
+\end{lstlisting}
+Obtain the finite forward difference of y
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Forward Difference \ldots}
+\begin{lstlisting}
+In []: fD = (y[1:] - y[:-1]) / deltax
+In []: plot(x, y, x[:-1], fD)
+\end{lstlisting}
+\begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/fwdDiff}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example}
+\begin{itemize}
+\item Given x, y positions of a particle in \typ{pos.txt}
+\item Find velocity \& acceleration in x, y directions
+\end{itemize}
+\small{
+\begin{center}
+\begin{tabular}{| c | c | c |}
+\hline
+$X$ & $Y$ \\ \hline
+0.     &  0.\\ \hline
+0.25   &  0.47775\\ \hline
+0.5    &  0.931\\ \hline
+0.75   &  1.35975\\ \hline
+1.     &  1.764\\ \hline
+1.25   &  2.14375\\ \hline
+\vdots & \vdots\\ \hline
+\end{tabular}
+\end{center}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example \ldots}
+\begin{itemize}
+\item Read the file
+\item Obtain an array of x, y
+\item Obtain velocity and acceleration
+\item use \typ{deltaT = 0.05}
+\end{itemize}
+\begin{lstlisting}
+In []: X = []
+In []: Y = []
+In []: for line in open('location.txt'):
+  ....     points = line.split()
+  ....     X.append(float(points[0]))
+  ....     Y.append(float(points[1]))
+In []: S = array([X, Y])
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Example \ldots}
+\begin{itemize}
+\item use \typ{deltaT = 0.05}
+\end{itemize}
+\begin{lstlisting}
+In []: deltaT = 0.05
+
+In []: v = (S[:,1:]-S[:,:-1])/deltaT
+
+In []: a = (v[:,1:]-v[:,:-1])/deltaT
+\end{lstlisting}
+Try Plotting the position, velocity \& acceleration.
+\end{frame}
+
+\section{Quadrature}
 
 \begin{frame}[fragile]
 \frametitle{Quadrature}
@@ -135,7 +329,9 @@
 \item Area under $(sin(x) + x^2)$ in $(0,1)$
 \item scipy has functions to do that
 \end{itemize}
-\small{\typ{In []: from scipy.integrate import quad}}
+\begin{small}
+  \typ{In []: from scipy.integrate import quad}
+\end{small}
 \begin{itemize}
 \item Inputs - function to integrate, limits
 \end{itemize}
@@ -143,12 +339,15 @@
 In []: x = 0
 In []: quad(sin(x)+x**2, 0, 1)
 \end{lstlisting}
+\begin{small}
 \alert{\typ{error:}}
 \typ{First argument must be a callable function.}
+\end{small}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Functions - Definition}
+We have been using them all along. Now let's see how to define them.
 \begin{lstlisting}
 In []: def f(x):
            return sin(x)+x**2
@@ -156,6 +355,7 @@ In []: quad(f, 0, 1)
 \end{lstlisting}
 \begin{itemize}
 \item \typ{def}
+\item name
 \item arguments
 \item \typ{return}
 \end{itemize}
@@ -175,50 +375,7 @@ Out[]: 0.0
 In []: f(1)
 Out[]: 1.8414709848078965
 \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Functions - Default Arguments}
-\begin{lstlisting}
-In []: def f(x=1):
-           return sin(x)+x**2
-In []: f(10)
-Out[]: 99.455978889110625
-In []: f(1)
-Out[]: 1.8414709848078965
-In []: f()
-Out[]: 1.8414709848078965
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Functions - Keyword Arguments}
-\begin{lstlisting}
-In []: def f(x=1, y=pi):
-           return sin(y)+x**2
-In []: f()
-Out[]: 1.0000000000000002
-In []: f(2)
-Out[]: 4.0
-In []: f(y=2)
-Out[]: 1.9092974268256817
-In []: f(y=pi/2,x=0)
-Out[]: 1.0
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{More on functions}
-  \begin{itemize}
-  \item Scope of variables in the function is local
-  \item Mutable items are \alert{passed by reference}
-  \item First line after definition may be a documentation string
-    (\alert{recommended!})
-  \item Function definition and execution defines a name bound to the
-    function
-  \item You \emph{can} assign a variable to a function!
-  \end{itemize}
+More on Functions later \ldots
 \end{frame}
 
 \begin{frame}[fragile]
@@ -228,74 +385,16 @@ In []: quad(f, 0, 1)
 \end{lstlisting}
 Returns the integral and an estimate of the absolute error in the result.
 \begin{itemize}
-\item Use \typ{dblquad} for Double integrals
+\item Look at \typ{dblquad} for Double integrals
 \item Use \typ{tplquad} for Triple integrals
 \end{itemize}
-\end{frame}
-
-\subsection{ODEs}
-
-\begin{frame}[fragile]
-\frametitle{ODE Integration}
-We shall use the simple ODE of a simple pendulum. 
-\begin{equation*}
-\ddot{\theta} = -\frac{g}{L}sin(\theta)
-\end{equation*}
-\begin{itemize}
-\item This equation can be written as a system of two first order ODEs
-\end{itemize}
-\begin{align}
-\dot{\theta} &= \omega \\
-\dot{\omega} &= -\frac{g}{L}sin(\theta) \\
- \text{At}\ t &= 0 : \nonumber \\
- \theta = \theta_0\quad & \&\quad  \omega = 0 \nonumber
-\end{align}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy}
-\begin{itemize}
-\item We use the \typ{odeint} function from scipy to do the integration
-\item Define a function as below
-\end{itemize}
-\begin{lstlisting}
-In []: def pend_int(unknown, t, p):
-  ....     theta, omega = unknown
-  ....     g, L = p
-  ....     f=[omega, -(g/L)*sin(theta)]
-  ....     return f
-  ....
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-\begin{itemize}
-\item \typ{t} is the time variable \\ 
-\item \typ{p} has the constants \\
-\item \typ{initial} has the initial values
-\end{itemize}
-\begin{lstlisting}
-In []: t = linspace(0, 10, 101)
-In []: p=(-9.81, 0.2)
-In []: initial = [10*2*pi/360, 0]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-
-\small{\typ{In []: from scipy.integrate import odeint}}
-\begin{lstlisting}
-In []: pend_sol = odeint(pend_int, 
-                         initial,t, 
-                         args=(p,))
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
+  \item Interpolation
+  \item Differentiation
   \item Functions
     \begin{itemize}
     \item Definition
