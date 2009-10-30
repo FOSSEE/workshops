@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
 % Author: FOSSEE
@@ -124,12 +124,9 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Why we didn't close the IPython??}
-\begin{itemize}
-  \item IPython provides a convenient feature
-  \item To go back, edit, and re-run commands
-  \item But when you close, this is lost
-\end{itemize}
+\frametitle{Why we didn't close IPython?}
+  IPython provides a convenient feature to go back, edit, and re-run commands.\\
+  \alert{But when you close, all this is lost.}
 \end{frame}
 
 \begin{frame}
@@ -148,7 +145,7 @@ And the solution is..\\
 \begin{frame}[fragile]
 \frametitle{Python Scripts}
 \begin{itemize}
-\item Put all commands used in review problem into a file. 
+\item Put commands used in review problem into file. 
 \item use hist command of IPython.
 \end{itemize}
 \begin{lstlisting}
@@ -161,17 +158,18 @@ And the solution is..\\
 \frametitle{Python Scripts\ldots}
   \begin{itemize}
     \item Open a new file in an \alert{editor}
-    \item Copy and paste required lines from the output of \typ{\%hist -n}
+    \item Copy and paste from the output of \typ{\%hist -n}
     \item Save the file as \typ{sine_plot.py}
   \end{itemize}
   \begin{itemize}
-  \item run the file in IPython using \typ{\%run sine_plot.py}\\
+  \item run the file in IPython using \typ{\%run -i sine_plot.py}\\
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Why would I plot f(x)?}
 How often do we plot analytical functions?\\We plot experimental data more.
+\begin{small}
 \begin{lstlisting}
 In []: x = [0, 1, 2, 3]
 
@@ -179,14 +177,21 @@ In []: y = [7, 11, 15, 19]
 
 In []: plot(x, y)
 Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
+
+In []: xlabel('X')
+Out[]: <matplotlib.text.Text object at 0x986e9ac>
+
+In []: ylabel('Y')
+Out[]: <matplotlib.text.Text object at 0x98746ec>
 \end{lstlisting}
+\end{small}
 \end{frame}
 
 \begin{frame}[fragile]
 \begin{figure}
 \includegraphics[width=3.5in]{data/straightline.png}
 \end{figure}
-\alert{Is this what you have??}
+\alert{Is this what you have?}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -197,11 +202,11 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 \begin{lstlisting}
   In []: clf()
 
-  In []: plot(L, TSq, 'o')
+  In []: plot(x, y, 'o')
   Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 
   In []: clf()
-  In []: plot(L, TSq, '.')
+  In []: plot(x, y, '.')
   Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 \end{lstlisting}
 \end{frame}
@@ -216,8 +221,8 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 \begin{frame}[fragile]
 \frametitle{Additional Plotting Attributes}
 \begin{itemize}
-  \item \kwrd{'o'} - Dots
-  \item \kwrd{'.'} - Smaller Dots
+  \item \kwrd{'o'} - Filled circles
+  \item \kwrd{'.'} - Small Dots
   \item \kwrd{'-'} - Lines
   \item \kwrd{'- -'} - Dashed lines
 \end{itemize}
@@ -226,14 +231,14 @@ Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 \section{Lists}
 \begin{frame}[fragile]
   \frametitle{How to create the data?}
-What were \typ{x} and \typ{y}??\\
+What were \typ{x} and \typ{y}?\\
 \begin{center}
 \alert{\typ{lists!!}}
 \end{center}
 \begin{lstlisting}
 In []: mtlist = [] #Empty List
 
-In []: lst = [1,2,3,4,5] 
+In []: lst = [ 1, 2, 3, 4, 5] 
 \end{lstlisting}
 \end{frame}
 
@@ -248,9 +253,8 @@ Out[]: 8
 \begin{frame}[fragile]
   \frametitle{List: Slicing}
   \begin{block}{Remember\ldots}
-	\kwrd{In []: lst = [1,2,3,4,5]}
+	\kwrd{In []: lst = [ 1, 2, 3, 4, 5]}
   \end{block}
-\alert{\typ{list[initial:final:step]}}
 \begin{lstlisting}
 In []: lst[1:3]  # A slice.
 Out[]: [2, 3]
@@ -258,12 +262,13 @@ Out[]: [2, 3]
 In []: lst[1:-1]
 Out[]: [2, 3]
 \end{lstlisting}
+\alert{\typ{list[initial:final]}}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{List operations}
 \begin{lstlisting}
-In []: anthrlst = [6,7,8,9]
+In []: anthrlst = [ 6, 7, 8, 9]
 In []: lnglst = lst + anthrlst
 
 In []: lnglst
@@ -271,7 +276,7 @@ Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 In []: lst.append(6)
 In []: lst
-Out[]: [1, 2, 3, 4, 5, 6]
+Out[]: [ 1, 2, 3, 4, 5, 6]
 \end{lstlisting}
 %\inctime{10}
 \end{frame}
@@ -332,7 +337,7 @@ In []: for t in T:
 In []: plot(L, TSq)
 Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
-This gives the list \kwrd{TSq} which is the list of squares of T values.
+This gives \kwrd{TSq} which is the list of squares of T values.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -342,31 +347,11 @@ This gives the list \kwrd{TSq} which is the list of squares of T values.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{More of \texttt{for}}
-\begin{itemize}
-\item Used to iterate over lists
-\item Let us look at another example.
-\end{itemize}
-\begin{lstlisting}
-In []: lst = [1,2,3,4,5,6]
-In []: for num in lst:
- ....:     print num, num*num
- ....:    
-1 1
-2 4
-3 9
-4 16
-5 25
-6 36
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{What about larger data sets??}
+\frametitle{What about larger data sets?}
 \alert{Data is usually present in a file!} \\
-Lets look at the pendulum.txt file.
+Lets look at the \typ{pendulum.txt} file.
 \begin{lstlisting}
-$cat data/pendulum.txt 
+$ cat pendulum.txt 
 1.0000e-01 6.9004e-01
 1.1000e-01 6.9497e-01
 1.2000e-01 7.4252e-01
@@ -378,18 +363,16 @@ $cat data/pendulum.txt
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Reading pendulum.txt}
+\frametitle{Reading \typ{pendulum.txt}}
 \begin{itemize}
-  \item We now wish to repeat the plot using the values from a file
-  \item Given a file containing L vs. T values 
-  \item Column1 - L; Column2 - T  
-  \item Read the file
-  \item Plot points for L vs. $T^2$ 
+  \item Let us generate a plot from the data file
+  \item File contains L vs. T values 
+  \item L - Column1; T - Column2
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Reading pendulum.txt}
+\frametitle{Reading \typ{pendulum.txt}}
 \begin{lstlisting}
 In []: L = []
 In []: T = []
@@ -400,12 +383,12 @@ In []: for line in open('pendulum.txt'):
 \end{lstlisting}
 \begin{itemize}
 \item We now have two lists L and T
-\item Now, Repeat previous steps for plotting
+\item Now, repeat previous steps for plotting
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Plotting from pendulum.txt}
+\frametitle{Plotting from \typ{pendulum.txt}}
 \begin{lstlisting}
 In []: TSq = []
 
@@ -426,9 +409,9 @@ In []: plot(L, TSq, '.')
   \frametitle{Reading files \ldots}
 \typ{In []: for line in open('pendulum.txt'):}
 \begin{itemize}
-\item opening file `pendulum.txt'
-\item iterating through the file by reading each line into variable \typ{line}
-\item \typ{line} is a \kwrd{string} variable
+\item opening file `\typ{pendulum.txt}'
+\item reading the file line by line
+\item \typ{line} is a \kwrd{string}
 \end{itemize}
 \end{frame}
 
@@ -447,9 +430,9 @@ Anything within ``quotes'' is a string!
 \begin{frame}[fragile]
 \frametitle{Strings and \typ{split()}}
   \begin{lstlisting}
-In []: line = 'hello world'
+In []: greet = 'hello world'
 
-In []: line.split()
+In []: greet.split()
 Out[]: ['hello', 'world']
   \end{lstlisting}
 This is what happens with \typ{line}
@@ -476,13 +459,42 @@ Out[]: <type 'float'>
   \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Let's review the code}
+\begin{small}
+\begin{lstlisting}
+In []: L = []
+In []: T = []
+In []: for line in open('pendulum.txt'):
+  ....     points = line.split()
+  ....     L.append(float(points[0]))
+  ....     T.append(float(points[1]))
+
+In []: TSq = []
+
+In []: for t in T:
+ ....:     TSq.append(t*t)
+
+In []: plot(L, TSq, '.')
+\end{lstlisting}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{figure}
+\includegraphics[width=3.5in]{data/L-Tsq.png}
+\end{figure}
+\end{frame}
+
 \section {Summary}
-\begin{frame}
-\frametitle{Summary}
-So what did we learn in this session??
+\begin{frame}[fragile]
+\frametitle{What did we learn?}
 \begin{itemize}
-  \item Creating and running Python scripts
-  \item Plotting points and Plotting attributes
+  \item \kwrd{\%hist -n}
+  \item Python scripts
+  \item \kwrd{\%run -i}
+  \item Plotting points
+  \item Plot attributes
   \item Lists
   \item \kwrd{for}
   \item Reading files
