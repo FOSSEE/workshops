@@ -146,14 +146,13 @@ In []: T = data[:,1]
 
 \section{Interpolation}
 \begin{frame}[fragile]
-\frametitle{Interpolation}
+\frametitle{Loading data (revisited)}
 \begin{itemize}
   \item Given data file \typ{points.txt}.
   \item It contains x,y position of particle.
   \item Plot the given points.
 %%  \item Interpolate the missing region.
 \end{itemize}
-\emphbar{Loading data (revisited)}
 \begin{lstlisting}
 In []: data = loadtxt('points.txt')
 In []: data.shape
@@ -164,6 +163,12 @@ In []: plot(x, y, '.')
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Plot}
+  \begin{center}
+    \includegraphics[height=2in, interpolate=true]{data/missing_points}
+  \end{center}
+\end{frame}
 %% \begin{frame}[fragile]
 %% \frametitle{Interpolation \ldots}
 %% \begin{small}

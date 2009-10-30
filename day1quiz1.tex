@@ -1,0 +1,150 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tutorial slides on Python.
+%
+% Author: FOSSEE <info at fossee  dot in>
+% Copyright (c) 2005-2009, FOSSEE Team
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[14pt,compress]{beamer}
+
+\mode<presentation>
+{
+  \useoutertheme{split}
+  \setbeamercovered{transparent}
+}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+\newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+
+\newcounter{qno}
+\setcounter{qno}{0}
+\newcommand{\incqno}{\addtocounter{qno}{1}{Question \theqno}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title[Basic Python]{Python: Quiz}
+
+\author[FOSSEE Team] {FOSSEE}
+
+\institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+\date[] {31, October 2009\\Day 1, Quiz 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Write your details...}
+On the top right hand corner please write down the following:
+  \begin{itemize}
+    \item  Name:
+    \item Affliation:
+    \item Occupation:
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+  A sample line from a Comma Separated Values (CSV) file:\\
+  \vspace*{0.2in}
+  \emph{Rossum, Guido, 42, 56, 34, 54}\\
+  \vspace*{0.2in}
+  What method would you use to separate the line into fields?
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+  \begin{lstlisting}
+  In [1]: a = [1, 2, 5, 9]
+  In [2]: a[:-1]
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+  How do you combine the two lists \emph{a} and \emph{b}?
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+  \begin{lstlisting}
+  In [1]: d = {
+          'a': 1,
+          'b': 2
+          }
+  In [2]: print d['c']
+  \end{lstlisting}
+  What is the output?
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+  \begin{lstlisting}
+  for x in "abcd":
+      print x
+
+  a
+  b
+  c
+  d
+  \end{lstlisting}
+  How do you get the following output? 
+  \begin{lstlisting}
+    0 a
+    1 b
+    2 c
+    3 d
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+What would be the result?
+\begin{lstlisting}
+  In [1]: x
+         array([[0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8]])
+  In [2]: x[::-1,:]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+How to read and print each line of file.
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+How to get list of third column of a data file.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+What is the output of:
+\begin{lstlisting}
+In []: x=linspace(0 , 2 * pi)
+In []: plot(x, cos(x),'go')
+\end{lstlisting}
+\end{frame}
+
+\end{document}
+
