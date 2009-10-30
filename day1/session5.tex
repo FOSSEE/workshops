@@ -134,9 +134,8 @@
   \item Each row must have same number of values.
   \end{itemize}
 \begin{lstlisting}
-In []: data = loadtxt('pendulum.txt')
-In []: L = data[:,0]
-In []: T = data[:,1]
+In []: L, T = loadtxt('pendulum.txt', 
+                       unpack = True)
 \end{lstlisting}
 \end{frame}
 
@@ -155,11 +154,8 @@ In []: T = data[:,1]
 \end{itemize}
 \emphbar{Loading data (revisited)}
 \begin{lstlisting}
-In []: data = loadtxt('points.txt')
-In []: data.shape
-Out[]: (40, 2)
-In []: x = data[:,0]
-In []: y = data[:,1]
+In []: x, y = loadtxt('points.txt',
+                       unpack = True)
 In []: plot(x, y, '.')
 \end{lstlisting}
 \end{frame}
