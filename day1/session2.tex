@@ -260,7 +260,7 @@ In []: lst[1:3]  # A slice.
 Out[]: [2, 3]
 
 In []: lst[1:-1]
-Out[]: [2, 3]
+Out[]: [2, 3, 4]
 \end{lstlisting}
 \alert{\typ{list[initial:final]}}
 \end{frame}
@@ -268,10 +268,10 @@ Out[]: [2, 3]
 \begin{frame}[fragile]
 \frametitle{List operations}
 \begin{lstlisting}
-In []: anthrlst = [ 6, 7, 8, 9]
-In []: lnglst = lst + anthrlst
+In []: a = [ 6, 7, 8, 9]
+In []: b = lst + a
 
-In []: lnglst
+In []: b
 Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 In []: lst.append(6)
@@ -452,7 +452,7 @@ Out[]: <type 'str'>
   \end{lstlisting}
 But, we need floating point numbers
   \begin{lstlisting}
-In []: t = float(point[0])
+In []: t = float(points[0])
 
 In []: type(t)
 Out[]: <type 'float'>
