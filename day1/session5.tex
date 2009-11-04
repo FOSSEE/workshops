@@ -124,8 +124,25 @@
 %% %  \pausesections
 %% \end{frame}
 
-
 \section{\typ{loadtxt}}
+
+\begin{frame}[fragile]
+  \frametitle{Array slicing}
+  \begin{lstlisting}
+In []: A = array([[ 1,  1,  2, -1],
+                  [ 2,  5, -1, -9],
+                  [ 2,  1, -1,  3],
+                  [ 1, -3,  2,  7]])
+
+In []: A[:,0]
+Out[]: array([ 1,  2,  2, 1])
+
+In []: A[1:3,1:3]
+Out[]: 
+array([[ 5, -1],
+       [ 1, -1]])
+\end{lstlisting}
+\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{\typ{loadtxt}}
@@ -134,8 +151,9 @@
   \item Each row must have same number of values.
   \end{itemize}
 \begin{lstlisting}
-In []: L, T = loadtxt('pendulum.txt', 
-                       unpack = True)
+In []: data = loadtxt('pendulum.txt')
+In []: x = data[:, 0]
+In []: y = data[:, 1]
 \end{lstlisting}
 \end{frame}
 
@@ -145,14 +163,13 @@ In []: L, T = loadtxt('pendulum.txt',
 
 \section{Interpolation}
 \begin{frame}[fragile]
-\frametitle{Interpolation}
+\frametitle{Loading data (revisited)}
 \begin{itemize}
   \item Given data file \typ{points.txt}.
   \item It contains x,y position of particle.
   \item Plot the given points.
 %%  \item Interpolate the missing region.
 \end{itemize}
-\emphbar{Loading data (revisited)}
 \begin{lstlisting}
 In []: x, y = loadtxt('points.txt',
                        unpack = True)
@@ -160,6 +177,12 @@ In []: plot(x, y, '.')
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Plot}
+  \begin{center}
+    \includegraphics[height=2in, interpolate=true]{data/missing_points}
+  \end{center}
+\end{frame}
 %% \begin{frame}[fragile]
 %% \frametitle{Interpolation \ldots}
 %% \begin{small}
@@ -218,7 +241,7 @@ In []: tck = splrep(x, y)
 
 \begin{frame}[fragile]
 \frametitle{\typ{splev}}
-To Evaluate a B-spline and it's derivatives
+To Evaluate a spline and it's derivatives
 \begin{lstlisting}
 In []: Xnew = arange(0.01,3,0.02)
 In []: Ynew = splev(Xnew, tck)
@@ -241,6 +264,13 @@ In []: plot(Xnew, Ynew)
 %% \end{itemize}
 %% \end{frame}
 
+\begin{frame}
+  \frametitle{Plot}
+  \begin{center}
+    \includegraphics[height=2in, interpolate=true]{data/interpolate}
+  \end{center}
+\end{frame}
+
 \section{Differentiation}
 
 \begin{frame}[fragile]
@@ -252,8 +282,8 @@ In []: plot(Xnew, Ynew)
 \end{itemize}
 \begin{center}
 \begin{tabular}{l l}
-$f(x+h)=f(x)+h.f^{'}(x)$ &Forward \\
-$f(x-h)=f(x)-h.f^{'}(x)$ &Backward
+$f(x+h)=f(x)+hf^{'}(x)$ &Forward \\
+$f(x-h)=f(x)-hf^{'}(x)$ &Backward
 \end{tabular}
 \end{center}
 \end{frame}
@@ -272,10 +302,14 @@ Obtain the finite forward difference of y
 \frametitle{Forward Difference \ldots}
 \begin{lstlisting}
 In []: fD = (y[1:] - y[:-1]) / deltax
-In []: plot(x, y, x[:-1], fD)
+In []: print len(fD)
+Out[]: 99
+In []: plot(x, y) 
+In []: plot(x[:-1], fD)
 \end{lstlisting}
+\vspace{-.2in}
 \begin{center}
-  \includegraphics[height=2in, interpolate=true]{data/fwdDiff}
+  \includegraphics[height=1.8in, interpolate=true]{data/fwdDiff}
 \end{center}
 \end{frame}
 
@@ -305,17 +339,13 @@ $X$ & $Y$ \\ \hline
 \frametitle{Example \ldots}
 \begin{itemize}
 \item Read the file
-\item Obtain an array of x, y
+\item Obtain an array of X, Y
 \item Obtain velocity and acceleration
 \item use \typ{deltaT = 0.05}
 \end{itemize}
 \begin{lstlisting}
-In []: X = []
-In []: Y = []
-In []: for line in open('location.txt'):
-  ....     points = line.split()
-  ....     X.append(float(points[0]))
-  ....     Y.append(float(points[1]))
+In []: data = loadtxt('pos.txt')
+In []: X,Y = data[:,0], data[:,1]
 In []: S = array([X, Y])
 \end{lstlisting}
 \end{frame}
@@ -323,9 +353,6 @@ In []: S = array([X, Y])
 
 \begin{frame}[fragile]
 \frametitle{Example \ldots}
-\begin{itemize}
-\item use \typ{deltaT = 0.05}
-\end{itemize}
 \begin{lstlisting}
 In []: deltaT = 0.05
 
@@ -333,25 +360,36 @@ In []: v = (S[:,1:]-S[:,:-1])/deltaT
 
 In []: a = (v[:,1:]-v[:,:-1])/deltaT
 \end{lstlisting}
-Try Plotting the position, velocity \& acceleration.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example \ldots}
+Plotting Y, $v_y$, $a_y$
+\begin{lstlisting}
+In []: plot(Y)
+In []: plot(v[1,:])
+In []: plot(a[1,:])
+\end{lstlisting}
+\begin{center}
+  \includegraphics[height=1.8in, interpolate=true]{data/pos_vel_accel}  
+\end{center}
 \end{frame}
 
 \section{Quadrature}
 
 \begin{frame}[fragile]
 \frametitle{Quadrature}
-\begin{itemize}
-\item We wish to find area under a curve
-\item Area under $(sin(x) + x^2)$ in $(0,1)$
-\item scipy has functions to do that
-\end{itemize}
-\begin{small}
-  \typ{In []: from scipy.integrate import quad}
-\end{small}
+
+\emphbar{$\int_0^1(sin(x) + x^2)$}
+
+\typ{In []: from scipy.integrate import quad}
+
 \begin{itemize}
 \item Inputs - function to integrate, limits
 \end{itemize}
 \begin{lstlisting}
+In []: quad(sin(x)+x**2, 0, 1)
+NameError: name 'x' is not defined
 In []: x = 0
 In []: quad(sin(x)+x**2, 0, 1)
 \end{lstlisting}
@@ -401,8 +439,7 @@ In []: quad(f, 0, 1)
 \end{lstlisting}
 Returns the integral and an estimate of the absolute error in the result.
 \begin{itemize}
-\item Look at \typ{dblquad} for Double integrals
-\item Use \typ{tplquad} for Triple integrals
+\item \typ{dblquad}, \typ{tplquad} are available
 \end{itemize}
 \end{frame}
 
