@@ -123,6 +123,7 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
+%%more exercise on plotting
 \section{ODEs}
 
 \begin{frame}[fragile]
@@ -138,7 +139,7 @@ We shall use the simple ODE of a simple pendulum.
 \dot{\theta} &= \omega \\
 \dot{\omega} &= -\frac{g}{L}sin(\theta) \\
  \text{At}\ t &= 0 : \nonumber \\
- \theta = \theta_0\quad & \&\quad  \omega = 0 \nonumber
+ \theta = \theta_0(10^o)\quad & \&\quad  \omega = 0\ (Initial\ values)\nonumber 
 \end{align}
 \end{frame}
 
@@ -149,9 +150,9 @@ We shall use the simple ODE of a simple pendulum.
 \item Define a function as below
 \end{itemize}
 \begin{lstlisting}
-In []: def pend_int(unknown, t, p):
-  ....     theta, omega = unknown
-  ....     g, L = p
+In []: def pend_int(initial, t):
+  ....     theta, omega = initial
+  ....     g, L = 9.81, 0.2
   ....     f=[omega, -(g/L)*sin(theta)]
   ....     return f
   ....
@@ -162,25 +163,22 @@ In []: def pend_int(unknown, t, p):
 \frametitle{Solving ODEs using SciPy \ldots}
 \begin{itemize}
 \item \typ{t} is the time variable \\ 
-\item \typ{p} has the constants \\
 \item \typ{initial} has the initial values
 \end{itemize}
 \begin{lstlisting}
 In []: t = linspace(0, 10, 101)
-In []: p=(-9.81, 0.2)
 In []: initial = [10*2*pi/360, 0]
-\end{lstlisting}
+\end{lstlisting} 
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Solving ODEs using SciPy \ldots}
-\begin{small}
-  \typ{In []: from scipy.integrate import odeint}
-\end{small}
+%%\begin{small}
+\typ{In []: from scipy.integrate import odeint}
+%%\end{small}
 \begin{lstlisting}
 In []: pend_sol = odeint(pend_int, 
-                         initial,t, 
-                         args=(p,))
+                         initial,t)
 \end{lstlisting}
 \end{frame}
 
@@ -308,14 +306,13 @@ In []: pend_sol = odeint(pend_int,
 \begin{frame}[fragile]
 \frametitle{Initial Estimates \ldots}
 \begin{lstlisting}
-  In []: def our_f(x):
-   ....:     return cos(x)-x**2
-   ....: 
-  In []: x = linspace(-pi/2, pi/2, 11)
+In []: def our_f(x):
+ ....:     return cos(x) - x*x
+ ....: 
+In []: x = linspace(-pi/2, pi/2, 11)
+In []: y = our_f(x)
 \end{lstlisting}
-\begin{itemize}
-\item Get the intervals of x, where sign changes occur
-\end{itemize}
+Get the intervals of x, where sign changes occur
 \end{frame}
 
 \begin{frame}[fragile]
@@ -335,7 +332,6 @@ Now use Newton-Raphson?
 \frametitle{Scipy Methods - \typ{roots}}
 \begin{itemize}
 \item Calculates the roots of polynomials
-\item Array of coefficients is the only parameter
 \end{itemize}
 \begin{lstlisting}
   In []: coeffs = [1, 6, 13]
