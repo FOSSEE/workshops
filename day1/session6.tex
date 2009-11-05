@@ -226,18 +226,18 @@ In []: pend_sol = odeint(pend_int,
 %% \end{lstlisting}
 %% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Bisection Method}
-\begin{enumerate}
-\item Start with the given interval $(-\pi/2, \pi/2)$ ($(a, b)$)
-\item $f(a)\cdot f(b) < 0$
-\item Bisect the interval. $c = \frac{a+b}{2}$
-\item Change the interval to $(a, c)$ if $f(a)\cdot f(c) < 0$
-\item Else, change the interval to $(c, b)$
-\item Go back to 3 until $(b-a) \le$ tolerance
-\end{enumerate}
-\alert{\typ{tolerance = 1e-5}}
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Bisection Method}
+%% \begin{enumerate}
+%% \item Start with the given interval $(-\pi/2, \pi/2)$ ($(a, b)$)
+%% \item $f(a)\cdot f(b) < 0$
+%% \item Bisect the interval. $c = \frac{a+b}{2}$
+%% \item Change the interval to $(a, c)$ if $f(a)\cdot f(c) < 0$
+%% \item Else, change the interval to $(c, b)$
+%% \item Go back to 3 until $(b-a) \le$ tolerance
+%% \end{enumerate}
+%% \alert{\typ{tolerance = 1e-5}}
+%% \end{frame}
 
 %% \begin{frame}[fragile]
 %% \frametitle{Bisection \dots}
@@ -255,15 +255,15 @@ In []: pend_sol = odeint(pend_int,
 %% \end{lstlisting}
 %% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Newton-Raphson Method}
-\begin{enumerate}
-\item Start with an initial guess of x for the root
-\item $\Delta x = -f(x)/f^{'}(x)$
-\item $ x \leftarrow x + \Delta x$
-\item Go back to 2 until $|\Delta x| \le$ tolerance
-\end{enumerate}
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Newton-Raphson Method}
+%% \begin{enumerate}
+%% \item Start with an initial guess of x for the root
+%% \item $\Delta x = -f(x)/f^{'}(x)$
+%% \item $ x \leftarrow x + \Delta x$
+%% \item Go back to 2 until $|\Delta x| \le$ tolerance
+%% \end{enumerate}
+%% \end{frame}
 
 %% \begin{frame}[fragile]
 %% \frametitle{Newton-Raphson \dots}
@@ -290,41 +290,41 @@ In []: pend_sol = odeint(pend_int,
 %% \end{itemize}
 %% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Initial Estimates}
-\begin{itemize}
-\item Given an interval
-\item How to find \alert{all} the roots?
-\end{itemize}
-\begin{enumerate}
-\item Check for change of signs of $f(x)$ in the given interval
-\item A root lies in the interval where the sign change occurs
-\end{enumerate}
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Initial Estimates}
+%% \begin{itemize}
+%% \item Given an interval
+%% \item How to find \alert{all} the roots?
+%% \end{itemize}
+%% \begin{enumerate}
+%% \item Check for change of signs of $f(x)$ in the given interval
+%% \item A root lies in the interval where the sign change occurs
+%% \end{enumerate}
+%% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Initial Estimates \ldots}
-\begin{lstlisting}
-In []: def our_f(x):
- ....:     return cos(x) - x*x
- ....: 
-In []: x = linspace(-pi/2, pi/2, 11)
-In []: y = our_f(x)
-\end{lstlisting}
-Get the intervals of x, where sign changes occur
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Initial Estimates \ldots}
+%% \begin{lstlisting}
+%% In []: def our_f(x):
+%%  ....:     return cos(x) - x*x
+%%  ....: 
+%% In []: x = linspace(-pi/2, pi/2, 11)
+%% In []: y = our_f(x)
+%% \end{lstlisting}
+%% Get the intervals of x, where sign changes occur
+%% \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Initial Estimates \ldots}
-\begin{lstlisting}
-In []: pos = y[:-1]*y[1:] < 0
-In []: rpos = zeros(x.shape, dtype=bool)
-In []: rpos[:-1] = pos
-In []: rpos[1:] += pos
-In []: rts = x[rpos]
-\end{lstlisting}
-Now use Newton-Raphson?
-\end{frame}
+%% \begin{frame}[fragile]
+%% \frametitle{Initial Estimates \ldots}
+%% \begin{lstlisting}
+%% In []: pos = y[:-1]*y[1:] < 0
+%% In []: rpos = zeros(x.shape, dtype=bool)
+%% In []: rpos[:-1] = pos
+%% In []: rpos[1:] += pos
+%% In []: rts = x[rpos]
+%% \end{lstlisting}
+%% Now use Newton-Raphson?
+%% \end{frame}
 
 
 \begin{frame}[fragile]
@@ -355,29 +355,24 @@ Now use Newton-Raphson?
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Scipy Methods \dots}
-\begin{small}
-\begin{lstlisting}
-In []: from scipy.optimize import fixed_point
+%% \begin{frame}[fragile]
+%% \frametitle{Scipy Methods \dots}
+%% \begin{small}
+%% \begin{lstlisting}
+%% In []: from scipy.optimize import fixed_point
 
-In []: from scipy.optimize import bisect
+%% In []: from scipy.optimize import bisect
 
-In []: from scipy.optimize import newton
-\end{lstlisting}
-\end{small}
-\end{frame}
+%% In []: from scipy.optimize import newton
+%% \end{lstlisting}
+%% \end{small}
+%% \end{frame}
 
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
   \item Solving ODEs
   \item Finding Roots
-    \begin{itemize}
-    \item Estimating Interval
-    \item Newton-Raphson
-    \item Scipy methods
-    \end{itemize}
   \end{itemize}
 \end{frame}
 
