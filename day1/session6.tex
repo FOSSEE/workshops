@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[ODEs \& Root Finding]{Python for Science and Engg:\\ODEs \& Finding Roots}
+\title[Solving Equations \& ODEs]{Python for Science and Engg:\\Solving Equations \& ODEs}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -123,8 +123,204 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-\section{ODEs}
+\section{Solving linear equations}
 
+\begin{frame}[fragile]
+\frametitle{Solution of equations}
+Consider,
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+Solution:
+  \begin{align*}
+    x & = 1 \\
+    y & = -2 \\
+    z & = -2
+  \end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving using Matrices}
+Let us now look at how to solve this using \kwrd{matrices}
+  \begin{lstlisting}
+    In []: A = array([[3,2,-1],
+                      [2,-2,4],                   
+                      [-1, 0.5, -1]])
+    In []: b = array([[1], [-2], [0]])
+    In []: x = solve(A, b)
+    In []: Ax = dot(A,x)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution:}
+\begin{lstlisting}
+In []: x
+Out[]: 
+array([[ 1.],
+       [-2.],
+       [-2.]])
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Let's check!}
+\begin{lstlisting}
+In []: Ax
+Out[]: 
+array([[  1.00000000e+00],
+       [ -2.00000000e+00],
+       [  2.22044605e-16]])
+\end{lstlisting}
+\begin{block}{}
+The last term in the matrix is actually \alert{0}!\\
+We can use \kwrd{allclose()} to check.
+\end{block}
+\begin{lstlisting}
+In []: allclose(Ax, b)
+Out[]: True
+\end{lstlisting}
+\inctime{15}
+\end{frame}
+
+\subsection{Exercises}
+
+\begin{frame}[fragile]
+\frametitle{Problem 1}
+Given the matrix:\\
+\begin{center}
+$\begin{bmatrix}
+-2 & 2 & 3\\
+ 2 & 1 & 6\\
+-1 &-2 & 0\\
+\end{bmatrix}$
+\end{center}
+Find:
+\begin{itemize}
+  \item[i] Transpose
+  \item[ii]Inverse
+  \item[iii]Determinant
+  \item[iv] Eigenvalues and Eigen vectors
+  \item[v] Singular Value decomposition
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Problem 2}
+Given 
+\begin{center}
+A = 
+$\begin{bmatrix}
+-3 & 1 & 5 \\
+1 & 0 & -2 \\
+5 & -2 & 4 \\
+\end{bmatrix}$
+, B = 
+$\begin{bmatrix}
+0 & 9 & -12 \\
+-9 & 0 & 20 \\
+12 & -20 & 0 \\
+\end{bmatrix}$
+\end{center}
+Find:
+\begin{itemize}
+  \item[i] Sum of A and B
+  \item[ii]Elementwise Product of A and B
+  \item[iii] Matrix product of A and B
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+Sum: 
+$\begin{bmatrix}
+-3 & 10 & 7 \\
+-8 & 0 & 18 \\
+17 & -22 & 4 \\
+\end{bmatrix}$
+,\\ Elementwise Product:
+$\begin{bmatrix}
+0 & 9 & -60 \\
+-9 & 0 & -40 \\
+60 & 40 & 0 \\
+\end{bmatrix}$
+,\\ Matrix product:
+$\begin{bmatrix}
+51 & -127 & 56 \\
+-24 & 49 & -12 \\
+66 & -35 & -100 \\
+\end{bmatrix}$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Problem 3}
+Solve the set of equations:
+\begin{align*}
+  x + y + 2z -w & = 3\\
+  2x + 5y - z - 9w & = -3\\
+  2x + y -z + 3w & = -11 \\
+  x - 3y + 2z + 7w & = -5\\
+\end{align*}
+\inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+Use \kwrd{solve()}
+\begin{align*}
+  x & = -5\\
+  y & = 2\\
+  z & = 3\\
+  w & = 0\\
+\end{align*}
+\end{frame}
+
+\section{Finding Roots}
+
+\begin{frame}[fragile]
+\frametitle{Scipy Methods - \typ{roots}}
+\begin{itemize}
+\item Calculates the roots of polynomials
+\end{itemize}
+\begin{lstlisting}
+  In []: coeffs = [1, 6, 13]
+  In []: roots(coeffs)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Scipy Methods - \typ{fsolve}}
+\begin{small}
+\begin{lstlisting}
+  In []: from scipy.optimize import fsolve
+\end{lstlisting}
+\end{small}
+\begin{itemize}
+\item Finds the roots of a system of non-linear equations
+\item Input arguments - Function and initial estimate
+\item Returns the solution
+\end{itemize}
+\begin{lstlisting}
+  In []: fsolve(our_f, -pi/2)
+\end{lstlisting}
+\end{frame}
+
+%% \begin{frame}[fragile]
+%% \frametitle{Scipy Methods \dots}
+%% \begin{small}
+%% \begin{lstlisting}
+%% In []: from scipy.optimize import fixed_point
+
+%% In []: from scipy.optimize import bisect
+
+%% In []: from scipy.optimize import newton
+%% \end{lstlisting}
+%% \end{small}
+%% \end{frame}
+
+\section{ODEs}
 \begin{frame}[fragile]
 \frametitle{ODE Integration}
 We shall use the simple ODE of a simple pendulum. 
@@ -181,48 +377,6 @@ In []: pend_sol = odeint(pend_int,
 \end{lstlisting}
 \end{frame}
 
-\section{Finding Roots}
-
-\begin{frame}[fragile]
-\frametitle{Scipy Methods - \typ{roots}}
-\begin{itemize}
-\item Calculates the roots of polynomials
-\end{itemize}
-\begin{lstlisting}
-  In []: coeffs = [1, 6, 13]
-  In []: roots(coeffs)
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Scipy Methods - \typ{fsolve}}
-\begin{small}
-\begin{lstlisting}
-  In []: from scipy.optimize import fsolve
-\end{lstlisting}
-\end{small}
-\begin{itemize}
-\item Finds the roots of a system of non-linear equations
-\item Input arguments - Function and initial estimate
-\item Returns the solution
-\end{itemize}
-\begin{lstlisting}
-  In []: fsolve(our_f, -pi/2)
-\end{lstlisting}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Scipy Methods \dots}
-%% \begin{small}
-%% \begin{lstlisting}
-%% In []: from scipy.optimize import fixed_point
-
-%% In []: from scipy.optimize import bisect
-
-%% In []: from scipy.optimize import newton
-%% \end{lstlisting}
-%% \end{small}
-%% \end{frame}
 
 \begin{frame}
   \frametitle{Things we have learned}
