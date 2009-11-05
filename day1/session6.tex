@@ -302,8 +302,61 @@ Use \kwrd{solve()}
 \item Input arguments - Function and initial estimate
 \item Returns the solution
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve}}
+Find the root of $sin(x)+cos^2(x)$ nearest to $0$
 \begin{lstlisting}
-  In []: fsolve(our_f, -pi/2)
+In []: fsolve(sin(x)+cos(x)**2, 0)
+NameError: name 'x' is not defined
+In []: x = linspace(-pi, pi)
+In []: fsolve(sin(x)+cos(x)**2, 0)
+\end{lstlisting}
+\begin{small}
+\alert{\typ{TypeError:}}
+\typ{'numpy.ndarray' object is not callable}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions - Definition}
+We have been using them all along. Now let's see how to define them.
+\begin{lstlisting}
+In []: def f(x):
+           return sin(x)+cos(x)**2
+\end{lstlisting}
+\begin{itemize}
+\item \typ{def}
+\item name
+\item arguments
+\item \typ{return}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions - Calling them}
+\begin{lstlisting}
+In [15]: f()
+---------------------------------------
+\end{lstlisting}
+\alert{\typ{TypeError:}}\typ{f() takes exactly 1 argument}
+\typ{(0 given)}
+\begin{lstlisting}
+In []: f(0)
+Out[]: 1.0
+In []: f(1)
+Out[]: 1.1333975665343254
+\end{lstlisting}
+More on Functions later \ldots
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve} \ldots}
+Find the root of $sin(x)+cos^2(x)$ nearest to $0$
+\begin{lstlisting}
+In []: fsolve(f, 0)
+Out[]: -0.66623943249251527
 \end{lstlisting}
 \end{frame}
 
@@ -381,8 +434,10 @@ In []: pend_sol = odeint(pend_int,
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
-  \item Solving ODEs
+  \item Solving Linear Equations
+  \item Defining Functions
   \item Finding Roots
+  \item Solving ODEs
   \end{itemize}
 \end{frame}
 
