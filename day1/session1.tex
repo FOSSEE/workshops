@@ -49,7 +49,7 @@
 }
 \newcounter{time}
 \setcounter{time}{0}
-\newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
+\newcommand{%\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
 \newcommand{\typ}[1]{\lstinline{#1}}
 
@@ -77,7 +77,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {31, October 2009\\Day 1, Session 1}
+\date[] {31 October, 2009\\Day 1, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -106,7 +106,7 @@
 % the following command: 
 %\beamerdefaultoverlayspecification{<+->}
 
-%\includeonlyframes{current,current1,current2,current3,current4,current5,current6}
+%%\includeonlyframes{current,current1,current2,current3,current4,current5,current6}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DOCUMENT STARTS
@@ -129,10 +129,10 @@
 	\item[Session 2] Sat 10:05--11:05
 	\item[Session 3] Sat 11:20--12:20
 	\item[Session 4] Sat 12:25--13:25
-        \item[Quiz -1]   Sat 14:25--14:40
+        \item[Quiz 1] Sat 14:25--14:40
         \item[Session 5] Sat 14:40--15:40
         \item[Session 6] Sat 15:55--16:55
-        \item[Quiz -2]   Sat 17:00--17:15
+        \item[Quiz 2] Sat 17:00--17:15
   \end{description}
 \end{frame}
 
@@ -143,10 +143,10 @@
 	\item[Session 2] Sun 10:05--11:05
 	\item[Session 3] Sun 11:20--12:20
 	\item[Session 4] Sun 12:25--13:25
-        \item[Quiz -1]   Sun 14:25--14:40
+        \item[Quiz 1] Sun 14:25--14:40
         \item[Session 5] Sun 14:40--15:40
         \item[Session 6] Sun 15:55--16:55
-        \item[Quiz -2]   Sun 17:00--17:15
+        \item[Quiz 2] Sun 17:00--17:15
   \end{description}
 \end{frame}
 
@@ -161,9 +161,9 @@
 
   \begin{block}{Goal: Successful participants will be able to}
     \begin{itemize}
-      \item Use Python as plotting, computational toolkit
-      \item Understand how Python can be used as scripting and problem solving language.
-      \item Train the students to use Python for the same
+      \item Use Python as plotting, computational tool
+      \item Understand how Python can be used as a scripting and problem solving language.
+      \item Train students for the same
     \end{itemize}
   \end{block}
 \end{frame}
@@ -172,14 +172,25 @@
 \begin{frame}
 \frametitle{Checklist}
   \begin{enumerate}
-    \item IPython: Type ipython at the command line. Is it available?
+    \item IPython
     \item Editor: We recommend scite.
-    \item Data files: Make sure you have all data files.
+    \item Data files: 
+      \begin{itemize}
+      \item \typ{sslc1.txt}
+      \item \typ{pendulum.txt}
+      \item \typ{points.txt}
+      \item \typ{pos.txt}
+      \end{itemize}
+    \item Python scripts: 
+      \begin{itemize}
+      \item \typ{sslc_allreg.py}
+      \item \typ{sslc_science.py}
+      \end{itemize}
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Starting up...}
+\frametitle{Starting up \ldots}
 \begin{block}{}
 \begin{verbatim}
   $ ipython -pylab  
@@ -196,20 +207,20 @@ Exiting
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Loops}
-Breaking out of loops
-\begin{lstlisting}     
-  In []: while True:
-    ...:     print "Hello, World!"
-    ...:     
-  Hello, World!
-  Hello, World!^C(Ctrl-C)
-  ------------------------------------
-  KeyboardInterrupt                   
+%% \begin{frame}[fragile]
+%% \frametitle{Loops}
+%% Breaking out of loops
+%% \begin{lstlisting}     
+%%   In []: while True:
+%%     ...:     print "Hello, World!"
+%%     ...:     
+%%   Hello, World!
+%%   Hello, World!^C(Ctrl-C)
+%%   ------------------------------------
+%%   KeyboardInterrupt                   
 
-\end{lstlisting}
-\end{frame}
+%% \end{lstlisting}
+%% \end{frame}
 
 \section{Plotting}
 
@@ -224,7 +235,7 @@ Breaking out of loops
     \begin{block}{}
     \begin{small}
 \begin{lstlisting}
-In []: x = linspace(0, 2*pi, 51)
+In []: x = linspace(0, 2*pi, 50)
 In []: plot(x, sin(x))
 \end{lstlisting}
     \end{small}
@@ -246,6 +257,7 @@ x[num - 1] = end
 \begin{block}{\typ{plot(x, y)}}
 plots \typ{x} and \typ{y} using default line style and color
 \end{block}
+%\inctime{10}
 \end{frame}
 
 \subsection{Decoration}
@@ -279,12 +291,11 @@ In []: ylabel('sin(x)')
   \begin{lstlisting}
 In []: clf()
 #Clears the plot area.
-In []: y = linspace(0, 2*pi, 51)
+In []: y = linspace(0, 2*pi, 50)
 In []: plot(y, sin(2*y))
 In []: xlabel('y')
 In []: ylabel('sin(2y)')
   \end{lstlisting}
-\emphbar{By default plots would be overlaid!}
 \end{frame}
 
 \subsection{More decoration}
@@ -308,11 +319,10 @@ In []: legend(['sin(2y)'])
 
 \begin{frame}[fragile]
 \frametitle{Legend Placement}
-
 \begin{block}{}
     \small
 \begin{lstlisting}
-In []: legend(['sin(2y)'], loc='center')
+In []: legend(['sin(2y)'], loc = 'center')
 \end{lstlisting}
 \end{block}
 
@@ -348,6 +358,7 @@ In []: legend(['sin(2y)'], loc=(.8,.1))
 \begin{center}
   \includegraphics[height=2in, interpolate=true]{data/loc}  
 \end{center}
+%\inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -361,8 +372,22 @@ In []: close()
 
 \section{Multiple plots}
 \begin{frame}[fragile]
+\frametitle{Overlaid Plots}
+\begin{lstlisting}
+In []: clf()
+In []: plot(y, sin(y))
+In []: plot(y, cos(y))
+In []: xlabel('y')
+In []: ylabel('f(y)')
+In []: legend(['sin(y)', 'cos(y)']) 
+\end{lstlisting}
+\emphbar{By default plots would be overlaid!}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Plotting separate figures}
 \begin{lstlisting}
+In []: clf()
 In []: figure(1)
 In []: plot(y, sin(y))
 In []: figure(2)
@@ -381,23 +406,20 @@ In []: close()
 In []: plot(y, sin(y), 'g')
 
 In []: clf()
-In []: plot(y, sin(y), linewidth=2)
+In []: plot(y, sin(y), 'g', linewidth=2)
 \end{lstlisting}
 \vspace*{-0.2in}
 \begin{center}
   \includegraphics[height=2.2in, interpolate=true]{data/green}  
 \end{center}
+%\inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Annotating}
 \vspace*{-0.15in}
 \begin{lstlisting}
-In []: annotate('local max', 
-       xy=(1.5, 1), 
-       xytext=(2.5, .8),
-       arrowprops=dict(
-       shrink=0.05),)
+In []: annotate('local max', xy=(1.5, 1))
 \end{lstlisting}
 \vspace*{-0.2in}
 \begin{center}
@@ -415,7 +437,7 @@ In []: ymin, ymax = ylim()
 In []: xmax = 2*pi
 #Set the axes limits
 In []: xlim(xmin, xmax) 
-In []: ylim(ymin, ymax) 
+In []: ylim(ymin-0.2, ymax+0.2) 
   \end{lstlisting}
 \end{frame}
 
@@ -428,34 +450,29 @@ In []: ylim(ymin, ymax)
 \item Set axis limits to the range of x
 \end{enumerate}
 \begin{lstlisting}
-In []: x=linspace(-5*pi, 5*pi, 501)
+In []: x=linspace(-5*pi, 5*pi, 500)
 In []: plot(x, x, 'b')
 In []: plot(x, -x, 'b')
 \end{lstlisting}
 $\vdots$
 \end{frame}
 
-\section{Exercises}
 \begin{frame}[fragile]
 \frametitle{Review Problem \ldots}
-\small{
 \begin{lstlisting}
 In []: plot(x, sin(x), 'g', linewidth=2)
-In []: plot(x, x*sin(x), 'r', linewidth=3)
+In []: plot(x, x*sin(x), 'r', 
+            linewidth=3)
 \end{lstlisting}
-
 \begin{lstlisting}
-In []: legend(['x', '-x', 'sin(x)', 'xsin(x)'])
-In []: annotate('origin', 
-                 xy=(0, 0), 
-                 xytext=(0, -7),
-                 arrowprops=dict(
-                 shrink=0.05))
-In []: xlim(5*pi, 5*pi)
-In []: ylim(5*pi, 5*pi)
+In []: legend(['x', '-x', 'sin(x)', 
+               'xsin(x)'])
+In []: annotate('origin', xy = (0, 0))
+In []: xlim(-5*pi, 5*pi)
+In []: ylim(-5*pi, 5*pi)
 \end{lstlisting}
-}
 \end{frame}
+
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
@@ -467,6 +484,7 @@ In []: ylim(5*pi, 5*pi)
   \begin{block}{Note}
     \centerline{\alert{Don't Close \typ{IPython}}}
   \end{block}
+%%\inctime{10}
 \end{frame}
 
 \end{document}

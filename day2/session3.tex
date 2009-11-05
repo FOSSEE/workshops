@@ -95,12 +95,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{3D data Visualization}
+\title[3D Plotting]{3D data Visualization}
 
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {1, November 2009\\Day 2, Session 3}
+\date[] {1 November, 2009\\Day 2, Session 5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -279,10 +279,9 @@ In []: mlab.test_contour3d??
     \end{columns}
 
     \begin{lstlisting}
-In []: from numpy import *
 In []: t = linspace(0, 2*pi, 50)
 In []: u = cos(t) * pi
-in []: x, y, z = sin(u), cos(u), sin(t)
+In []: x, y, z = sin(u), cos(u), sin(t)
     \end{lstlisting}
     \emphbar{\PythonCode{In []: mlab.points3d(x, y, z)}}
 \end{frame}
@@ -319,6 +318,40 @@ In []: z = sin(x*x + y*y)
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{mgrid}
+  \begin{lstlisting}
+In []: mgrid[0:3,0:3]
+Out[]: 
+array([[[0, 0, 0],
+        [1, 1, 1],
+        [2, 2, 2]],
+
+       [[0, 1, 2],
+        [0, 1, 2],
+        [0, 1, 2]]])
+
+In []: mgrid[-1:1:5j]
+Out[]: array([-1., -0.5,  0.,  0.5,  1.])
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example}
+  \begin{lstlisting}
+In []: x, y = mgrid[-1:1:5j, -1:1:5j]
+In []: z = x*x + y*y
+
+In []: z
+Out[]: 
+array([[ 2.  , 1.25, 1.  , 1.25, 2.  ],
+       [ 1.25, 0.5 , 0.25, 0.5 , 1.25],
+       [ 1.  , 0.25, 0.  , 0.25, 1.  ],
+       [ 1.25, 0.5 , 0.25, 0.5 , 1.25],
+       [ 2.  , 1.25, 1.  , 1.25, 2.  ]])
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
     \myemph{\Large 2D data: \texttt{mlab.mesh}}
     \vspace*{0.25in}
 
@@ -328,7 +361,7 @@ In []: z = sin(x*x + y*y)
 
     \vspace*{0.25in}
 \begin{lstlisting}
-In []: phi, theta = numpy.mgrid[0:pi:20j, 
+In []: phi, theta = mgrid[0:pi:20j, 
 ...                         0:2*pi:20j]
 In []: x = sin(phi)*cos(theta)
 In []: y = sin(phi)*sin(theta)
@@ -349,7 +382,7 @@ In []: mlab.mesh(x, y, z,
         \pgfimage[width=1.5in]{MEDIA/m2/mlab/contour3d}\\        
     \end{columns}
 \begin{lstlisting}
-In []: x, y, z = ogrid[-5:5:64j, 
+In []: x, y, z = mgrid[-5:5:64j, 
 ...                -5:5:64j, 
 ...                -5:5:64j]
 In []: mlab.contour3d(x*x*0.5 + y*y + 

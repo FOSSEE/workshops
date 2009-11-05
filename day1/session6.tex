@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[ODEs \& Root Finding]{Python for Science and Engg:\\ODEs \& Finding Roots}
+\title[Solving Equations \& ODEs]{Python for Science and Engg:\\Solving Equations \& ODEs}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -123,219 +123,166 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-\section{ODEs}
+\section{Solving linear equations}
 
 \begin{frame}[fragile]
-\frametitle{ODE Integration}
-We shall use the simple ODE of a simple pendulum. 
-\begin{equation*}
-\ddot{\theta} = -\frac{g}{L}sin(\theta)
-\end{equation*}
-\begin{itemize}
-\item This equation can be written as a system of two first order ODEs
-\end{itemize}
-\begin{align}
-\dot{\theta} &= \omega \\
-\dot{\omega} &= -\frac{g}{L}sin(\theta) \\
- \text{At}\ t &= 0 : \nonumber \\
- \theta = \theta_0\quad & \&\quad  \omega = 0 \nonumber
-\end{align}
+\frametitle{Solution of equations}
+Consider,
+  \begin{align*}
+    3x + 2y - z  & = 1 \\
+    2x - 2y + 4z  & = -2 \\
+    -x + \frac{1}{2}y -z & = 0
+  \end{align*}
+Solution:
+  \begin{align*}
+    x & = 1 \\
+    y & = -2 \\
+    z & = -2
+  \end{align*}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy}
-\begin{itemize}
-\item We use the \typ{odeint} function from scipy to do the integration
-\item Define a function as below
-\end{itemize}
+\frametitle{Solving using Matrices}
+Let us now look at how to solve this using \kwrd{matrices}
+  \begin{lstlisting}
+    In []: A = array([[3,2,-1],
+                      [2,-2,4],                   
+                      [-1, 0.5, -1]])
+    In []: b = array([[1], [-2], [0]])
+    In []: x = solve(A, b)
+    In []: Ax = dot(A,x)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution:}
 \begin{lstlisting}
-In []: def pend_int(unknown, t, p):
-  ....     theta, omega = unknown
-  ....     g, L = p
-  ....     f=[omega, -(g/L)*sin(theta)]
-  ....     return f
-  ....
+In []: x
+Out[]: 
+array([[ 1.],
+       [-2.],
+       [-2.]])
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-\begin{itemize}
-\item \typ{t} is the time variable \\ 
-\item \typ{p} has the constants \\
-\item \typ{initial} has the initial values
-\end{itemize}
+\frametitle{Let's check!}
 \begin{lstlisting}
-In []: t = linspace(0, 10, 101)
-In []: p=(-9.81, 0.2)
-In []: initial = [10*2*pi/360, 0]
+In []: Ax
+Out[]: 
+array([[  1.00000000e+00],
+       [ -2.00000000e+00],
+       [  2.22044605e-16]])
 \end{lstlisting}
+\begin{block}{}
+The last term in the matrix is actually \alert{0}!\\
+We can use \kwrd{allclose()} to check.
+\end{block}
+\begin{lstlisting}
+In []: allclose(Ax, b)
+Out[]: True
+\end{lstlisting}
+\inctime{15}
+\end{frame}
+
+\subsection{Exercises}
+
+\begin{frame}[fragile]
+\frametitle{Problem 1}
+Given the matrix:\\
+\begin{center}
+$\begin{bmatrix}
+-2 & 2 & 3\\
+ 2 & 1 & 6\\
+-1 &-2 & 0\\
+\end{bmatrix}$
+\end{center}
+Find:
+\begin{itemize}
+  \item[i] Transpose
+  \item[ii]Inverse
+  \item[iii]Determinant
+  \item[iv] Eigenvalues and Eigen vectors
+  \item[v] Singular Value decomposition
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
-\begin{small}
-  \typ{In []: from scipy.integrate import odeint}
-\end{small}
-\begin{lstlisting}
-In []: pend_sol = odeint(pend_int, 
-                         initial,t, 
-                         args=(p,))
-\end{lstlisting}
+\frametitle{Problem 2}
+Given 
+\begin{center}
+A = 
+$\begin{bmatrix}
+-3 & 1 & 5 \\
+1 & 0 & -2 \\
+5 & -2 & 4 \\
+\end{bmatrix}$
+, B = 
+$\begin{bmatrix}
+0 & 9 & -12 \\
+-9 & 0 & 20 \\
+12 & -20 & 0 \\
+\end{bmatrix}$
+\end{center}
+Find:
+\begin{itemize}
+  \item[i] Sum of A and B
+  \item[ii]Elementwise Product of A and B
+  \item[iii] Matrix product of A and B
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+Sum: 
+$\begin{bmatrix}
+-3 & 10 & 7 \\
+-8 & 0 & 18 \\
+17 & -22 & 4 \\
+\end{bmatrix}$
+,\\ Elementwise Product:
+$\begin{bmatrix}
+0 & 9 & -60 \\
+-9 & 0 & -40 \\
+60 & 40 & 0 \\
+\end{bmatrix}$
+,\\ Matrix product:
+$\begin{bmatrix}
+51 & -127 & 56 \\
+-24 & 49 & -12 \\
+66 & -35 & -100 \\
+\end{bmatrix}$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Problem 3}
+Solve the set of equations:
+\begin{align*}
+  x + y + 2z -w & = 3\\
+  2x + 5y - z - 9w & = -3\\
+  2x + y -z + 3w & = -11 \\
+  x - 3y + 2z + 7w & = -5\\
+\end{align*}
+\inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+Use \kwrd{solve()}
+\begin{align*}
+  x & = -5\\
+  y & = 2\\
+  z & = 3\\
+  w & = 0\\
+\end{align*}
 \end{frame}
 
 \section{Finding Roots}
 
 \begin{frame}[fragile]
-\frametitle{Roots of $f(x)=0$}
-\begin{itemize}
-\item Roots --- values of $x$ satisfying $f(x)=0$
-\item $f(x)=0$ may have real or complex roots
-\item Presently, let's look at real roots
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Roots of $f(x)=0$}
-\begin{itemize}
-\item Given function $cosx-x^2$ 
-\item First we find \alert{a} root in $(-\pi/2, \pi/2)$
-\item Then we find \alert{all} roots in $(-\pi/2, \pi/2)$
-\end{itemize}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Fixed Point Method}
-%% \begin{enumerate}
-%% \item Convert $f(x)=0$ to the form $x=g(x)$
-%% \item Start with an initial value of $x$ and iterate successively
-%% \item $x_{n+1}=g(x_n)$ and $x_0$ is our initial guess
-%% \item Iterate until $x_{n+1}-x_n \le tolerance$
-%% \end{enumerate}
-%% \end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Fixed Point \dots}
-%% \begin{lstlisting}
-%% In []: def our_g(x):
-%%  ....:     return sqrt(cos(x))
-%%  ....: 
-%% In []: tolerance = 1e-5
-%% In []: while abs(x1-x0)>tolerance:
-%%  ....:     x0 = x1
-%%  ....:     x1 = our_g(x1)
-%%  ....:   
-%% In []: x0
-%% \end{lstlisting}
-%% \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Bisection Method}
-\begin{enumerate}
-\item Start with the given interval $(-\pi/2, \pi/2)$ ($(a, b)$)
-\item $f(a)\cdot f(b) < 0$
-\item Bisect the interval. $c = \frac{a+b}{2}$
-\item Change the interval to $(a, c)$ if $f(a)\cdot f(c) < 0$
-\item Else, change the interval to $(c, b)$
-\item Go back to 3 until $(b-a) \le$ tolerance
-\end{enumerate}
-\alert{\typ{tolerance = 1e-5}}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Bisection \dots}
-%% \begin{lstlisting}
-%% In []: tolerance = 1e-5
-%% In []: a = -pi/2
-%% In []: b = 0
-%% In []: while b-a > tolerance:
-%%  ....:     c = (a+b)/2
-%%  ....:     if our_f(a)*our_f(c) < 0:
-%%  ....:         b = c
-%%  ....:     else:
-%%  ....:         a = c
-%%  ....:         
-%% \end{lstlisting}
-%% \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Newton-Raphson Method}
-\begin{enumerate}
-\item Start with an initial guess of x for the root
-\item $\Delta x = -f(x)/f^{'}(x)$
-\item $ x \leftarrow x + \Delta x$
-\item Go back to 2 until $|\Delta x| \le$ tolerance
-\end{enumerate}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Newton-Raphson \dots}
-%% \begin{lstlisting}
-%% In []: def our_df(x):
-%%  ....:     return -sin(x)-2*x
-%%  ....: 
-%% In []: delx = 10*tolerance
-%% In []: while delx > tolerance:
-%%  ....:     delx = -our_f(x)/our_df(x)
-%%  ....:     x = x + delx
-%%  ....:     
-%%  ....:     
-%% \end{lstlisting}
-%% \end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Newton-Raphson \ldots}
-%% \begin{itemize}
-%% \item What if $f^{'}(x) = 0$?
-%% \item Can you write a better version of the Newton-Raphson?
-%% \item What if the differential is not easy to calculate?
-%% \item Look at Secant Method
-%% \end{itemize}
-%% \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Initial Estimates}
-\begin{itemize}
-\item Given an interval
-\item How to find \alert{all} the roots?
-\end{itemize}
-\begin{enumerate}
-\item Check for change of signs of $f(x)$ in the given interval
-\item A root lies in the interval where the sign change occurs
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Initial Estimates \ldots}
-\begin{lstlisting}
-  In []: def our_f(x):
-   ....:     return cos(x)-x**2
-   ....: 
-  In []: x = linspace(-pi/2, pi/2, 11)
-\end{lstlisting}
-\begin{itemize}
-\item Get the intervals of x, where sign changes occur
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Initial Estimates \ldots}
-\begin{lstlisting}
-In []: pos = y[:-1]*y[1:] < 0
-In []: rpos = zeros(x.shape, dtype=bool)
-In []: rpos[:-1] = pos
-In []: rpos[1:] += pos
-In []: rts = x[rpos]
-\end{lstlisting}
-Now use Newton-Raphson?
-\end{frame}
-
-
-\begin{frame}[fragile]
 \frametitle{Scipy Methods - \typ{roots}}
 \begin{itemize}
 \item Calculates the roots of polynomials
-\item Array of coefficients is the only parameter
 \end{itemize}
 \begin{lstlisting}
   In []: coeffs = [1, 6, 13]
@@ -360,29 +307,82 @@ Now use Newton-Raphson?
 \end{lstlisting}
 \end{frame}
 
+%% \begin{frame}[fragile]
+%% \frametitle{Scipy Methods \dots}
+%% \begin{small}
+%% \begin{lstlisting}
+%% In []: from scipy.optimize import fixed_point
+
+%% In []: from scipy.optimize import bisect
+
+%% In []: from scipy.optimize import newton
+%% \end{lstlisting}
+%% \end{small}
+%% \end{frame}
+
+\section{ODEs}
 \begin{frame}[fragile]
-\frametitle{Scipy Methods \dots}
-\begin{small}
-\begin{lstlisting}
-In []: from scipy.optimize import fixed_point
-
-In []: from scipy.optimize import bisect
-
-In []: from scipy.optimize import newton
-\end{lstlisting}
-\end{small}
+\frametitle{ODE Integration}
+We shall use the simple ODE of a simple pendulum. 
+\begin{equation*}
+\ddot{\theta} = -\frac{g}{L}sin(\theta)
+\end{equation*}
+\begin{itemize}
+\item This equation can be written as a system of two first order ODEs
+\end{itemize}
+\begin{align}
+\dot{\theta} &= \omega \\
+\dot{\omega} &= -\frac{g}{L}sin(\theta) \\
+ \text{At}\ t &= 0 : \nonumber \\
+ \theta = \theta_0(10^o)\quad & \&\quad  \omega = 0\ (Initial\ values)\nonumber 
+\end{align}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy}
+\begin{itemize}
+\item We use the \typ{odeint} function from scipy to do the integration
+\item Define a function as below
+\end{itemize}
+\begin{lstlisting}
+In []: def pend_int(initial, t):
+  ....     theta, omega = initial
+  ....     g, L = -9.81, 0.2
+  ....     f=[omega, -(g/L)*sin(theta)]
+  ....     return f
+  ....
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy \ldots}
+\begin{itemize}
+\item \typ{t} is the time variable \\ 
+\item \typ{initial} has the initial values
+\end{itemize}
+\begin{lstlisting}
+In []: t = linspace(0, 10, 101)
+In []: initial = [10*2*pi/360, 0]
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy \ldots}
+%%\begin{small}
+\typ{In []: from scipy.integrate import odeint}
+%%\end{small}
+\begin{lstlisting}
+In []: pend_sol = odeint(pend_int, 
+                         initial,t)
+\end{lstlisting}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
   \item Solving ODEs
   \item Finding Roots
-    \begin{itemize}
-    \item Estimating Interval
-    \item Newton-Raphson
-    \item Scipy methods
-    \end{itemize}
   \end{itemize}
 \end{frame}
 

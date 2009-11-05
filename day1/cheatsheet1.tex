@@ -2,54 +2,43 @@
 \title{Interactive Plotting}
 \author{FOSSEE}
 \begin{document}
-\maketitle
-
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Interactive Plotting}\\
+\large{FOSSEE}
+\end{center}
 \section{Starting up...}
+
 \begin{verbatim}
   $ ipython -pylab  
 \end{verbatim}
-Exiting Ipython
+Exiting 
 \begin{verbatim}     
-  In [1]: print "Hello, World!"
-  In [2]: ^D
-  Do you really want to exit ([y]/n)? y
+In [2]: (Ctrl-D)^D
+Do you really want to exit ([y]/n)? y
 \end{verbatim}
 Breaking out of loops
 \begin{verbatim}     
-  In [1]: while True:
-    ...:     print "Hello, World!"
-    ...:     
-  Hello, World!
-  Hello, World!^C
+In [1]: while True:
+   ...:     print "Hello, World!"
+   ...:     
+Hello, World!
+Hello, World!(Ctrl-C)^C
 \end{verbatim}
 
-\section{First Plot}
+\section{Plotting}
 \begin{verbatim}
-  In [2]: x=linspace(0, 2*pi, 50)
-
-  In [3]: plot(x,sin(x))
-  Out[3]: [<matplotlib.lines.Line2D object at 0xb6e5874c>]
+In [1]: x = linspace(0, 2*pi, 50)
+In [2]: plot(x,sin(x))
+In [3]: xlabel('x')
+In [4]: ylabel('sin(x)')
+In [5]: legend(['x', '-x', 'sin(x)', 'xsin(x)'])
+In [6]: annotate('origin', xy=(0, 0), xytext=(0, -7),
+                 arrowprops=dict(shrink=0.05))
+In [7]: xlim(5*pi, 5*pi)
+In [8]: ylim(5*pi, 5*pi)
+In [9]: clf() #Clears the Plot area
 \end{verbatim}
-
-\section{Labeling}
-\begin{verbatim}
-  In [4]: xlabel('x')
-
-  In [5]: ylabel('sin(x)')
-\end{verbatim}
-
-\section{Another example}
-\begin{verbatim}
-In [6]: clf()
-
-In [7]: y = linspace(0,10,101)
-
-In [8]: plot(y, exp(-y))
-
-In [9]: xlabel('y')
-
-In [10]: ylabel(r'$e^{-y}$')
-\end{verbatim}
-
 \end{document}
 
