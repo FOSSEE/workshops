@@ -347,7 +347,7 @@ We shall use the simple ODE of a simple pendulum.
 \begin{lstlisting}
 In []: def pend_int(initial, t):
   ....     theta, omega = initial
-  ....     g, L = -9.81, 0.2
+  ....     g, L = 9.81, 0.2
   ....     f=[omega, -(g/L)*sin(theta)]
   ....     return f
   ....

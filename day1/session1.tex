@@ -473,6 +473,20 @@ In []: ylim(-5*pi, 5*pi)
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Saving Commands}
+Save commands of review problem into file
+\begin{itemize}
+\item Use \typ{\%hist} command of IPython 
+\item Identify the required line numbers
+\item Then, use \typ{\%save} command of IPython
+\end{itemize}
+\begin{lstlisting}
+  In []: %hist
+  In []: %save four_plot.py 16 18-27
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
@@ -481,10 +495,6 @@ In []: ylim(-5*pi, 5*pi)
     \item Annotating plots.
     \item Changing the looks: size, linewidth
   \end{itemize}
-  \begin{block}{Note}
-    \centerline{\alert{Don't Close \typ{IPython}}}
-  \end{block}
-%%\inctime{10}
 \end{frame}
 
 \end{document}

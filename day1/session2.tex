@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {31, October 2009\\Day 1, Session 2}
+\date[] {31 October, 2009\\Day 1, Session 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -123,46 +123,13 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
-\begin{frame}
-\frametitle{Why we didn't close IPython?}
-  IPython provides a convenient feature to go back, edit, and re-run commands.\\
-  \alert{But when you close, all this is lost.}
-\end{frame}
-
-\begin{frame}
-\frametitle{But its impractical..}
-\begin{itemize}
-  \item We can't keep running IPython for days
-  \item And its a pain to go back and edit
-\end{itemize}
-And the solution is..\\
-\begin{center}
-\alert {\typ{Scripts!!}}
-\end{center}
-\end{frame}
-
 \section{Scripts}
+
 \begin{frame}[fragile]
 \frametitle{Python Scripts}
-\begin{itemize}
-\item Put commands used in review problem into file. 
-\item use hist command of IPython.
-\end{itemize}
-\begin{lstlisting}
-  In []: %hist
-  In []: %hist -n
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\frametitle{Python Scripts\ldots}
   \begin{itemize}
-    \item Open a new file in an \alert{editor}
-    \item Copy and paste from the output of \typ{\%hist -n}
-    \item Save the file as \typ{sine_plot.py}
-  \end{itemize}
-  \begin{itemize}
-  \item run the file in IPython using \typ{\%run -i sine_plot.py}\\
+  \item four\_plot.py is called a Python Script
+  \item run the file in IPython using \typ{\%run -i four_plot.py}
   \end{itemize}
 \end{frame}
 
