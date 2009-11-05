@@ -440,6 +440,22 @@ Out[]: array([-1.,  8., -1.])
 In []: A = array([L, ones_like(L)])
 In []: A = A.T
 \end{lstlisting}
+\begin{small}
+\begin{block}{}
+  \begin{lstlisting}
+In []: ones((3,5))
+Out[]: 
+array([[ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.]])
+
+In []: ones_like([1, 2, 3, 4, 5]) 
+Out[]: array([1, 1, 1, 1, 1])   
+  \end{lstlisting}
+Also available \alert{\typ{zeros, zeros_like, empty, empty_like}}
+\end{block}
+\end{small}
+
 %% \begin{itemize}
 %% \item A is also called a Van der Monde matrix
 %% \item It can also be generated using \typ{vander}
@@ -489,11 +505,10 @@ In []: plot(L, Tline)
       \item Inverse of a matrix
       \item Determinant
       \item Eigenvalues and Eigen vector
-      \item Norms
-      \item Singular Value Decomposition
+      %% \item Norms
+      %% \item Singular Value Decomposition
     \end{itemize}
   \item Least Square Curve fitting
-  \item Solving linear equations
   \end{itemize}
 \end{frame}
 
