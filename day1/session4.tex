@@ -258,11 +258,39 @@ array([[ 1,  2],
 
 \begin{frame}[fragile]
   \frametitle{Slicing \& Striding Exercises}
+\begin{small}
   \begin{lstlisting}
+In []: A = imread('lena.png')
+
+In []: imshow(A)
+Out[]: <matplotlib.image.AxesImage object at 0xa0384cc>
+
+In []: A.shape 
+Out[]: (512, 512, 4)
   \end{lstlisting}
+\end{small}
+  \begin{itemize}
+  \item Crop the image to get the top-left quarter
+  \item Crop the image to get only the face
+  \item Resize image to half by dropping alternate pixels
+  \end{itemize}
 \end{frame}
 
-\subsection{Basic Operations}
+\begin{frame}[fragile]
+  \frametitle{Slicing \& Striding Exercises \ldots}
+\begin{small}
+  \begin{lstlisting}
+In []: imshow(A[:256,:256])
+Out[]: <matplotlib.image.AxesImage object at 0xb6f658c>
+
+In []: imshow(A[200:400,200:400])
+Out[]: <matplotlib.image.AxesImage object at 0xb757c2c>
+
+In []: imshow(A[::2,::2])
+Out[]: <matplotlib.image.AxesImage object at 0xb765c8c>
+  \end{lstlisting}
+\end{small}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Transpose of a Matrix}
@@ -401,7 +429,7 @@ Out[]: array([-1.,  8., -1.])
 \frametitle{$L$ vs. $T^2$}
 \vspace{-0.15in}
 \begin{figure}
-\includegraphics[width=4in]{data/L-Tsq-points.png}
+\includegraphics[width=4in]{data/L-Tsq-points}
 \end{figure}
 \end{frame}
 
@@ -409,7 +437,7 @@ Out[]: array([-1.,  8., -1.])
 \frametitle{$L$ vs. $T^2$}
 \vspace{-0.15in}
 \begin{figure}
-\includegraphics[width=4in]{data/L-Tsq-Line.png}
+\includegraphics[width=4in]{data/L-Tsq-Line}
 \end{figure}
 \end{frame}
 
@@ -417,7 +445,7 @@ Out[]: array([-1.,  8., -1.])
 \frametitle{Least Squares Fit}
 \vspace{-0.15in}
 \begin{figure}
-\includegraphics[width=4in]{data/least-sq-fit.png}
+\includegraphics[width=4in]{data/least-sq-fit}
 \end{figure}
 \end{frame}
 
@@ -494,7 +522,6 @@ In []: coef = result[0]
 \end{lstlisting}
 \end{frame}
 
-\subsection{Plotting}
 \begin{frame}[fragile]
 \frametitle{Least Square Fit Line \ldots}
 We get the points of the line from \typ{coef}
