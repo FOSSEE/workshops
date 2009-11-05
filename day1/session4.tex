@@ -235,8 +235,25 @@ array([[ 0,  0],
 
 \begin{frame}[fragile]
   \frametitle{Striding}
+  \begin{small}
   \begin{lstlisting}
+In []: C[::2,:]
+Out[]: 
+array([[ 1,  1,  2],
+       [-1,  3,  7]])
+
+In []: C[:,::2]
+Out[]: 
+array([[ 1,  2],
+       [ 0,  0],
+       [-1,  7]])
+
+In []: C[::2,::2]
+Out[]: 
+array([[ 1,  2],
+       [-1,  7]])
   \end{lstlisting}
+  \end{small}
 \end{frame}
 
 \begin{frame}[fragile]
