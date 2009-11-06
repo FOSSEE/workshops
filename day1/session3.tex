@@ -78,6 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
+
 \date[] {7 November, 2009\\Day 1, Session 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -126,67 +127,88 @@
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
+\section{Computing mean}
+\begin{frame}
+  \frametitle{Value of acceleration due to gravity?}
+  \begin{itemize}
+    \item We already have pendulum.txt
+    \item We know that $ T = 2\pi \sqrt{\frac{L}{g}} $
+    \item So $ g = \frac{4 \pi^2 L}{T^2}  $
+    \item Calculate ``g'' - acceleration due to gravity for each pair of L and T
+    \item Hence calculate mean ``g''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Acceleration due to gravity - ``g''\ldots}
+  \begin{lstlisting}
+In []: G = []
+In []: for line in open('pendulum.txt'):
+  ....     points = line.split()
+  ....     l = float(points[0])
+  ....     t = float(points[1])
+  ....     g = 4 * pi * pi * l / t * t
+  ....     G.append(g)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computing mean ``g''}
+  \begin{block}{Exercise}
+    Obtain the mean of ``g''
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Mean ``g''}
+  \begin{lstlisting}
+total = 0
+for g in G:
+    total += g
+
+mean_g = total / len(g)
+print "Mean: ", mean_g
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Mean ``g''}
+  \begin{lstlisting}
+mean_g = sum(G) / len(G)
+print "Mean: ", mean_g
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Mean ``g''}
+  \begin{lstlisting}
+mean_g = mean(G)
+print "Mean: ", mean_g
+  \end{lstlisting}
+  \inctime{10}
+\end{frame}
+
 \section{Processing voluminous data}
 \begin{frame}
   \frametitle{More on data processing}
   \begin{block}{}
-    We have a huge--1m records--data file.\\How do we do \emph{efficient} statistical computations, that is find mean, median, mode, standard deveiation etc; draw pie charts?
+    We have a huge data file--180,000 records.\\How do we do \emph{efficient} statistical computations, i.e. find mean, median, standard deviation etc; draw pie charts?
   \end{block}
 \end{frame}
 
-
 \begin{frame}
-  \frametitle{Statistical Analysis: Problem statement}
-  Read the data supplied in \emph{sslc1.txt} and carry out the following:
-  \begin{enumerate}
-    \item Draw a pie chart representing the proportion of students who scored more than 90\% in each region in Science.
-    \item Draw a pie chart representing the proportion of students who scored more than 90\% in each subject across regions.
-    \item Print mean, median, mode and standard deviation of math scores for all regions combined.
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Problem statement: explanation}
-    \emphbar{Draw a pie chart representing the proportion of students who scored more than 90\% in each region in Science.}
-    \begin{enumerate}
-      \item Complete(100\%) data - Number of students who scored more than 90\% in Science
-      \item Each slice - Number of students who scored more than 90\% in Science in one region
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Problem statement: explanation}
-    \emphbar{Draw a pie chart representing the proportion of students who scored more than 90\% in each subject across regions.}
-    \begin{enumerate}
-      \item Complete(100\%) data - Number of students who scored more than 90\% across all regions
-      \item Each slice - Number of students who scored more than 90\% in each subject across all regions
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Statistical Analysis and Parsing \ldots}
-  Machinery Required -
-  \begin{itemize}
-    \item File reading
-    \item Parsing
-    \item Dictionaries
-    \item NumPy arrays
-    \item Statistical operations
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{File reading and parsing}
+  \frametitle{Structure of the file}
   Understanding the structure of sslc1.txt
   \begin{itemize}
-    \item One line in file corresponds to a student's details
-    \item aka record
+    \item Each line in the file has a student's details(record)
     \item Each record consists of fields separated by ';'
   \end{itemize}
+\emphbar{A;015162;JENIL T P;081;060;77;41;74;333;P;;}
 \end{frame}
 
 \begin{frame}
-  \frametitle{File reading and parsing \ldots}
+  \frametitle{Structure of the file \ldots}
+\emphbar{A;015163;JOSEPH RAJ S;083;042;47;AA;72;244;;;}
   Each record consists of:
   \begin{itemize}
     \item Region Code
@@ -195,9 +217,41 @@
     \item Marks of 5 subjects: English, Hindi, Maths, Science, Social
     \item Total marks
     \item Pass/Fail (P/F)
-    \item Withdrawn (W)
+    \item Withheld (W)
   \end{itemize}
   \inctime{5}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Statistical Analysis: Problem statement}
+  1. Read the data supplied in the file \emph{sslc1.txt} and carry out the following:
+  \begin{itemize}
+    \item[a] Draw a pie chart representing proportion of students who scored more than 90\% in each region in Science.
+    \item[b] Print mean, median and standard deviation of math scores for all regions combined.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem statement: explanation}
+    \emphbar{a. Draw a pie chart representing proportion of students who scored more than 90\% in each region in Science.}
+\begin{columns}
+    \column{5.25\textwidth}
+    \hspace*{.5in}
+\includegraphics[height=2.6in, interpolate=true]{data/science}
+    \column{0.8\textwidth}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machinery Required}
+  \begin{itemize}
+    \item File reading
+    \item Parsing
+    \item Dictionaries 
+    \item List enumeration
+    \item Arrays
+    \item Statistical operations
+  \end{itemize}
 \end{frame}
 
 \subsection{Data processing}
@@ -207,100 +261,71 @@
 for record in open('sslc1.txt'):
     fields = record.split(';')
   \end{lstlisting}
+\begin{block}{}
+\centerline{Recall pendulum example!}
+\end{block}
 \end{frame}
 
-\subsection{Dictionary}
+\subsection{Dictionaries}
 \begin{frame}[fragile]
-  \frametitle{Dictionary: Introduction}
+  \frametitle{Dictionaries: Introduction}
   \begin{itemize}
     \item lists index: 0 \ldots n
     \item dictionaries index using strings
   \end{itemize}
-  \begin{block}{Example}
-d = \{ ``Hitchhiker's guide'' : 42,
-     ``Terminator'' : ``I'll be back''\}\\
-d[``Terminator''] => ``I'll be back''
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary: Introduction}
+  \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In [1]: d = {"Hitchhiker's guide" : 42,
-      "Terminator" : "I'll be back"}
+In []: d = {"jpg" : "image file",
+      "txt" : "text file", 
+      "py" : "python code"}
 
-In [2]: d["Hitchhiker's guide"]
-Out[2]: 42
-
-In [3]: "Hitchhiker's guide" in d
-Out[3]: True
-
-In [4]: "Guido" in d
-Out[4]: False
+In []: d["txt"]
+Out[]: 'text file'
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary: Introduction}
+  \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In [5]: d.keys()
-Out[5]: ['Terminator', "Hitchhiker's 
-                              guide"]
+In []: "py" in d
+Out[]: True
 
-In [6]: d.values()
-Out[6]: ["I'll be back", 42]
+In []: "cpp" in d
+Out[]: False
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Back to lists: Iterating}
-  \begin{itemize}
-    \item Python's \kwrd{for} loop iterates through list items
-    \item In other languages (C/C++) we run through indices and pick items from the array using these indices
-    \item In Python, while iterating through list items current position is not available
-  \end{itemize}
-  \begin{block}{Iterating through indices}
-    What if we want the index of an item of a list?
-  \end{block}
-
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{enumerate: Iterating through list indices}
+  \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In [1]: names = ["Guido","Alex", "Tim"]
+In []: d.keys()
+Out[]: ['py', 'txt', 'jpg']
 
-In [2]: for i, name in enumerate(names):
-   ...:     print i, name
-   ...: 
-0 Guido
-1 Alex
-2 Tim
+In []: d.values()
+Out[]: ['python code', 'text file',
+       'image file']
   \end{lstlisting}
-  \inctime{5}
+  \inctime{10}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Continuing with our Dictionary}
+  \frametitle{Getting back to the problem}
   Let our dictionary be:
   \begin{lstlisting}
-science = {} # is an empty dictionary
+science = {}
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Dictionary - Building parsed data}
-  \begin{itemize}
-    \item \emph{Keys} of \emph{science} will be region codes
-    \item Value of a \emph{science} will be the number students who scored more than 90\% in that region
+\begin{itemize}
+    \item Keys will be region codes
+    \item Values will be the number students who scored more than 90\% in that region
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Building parsed data \ldots}
   \begin{lstlisting}
-from pylab import pie
-
 science = {}
 
 for record in open('sslc1.txt'):
@@ -317,9 +342,9 @@ for record in open('sslc1.txt'):
 if region_code not in science:
     science[region_code] = 0
 
-score_str = fields[4].strip()
+score_str = fields[6].strip()
 
-score = int(score_str) if
+score = int(score_str) if \
     score_str != 'AA' else 0
 
 if score > 90:
@@ -327,17 +352,25 @@ if score > 90:
   \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Building parsed data \ldots}
+  \begin{lstlisting}
+print science
+print science.keys()
+print science.values()
+  \end{lstlisting}
+\end{frame}
+
 \subsection{Visualizing data}
 \begin{frame}[fragile]
-  \frametitle{Pie charts}
+  \frametitle{Pie chart}
   \small
   \begin{lstlisting}
-figure(1)
 pie(science.values(), 
-    labels=science.keys())
+    labels = science.keys())
 title('Students scoring 90% and above 
       in science by region')
-savefig('/tmp/science.png')
+savefig('science.png')
   \end{lstlisting}
 \begin{columns}
     \column{5.25\textwidth}
@@ -345,148 +378,65 @@ savefig('/tmp/science.png')
 \includegraphics[height=2in, interpolate=true]{data/science}
     \column{0.8\textwidth}
 \end{columns}
-  \inctime{5}
+  \inctime{10}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem statement}
+    \emphbar{b. Print mean, median and standard deviation of math scores for all regions combined.}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Building data for all subjects \ldots}
+  \frametitle{Building data for statistics}
   \begin{lstlisting}
-from pylab import pie
-from scipy import mean, median, std
-from scipy import stats
+math_scores = []
 
-scores = [[], [], [], [], []]
-ninety_percents = [{}, {}, {}, {}, {}]
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Building data for all subjects \ldots}
-  \begin{lstlisting}
 for record in open('sslc1.txt'):
     record = record.strip()
     fields = record.split(';')
 
-    region_code = fields[0].strip()
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Building data for all subjects \ldots}
-  \small
-  \begin{lstlisting}
-for i, field in enumerate(fields[3:8]):
-    if region_code not in ninety_percents[i]:
-        ninety_percents[i][region_code] = 0
-
-    score_str = field.strip()
-    score = int(score_str) if
+    score_str = fields[5].strip()
+    score = int(score_str) if \
       score_str != 'AA' else 0
 
-    scores[i].append(score)
-
-    if score > 90:
-        ninety_percents[i][region_code] += 1
+    math_scores.append(score)
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Consolidating data}
-  \begin{lstlisting}
-subj_total = []
-for subject in ninety_percents:
-    subj_total.append(sum(
-         subject.values()))
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Pie charts}
-  \begin{lstlisting}
-figure(2)
-pie(subj_total, labels=['English',
-    'Hindi', 'Maths', 'Science',
-    'Social'])
-title('Students scoring more than
-      90% by subject(All regions
-      combined).')
-savefig('/tmp/all_regions.png')
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Pie charts}
-  \includegraphics[height=3in, interpolate=true]{data/all_regions}
 \end{frame}
 
 \subsection{Obtaining statistics}
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
-  \begin{block}{Statistics: Mean}
+  \begin{block}{Exercise}
     Obtain the mean of Math scores
   \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Obtaining statistics: Solution}
-  \begin{block}{Statistics: Mean}
-    Obtain the mean of Math scores
-  \end{block}
-  \begin{lstlisting}
-math_scores = scores[2]
-total = 0
-for i, score in enumerate(math_scores):
-    total += score
-
-mean = total / (i + 1)
-print "Mean: ", mean
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Obtaining statistics: Another solution}
-  \begin{block}{Statistics: Mean}
-    Obtain the mean of Math scores
-  \end{block}
-  \begin{lstlisting}
-math_scores = scores[2]
-mean = sum(math_scores) /
-          len(math_scores)
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{NumPy arrays}
-  \begin{itemize}
-    \item NumPy provides arrays
-    \item arrays are very efficient and powerful 
-    \item Very easy to perform element-wise operations - \typ{+, -, *, /, \%}
-    \begin{lstlisting}
-In [1]: a = array([1, 2, 3])
-In [2]: b = array([4, 5, 6])
-
-In [3]: a + b
-Out[3]: array([5, 7, 9])
-    \end{lstlisting}
-    \item Very easy to compute statistics
-  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
   \begin{lstlisting}
-math_scores = array(scores[2])
-
 print "Mean: ", mean(math_scores)
 
 print "Median: ", median(math_scores)
 
-print "Mode: ", stats.mode(math_scores)
-
 print "Standard Deviation: ",
               std(math_scores)
   \end{lstlisting}
-  \inctime{15}
+  \inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Obtaining statistics: efficiently!}
+  \begin{lstlisting}
+math_array = array(math_scores)
+
+print "Mean: ", mean(math_array)
+
+print "Median: ", median(math_array)
+
+print "Standard Deviation: ",
+              std(math_array)
+  \end{lstlisting}
+  \inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -494,37 +444,9 @@ print "Standard Deviation: ",
   \begin{itemize}
    \item Dictionaries for storing data
    \item Facilities for drawing pie charts
-   \item NumPy arrays for efficient array manipulations
-   \item Functions for statistical computations - mean, median, mode, standard deviation
+   \item Efficient array manipulations
+   \item Functions for statistical computations - mean, median, standard deviation
   \end{itemize}
-\end{frame}
-
-\section{Least square fit}
-\begin{frame}
-\frametitle{L vs $T^2$ \ldots}
-Let's go back to the L vs $T^2$ plot
-\begin{itemize}
-\item We first look at obtaining $T^2$ from T
-\item Then, we look at plotting a Least Squares fit
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Dealing with data whole-sale}
-\begin{lstlisting}
-In []: for t in T:
- ....:     TSq.append(t*t)
-\end{lstlisting}
-\begin{itemize}
-\item This is not very efficient
-\item We are squaring element after element
-\item We use arrays to make this efficient
-\end{itemize}
-\begin{lstlisting}
-In []: L = array(L)
-In []: T = array(T)
-In []: TSq = T*T
-\end{lstlisting}
 \end{frame}
 
 \end{document}

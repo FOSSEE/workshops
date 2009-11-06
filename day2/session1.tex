@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
-% Copyright (c) 2005-2009, Prabhu Ramachandran
+% Author: FOSSEE 
+% Copyright (c) 2009, FOSSEE, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {1, November 2009\\Day 2, Session 1}
+\date[] {8 November, 2009\\Day 2, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -140,13 +140,13 @@
   \begin{itemize}
     \item \kwrd{int}\\ \kwrd{int} = whole number, no matter what the size!
   \begin{lstlisting}
-In [1]: a = 13
+In []: a = 13
 
-In [2]: b = 99999999999999999999
+In []: b = 99999999999999999999
   \end{lstlisting}
     \item \kwrd{float}
   \begin{lstlisting}
-In [3]: fl = 3.141592
+In []: p = 3.141592
   \end{lstlisting}
   \end{itemize}
 \end{frame}
@@ -154,16 +154,16 @@ In [3]: fl = 3.141592
 \begin{frame}[fragile]
 \frametitle{Complex numbers}
   \begin{lstlisting}
-In [1]: cplx = 3+4j
+In []: c = 3+4j
 
-In [2]: abs(cplx)
-Out[2]: 5.0
+In []: abs(c)
+Out[]: 5.0
 
-In [3]: cplx.imag
-Out[3]: 4.0
+In []: c.imag
+Out[]: 4.0
 
-In [4]: cplx.real
-Out[4]: 3.0
+In []: c.real
+Out[]: 3.0
   \end{lstlisting}
 \end{frame}
 
@@ -171,16 +171,31 @@ Out[4]: 3.0
 \begin{frame}[fragile]
   \frametitle{Boolean}
   \begin{lstlisting}
-In [1]: t = True
+In []: t = True
 
-In [2]: f = not t
-Out[2]: False
+In []: f = not t
 
-In [3]: f or t
-Out[3]: True
+In []: f or t
+Out[]: True
 
-In [4]: f and t
-Out[4]: False
+In []: f and t
+Out[]: False
+  \end{lstlisting}
+  \inctime{5}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{( )  for precedence}
+  \begin{lstlisting}
+In []: a = False
+In []: b = True
+In []: c = True
+
+In []: (a and b) or c
+Out[]: True
+
+In []: a and (b or c)
+Out[]: False
   \end{lstlisting}
   \inctime{5}
 \end{frame}
@@ -191,20 +206,20 @@ Out[4]: False
   \frametitle{Strings}
 Strings were introduced previously, let us now look at them in a little more detail.
   \begin{lstlisting}
-In [1]: w = "hello"
+In []: w = "hello"
 
-In [2]: print w[0] + w[2] + w[-1]
-Out[2]: hlo
+In []: print w[0] + w[2] + w[-1]
+Out[]: hlo
 
-In [3]: len(w) # guess what
-Out[3]: 5
+In []: len(w) # guess what
+Out[]: 5
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Strings \ldots}
   \begin{lstlisting}
-In [1]: w[0] = 'H' # Can't do that!
+In []: w[0] = 'H' # Can't do that!
 --------------------------------------------
 TypeError  Traceback (most recent call last)
 
@@ -218,19 +233,35 @@ TypeError: 'str' object does not
 \begin{frame}[fragile]
   \frametitle{String methods}
   \begin{lstlisting}
-In [1]: a = 'Hello World'
-In [2]: a.startswith('Hell')
-Out[2]: True
+In []: a = 'Hello World'
+In []: a.startswith('Hell')
+Out[]: True
 
-In [3]: a.endswith('ld')
-Out[3]: True
+In []: a.endswith('ld')
+Out[]: True
 
-In [4]: a.upper()
-Out[4]: 'HELLO WORLD'
+In []: a.upper()
+Out[]: 'HELLO WORLD'
 
-In [5]: a.lower()
-Out[5]: 'hello world'
+In []: a.lower()
+Out[]: 'hello world'
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A bit about IPython}
+  \begin{itemize}
+    \item IPython provides better help
+    \item object.function?
+    \begin{lstlisting}
+In []: a = 'Hello World'
+In []: a.lower?
+    \end{lstlisting}
+    \item It provides tab completion
+        \begin{lstlisting}
+In []: a.s<Tab>
+    \end{lstlisting}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -240,77 +271,102 @@ Out[5]: 'hello world'
     \item join() is the opposite of split()
   \end{itemize}
   \begin{lstlisting}
-In [1]: ''.join(['a', 'b', 'c'])
-Out[1]: 'abc'
+In []: ''.join(['a', 'b', 'c'])
+Out[]: 'abc'
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{String formatting}
   \begin{lstlisting}
-In [1]: x, y = 1, 1.234
+In []: x, y = 1, 1.234
 
-In [2]: 'x is %s, y is %s' %(x, y)
-Out[2]: 'x is 1, y is 1.234'
+In []: 'x is %s, y is %s' %(x, y)
+Out[]: 'x is 1, y is 1.234'
   \end{lstlisting}
+  \begin{itemize}
+    \item \emph{\%d}, \emph{\%f} etc. available
+  \end{itemize}
   \emphbar{\url{http://docs.python.org/library/stdtypes.html}}
   \inctime{10}
 \end{frame}
 
 \section{Operators}
 \begin{frame}[fragile]
-  \frametitle{Arithematic operators}
+  \frametitle{Arithmetic operators}
   \begin{lstlisting}
-In [1]: 1786 % 12
-Out[1]: 10
+In []: 1786 % 12
+Out[]: 10
 
-In [2]: 3124 * 126789
-Out[2]: 396088836
+In []: 45 % 2
+Out[]: 1
 
-In [3]: a = 3124 * 126789
+In []: 864675 % 10
+Out[]: 5
 
-In [4]: big = 1234567891234567890 ** 3
+In []: 3124 * 126789
+Out[]: 396088836
 
-In [5]: verybig = big * big * big * big
+In []: big = 1234567891234567890 ** 3
+
+In []: verybig = big * big * big * big
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Arithematic operators \ldots}
+  \frametitle{Arithmetic operators}
   \begin{lstlisting}
-In [1]: 17/2
-Out[1]: 8
+In []: 17 / 2
+Out[]: 8
 
-In [2]: 17/2.0
-Out[2]: 8.5
+In []: 17 / 2.0
+Out[]: 8.5
 
-In [3]: 17.0/2
-Out[3]: 8.5
+In []: 17.0 / 2
+Out[]: 8.5
 
-In [4]: 17.0/8.5
-Out[4]: 2.0
+In []: 17.0 / 8.5
+Out[]: 2.0
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arithmetic operators}
+  \begin{lstlisting}
+In []: a = 7546
+
+In []: a += 1
+In []: a
+Out[]: 7547
+
+In []: a -= 5
+In []: a
+
+In []: a *= 2
+
+In []: a /= 5
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{String operations}
   \begin{lstlisting}
-In [1]: s = 'Hello '
+In []: s = 'Hello '
 
-In [2]: p = 'World'
+In []: p = 'World'
 
-In [3]: s + p 
-Out[3]: 'Hello World'
+In []: s + p 
+Out[]: 'Hello World'
 
-In [4]: s * 4
-Out[4]: 'Hello Hello Hello Hello'
+In []: s * 4
+Out[]: 'Hello Hello Hello Hello'
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{String operations \ldots}
   \begin{lstlisting}
-In [1]: s * s
+In []: s * s
 --------------------------------------------
 TypeError  Traceback (most recent call last)
 
@@ -324,35 +380,35 @@ TypeError: can't multiply sequence by
 \begin{frame}[fragile]
   \frametitle{Relational and logical operators}
   \begin{lstlisting}
-In [1]: pos, zer, neg = 1, 0, -1
-In [2]: pos == neg
-Out[2]: False
+In []: p, z, n = 1, 0, -1
+In []: p == n
+Out[]: False
 
-In [3]: pos >= neg
-Out[3]: True
+In []: p >= n
+Out[]: True
 
-In [4]: neg < zer < pos
-Out[4]: True
+In []: n < z < p
+Out[]: True
 
-In [5]: pos + neg != zer
-Out[5]: False
+In []: p + n != z
+Out[]: False
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Built-ins}
   \begin{lstlisting}
-In [1]: int(17/2.0)
-Out[1]: 8
+In []: int(17 / 2.0)
+Out[]: 8
 
-In [2]: float(17/2)  # Recall
-Out[2]: 8.0
+In []: float(17 / 2)  # Recall
+Out[]: 8.0
 
-In [3]: str(17/2.0)
-Out[3]: '8.5'
+In []: str(17 / 2.0)
+Out[]: '8.5'
 
-In [4]: round( 7.5 )
-Out[4]: 8.0
+In []: round( 7.5 )
+Out[]: 8.0
   \end{lstlisting}
 \end{frame}
 
@@ -362,15 +418,15 @@ Out[4]: 8.0
     \item Case sensitive
     \item Dynamically typed $\Rightarrow$ need not specify a type
       \begin{lstlisting}
-In [1]: a = 1
-In [2]: a = 1.1
-In [3]: a = "Now I am a string!"
+In []: a = 1
+In []: a = 1.1
+In []: a = "Now I am a string!"
       \end{lstlisting}
     \item Comments:
       \begin{lstlisting}
-In [4]: a = 1  # In-line comments
-In [5]: # A comment line.
-In [6]: a = "# Not a comment!"
+In []: a = 1  # In-line comments
+In []: # A comment line.
+In []: a = "# Not a comment!"
       \end{lstlisting}
   \end{itemize}
   \inctime{15}
@@ -379,14 +435,15 @@ In [6]: a = "# Not a comment!"
 \section{Simple IO}
 \begin{frame}[fragile]
   \frametitle{Simple IO: Console Input}
+  \small
   \begin{itemize}
     \item raw\_input() waits for user input.
       \begin{lstlisting}
-In [1]: a = raw_input()
+In []: a = raw_input()
 5
 
-In [2]: a = raw_input('prompt > ')
-prompt > 5
+In []: a = raw_input('Enter a value: ')
+Enter a value: 5
       \end{lstlisting}
     \item Prompt string is optional.
     \item All keystrokes are Strings!
@@ -394,11 +451,36 @@ prompt > 5
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Simple IO: Console output}
+\begin{frame}[fragile]
+  \frametitle{Simple IO: Console output}
   \begin{itemize}
     \item \texttt{print} is straight forward
-    \item Note the distinction between \texttt{print x} and \texttt{print x,}
+    \item Put the following code snippet in a file
   \end{itemize}
+  \begin{lstlisting}
+print "Hello"
+print "World"
+
+
+In []: %run -i hello1.py
+Hello
+World
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Simple IO: Console output \ldots}
+Put the following code snippet in a file
+  \begin{lstlisting}
+print "Hello",
+print "World"
+
+
+In []: %run -i hello2.py
+Hello World
+  \end{lstlisting}
+
+\emphbar{Note the distinction between \texttt{print x} and \texttt{print x,}}
 \end{frame}
 
 \section{Control flow}
@@ -406,8 +488,9 @@ prompt > 5
   \frametitle{Control flow constructs}  
   \begin{itemize}
   \item \kwrd{if/elif/else}: branching
+  \item \kwrd{C if X else Y}: Ternary conditional operator
   \item \kwrd{while}: looping
-  \item \kwrd{for}: iterating 
+  \item \kwrd{for}: iterating
   \item \kwrd{break, continue}: modify loop 
   \item \kwrd{pass}: syntactic filler
   \end{itemize}
@@ -416,101 +499,41 @@ prompt > 5
 \subsection{Basic Conditional flow}
 \begin{frame}[fragile]
   \frametitle{\typ{If...elif...else} example}
+  \small
   \begin{lstlisting}
-x = int(raw_input("Enter an integer:"))
-if x < 0:
-     print 'Be positive!'
-elif x == 0:
-     print 'Zero'
-elif x == 1:
-     print 'Single'
-else:
-     print 'More'
+In []: x = int(raw_input("Enter an integer:"))
+
+In []: if x < 0:
+  ...:     print 'Be positive!'
+  ...: elif x == 0:
+  ...:     print 'Zero'
+  ...: elif x == 1:
+  ...:     print 'Single'
+  ...: else:
+  ...:     print 'More'
+  ...:
+  ...:
   \end{lstlisting}
   \inctime{10}
 \end{frame}
 
-\subsection{Basic Looping}
 \begin{frame}[fragile]
-  \frametitle{\typ{while}}
-Example: Fibonacci series
+  \frametitle{Ternary conditional operator}
   \begin{lstlisting}
-# the sum of two elements
-# defines the next
-a, b = 0, 1
-while b < 10:
-    print b,
-    a, b = b, a + b 
-\end{lstlisting}
-\typ{1 1 2 3 5 8}\\  
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\typ{range()}}
-\kwrd{range([start,] stop[, step])}\\
-\begin{itemize}
-  \item range() returns a list of integers
-  \item The \emph{start} and the \emph{step} arguments are optional
-  \item \emph{stop} argument is not included in the list
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{\typ{for} \ldots \typ{range()}}
-Example: print squares of first \typ{n} numbers
-  \begin{lstlisting}
-In []: for i in range(5):
- ....:     print i, i * i
- ....:
- ....:
-0 0
-1 1
-2 4
-3 9
-4 16
-\end{lstlisting}
-\inctime{5}
-\end{frame}
-
-\subsection{Exercises}
-
-\begin{frame}{Problem set 1: Problem 1.1}
-  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
-\vspace*{0.2in}
-\emphbar{These are called $Armstrong$ numbers.}
-\end{frame}
-
-\begin{frame}{Problem 1.2 - Collatz sequence}
-\begin{enumerate}
-  \item Start with an arbitrary (positive) integer. 
-  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
-  \item Repeat the procedure with the new number.
-  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
-\end{enumerate}
-    Write a program that accepts the starting value and prints out the Collatz sequence.
-\end{frame}
-
-\begin{frame}[fragile]{Problem 1.3}
-  Write a program that prints the following pyramid on the screen. 
-  \begin{lstlisting}
-1
-2  2
-3  3  3
-4  4  4  4
+...
+a = raw_input('Enter number(Q to quit):')
+num = int(a) if a != 'Q' else break
+...
   \end{lstlisting}
-The number of lines must be obtained from the user as input.\\
-\pause
-\emphbar{When can your code fail?}
-\inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item Basic data types
-    \item Operators
-    \item Conditional structures
-    \item Loops
+    \item Data types: int, float, complex, boolean, string
+    \item Operators: +, -, *, /, \%, **, +=, -=, *=, /=, >, <, <=, >=, ==, !=, a < b < c
+    \item Simple IO: \kwrd{raw\_input} and \kwrd{print}
+    \item Conditional structures: \kwrd{if/elif/else},\\ \kwrd{C if X else Y}
   \end{itemize}
 \end{frame}
 
