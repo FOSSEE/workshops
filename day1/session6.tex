@@ -188,74 +188,7 @@ Out[]: True
 \subsection{Exercises}
 
 \begin{frame}[fragile]
-\frametitle{Problem 1}
-Given the matrix:\\
-\begin{center}
-$\begin{bmatrix}
--2 & 2 & 3\\
- 2 & 1 & 6\\
--1 &-2 & 0\\
-\end{bmatrix}$
-\end{center}
-Find:
-\begin{itemize}
-  \item[i] Transpose
-  \item[ii]Inverse
-  \item[iii]Determinant
-  \item[iv] Eigenvalues and Eigen vectors
-  \item[v] Singular Value decomposition
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Problem 2}
-Given 
-\begin{center}
-A = 
-$\begin{bmatrix}
--3 & 1 & 5 \\
-1 & 0 & -2 \\
-5 & -2 & 4 \\
-\end{bmatrix}$
-, B = 
-$\begin{bmatrix}
-0 & 9 & -12 \\
--9 & 0 & 20 \\
-12 & -20 & 0 \\
-\end{bmatrix}$
-\end{center}
-Find:
-\begin{itemize}
-  \item[i] Sum of A and B
-  \item[ii]Elementwise Product of A and B
-  \item[iii] Matrix product of A and B
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solution}
-Sum: 
-$\begin{bmatrix}
--3 & 10 & 7 \\
--8 & 0 & 18 \\
-17 & -22 & 4 \\
-\end{bmatrix}$
-,\\ Elementwise Product:
-$\begin{bmatrix}
-0 & 9 & -60 \\
--9 & 0 & -40 \\
-60 & 40 & 0 \\
-\end{bmatrix}$
-,\\ Matrix product:
-$\begin{bmatrix}
-51 & -127 & 56 \\
--24 & 49 & -12 \\
-66 & -35 & -100 \\
-\end{bmatrix}$
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Problem 3}
+\frametitle{Problem}
 Solve the set of equations:
 \begin{align*}
   x + y + 2z -w & = 3\\
@@ -374,8 +307,38 @@ Out[]: -0.66623943249251527
 %% \end{frame}
 
 \section{ODEs}
+
 \begin{frame}[fragile]
-\frametitle{ODE Integration}
+\frametitle{Solving ODEs using SciPy}
+\begin{itemize}
+\item Let's consider the spread of an epidemic in a population
+\item $\frac{dy}{dt} = ky(L-y)$ gives the spread of the disease
+\item L is the total population.
+\item Use L = 25000, k = 0.00003, y(0) = 250
+\item Define a function as below
+\end{itemize}
+\begin{lstlisting}
+In []: def epid(y, t):
+  ....     k, L = 0.00003, 25000
+  ....     return k*y*(L-y)
+  ....
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving ODEs using SciPy \ldots}
+\begin{lstlisting}
+In []: t = arange(0, 12, 0.2)
+
+In []: y = odeint(epid, 250, t)
+
+In []: plot(t, y)
+\end{lstlisting}
+%Insert Plot
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{ODEs - Simple Pendulum}
 We shall use the simple ODE of a simple pendulum. 
 \begin{equation*}
 \ddot{\theta} = -\frac{g}{L}sin(\theta)
@@ -392,10 +355,9 @@ We shall use the simple ODE of a simple pendulum.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy}
+\frametitle{ODEs - Simple Pendulum \ldots}
 \begin{itemize}
-\item We use the \typ{odeint} function from scipy to do the integration
-\item Define a function as below
+\item Use \typ{odeint} to do the integration
 \end{itemize}
 \begin{lstlisting}
 In []: def pend_int(initial, t):
@@ -408,7 +370,7 @@ In []: def pend_int(initial, t):
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
+\frametitle{ODEs - Simple Pendulum \ldots}
 \begin{itemize}
 \item \typ{t} is the time variable \\ 
 \item \typ{initial} has the initial values
@@ -420,7 +382,7 @@ In []: initial = [10*2*pi/360, 0]
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Solving ODEs using SciPy \ldots}
+\frametitle{ODEs - Simple Pendulum \ldots}
 %%\begin{small}
 \typ{In []: from scipy.integrate import odeint}
 %%\end{small}

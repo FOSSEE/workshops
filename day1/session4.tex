@@ -148,6 +148,29 @@ array([[ 1,  1,  2, -1],
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Initializing some special matrices}
+\begin{small}
+  \begin{lstlisting}
+In []: ones((3,5))
+Out[]: 
+array([[ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.]])
+
+In []: ones_like([1, 2, 3, 4, 5]) 
+Out[]: array([1, 1, 1, 1, 1])   
+
+In []: identity(2)
+Out[]: 
+array([[ 1.,  0.],
+       [ 0.,  1.]])
+  \end{lstlisting}
+Also available \alert{\typ{zeros, zeros_like, empty, empty_like}}
+\end{small}
+\end{frame}
+
+
+\begin{frame}[fragile]
   \frametitle{Accessing elements}
   \begin{lstlisting}
 In []: C = array([[1,1,2],
@@ -426,7 +449,7 @@ Out[]: array([-1.,  8., -1.])
 
 \section{Least Squares Fit}
 \begin{frame}[fragile]
-\frametitle{$L$ vs. $T^2$}
+\frametitle{$L$ vs. $T^2$ - Scatter}
 \vspace{-0.15in}
 \begin{figure}
 \includegraphics[width=4in]{data/L-Tsq-points}
@@ -434,7 +457,7 @@ Out[]: array([-1.,  8., -1.])
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{$L$ vs. $T^2$}
+\frametitle{$L$ vs. $T^2$ - Line}
 \vspace{-0.15in}
 \begin{figure}
 \includegraphics[width=4in]{data/L-Tsq-Line}
@@ -442,7 +465,8 @@ Out[]: array([-1.,  8., -1.])
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Least Squares Fit}
+\frametitle{$L$ vs. $T^2$ }
+\frametitle{$L$ vs. $T^2$ - Least Square Fit}
 \vspace{-0.15in}
 \begin{figure}
 \includegraphics[width=4in]{data/least-sq-fit}
@@ -484,22 +508,6 @@ Out[]: array([-1.,  8., -1.])
 In []: A = array([L, ones_like(L)])
 In []: A = A.T
 \end{lstlisting}
-\begin{small}
-\begin{block}{}
-  \begin{lstlisting}
-In []: ones((3,5))
-Out[]: 
-array([[ 1.,  1.,  1.,  1.,  1.],
-       [ 1.,  1.,  1.,  1.,  1.],
-       [ 1.,  1.,  1.,  1.,  1.]])
-
-In []: ones_like([1, 2, 3, 4, 5]) 
-Out[]: array([1, 1, 1, 1, 1])   
-  \end{lstlisting}
-Also available \alert{\typ{zeros, zeros_like, empty, empty_like}}
-\end{block}
-\end{small}
-
 %% \begin{itemize}
 %% \item A is also called a Van der Monde matrix
 %% \item It can also be generated using \typ{vander}
@@ -549,6 +557,7 @@ In []: plot(L, Tline)
   \begin{itemize}
   \item Matrices
     \begin{itemize}
+      \item Initializing
       \item Accessing elements
       \item Slicing and Striding
       \item Transpose
