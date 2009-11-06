@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
-% Copyright (c) 2005-2009, Prabhu Ramachandran
+% Author: FOSSEE 
+% Copyright (c) 2009, FOSSEE, IIT Bombay
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {1, November 2009\\Day 2, Session 2}
+\date[] {8 November, 2009\\Day 2, Session 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -123,13 +123,113 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
+\section{Control flow}
+\subsection{Basic Looping}
+\begin{frame}[fragile]
+  \frametitle{\typ{while}}
+Example: Fibonacci series
+  \begin{lstlisting}
+# the sum of two elements
+# defines the next
+In []: a, b = 0, 1
+In []: while b < 10:
+  ...:     print b,
+  ...:     a, b = b, a + b
+  ...:
+  ...:
+\end{lstlisting}
+\typ{1 1 2 3 5 8}\\
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{range()}}
+\kwrd{range([start,] stop[, step])}\\
+\begin{itemize}
+  \item range() returns a list of integers
+  \item The \emph{start} and the \emph{step} arguments are optional
+  \item \emph{stop} argument is not included in the list
+\end{itemize}
+\vspace*{.5in}
+\begin{itemize}
+  \item \alert{Anything within \typ{[]} is optional}
+  \begin{itemize}
+    \item Nothing to do with Python.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\typ{for} \ldots \typ{range()}}
+Example: print squares of first \typ{n} numbers
+  \begin{lstlisting}
+In []: for i in range(5):
+ ....:     print i, i * i
+ ....:
+ ....:
+0 0
+1 1
+2 4
+3 9
+4 16
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\typ{for} \ldots \typ{range()}}
+Example: print squares of odd numbers from 3 to 9
+  \begin{lstlisting}
+In []: for i in range(3, 10, 2):
+ ....:     print i, i * i
+ ....:
+ ....:
+3 9
+5 25
+7 49
+9 81
+\end{lstlisting}
+\inctime{5}
+\end{frame}
+
+\subsection{Exercises}
+
+\begin{frame}{Problem set 1: Problem 1.1}
+  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
+\vspace*{0.2in}
+\emphbar{These are called $Armstrong$ numbers.}
+\end{frame}
+
+\begin{frame}{Problem 1.2 - Collatz sequence}
+\begin{enumerate}
+  \item Start with an arbitrary (positive) integer. 
+  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
+  \item Repeat the procedure with the new number.
+  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
+\end{enumerate}
+    Write a program that accepts the starting value and prints out the Collatz sequence.
+\end{frame}
+
+\begin{frame}[fragile]{Problem 1.3}
+  Write a program that prints the following pyramid on the screen. 
+  \begin{lstlisting}
+1
+2  2
+3  3  3
+4  4  4  4
+  \end{lstlisting}
+The number of lines must be obtained from the user.\\
+\pause
+\emphbar{When can your code fail?}
+\inctime{5}
+\end{frame}
+
 \section{Data structures}
 \subsection{Lists}
 \begin{frame}[fragile]
   \frametitle{Lists}
 \begin{block}{We already know that}
   \begin{lstlisting}
-num = [1, 2, 3, 4, 5, 6, 7, 8]
+num = [1, 2, 3, 4]
   \end{lstlisting}
 \centerline{is a list}
 \end{block}
@@ -138,29 +238,76 @@ num = [1, 2, 3, 4, 5, 6, 7, 8]
 \begin{frame}[fragile]
   \frametitle{Lists: methods}
   \begin{lstlisting}
+In []: num = [1, 2, 3, 4]
+
+In []: num.append([9, 10, 11])
+
+In []: num
+Out[]: [1, 2, 3, 4, [9, 10, 11]]
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Lists: methods}
+  \begin{lstlisting}
+In []: num = [1, 2, 3, 4]
+
+In []: num.extend([5, 6, 7])
+In []: num
+Out[]: [1, 2, 3, 4, 5, 6, 7]
+
 In []: num.reverse()
 In []: num
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1]
+Out[]: [7, 6, 5, 4, 3, 2, 1]
 
-In []: num.extend([0, -1, -2])
+In []: num.remove(6)
 In []: num
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, 0, -1]
-
-In []: num.remove(0)
-In []: num
-Out[]: [8, 7, 6, 5, 4, 3, 2, 1, -1]
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Lists: slicing}
+  \begin{itemize}
+    \item \typ{list[initial:final]}
+  \end{itemize}
+\begin{lstlisting}
+In []: a = [1, 2, 3, 4, 5]
+
+In []: a[1:3]
+Out[]: [2, 3]
+
+In []: a[1:-1]
+Out[]: [2, 3, 4]
+
+In []: a[:3]
+Out[]: [1, 2, 3]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Lists: slicing}
+  \begin{itemize}
+    \item \typ{list[initial:final:step]}
+  \end{itemize}
+\begin{lstlisting}
+In []: a[1:-1:2]
+Out[]: [2, 4]
+
+In []: a[::2]
+Out[]: [1, 3, 5]
+
+In []: a[-1::-1]
+Out[]: [5, 4, 3, 2, 1]
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{List containership}
 \begin{lstlisting}
-In []: a = 8
-
-In []: a in num
+In []: 4 in num
 Out[]: True
 
-In []: b = 10
+In []: b = 15
 In []: b in num
 Out[]: False
 
@@ -174,9 +321,14 @@ Out[]: True
 \frametitle{Tuples: Immutable lists}
 \begin{lstlisting}
 In []: t = (1, 2, 3, 4, 5, 6, 7, 8)
+
 In []: t[0] + t[3] + t[-1]
 Out[]: 13
+
+# Try the following!
+In []: t[4] = 7 
 \end{lstlisting}
+\pause
 \begin{block}{Note:}
 \begin{itemize}
   \item Tuples are immutable - cannot be changed
@@ -200,7 +352,7 @@ They need not be of the same type!
 
 \subsection{Dictionaries}
 \begin{frame}[fragile]
-  \frametitle{Dictionaries: Recall}
+  \frametitle{Dictionaries: recall}
   \begin{lstlisting}
 In []: player = {'Mat': 134,'Inn': 233,
           'Runs': 10823, 'Avg': 52.53}
@@ -212,6 +364,28 @@ Out[]: 52.530000000000001
     Duplicate keys are not allowed!\\
     Dictionaries are iterable through keys.
   \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionaries: containership}
+  \begin{lstlisting}
+In []: 'Inn' in player
+Out[]: True
+
+In []: 'Econ' in player
+Out[]: False
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionaries: methods}
+  \begin{lstlisting}
+In []: player.keys()
+Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
+
+In []: player.values()
+Out[]: [10823, 233, 52.530000000000001, 134]
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame} {Problem Set 2.1: Problem 2.1.1}
@@ -228,32 +402,47 @@ You are given date strings of the form ``29, Jul 2009'', or ``4 January 2008''. 
       \item >, >=, <, <=, in, \ldots
     \end{itemize}
     \begin{lstlisting}
->>> f10 = set([1,2,3,5,8])
->>> p10 = set([2,3,5,7])
->>> f10|p10
-set([1, 2, 3, 5, 7, 8])
->>> f10&p10
-set([2, 3, 5])
->>> f10-p10
-set([8, 1])
+
+In []: f10 = set([1,2,3,5,8])
+
+In []: p10 = set([2,3,5,7])
+
+In []: f10 | p10
+Out[]: set([1, 2, 3, 5, 7, 8])
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Set}
+  \frametitle{Set \ldots}
     \begin{lstlisting}
->>> p10-f10, f10^p10
-set([7]), set([1, 7, 8])
->>> set([2,3]) < p10
-True
->>> set([2,3]) <= p10
-True
->>> 2 in p10
-True
->>> 4 in p10
-False
->>> len(f10)
-5
+In []: f10 & p10
+Out[]: set([2, 3, 5])
+
+In []: f10 - p10
+Out[]: set([1, 8])
+
+In []: p10 - f10, f10 ^ p10
+Out[]: (set([7]), set([1, 7, 8]))
+
+In []: set([2,3]) < p10
+Out[]: True
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Set \ldots}
+    \begin{lstlisting}
+In []: set([2,3]) <= p10
+Out[]: True
+
+In []: 2 in p10
+Out[]: True
+
+In []: 4 in p10
+Out[]: False
+
+In []: len(f10)
+Out[]: 5
 \end{lstlisting}
 \end{frame}
 
@@ -261,7 +450,14 @@ False
   \frametitle{Problem set 2.2}
   \begin{description}
     \item[2.2.1] Given a dictionary of the names of students and their marks, identify how many duplicate marks are there? and what are these?
-    \item[2.2.2] Given a string of the form ``4-7, 9, 12, 15'' find the missing numbers in the given range.
+\end{description}
+\inctime{15}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem set 2.2}
+  \begin{description}
+    \item[2.2.2] Given a list of words, find all the anagrams in the list
 \end{description}
 \inctime{15}
 \end{frame}
@@ -294,6 +490,19 @@ def signum( r ):
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle {What does this function do?}
+  \begin{lstlisting}
+def what( n ):
+    if n < 0: n = -n
+    while n > 0:
+        if n % 2 == 1:
+            return False
+        n /= 10
+    return True
+  \end{lstlisting}
+\end{frame} 
+
+\begin{frame}[fragile]
   {What does this function do?}
 \begin{lstlisting}
 def what( n ):
@@ -304,218 +513,12 @@ def what( n ):
   \end{lstlisting}
 \end{frame}
 
-\subsection{Default arguments}
-\begin{frame}[fragile]
-  \frametitle{Functions: default arguments}
-  \small
-  \begin{lstlisting}
-def ask_ok(prompt, complaint='Yes or no!'):
-    while True:
-        ok = raw_input(prompt)
-        if ok in ('y', 'ye', 'yes'): 
-            return True
-        if ok in ('n', 'no', 'nop',
-                  'nope'): 
-            return False
-        print complaint
-
-ask_ok('?')
-ask_ok('?', '[Y/N]')
-  \end{lstlisting}
-\end{frame}
-
-\subsection{Built-in functions}
-\begin{frame}
-  {Before writing a function}
-  \begin{itemize}
-      \item Variety of builtin functions are available
-      \item \typ{abs, any, all, len, max, min}
-      \item \typ{pow, range, sum, type}
-      \item Refer here:
-          \url{http://docs.python.org/library/functions.html}
-  \end{itemize}
-  \inctime{10} 
-\end{frame}
-
-\subsection{Exercises}
-\begin{frame}{Problem set 3: Problem 3.1}
-  Write a function to return the gcd of two numbers.
-\end{frame}
-
-\begin{frame}{Problem 3.2}
-Write a program to print all primitive pythagorean triads (a, b, c) where a, b are in the range 1---100 \\
-A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive we mean triads that do not `depend' on others. For example, (4,3,5) is a variant of (3,4,5) and hence is not primitive. And (10,24,26) is easily derived from (5,12,13) and is also not primitive.
-\end{frame}
-
-\begin{frame}{Problem 3.3}
-  Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\newline\\\emph{For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).}
-\inctime{15}
-\end{frame}
-
-\section{Modules}
-\begin{frame}[fragile]
-    {Modules}
-\begin{lstlisting}
->>> sqrt(2)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-NameError: name 'sqrt' is not defined
->>> import math        
->>> math.sqrt(2)
-1.4142135623730951
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    {Modules}
-  \begin{itemize}
-    \item The \kwrd{import} keyword ``loads'' a module
-    \item One can also use:
-      \begin{lstlisting}
->>> from math import sqrt
->>> from math import *
-      \end{lstlisting}    
-    \item What is the difference?
-    \item \alert{Use the latter only in interactive mode}
-    \end{itemize}
-  \emphbar{Package hierarchies}
-      \begin{lstlisting}
->>> from os.path import exists
-      \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Modules: Standard library}
-  \begin{itemize}
-  \item Very powerful, ``Batteries included''
-  \item Some standard modules:
-    \begin{itemize}
-    \item Math: \typ{math}, \typ{random}
-    \item Internet access: \typ{urllib2}, \typ{smtplib}
-    \item System, Command line arguments: \typ{sys}
-    \item Operating system interface: \typ{os}
-    \item Regular expressions: \typ{re}
-    \item Compression: \typ{gzip}, \typ{zipfile}, and \typ{tarfile}
-    \item And a whole lot more!
-    \end{itemize}
-  \item Check out the Python Library reference:
-    \url{http://docs.python.org/library/}
-  \end{itemize}
-\inctime{5}
-\end{frame}
-
-\section{Coding Style}
-\begin{frame}{Readability and Consistency}
-    \begin{itemize}
-        \item Readability Counts!\\Code is read more often than its written.
-        \item Consistency!
-        \item Know when to be inconsistent.
-      \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile] \frametitle{A question of good style}
-  \begin{lstlisting}
-    amount = 12.68
-    denom = 0.05
-    nCoins = round(amount/denom)
-    rAmount = nCoins * denom
-  \end{lstlisting}
-  \pause
-  \begin{block}{Style Rule \#1}
-    Naming is 80\% of programming
-  \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Code Layout}
-  \begin{itemize}
-        \item Indentation
-        \item Tabs or Spaces??
-        \item Maximum Line Length
-        \item Blank Lines
-        \item Encodings
-   \end{itemize}
-\end{frame}
-
-\begin{frame}{Whitespaces in Expressions}
-  \begin{itemize}
-        \item When to use extraneous whitespaces??
-        \item When to avoid extra whitespaces??
-        \item Use one statement per line
-   \end{itemize}
-\end{frame}
-
-\begin{frame}{Comments}
-  \begin{itemize}
-        \item No comments better than contradicting comments
-        \item Block comments
-        \item Inline comments
-   \end{itemize}
-\end{frame}
-
-\begin{frame}{Docstrings}
-  \begin{itemize}
-        \item When to write docstrings?
-        \item Ending the docstrings
-        \item One liner docstrings
-   \end{itemize}
-More information at PEP8: http://www.python.org/dev/peps/pep-0008/
-\inctime{5}
-\end{frame}
-
-\section{Objects}
-\begin{frame}{Objects in general}
-    \begin{itemize}
-        \item What is an Object? (Types and classes)
-        \item identity
-        \item type
-        \item method
-      \end{itemize}
-\end{frame}
-
-\begin{frame}{Almost everything is an Object!}
-  \begin{itemize}
-    \item \typ{list}
-    \item \typ{tuple}
-    \item \typ{string}
-    \item \typ{dictionary}
-    \item \typ{function}
-    \item Of course, user defined class objects!
-  \end{itemize}
-\end {frame}
-
-\begin{frame}{Using Objects}
-  \begin{itemize}
-    \item Creating Objects: Initialization
-    \item Object Manipulation: Object methods and ``.'' operator
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Objects provide consistency}
-  \small
-  \begin{lstlisting}
-for element in (1, 2, 3):
-    print element
-for key in {'one':1, 'two':2}:
-    print key
-for char in "123":
-    print char
-for line in open("myfile.txt"):
-    print line
-for line in urllib2.urlopen('http://site.com'):
-    print line
-  \end{lstlisting}
-\inctime{10}
-\end{frame}
-
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item Lists, Tuples, Dictionaries, Sets: creation and manipulation
-    \item More about functions
-    \item Coding style
-    \item Objects: creation and manipulation
+    \item Loops: \kwrd{while}, \kwrd{for}
+    \item Advanced Data structures
+    \item Functions
   \end{itemize}
 \end{frame}
 
