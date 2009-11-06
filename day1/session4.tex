@@ -74,7 +74,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Matrices \& Equations]{Python for Science and Engg: Matrices, Least Square Fit, \& Solution of equations}
+\title[Matrices \& Curve Fitting]{Python for Science and Engg: Matrices \& Least Square Fit}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -277,7 +277,7 @@ Out[]: (512, 512, 4)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Slicing \& Striding Exercises \ldots}
+  \frametitle{Solutions}
 \begin{small}
   \begin{lstlisting}
 In []: imshow(A[:256,:256])
@@ -462,8 +462,7 @@ Out[]: array([-1.,  8., -1.])
 \frametitle{\typ{lstsq}}
 \begin{itemize}
 \item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
-\item The equation can be re-written as $T^2 = A \cdot p$
-\item where A is   
+\item In matrix form, the equation can be represented as $T^2 = A \cdot p$, where A is   
   $\begin{bmatrix}
   L_1 & 1 \\
   L_2 & 1 \\
@@ -536,13 +535,22 @@ In []: plot(L, Tline)
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Least Squares Fit}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit}
+\end{figure}
+\end{frame}
+
 \section{Summary}
 \begin{frame}
-  \frametitle{What did we learn??}
+  \frametitle{What did we learn?}
   \begin{itemize}
   \item Matrices
     \begin{itemize}
       \item Accessing elements
+      \item Slicing and Striding
       \item Transpose
       \item Addition
       \item Multiplication
