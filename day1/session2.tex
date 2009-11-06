@@ -123,6 +123,18 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
+%\begin{frame}
+%\frametitle{Python Scripts\ldots}
+%  \begin{itemize}
+%    \item Open a new file in an \alert{editor}
+%    \item Copy and paste from the output of \typ{\%hist -n}
+%    \item Save the file as \typ{sine_plot.py}
+%  \end{itemize}
+%  \begin{itemize}
+%  \item run the file in IPython using \typ{\%run -i sine_plot.py}\\
+%  \end{itemize}
+%\end{frame}
+
 \section{Scripts}
 
 \begin{frame}[fragile]
@@ -197,22 +209,27 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 
 \section{Lists}
 \begin{frame}[fragile]
-  \frametitle{How to create the data?}
-What were \typ{x} and \typ{y}?\\
+  \frametitle{Lists: Introduction}
+  \begin{lstlisting}
+    In []: x = [0, 1, 2, 3]
+
+    In []: y = [7, 11, 15, 19]
+
+  \end{lstlisting}
+What are \typ{x} and \typ{y}?\\
 \begin{center}
 \alert{\typ{lists!!}}
 \end{center}
-\begin{lstlisting}
-In []: mtlist = [] #Empty List
-
-In []: lst = [ 1, 2, 3, 4, 5] 
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Accessing elements of a list}
+\frametitle{Lists: Initializing \& accessing elements}
 \begin{lstlisting}
-In []: lst[0]+lst[1]+lst[-1]
+In []: mtlist = [] #Empty List
+
+In []: a = [ 1, 2, 3, 4, 5] 
+
+In []: a[0]+a[1]+a[-1]
 Out[]: 8
 \end{lstlisting}
 \end{frame}
@@ -220,13 +237,13 @@ Out[]: 8
 \begin{frame}[fragile]
   \frametitle{List: Slicing}
   \begin{block}{Remember\ldots}
-	\kwrd{In []: lst = [ 1, 2, 3, 4, 5]}
+	\kwrd{In []: a = [ 1, 2, 3, 4, 5]}
   \end{block}
 \begin{lstlisting}
-In []: lst[1:3]  # A slice.
+In []: a[1:3]  # A slice.
 Out[]: [2, 3]
 
-In []: lst[1:-1]
+In []: a[1:-1]
 Out[]: [2, 3, 4]
 \end{lstlisting}
 \alert{\typ{list[initial:final]}}
@@ -236,14 +253,14 @@ Out[]: [2, 3, 4]
 \begin{frame}[fragile]
 \frametitle{List operations}
 \begin{lstlisting}
-In []: a = [ 6, 7, 8, 9]
-In []: b = lst + a
+In []: b = [ 6, 7, 8, 9]
+In []: c = a + b
 
-In []: b
+In []: c
 Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-In []: lst.append(6)
-In []: lst
+In []: a.append(6)
+In []: a
 Out[]: [ 1, 2, 3, 4, 5, 6]
 \end{lstlisting}
 %\inctime{10}
@@ -252,7 +269,7 @@ Out[]: [ 1, 2, 3, 4, 5, 6]
 \section{Simple Pendulum}
 \begin{frame}[fragile]
 \frametitle{Simple Pendulum - L and T}
-Let us look at the example of the Simple Pendulum experiment.
+Let us look at the Simple Pendulum experiment.
 \begin{center}
 \begin{small}
 \begin{tabular}{| c | c | c |}
@@ -276,10 +293,10 @@ $L$ & $T$ & $T^2$ \\ \hline
 \begin{frame}[fragile]
 \frametitle{Lets use lists}
 \begin{lstlisting}
-In []: L = [0.1, 0.2, 0.3, 0.4, 0.5, 
+In []: l = [0.1, 0.2, 0.3, 0.4, 0.5, 
             0.6, 0.7, 0.8, 0.9]
 
-In []: T = [0.69, 0.8989, 1.1867, 
+In []: t = [0.69, 0.8989, 1.1867, 
             1.2991, 1.4656, 1.5843, 
             1.7706, 1.8296, 1.9440]
 \end{lstlisting}
@@ -288,24 +305,37 @@ In []: T = [0.69, 0.8989, 1.1867,
 \begin{frame}[fragile]
 \frametitle{Plotting $L$ vs $T^2$}
 \begin{itemize}
-\item We must square each of the values in T
+\item We must square each of the values in \typ{t}
 \item How to do it?
-\item We use a \kwrd{for} loop to iterate over T
+\item We use a \kwrd{for} loop to iterate over \typ{t}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Plotting $L$ vs $T^2$}
 \begin{lstlisting}
-In []: TSq = []
+In []: tsq = []
 
-In []: for t in T:
- ....:     TSq.append(t*t)
+In []: for time in t:
+ ....:     tsq.append(time*time)
 
-In []: plot(L, TSq)
+In []: plot(l, tsq)
 Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
-This gives \kwrd{TSq} which is the list of squares of T values.
+This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{How to come out of the \textt{for} loop?}
+  Hit the ``enter'' key twice to come to the previous indentation level
+  \begin{lstlisting}
+    In []: for time in t:
+     ....:     tsq.append(time*time)
+     ....:     
+     ....:     
+
+    In []:
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -328,6 +358,9 @@ $ cat pendulum.txt
 1.5000e-01 8.6789e-01
 \end{lstlisting}
 \ldots
+\begin{block}{Windows users:}
+  >type pendulum.txt
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -340,31 +373,28 @@ $ cat pendulum.txt
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Reading \typ{pendulum.txt}}
+\frametitle{Plotting from \typ{pendulum.txt}}
+Open a new script and type the following:
 \begin{lstlisting}
-In []: L = []
-In []: T = []
-In []: for line in open('pendulum.txt'):
-  ....     points = line.split()
-  ....     L.append(float(points[0]))
-  ....     T.append(float(points[1]))
+l = []
+t = []
+for line in open('pendulum.txt'):
+    points = line.split()
+    l.append(float(points[0]))
+    t.append(float(points[1]))
+tsq = []
+for time in t:
+    tsq.append(time*time)
+plot(l, tsq, '.')
 \end{lstlisting}
-\begin{itemize}
-\item We now have two lists L and T
-\item Now, repeat previous steps for plotting
-\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Plotting from \typ{pendulum.txt}}
-\begin{lstlisting}
-In []: TSq = []
-
-In []: for t in T:
- ....:     TSq.append(t*t)
-
-In []: plot(L, TSq, '.')
-\end{lstlisting}
+\begin{frame}
+\frametitle{Save and run}
+\begin{itemize}
+  \item Save as pendulum\_plot.py.
+  \item Run using \kwrd{\%run -i pendulum\_plot.py}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -375,7 +405,7 @@ In []: plot(L, TSq, '.')
 
 \begin{frame}[fragile]
   \frametitle{Reading files \ldots}
-\typ{In []: for line in open('pendulum.txt'):}
+\typ{for line in open('pendulum.txt'):}
 \begin{itemize}
 \item opening file `\typ{pendulum.txt}'
 \item reading the file line by line
@@ -429,23 +459,18 @@ Out[]: <type 'float'>
 
 \begin{frame}[fragile]
 \frametitle{Let's review the code}
-\begin{small}
 \begin{lstlisting}
-In []: L = []
-In []: T = []
-In []: for line in open('pendulum.txt'):
-  ....     points = line.split()
-  ....     L.append(float(points[0]))
-  ....     T.append(float(points[1]))
-
-In []: TSq = []
-
-In []: for t in T:
- ....:     TSq.append(t*t)
-
-In []: plot(L, TSq, '.')
+l = []
+t = []
+for line in open('pendulum.txt'):
+    points = line.split()
+    l.append(float(points[0]))
+    t.append(float(points[1]))
+tsq = []
+for time in t:
+    tsq.append(time*time)
+plot(l, tsq, '.')
 \end{lstlisting}
-\end{small}
 \end{frame}
 
 \begin{frame}[fragile]
