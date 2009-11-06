@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+%\title{Plotting Data}
+%\author{FOSSEE}
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Plotting Data}\\
+\large{FOSSEE}
+\end{center}
+\section{Scripts}
+IPython History
+\begin{verbatim}
+In [1]: %hist
+In [2]: %hist -n
+\end{verbatim}
+
+Running a Script
+\begin{verbatim}
+In [3]:  %run script_name.py
+\end{verbatim}
+
+\section{Plotting from Data files}
+\begin{verbatim}
+In [1]: L = [] #Empty List
+In [2]: T = []
+In [3]: for line in open('pendulum.txt'): # Opening & Reading files
+  ....:     points = line.split() # Splitting a string
+  ....:     L.append(float(points[0])) # Appending to a list
+  ....:     T.append(float(points[1]))
+In [4]: TSq = []
+In [5]: for t in T:  #Iterating through lists
+ ....:     TSq.append(t*t)
+In [6]: plot(L, TSq, '.') # Plotting points
+\end{verbatim}
+\end{document}
+

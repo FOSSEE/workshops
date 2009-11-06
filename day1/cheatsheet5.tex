@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\title{Matrices and Solution of Equations}
+\author{FOSSEE}
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Interpolation, Differentiation and Integration}\\
+\large{FOSSEE}
+\end{center}
+\section{}
+Loading a data file
+\begin{verbatim}
+In [2]: x, y = loadtxt('points.txt', unpack = True)
+#load data file directly into Arrays.
+\end{verbatim}
+\section{}
+Interploate
+\begin{verbatim}
+In []: from scipy.interpolate import splrep
+In []: tck = splrep(x,y) #get spline curve representation for x,y.
+In []: from scipy.interpolate import splev
+#To evaluate spline and it's derivatives.
+In []: Xnew = arange(0.01,3,0.02)
+#missing set of points
+In []: Ynew = splev(Xnew, tck)
+#Value of function at Xnew
+In []: plot(Xnew, Ynew)
+\end{verbatim}
+
+\section{Differentiation}
+Taylor series - finite difference approximations
+$f(x+h)=f(x)+hf^{'}(x)$ Forward
+\begin{verbatim}
+In []: x = linspace(0, 2*pi, 100)
+In []: y = sin(x)
+In []: deltax = x[1] - x[0]
+In []: fD = (y[1:] - y[:-1]) / deltax 
+#fD is the required forward difference
+\end{verbatim}
+
+\section{Quadrature}
+$\int_0^1(sin(x) + x^2)$ 
+In []: def f(x):
+           return sin(x)+x**2
+In []: from scipy.integrate import quad
+In []: quad(f, 0, 1)
+\end{document}
+

@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\title{Matrices and Solution of Equations}
+\author{FOSSEE}
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Matrices and Solution of Equations}\\
+\large{FOSSEE}
+\end{center}
+\section{Matrices}
+Inputting a Matrix
+\begin{verbatim}
+In [1]: A = matrix([[1, 2, 3],[4, 5, 6]])
+\end{verbatim}
+Matrix Operations
+\begin{verbatim}
+In [1]: A.T # Transpose
+In [2]: sum(A) # Sum of all elements
+In [3]: A+B # Addition
+In [1]: A*B # Product
+In [1]: inv(A) # Inverse
+In [1]: det(A) # Determinant
+\end{verbatim}
+
+Eigen Values and Eigen Vectors
+\begin{verbatim}
+In [1]: eig(A) #Eigen Values and Vectors
+In [2]: eigvals(A) #Eigen Values 
+\end{verbatim}
+Norm
+\begin{verbatim}
+In [1]: norm(A)
+\end{verbatim}
+Single Value Decomposition
+\begin{verbatim}
+In [1]: svd(A)
+\end{verbatim}
+Solving a set of equations
+\begin{verbatim}
+In [1]: A = matrix([...]) # Input Equation Coefficient Matrix   
+In [2]: b = matrix([...]) # Equation Target Values
+In [3]: x = solve(A, b)
+In [4]: Ax = A*x
+\end{verbatim}
+\end{document}
+
