@@ -144,9 +144,9 @@
   \begin{lstlisting}
 In []: G = []
 In []: for line in open('pendulum.txt'):
-  ....     points = line.split()
-  ....     l = float(points[0])
-  ....     t = float(points[1])
+  ....     point = line.split()
+  ....     l = float(point[0])
+  ....     t = float(point[1])
   ....     g = 4 * pi * pi * l / t * t
   ....     G.append(g)
   \end{lstlisting}
@@ -166,24 +166,24 @@ total = 0
 for g in G:
     total += g
 
-mean_g = total / len(g)
-print "Mean: ", mean_g
+g_mean = total / len(g)
+print "Mean: ", g_mean
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-mean_g = sum(G) / len(G)
-print "Mean: ", mean_g
+g_mean = sum(G) / len(G)
+print "Mean: ", g_mean
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-mean_g = mean(G)
-print "Mean: ", mean_g
+g_mean = mean(G)
+print "Mean: ", g_mean
   \end{lstlisting}
   \inctime{10}
 \end{frame}
@@ -248,7 +248,6 @@ print "Mean: ", mean_g
     \item File reading
     \item Parsing
     \item Dictionaries 
-    \item List enumeration
     \item Arrays
     \item Statistical operations
   \end{itemize}
@@ -321,6 +320,10 @@ science = {}
     \item Keys will be region codes
     \item Values will be the number students who scored more than 90\% in that region
   \end{itemize}
+  \begin{block}{Sample \emph{science} dictionary}
+    \{'A': 729, 'C': 764, 'B': 1120,'E': 414, 'D': 603, 'F': 500\}
+  \end{block}
+
 \end{frame}
 
 \begin{frame}[fragile]
