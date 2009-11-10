@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\texttt{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -127,10 +127,10 @@
 \subsection{Basic Looping}
 \begin{frame}[fragile]
   \frametitle{\typ{while}}
-Example: Fibonacci series
+\begin{block}{Example: Fibonacci series}
+  Sum of previous two elements defines the next
+\end{block}
   \begin{lstlisting}
-# the sum of two elements
-# defines the next
 In []: a, b = 0, 1
 In []: while b < 10:
   ...:     print b,
@@ -145,23 +145,24 @@ In []: while b < 10:
 \frametitle{\typ{range()}}
 \kwrd{range([start,] stop[, step])}\\
 \begin{itemize}
-  \item range() returns a list of integers
-  \item The \emph{start} and the \emph{step} arguments are optional
-  \item \emph{stop} argument is not included in the list
+  \item \typ{range()} returns a list of integers
+  \item The \typ{start} and the \typ{step} arguments are optional
+  \item \typ{stop} is not included in the list
 \end{itemize}
 \vspace*{.5in}
-\begin{itemize}
-  \item \alert{Anything within \typ{[]} is optional}
+\begin{block}{Documentation convention}
   \begin{itemize}
-    \item Nothing to do with Python.
+    \item \alert{Anything within \typ{[]} is optional}
+    \begin{itemize}
+      \item Nothing to do with Python.
+    \end{itemize}
   \end{itemize}
-\end{itemize}
-
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\typ{for} \ldots \typ{range()}}
-Example: print squares of first \typ{n} numbers
+  \frametitle{\texttt{for} \ldots \typ{range()}}
+Example: print squares of first \typ{5} numbers
   \begin{lstlisting}
 In []: for i in range(5):
  ....:     print i, i * i
@@ -176,7 +177,7 @@ In []: for i in range(5):
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\typ{for} \ldots \typ{range()}}
+  \frametitle{\texttt{for} \ldots \typ{range()}}
 Example: print squares of odd numbers from 3 to 9
   \begin{lstlisting}
 In []: for i in range(3, 10, 2):
@@ -239,6 +240,9 @@ num = [1, 2, 3, 4]
   \frametitle{Lists: methods}
   \begin{lstlisting}
 In []: num = [1, 2, 3, 4]
+
+In []: num + [9, 10, 11]
+Out[]: [1, 2, 3, 4, 9, 10, 11]
 
 In []: num.append([9, 10, 11])
 
@@ -325,7 +329,6 @@ In []: t = (1, 2, 3, 4, 5, 6, 7, 8)
 In []: t[0] + t[3] + t[-1]
 Out[]: 13
 
-# Try the following!
 In []: t[4] = 7 
 \end{lstlisting}
 \pause
@@ -361,8 +364,8 @@ In []: player['Avg']
 Out[]: 52.530000000000001
   \end{lstlisting}
   \begin{block}{Note!}
-    Duplicate keys are not allowed!\\
-    Dictionaries are iterable through keys.
+    Duplicate keys $\Rightarrow$ overwritten!\\
+    You can iterate through a dictionary using keys.
   \end{block}
 \end{frame}
 
@@ -375,6 +378,12 @@ Out[]: True
 In []: 'Econ' in player
 Out[]: False
   \end{lstlisting}
+  \begin{block}{Note}
+    \begin{itemize}
+      \item We can check for the containership of keys only
+      \item Not values
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -384,17 +393,18 @@ In []: player.keys()
 Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
 
 In []: player.values()
-Out[]: [10823, 233, 52.530000000000001, 134]
+Out[]: [10823, 233, 
+        52.530000000000001, 134]
   \end{lstlisting}
 \end{frame}
 
 \begin{frame} {Problem Set 2.1: Problem 2.1.1}
-You are given date strings of the form ``29, Jul 2009'', or ``4 January 2008''. In other words a number, a string and another number, with a comma sometimes separating the items.\\Write a function that takes such a string and returns a tuple (yyyy, mm, dd) where all three elements are ints.
+You are given date strings of the form ``29 Jul, 2009'', or ``4 January 2008''. In other words a number, a string and another number, with a comma sometimes separating the items.\\Write a function that takes such a string and returns a tuple (yyyy, mm, dd) where all three elements are ints.
 \end{frame}
 
-\subsection{Set}
+\subsection{Sets}
 \begin{frame}[fragile]
-  \frametitle{Set}
+  \frametitle{Sets}
     \begin{itemize}
       \item Simplest container, mutable
       \item No ordering, no duplicates
@@ -447,18 +457,14 @@ Out[]: 5
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem set 2.2}
-  \begin{description}
-    \item[2.2.1] Given a dictionary of the names of students and their marks, identify how many duplicate marks are there? and what are these?
-\end{description}
-\inctime{15}
+  \frametitle{Problem set 2.2: Problem 2.2.1}
+Given a dictionary of the names of students and their marks, identify how many duplicate marks are there? and what are these?
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem set 2.2}
-  \begin{description}
-    \item[2.2.2] Given a list of words, find all the anagrams in the list
-\end{description}
+  \frametitle{Problem 2.2.2}
+Given a list of words, find all the anagrams in the list.
+
 \inctime{15}
 \end{frame}
 
@@ -468,7 +474,6 @@ Out[]: 5
   \begin{itemize}
     \item \kwrd{def} - keyword to define a function
     \item Arguments are local to a function
-    \item Docstrings are important!
     \item Functions can return multiple values
   \end{itemize}
 \end{frame}
@@ -487,6 +492,7 @@ def signum( r ):
     else:
         return 0
   \end{lstlisting}
+  \emphbar{Note docstrings}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -517,8 +523,15 @@ def what( n ):
   \frametitle{What did we learn?}
   \begin{itemize}
     \item Loops: \kwrd{while}, \kwrd{for}
-    \item Advanced Data structures
+    \item Advanced Data structures:
+    \begin{itemize}
+      \item Lists
+      \item Tuples
+      \item Dictionaries
+      \item Sets
+    \end{itemize}
     \item Functions
+    \item Docstrings
   \end{itemize}
 \end{frame}
 

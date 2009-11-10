@@ -51,7 +51,8 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\texttt{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
+
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -130,7 +131,7 @@
   \begin{itemize}
     \item Numbers: float, int, complex
     \item Strings
-    \item Boolean
+    \item Booleans
   \end{itemize}
 \end{frame}
 
@@ -138,7 +139,7 @@
 \begin{frame}[fragile]
   \frametitle{Numbers}
   \begin{itemize}
-    \item \kwrd{int}\\ \kwrd{int} = whole number, no matter what the size!
+    \item \kwrd{int}\\ whole number, no matter what the size!
   \begin{lstlisting}
 In []: a = 13
 
@@ -167,9 +168,9 @@ Out[]: 3.0
   \end{lstlisting}
 \end{frame}
 
-\subsection{Boolean}
+\subsection{Booleans}
 \begin{frame}[fragile]
-  \frametitle{Boolean}
+  \frametitle{Booleans}
   \begin{lstlisting}
 In []: t = True
 
@@ -211,15 +212,19 @@ In []: w = "hello"
 In []: print w[0] + w[2] + w[-1]
 Out[]: hlo
 
-In []: len(w) # guess what
+In []: len(w)
 Out[]: 5
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Strings \ldots}
+  \emphbar{Strings are immutable}
   \begin{lstlisting}
-In []: w[0] = 'H' # Can't do that!
+In []: w[0] = 'H' 
+  \end{lstlisting}
+  \pause
+  \begin{lstlisting}
 --------------------------------------------
 TypeError  Traceback (most recent call last)
 
@@ -248,7 +253,7 @@ Out[]: 'hello world'
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{A bit about IPython}
   \begin{itemize}
     \item IPython provides better help
@@ -265,7 +270,7 @@ In []: a.s<Tab>
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Still with strings}
+  \frametitle{Still with strings}
   \begin{itemize}
     \item We saw split() yesterday
     \item join() is the opposite of split()
@@ -294,6 +299,7 @@ Out[]: 'x is 1, y is 1.234'
 \section{Operators}
 \begin{frame}[fragile]
   \frametitle{Arithmetic operators}
+  \small
   \begin{lstlisting}
 In []: 1786 % 12
 Out[]: 10
@@ -351,15 +357,15 @@ In []: a /= 5
 \begin{frame}[fragile]
   \frametitle{String operations}
   \begin{lstlisting}
-In []: s = 'Hello '
+In []: s = 'Hello'
 
 In []: p = 'World'
 
 In []: s + p 
-Out[]: 'Hello World'
+Out[]: 'HelloWorld'
 
 In []: s * 4
-Out[]: 'Hello Hello Hello Hello'
+Out[]: 'HelloHelloHelloHello'
   \end{lstlisting}
 \end{frame}
 
@@ -367,13 +373,16 @@ Out[]: 'Hello Hello Hello Hello'
   \frametitle{String operations \ldots}
   \begin{lstlisting}
 In []: s * s
+  \end{lstlisting}
+  \pause
+  \begin{lstlisting}
 --------------------------------------------
 TypeError  Traceback (most recent call last)
 
 /<ipython console> in <module>()
 
-TypeError: can't multiply sequence by
-                non-int of type 'str'
+TypeError: can`t multiply sequence by
+                non-int of type `str`
   \end{lstlisting}
 \end{frame}
 
@@ -401,7 +410,7 @@ Out[]: False
 In []: int(17 / 2.0)
 Out[]: 8
 
-In []: float(17 / 2)  # Recall
+In []: float(17 / 2)
 Out[]: 8.0
 
 In []: str(17 / 2.0)
@@ -455,7 +464,7 @@ Enter a value: 5
   \frametitle{Simple IO: Console output}
   \begin{itemize}
     \item \texttt{print} is straight forward
-    \item Put the following code snippet in a file
+    \item Put the following code snippet in a file \emph{hello1.py}
   \end{itemize}
   \begin{lstlisting}
 print "Hello"
@@ -470,7 +479,7 @@ World
 
 \begin{frame}[fragile]
   \frametitle{Simple IO: Console output \ldots}
-Put the following code snippet in a file
+Put the following code snippet in a file \emph{hello2.py}
   \begin{lstlisting}
 print "Hello",
 print "World"
@@ -522,7 +531,7 @@ In []: if x < 0:
   \begin{lstlisting}
 ...
 a = raw_input('Enter number(Q to quit):')
-num = int(a) if a != 'Q' else break
+num = int(a) if a != 'Q' else 0
 ...
   \end{lstlisting}
 \end{frame}
