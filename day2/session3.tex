@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\texttt{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Basic Python]{Python language: Data structures and functions}
+\title[Basic Python]{Python language: Functions, modules and objects}
 
 \author[FOSSEE Team] {The FOSSEE Group}
 
@@ -143,20 +143,15 @@ Out[]: ['Rossum', ' Guido', ' 54',
 
 \begin{frame}[fragile]
   \frametitle{Functions: default arguments \ldots}
-  \small
   \begin{lstlisting}
-def ask_ok(prompt, complaint='Yes or no!'):
-    while True:
-        ok = raw_input(prompt)
-        if ok in ('y', 'ye', 'yes'):
-            return True
-        if ok in ('n', 'no', 'nop',
-                            'nope'):
-            return False
-        print complaint
+In []: def welcome(greet, name="World"):
+  ....     print greet, name
 
-ask_ok('?')
-ask_ok('?', '[Y/N]')
+In []: welcome("Hello")
+Hello World
+
+In []: welcome("Hi", "Guido")
+Hi Guido
   \end{lstlisting}
 \end{frame} 
 
@@ -164,43 +159,43 @@ ask_ok('?', '[Y/N]')
 \begin{frame}[fragile]
   \frametitle{Functions: Keyword arguments}
 We have seen the following
-  \begin{lstlisting}
-In []: legend(['sin(2y)'],
-              loc='center')
+\begin{lstlisting}
+In []: legend(['sin(2y)'], 
+                 loc = 'center')
+
 In []: plot(y, sin(y), 'g',
-                 linewidth=2)
+                 linewidth = 2)
+
 In []: annotate('local max',
-                 xy=(1.5, 1))
+                 xy = (1.5, 1))
+
 In []: pie(science.values(),
-            labels=science.keys())
+            labels = science.keys())
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Functions: keyword arguments \ldots}
-  \small
   \begin{lstlisting}
-def ask_ok(prompt, complaint='Yes or no!'):
-    while True:
-        ok = raw_input(prompt)
-        if ok in ('y', 'ye', 'yes'):
-            return True
-        if ok in ('n', 'no', 'nop',
-                            'nope'):
-            return False
-        print complaint
+In []: def welcome(greet, name="World"):
+  ....     print greet, name
 
-ask_ok(prompt='?')
-ask_ok(prompt='?', complaint='[y/n]')
-ask_ok(complaint='[y/n]', prompt='?')
-\end{lstlisting}
+In []: welcome("Hello", "James")
+Hello James
+
+In []: welcome("Hi", name="Guido")
+Hi Guido
+
+In []: welcome(name="Guido", greet="Hey")
+Hey Guido
+  \end{lstlisting}
 \end{frame}
 
 \subsection{Built-in functions}
 \begin{frame}
   {Before writing a function}
   \begin{itemize}
-      \item Variety of builtin functions are available
+      \item Variety of built-in functions are available
       \item \typ{abs, any, all, len, max, min}
       \item \typ{pow, range, sum, type}
       \item Refer here:
@@ -221,36 +216,32 @@ A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive 
 
 \begin{frame}{Problem 3.3}
   Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\newline\\\emph{For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).}
+
 \inctime{15}
 \end{frame}
 
 \section{Modules}
 \begin{frame}[fragile]
-  \frametitle{\typ{from} \ldots \typ{import} magic}
+  \frametitle{\texttt{from} \ldots \texttt{import} magic}
   \begin{lstlisting}
-from scipy.interpolate import splrep
-from scipy.interpolate import splev
-
-from scipy.integrate import quad
 from scipy.integrate import odeint
 
 from scipy.optimize import fsolve
   \end{lstlisting}
-\emphbar{All the above statements import one function into your namespace}
+\emphbar{Above statements import a function to our namespace}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Running scripts from command line}
   \small
   \begin{itemize}
-    \item Start cmd
-    \item cd to Desktop
-    \item python sine\_plot.py
+    \item Fire up a terminal
+    \item python four\_plot.py
   \end{itemize}
   \pause
   \begin{lstlisting}
 Traceback (most recent call last):
-  File "sine_plot.py", line 1, in <module>
+  File "four_plot.py", line 1, in <module>
     x = linspace(-5*pi, 5*pi, 500)
 NameError: name 'linspace' is not defined
   \end{lstlisting}
@@ -258,15 +249,14 @@ NameError: name 'linspace' is not defined
 
 \begin{frame}[fragile]
   \frametitle{Remedy}
-  \emphbar{Adding what lines to sine\_plot.py makes this program work?}
   \begin{lstlisting}
 from scipy import *
   \end{lstlisting}
-\alert{Now run python sine\_plot.py again!}
+\alert{Now run python four\_plot.py again!}
   \pause
   \begin{lstlisting}
 Traceback (most recent call last):
-  File "sine_plot.py", line 4, in <module>
+  File "four_plot.py", line 4, in <module>
     plot(x, x, 'b')
 NameError: name 'plot' is not defined
   \end{lstlisting}
@@ -274,11 +264,10 @@ NameError: name 'plot' is not defined
 
 \begin{frame}[fragile]
   \frametitle{Remedy \ldots}
-  \emphbar{What should we add now?}
   \begin{lstlisting}
 from pylab import *
   \end{lstlisting}
-\alert{Now run python sine\_plot.py again!!}
+\alert{Now run python four\_plot.py again!!}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -298,16 +287,14 @@ In []: from scipy import linspace
 \begin{frame}[fragile]
   \frametitle{Package hierarchies}
   \begin{lstlisting}
-from scipy.interpolate import splev
-
-from scipy.integrate import quad
+from scipy.integrate import odeint
 
 from scipy.optimize import fsolve
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{from \ldots import in a conventional way!}
+  \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
 from scipy import linspace, pi, sin
@@ -327,7 +314,7 @@ ylim(-5*pi, 5*pi)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{from \ldots import in a conventional way!}
+  \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
 import scipy
@@ -368,13 +355,13 @@ pylab.ylim(-5*scipy.pi, 5*scipy.pi)
 \begin{frame}[fragile]
   \frametitle{Modules of special interest}
   \begin{description}[matplotlibfor2d]
-    \item[\typ{pylab}] Easy, interactive, 2D plotting
+    \item[\texttt{pylab}] Easy, interactive, 2D plotting
 
-    \item[\typ{scipy}] arrays, statistics, optimization, integration, linear
+    \item[\texttt{scipy}] arrays, statistics, optimization, integration, linear
             algebra, Fourier transforms, signal and image processing,
             genetic algorithms, ODE solvers, special functions, and more
 
-    \item[\typ{Mayavi}] Easy, interactive, 3D plotting
+    \item[\texttt{Mayavi}] Easy, interactive, 3D plotting
   \end{description}
 \end{frame}
 
