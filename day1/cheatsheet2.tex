@@ -1,37 +1,100 @@
 \documentclass[12pt]{article}
-%\title{Plotting Data}
-%\author{FOSSEE}
+
+
+\title{Plotting Points}
+\author{FOSSEE}
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+  commentstyle=\itshape\bfseries,
+  showstringspaces=false,
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
 \begin{document}
 \date{}
 \vspace{-1in}
 \begin{center}
-\LARGE{Plotting Data}\\
+\LARGE{Plotting Points}\\
 \large{FOSSEE}
 \end{center}
-\section{Scripts}
-IPython History
-\begin{verbatim}
-In [1]: %hist
-In [2]: %hist -n
-\end{verbatim}
+\section{Plotting Points with Lists}
 
-Running a Script
-\begin{verbatim}
-In [3]:  %run script_name.py
-\end{verbatim}
+\begin{lstlisting}
+In [1]: x = [0, 1, 2, 3]
+In [2]: y = [7, 11, 15, 19]
+In [3]: plot(x, y)
+In [4]: clf()
+In [5]: plot(x, y, 'o')  # Plotting Circles
+#Dots - '.', #Dashed lines - '--' #Lines - '-'
+\end{lstlisting}
 
-\section{Plotting from Data files}
-\begin{verbatim}
-In [1]: L = [] #Empty List
-In [2]: T = []
-In [3]: for line in open('pendulum.txt'): # Opening & Reading files
-  ....:     points = line.split() # Splitting a string
-  ....:     L.append(float(points[0])) # Appending to a list
-  ....:     T.append(float(points[1]))
-In [4]: TSq = []
-In [5]: for t in T:  #Iterating through lists
+\section{Lists}
+
+Initializing
+  \begin{lstlisting}
+In [10]: mtlist = []      # Empty List
+In [11]: lst = [ 1, 2, 3, 4, 5] 
+  \end{lstlisting}
+Slicing
+\begin{lstlisting}
+In [12]: lst[1:3]         # A slice.
+Out[12]: [2, 3]
+
+In [13]: lst[1:-1]
+Out[13]: [2, 3, 4]
+\end{lstlisting}
+Appending to lists
+\begin{lstlisting}
+In [14]: a = [ 6, 7, 8, 9]
+In [15]: b = lst + a
+In [16]: b
+Out[16]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+In [17]: lst.append(6)
+In [18]: lst
+Out[18]: [ 1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+
+Iterating over a List
+\begin{lstlisting}
+In [19]: for each in b:  # Iterating over the list, element-wise
+ ....:     print b       # Print each element
+ ....:
+\end{lstlisting}
+
+Splitting Strings
+\begin{lstlisting}
+In [20]: line = '1.2000e-01 7.4252e-01'
+In [21]: point = line.split()    # Splits the string at the space
+Out[21]: ['1.2000e-01', '7.4252e-01']
+\end{lstlisting}
+
+Plotting from Files
+\begin{lstlisting}
+In [22]: L = []
+In [23]: T = []
+
+#Open a file & operate on each line
+In [24]: for line in open('pendulum.txt'):  
+  ....     point = line.split()
+  ....     L.append(float(point[0]))
+  ....     T.append(float(point[1]))
+In [25]: TSq = []
+In [26]: for t in T:
  ....:     TSq.append(t*t)
-In [6]: plot(L, TSq, '.') # Plotting points
-\end{verbatim}
+ ....:     
+ ....:     
+In [27]: plot(L, TSq, '.')
+\end{lstlisting}
+
+
 \end{document}
 
