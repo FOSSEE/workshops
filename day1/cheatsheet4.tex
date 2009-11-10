@@ -1,47 +1,148 @@
 \documentclass[12pt]{article}
-\title{Matrices and Solution of Equations}
+\title{Matrices and Least Square Fit}
 \author{FOSSEE}
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+  commentstyle=\itshape\bfseries,
+  showstringspaces=false,
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
 \begin{document}
 \date{}
 \vspace{-1in}
 \begin{center}
-\LARGE{Matrices and Solution of Equations}\\
+\LARGE{Matrices and Least Square Fit}\\
 \large{FOSSEE}
 \end{center}
 \section{Matrices}
 Inputting a Matrix
-\begin{verbatim}
-In [1]: A = matrix([[1, 2, 3],[4, 5, 6]])
-\end{verbatim}
+\begin{lstlisting}
+In []: C = array([[1,1,2],
+                  [2,4,1],
+                  [-1,3,7]])
+In []: B = ones_like(C)
+In []: A = ones((3,2))
+In []: I = identity(3)
+\end{lstlisting}
+Accessing Elements
+\begin{lstlisting}
+In []: C[1,2]
+Out[]: 1
+
+In []: C[1]
+Out[]: array([2, 4, 1])
+\end{lstlisting}
+
+Changing elements
+\begin{lstlisting}
+In []: C[1,1] = -2
+In []: C
+Out[]: 
+array([[ 1,  1,  2],
+       [ 2, -2,  1],
+       [-1,  3,  7]])
+
+In []: C[1] = [0,0,0]
+In []: C
+Out[]: 
+array([[ 1,  1,  2],
+       [ 0,  0,  0],
+       [-1,  3,  7]])
+\end{lstlisting}
+
+Slicing
+\begin{lstlisting}
+In []: C[:,1]
+Out[]: array([1, 0, 3])
+
+In []: C[1,:]
+Out[]: array([0, 0, 0])
+
+In []: C[0:2,:]
+Out[]: 
+array([[1, 1, 2],
+       [0, 0, 0]])
+
+In []: C[1:3,:]
+Out[]: 
+array([[ 0,  0,  0],
+       [-1,  3,  7]])
+
+In []: C[:2,:]
+Out[]: 
+array([[1, 1, 2],
+       [0, 0, 0]])
+
+In []: C[1:,:]
+Out[]: 
+array([[ 0,  0,  0],
+       [-1,  3,  7]])
+
+In []: C[1:,:2]
+Out[]: 
+array([[ 0,  0],
+       [-1,  3]])
+\end{lstlisting}
+
+Striding
+\begin{lstlisting}
+In []: C[::2,:]
+Out[]: 
+array([[ 1,  1,  2],
+       [-1,  3,  7]])
+
+In []: C[:,::2]
+Out[]: 
+xarray([[ 1,  2],
+       [ 0,  0],
+       [-1,  7]])
+
+In []: C[::2,::2]
+Out[]: 
+array([[ 1,  2],
+       [-1,  7]])
+\end{lstlisting}
+
 Matrix Operations
-\begin{verbatim}
-In [1]: A.T # Transpose
-In [2]: sum(A) # Sum of all elements
-In [3]: A+B # Addition
-In [1]: A*B # Product
-In [1]: inv(A) # Inverse
-In [1]: det(A) # Determinant
-\end{verbatim}
+\begin{lstlisting}
+In []: A.T # Transpose
+In []: sum(A) # Sum of all elements
+In []: A+B # Addition
+In []: A*B # Product
+In []: inv(A) # Inverse
+In []: det(A) # Determinant
+\end{lstlisting}
 
 Eigen Values and Eigen Vectors
-\begin{verbatim}
-In [1]: eig(A) #Eigen Values and Vectors
-In [2]: eigvals(A) #Eigen Values 
-\end{verbatim}
-Norm
-\begin{verbatim}
-In [1]: norm(A)
-\end{verbatim}
-Single Value Decomposition
-\begin{verbatim}
-In [1]: svd(A)
-\end{verbatim}
-Solving a set of equations
-\begin{verbatim}
-In [1]: A = matrix([...]) # Input Equation Coefficient Matrix   
-In [2]: b = matrix([...]) # Equation Target Values
-In [3]: x = solve(A, b)
-In [4]: Ax = A*x
-\end{verbatim}
-\end{document}
+\begin{lstlisting}
+In []: eig(A) #Eigen Values and Vectors
+In []: eigvals(A) #Eigen Values 
+\end{lstlisting}
+%% Norm
+%% \begin{lstlisting}
+%% In []: norm(A)
+%% \end{lstlisting}
+%% Single Value Decomposition
+%% \begin{lstlisting}
+%% In []: svd(A)
+%% \end{lstlisting}
+Least Square Fit Line
+\begin{lstlisting}
+In []: A = array([L, ones_like(L)])
+In []: A = A.T
+In []: result = lstsq(A,TSq)
+In []: coef = result[0]
+In []: Tline = coef[0]*L + coef[1]
+In []: plot(L, Tline)
+\end{lstlisting}
 
+\end{document}

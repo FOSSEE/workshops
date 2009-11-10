@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+\title{Solving Equations \& ODEs}
+\author{FOSSEE}
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Solving Equations \& ODEs}\\
+\large{FOSSEE}
+\end{center}
+\section{Solving linear equations}
+\begin{verbatim}
+    In []: A = array([[3,2,-1],
+                      [2,-2,4],                   
+                      [-1, 0.5, -1]])
+    In []: b = array([[1], [-2], [0]])
+    In []: x = solve(A, b)
+    In []: Ax = dot(A,x)
+    In []: allclose(Ax, b)
+    Out[]: True
+\end{verbatim}
+\section{Finding roots}
+\begin{verbatim}
+  In []: coeffs = [1, 6, 13]
+  In []: roots(coeffs)
+\end{verbatim}
+Finding the roots of a function
+\begin{verbatim}
+In []: fsolve(sin(x)+cos(x)**2, 0)
+\end{verbatim}
+\section{ODE}
+\begin{verbatim}
+  In []: def epid(y, t):
+  ....     k, L = 0.00003, 25000
+  ....     return k*y*(L-y)
+  ....
+  
+  In []: t = arange(0, 12, 0.2)
+
+  In []: y = odeint(epid, 250, t)
+
+  In []: plot(t, y)
+\end{verbatim}
+\end{document}

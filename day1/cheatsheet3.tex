@@ -1,6 +1,22 @@
 \documentclass[12pt]{article}
 \title{Interactive Plotting}
 \author{FOSSEE}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+  commentstyle=\itshape\bfseries,
+  showstringspaces=false,
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
 \begin{document}
 \date{}
 \vspace{-1in}
@@ -10,54 +26,59 @@
 \end{center}
 \section{Statistics}
 Dictionary
-\begin{verbatim}
-In [1]: d = {"Hitchhiker's guide" : 42, 
-  ....:      "Terminator" : "I'll be back"} #Creation
-In [2]: d["Hitchhiker's guide"] # Accessing a value with key
-In [3]: "Hitchhiker's guide" in d #Checking for a key
-In [4]: d.keys() # Obtaining List of Keys
-In [5]: d.values() # Obtaining List of Values
-\end{verbatim}
+\begin{lstlisting}
+In []: d = {"Hitchhiker's guide" : 42, 
+ ....:      "Terminator" : "I'll be back"} #Creation
+In []: d["Hitchhiker's guide"] # Accessing a value with key
+In []: "Hitchhiker's guide" in d #Checking for a key
+In []: d.keys() # Obtaining List of Keys
+In []: d.values() # Obtaining List of Values
+\end{lstlisting}
 Iterating through List indices
-\begin{verbatim}
-In [1]: names = ["Guido","Alex", "Tim"]
-In [2]: for i, name in enumerate(names):
-   ...:     print i, name
-\end{verbatim}
-
-\begin{verbatim}
-In [1]: score = int(score_str) if score_str != 'AA' else 0
-\end{verbatim}
-Drawing Pie Charts
-\begin{verbatim}
-In [1]: pie(science.values(), labels=science.keys())
-\end{verbatim}
+\begin{lstlisting}
+In []: names = ["Guido","Alex", "Tim"]
+In []: for i, name in enumerate(names):
+  ...:     print i, name
+\end{lstlisting}
+Computing Mean value of `\texttt{g}'
+\begin{lstlisting}
+In []: G = []
+In []: for line in open('pendulum.txt'):
+  ....     points = line.split()
+  ....     l = float(points[0])
+  ....     t = float(points[1])
+  ....     g = 4 * pi * pi * l / t * t
+  ....     G.append(g)
+\end{lstlisting}
 sum() and len() functions
-\begin{verbatim}
-In [1]: mean = sum(math_scores) / len(math_scores)
-\end{verbatim}
-Numpy Arrays
-\begin{verbatim}
-In [1]: a = array([1, 2, 3]) #Creating
-In [2]: b = array([4, 5, 6])
-In [3]: a + b #Sum; Element-wise
-\end{verbatim}
-Numpy statistical operations 
-\begin{verbatim}
-In [1]: mean(math_scores)
-In [2]: median(math_scores)
-In [3]: stats.mode(math_scores)
-In [4]: std(math_scores)
-\end{verbatim}
-Generating Van der Monde matrix
-\begin{verbatim}
-In [1]: A = vander(L, 2)
-\end{verbatim}
-Getting a Least Squares Fit curve
-\begin{verbatim}
-In [1]: coef, res, r, s = lstsq(A,TSq)
-In [2]: Tline = coef[0]*L + coef[1]
-In [3]: plot(L, Tline)
-\end{verbatim}
-\end{document}
+\begin{lstlisting}
+  total = 0
+  for g in G:
+    total += g
+  mean_g = total / len(g)
 
+  mean_g = sum(G) / len(G)
+  mean_g = mean(G)
+\end{lstlisting}
+\newpage
+Ternary Operator
+\begin{lstlisting}
+In []: score = int(score_str) if score_str != 'AA' else 0
+\end{lstlisting}
+Drawing Pie Charts
+\begin{lstlisting}
+In []: pie(science.values(), labels=science.keys())
+\end{lstlisting}
+Numpy Arrays
+\begin{lstlisting}
+In []: a = array([1, 2, 3]) #Creating
+In []: b = array([4, 5, 6])
+In []: a + b #Sum; Element-wise
+\end{lstlisting}
+Numpy statistical operations 
+\begin{lstlisting}
+In []: mean(math_scores)
+In []: median(math_scores)
+In []: std(math_scores)
+\end{lstlisting}
+\end{document}

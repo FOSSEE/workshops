@@ -1,6 +1,22 @@
 \documentclass[12pt]{article}
+
+
 \title{Interactive Plotting}
 \author{FOSSEE}
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+commentstyle=\itshape\bfseries
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
 \begin{document}
 \date{}
 \vspace{-1in}
@@ -10,35 +26,56 @@
 \end{center}
 \section{Starting up...}
 
-\begin{verbatim}
+\begin{lstlisting}
   $ ipython -pylab  
-\end{verbatim}
+\end{lstlisting}
 Exiting 
-\begin{verbatim}     
+\begin{lstlisting}     
 In [2]: (Ctrl-D)^D
 Do you really want to exit ([y]/n)? y
-\end{verbatim}
-Breaking out of loops
-\begin{verbatim}     
-In [1]: while True:
-   ...:     print "Hello, World!"
-   ...:     
-Hello, World!
-Hello, World!(Ctrl-C)^C
-\end{verbatim}
+\end{lstlisting}
 
 \section{Plotting}
-\begin{verbatim}
+
+  \begin{lstlisting}
 In [1]: x = linspace(0, 2*pi, 50)
-In [2]: plot(x,sin(x))
+In [2]: plot(x, sin(x))
 In [3]: xlabel('x')
 In [4]: ylabel('sin(x)')
-In [5]: legend(['x', '-x', 'sin(x)', 'xsin(x)'])
-In [6]: annotate('origin', xy=(0, 0), xytext=(0, -7),
-                 arrowprops=dict(shrink=0.05))
-In [7]: xlim(5*pi, 5*pi)
-In [8]: ylim(5*pi, 5*pi)
-In [9]: clf() #Clears the Plot area
-\end{verbatim}
+In [5]: title('Sinusoids')
+In [6]: legend(['sin(y)'])
+In [7]: legend(['sin(2y)'], loc = 'center')
+# loc = 'upper right', 'upper left', 'lower left, 'lower right', 'center left',
+#      'center right', 'lower center', 'upper center', 'best', 'right', 'center'
+
+In [8]: legend(['sin(2y)'], loc = (.8, .1))
+
+In [9]: savefig('sin.png')   # Save figure
+In [10]: close()             # Closes the figure
+
+In [11]: clf()               # Clears the Plot area
+
+In [12]: plot(y, sin(y), 'g')
+# Colors can be: 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'w'
+
+In [13]: plot(y, cos(y), 'r', linewidth=2)
+
+In [14]: legend(['x', '-x'])
+In [15]: annotate('origin', xy=(0, 0))
+
+In [16]: xmin, xman = xlim()           # Without arguments gets
+In [17]: ymin, ymax = ylim()           # values
+
+In [18]: xlim(0, 2 * pi)               # With values, sets the
+In [19]: ylim(ymin - 0.2, ymax + 0.2)  # specified values
+  \end{lstlisting}
+
+\section{Saving and running scripts}
+\begin{itemize}
+  \item \typ{\%hist}
+  \item \typ{\%save four\_plot.py 16 18-27}
+  \item \typ{\%run -i four\_plot.py}
+\end{itemize}
+
 \end{document}
 
