@@ -126,7 +126,7 @@
 \section{Plotting Points}
 \begin{frame}[fragile]
 \frametitle{Why would I plot f(x)?}
-How often do we plot analytical functions?\\We plot experimental data more.
+Do we plot analytical functions or experimental data?
 \begin{small}
 \begin{lstlisting}
 In []: x = [0, 1, 2, 3]
@@ -204,8 +204,10 @@ What are \typ{x} and \typ{y}?\\
 \begin{frame}[fragile]
 \frametitle{Lists: Initializing \& accessing elements}
 \begin{lstlisting}
-In []: mtlist = [] #Empty List
-
+In []: mtlist = [] 
+\end{lstlisting}
+\emphbar{Empty List}
+\begin{lstlisting}
 In []: a = [ 1, 2, 3, 4, 5] 
 
 In []: a[0]+a[1]+a[-1]
@@ -219,9 +221,11 @@ Out[]: 8
 	\kwrd{In []: a = [ 1, 2, 3, 4, 5]}
   \end{block}
 \begin{lstlisting}
-In []: a[1:3]  # A slice.
+In []: a[1:3]
 Out[]: [2, 3]
-
+\end{lstlisting}
+\emphbar{A slice}
+\begin{lstlisting}
 In []: a[1:-1]
 Out[]: [2, 3, 4]
 \end{lstlisting}
@@ -254,15 +258,15 @@ Let us look at the Simple Pendulum experiment.
 \begin{tabular}{| c | c | c |}
 \hline
 $L$ & $T$ & $T^2$ \\ \hline
-0.1 & 0.6900 & \\ \hline
-0.2 & 0.8989 & \\ \hline
-0.3 & 1.1867 & \\ \hline
-0.4 & 1.2991 & \\ \hline
-0.5 & 1.4656 & \\ \hline
-0.6 & 1.5843 & \\ \hline
-0.7 & 1.7706 & \\ \hline
-0.8 & 1.8296 & \\ \hline
-0.9 & 1.9440 & \\ \hline
+0.1 & 0.69 & \\ \hline
+0.2 & 0.90 & \\ \hline
+0.3 & 1.19 & \\ \hline
+0.4 & 1.30 & \\ \hline
+0.5 & 1.47 & \\ \hline
+0.6 & 1.58 & \\ \hline
+0.7 & 1.77 & \\ \hline
+0.8 & 1.83 & \\ \hline
+0.9 & 1.94 & \\ \hline
 \end{tabular}
 \end{small}\\
 \alert{$L \alpha T^2$}
@@ -275,9 +279,9 @@ $L$ & $T$ & $T^2$ \\ \hline
 In []: l = [0.1, 0.2, 0.3, 0.4, 0.5, 
             0.6, 0.7, 0.8, 0.9]
 
-In []: t = [0.69, 0.8989, 1.1867, 
-            1.2991, 1.4656, 1.5843, 
-            1.7706, 1.8296, 1.9440]
+In []: t = [0.69, 0.90, 1.19, 
+            1.30, 1.47, 1.58, 
+            1.77, 1.83, 1.94]
 \end{lstlisting}
 \end{frame}
 
@@ -305,15 +309,15 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{How to come out of the \textt{for} loop?}
-  Hit the ``enter'' key twice to come to the previous indentation level
+  \frametitle{How to come out of the \texttt{for} loop?}
+  Hit the ``ENTER'' key twice to come to the previous indentation level
   \begin{lstlisting}
     In []: for time in t:
      ....:     tsq.append(time*time)
      ....:     
      ....:     
 
-    In []:
+    In []: print tsq
   \end{lstlisting}
 \end{frame}
 
@@ -338,7 +342,7 @@ $ cat pendulum.txt
 \end{lstlisting}
 \ldots
 \begin{block}{Windows users:}
-  > type pendulum.txt
+  C:> type pendulum.txt
 \end{block}
 \end{frame}
 
@@ -358,9 +362,9 @@ Open a new script and type the following:
 l = []
 t = []
 for line in open('pendulum.txt'):
-    points = line.split()
-    l.append(float(points[0]))
-    t.append(float(points[1]))
+    point = line.split()
+    l.append(float(point[0]))
+    t.append(float(point[1]))
 tsq = []
 for time in t:
     tsq.append(time*time)
@@ -416,7 +420,9 @@ This is what happens with \typ{line}
   \begin{lstlisting}
 In []: line = '1.2000e-01 7.4252e-01'
 
-In []: line.split()
+In []: point = line.split()
+
+In []: point
 Out[]: ['1.2000e-01', '7.4252e-01']
   \end{lstlisting}
 \end{frame}
@@ -424,12 +430,12 @@ Out[]: ['1.2000e-01', '7.4252e-01']
 \begin{frame}[fragile]
 \frametitle{Getting floats from strings}
   \begin{lstlisting}
-In []: type(points[0])
+In []: type(point[0])
 Out[]: <type 'str'>
   \end{lstlisting}
 But, we need floating point numbers
   \begin{lstlisting}
-In []: t = float(points[0])
+In []: t = float(point[0])
 
 In []: type(t)
 Out[]: <type 'float'>
@@ -442,9 +448,9 @@ Out[]: <type 'float'>
 l = []
 t = []
 for line in open('pendulum.txt'):
-    points = line.split()
-    l.append(float(points[0]))
-    t.append(float(points[1]))
+    point = line.split()
+    l.append(float(point[0]))
+    t.append(float(point[1]))
 tsq = []
 for time in t:
     tsq.append(time*time)
@@ -467,6 +473,7 @@ plot(l, tsq, '.')
   \item Lists
   \item \kwrd{for}
   \item Reading files
+  \item Tokenizing
   \item Strings
 \end{itemize}
 \end{frame}

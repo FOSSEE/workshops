@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+
+
+\title{Python: Data Structures}
+\author{FOSSEE}
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+commentstyle=\itshape\bfseries, 
+showstringspaces=false
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Python: Data Structures}\\
+\large{FOSSEE}
+\end{center}
+\section{Basic Looping}
+\typ{while}
+  \begin{lstlisting}
+In []: a, b = 0, 1
+In []: while b < 10:
+  ...:     print b,
+  ...:     a, b = b, a + b # Fibonacci Sequence
+\end{lstlisting}
+\typ{for} and \typ{range}\\
+\typ{range([start,] stop[, step])}
+\begin{lstlisting}
+In []: for i in range(3, 10, 2):
+ ....:     print i, i * i
+3 9
+5 25
+7 49
+9 81
+\end{lstlisting}
+List methods (Contd.)
+\begin{lstlisting}
+In []: num = [1, 2, 3, 4]
+In []: num.append([9, 10, 11])
+In []: num
+Out[]: [1, 2, 3, 4, [9, 10, 11]]
+In []: num = [1, 2, 3, 4]
+In []: num.extend([5, 6, 7])
+In []: num
+Out[]: [1, 2, 3, 4, 5, 6, 7]
+In []: num.reverse()
+In []: num
+Out[]: [7, 6, 5, 4, 3, 2, 1]
+In []: num.remove(6)
+In []: num
+\end{lstlisting}
+Slicing: \typ{list[initial:final:step]}
+\begin{lstlisting}
+In []: a[1:-1:2]
+Out[]: [2, 4]
+In []: a[::2]
+Out[]: [1, 3, 5]
+In []: a[-1::-1]
+Out[]: [5, 4, 3, 2, 1]
+\end{lstlisting}
+Tuples(Immutable lists)
+\begin{lstlisting}
+In []: t = (1, 2, 3, 4, 5, 6, 7, 8)
+In []: t[0] + t[3] + t[-1]
+Out[]: 13
+In []: t[4] = 7 # ERROR: tuples are immutable
+\end{lstlisting}
+Sets
+\begin{lstlisting}
+In []: f = set([1,2,3,5,8])
+In []: p = set([2,3,5,7])
+In []: f | p # Union of two sets
+Out[]: set([1, 2, 3, 5, 7, 8])
+In []: g = set([2, 4, 5, 7, 4, 0, 5])
+In []: g
+Out[]: set([2, 4, 5, 7, 0]) # No repetition allowed.
+\end{lstlisting}
+\end{document}
+

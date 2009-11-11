@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+
+
+\title{Python: Basics}
+\author{FOSSEE}
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily,
+commentstyle=\itshape\bfseries, 
+showstringspaces=false
+}
+\newcommand{\typ}[1]{\lstinline{#1}}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{mathpazo,courier,euler}
+\usepackage[scaled=.95]{helvet}
+
+\begin{document}
+\date{}
+\vspace{-1in}
+\begin{center}
+\LARGE{Python: Basics}\\
+\large{FOSSEE}
+\end{center}
+\section{Data types}
+Complex Numbers
+\begin{lstlisting}
+In []: c = 3+4j
+In []: abs(c)
+Out[]: 5.0
+In []: c.imag
+Out[]: 4.0
+In []: c.real
+Out[]: 3.0
+\end{lstlisting}
+Boolean
+\begin{lstlisting}     
+In []: a = False
+In []: b = True
+In []: c = True
+In []: (a and b) or c
+Out[]: True
+\end{lstlisting}
+Strings
+  \begin{lstlisting}
+In []: w = "hello"
+In []: print w[0] + w[2] + w[-1]
+Out[]: hlo
+In []: len(w)
+Out[]: 5
+In []: w[0] = 'H' # ERROR: Strings are immutable 
+  \end{lstlisting}
+String methods
+  \begin{lstlisting}
+In []: a = 'Hello World' 
+In []: a.startswith('Hell') # 'a' starts with 'Hell'
+In []: a.endswith('ld') # 'a' ends with 'ld'
+In []: a.upper() # all characters to upper case
+In []: a.lower() # all characters to lower case
+In []: ''.join(['a', 'b', 'c'])
+Out[]: 'abc'
+  \end{lstlisting}
+String formatting
+  \begin{lstlisting}
+In []: x, y = 1, 1.234
+In []: 'x is %s, y is %s' %(x, y)
+Out[]: 'x is 1, y is 1.234'
+  \end{lstlisting}
+Arithmetic Operators
+  \begin{lstlisting}
+In []: 45 % 2 # Modulo operator
+Out[]: 1
+In []: 1234567891234567890 ** 3 # Power
+In []: a = 5
+In []: a += 1
+In []: a *= 2
+  \end{lstlisting}
+String Operations
+\begin{lstlisting}
+In []: s = 'Hello'
+In []: p = 'World'
+In []: s + p 
+Out[]: 'HelloWorld'
+In []: s * 4
+Out[]: 'HelloHelloHelloHello'
+\end{lstlisting}
+Relational and Logical Operators
+\begin{lstlisting}
+In []: p, z, n = 1, 0, -1
+In []: p == n
+Out[]: False
+In []: p >= n
+Out[]: True
+In []: n < z < p
+Out[]: True
+In []: p + n != z
+Out[]: False
+\end{lstlisting}
+Built-ins
+\begin{lstlisting}
+In []: int(17 / 2.0)
+Out[]: 8
+In []: float(17 / 2)
+Out[]: 8.0
+In []: str(17 / 2.0)
+Out[]: '8.5'
+In []: round( 7.5 )
+Out[]: 8.0
+\end{lstlisting}
+Console Input
+\begin{lstlisting}
+In []: a = raw_input('Enter a value: ')
+Enter a value: 5
+\end{lstlisting}
+\section{Conditionals}
+\typ{if}
+\begin{lstlisting}
+In []: x = int(raw_input("Enter an integer:"))
+In []: if x < 0:
+  ...:     print 'Be positive!'
+  ...: elif x == 0:
+  ...:     print 'Zero'
+  ...: elif x == 1:
+  ...:     print 'Single'
+  ...: else:
+  ...:     print 'More'
+\end{lstlisting}
+Ternary Operator
+\begin{lstlisting}
+In []: a = raw_input('Enter number(Q to quit):')
+In []: num = int(a) if a != 'Q' else 0
+\end{lstlisting}
+\end{document}
