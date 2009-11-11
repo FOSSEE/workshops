@@ -503,9 +503,24 @@ Out[]: array([-1.,  8., -1.])
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Getting $L$ and $T^2$}
+If you \alert{closed} IPython after session 2
+\begin{lstlisting}
+In []: l = []
+In []: t = []
+In []: for line in open('pendulum.txt'):
+  ....     point = line.split()
+  ....     l.append(float(point[0]))
+  ....     t.append(float(point[1]))
+  ....
+  ....
+\end{lstlisting}
+\end{frame}
+ 
+\begin{frame}[fragile]
 \frametitle{Generating $A$}
 \begin{lstlisting}
-In []: A = array([L, ones_like(L)])
+In []: A = array([l, ones_like(l)])
 In []: A = A.T
 \end{lstlisting}
 %% \begin{itemize}
@@ -533,13 +548,13 @@ In []: coef = result[0]
 \frametitle{Least Square Fit Line \ldots}
 We get the points of the line from \typ{coef}
 \begin{lstlisting}
-In []: Tline = coef[0]*L + coef[1]
+In []: Tline = coef[0]*l + coef[1]
 \end{lstlisting}
 \begin{itemize}
-\item Now plot Tline vs. L, to get the Least squares fit line. 
+\item Now plot \typ{Tline} vs. \typ{l}, to get the Least squares fit line. 
 \end{itemize}
 \begin{lstlisting}
-In []: plot(L, Tline)
+In []: plot(l, Tline)
 \end{lstlisting}
 \end{frame}
 
