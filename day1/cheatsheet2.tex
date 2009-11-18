@@ -124,15 +124,24 @@ Out[]: ['hello', ' world'] # Note the whitespace before 'world'
 A string can be split based on the delimiter specified within quotes. A combination of more than one delimiter can also be used.\\
 \typ{In []: greet.split(', ')}\\
 \typ{Out[]: ['hello', 'world']}\\Note the whitespace is not there anymore.
-
+\newpage
 \section{Plotting from Files}
-\subsection{Opening, reading and writing files}
+\subsection{Opening files}
+
+\typ{In []: f = open('datafile.txt')}\\By default opens in read mode. \\If file does not exist then it throws an exception\\
+\typ{In []: f = open('datafile.txt','r')}\\Specifying the read mode\\
+\typ{In []: f = open('datafile.txt', 'w')}\\Opens the file in write mode. \\If the file already exists, then it deletes all the previous content and opens.
+
+\subsection{Reading from files}
+Just like lists files are iterable as well.
 
 \begin{lstlisting}
-  In []: f = open('datafile.txt') #By default opens in read mode. If file does not exist then it throws an exception
-  In []: f = open('datafile.txt','r') #Specifying the read mode
-  In []: f = open('datafile.txt', 'w') #Opens the file in write mode. If the file already exists, then it deletes all the previous content and opens.
+  In []: for line in f:
+    ...:     print line
+    ...: 
+    ...:
 \end{lstlisting}
+
 \subsection{Plotting}
 \begin{lstlisting}
 l = []
