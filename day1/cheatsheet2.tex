@@ -25,19 +25,7 @@
 \LARGE{Plotting Points}\\
 \large{FOSSEE}
 \end{center}
-\section{Plotting from Data files}
-\begin{verbatim}
-l = [] #Empty List
-t = []
-for line in open('pendulum.txt'): # Opening & Reading files
-    points = line.split() # Splitting a string
-    l.append(float(points[0])) # Appending to a list
-    t.append(float(points[1]))
-tsq = []
-for time in t:  #Iterating through lists
-    tsq.append(t*t)
-plot(l, tsq, '.') # Plotting points
-\end{verbatim}
+
 \section{Plotting Points with Lists}
 
 \begin{lstlisting}
