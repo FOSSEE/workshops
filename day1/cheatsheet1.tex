@@ -6,7 +6,8 @@
 \usepackage{listings}
 \lstset{language=Python,
     basicstyle=\ttfamily,
-commentstyle=\itshape\bfseries
+commentstyle=\itshape\bfseries,
+showstringspaces=false,
 }
 \newcommand{\typ}[1]{\lstinline{#1}}
 \usepackage[english]{babel}
@@ -47,56 +48,78 @@ on title of figure use:
 Same way one can have TeX expression on xlabel, ylabel etc.
 
 \subsection{legends}
-Apart from using \kwrd{loc='center'} for positioning the legend, one can also mention explicit co-ordinates for placement. 
+Apart from \kwrd{center}, some other \kwrd{loc} which can be specified are:
+\begin{lstlisting}
+'upper right'
+'upper left'      
+'lower left'      
+'lower right'     
+'center left'     
+'center right'    
+'lower center'    
+'upper center'    
+\end{lstlisting}
+\newpage
+One can also mention explicit co-ordinates for placement of legend. 
 \begin{lstlisting}
 In []: legend(['sin(2y)'], loc=(.8,.1)) 
 \end{lstlisting}
 \typ{loc = 0, 1} (left top position of graph)\\
 \typ{loc = 0.5, 0.5} (center of graph).
 
-%\subsection{Multiple figures}
-
 \subsection{Saving figures}
 One can save figure in any of these formats: png, pdf, ps, eps and svg.
-  \begin{lstlisting}
-In [1]: x = linspace(0, 2*pi, 50)
-In [2]: plot(x, sin(x))
-In [3]: xlabel('x')
-In [4]: ylabel('sin(x)')
-In [5]: title('Sinusoids')
-In [6]: legend(['sin(y)'])
-In [7]: legend(['sin(2y)'], loc = 'center')
-# loc = 'upper right', 'upper left', 'lower left, 'lower right', 'center left',
-#      'center right', 'lower center', 'upper center', 'best', 'right', 'center'
 
-In [8]: legend(['sin(2y)'], loc = (.8, .1))
-
-In [9]: savefig('sin.png')   # Save figure
-In [10]: close()             # Closes the figure
-
-In [11]: clf()               # Clears the Plot area
-
-In [12]: plot(y, sin(y), 'g')
-# Colors can be: 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'w'
-
-In [13]: plot(y, cos(y), 'r', linewidth=2)
-
-In [14]: legend(['x', '-x'])
-In [15]: annotate('origin', xy=(0, 0))
-
-In [16]: xmin, xman = xlim()           # Without arguments gets
-In [17]: ymin, ymax = ylim()           # values
-
-In [18]: xlim(0, 2 * pi)               # With values, sets the
-In [19]: ylim(ymin - 0.2, ymax + 0.2)  # specified values
-  \end{lstlisting}
+\subsection{Colors of plots}
+\typ{In []: plot(y, sin(y), 'g')}\\
+Plots graph with green color. Other options available are:
+\begin{lstlisting}
+  'r' ---> Red
+  'b' ---> Blue
+  'r' ---> Red 
+  'c' ---> Cyan 
+  'm' ---> Magenta
+  'y' ---> Yellow
+  'k' ---> Black 
+  'w' ---> White
+\end{lstlisting}
 
 \section{Saving and running scripts}
 \begin{itemize}
-  \item \typ{\%hist}
-  \item \typ{\%save four\_plot.py 16 18-27}
-  \item \typ{\%run -i four\_plot.py}
+  \item \typ{\%hist}\\
+  It returns the logs of all commands(including mistakes) used in IPython interpreter.
+  \item \typ{\%hist -n}\\
+It disables the line number representation of logs.
+  \item \typ{\%save four\_plot.py 16 18-27}\\
+For creating a script named four\_plot which includes line 16 and line 18 to 27 of logs.
+  \item \typ{\%run -i four\_plot.py}\\
+Running the python script inside IPython interpreter.
 \end{itemize}
 
+\section{Example}
+  \begin{lstlisting}
+In []: x = linspace(0, 2*pi, 50)
+In []: plot(x, sin(x), 'g')
+In []: plot(x, cos(x), 'r', linewidth=2)
+In []: xlabel('x')
+In []: title('Sinusoidal Waves')
+In []: legend(['sin(x)', 'cos(x)'])
+In []: annotate('origin', xy=(0, 0))
+In []: xmin, xman = xlim()           # Without arguments gets
+In []: ymin, ymax = ylim()           # values
+
+In []: xlim(0, 2 * pi)               # With values, sets the
+In []: ylim(ymin - 0.2, ymax + 0.2)  # specified values
+
+In []: savefig('sin.png')   # Save figure
+In []: close()              # Closes the figure
+  \end{lstlisting}
+
+\section{References}
+\begin{itemize}
+  \item For documentation on IPython refer: \\ \url{http://ipython.scipy.org/moin/Documentation}
+  \item Plotting(matplotlib) related documentation are available at:\\ \url{http://matplotlib.sourceforge.net/contents.html}
+  \item Explore examples and plots based on matplotlib at \\ \url{http://matplotlib.sourceforge.net/examples/index.html}
+\end{itemize}
 \end{document}
 
