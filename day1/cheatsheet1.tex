@@ -33,10 +33,31 @@ Exiting
 \begin{lstlisting}     
 In [2]: (Ctrl-D)^D
 Do you really want to exit ([y]/n)? y
-\end{lstlisting}
+\end{lstlisting} %$
 
 \section{Plotting}
 
+\subsection{Label}
+Pylab accepts TeX equation expressions in any text expression. To get something like:\\
+$\sigma_i=15$ \\
+on title of figure use: 
+\begin{lstlisting}
+  title('$\sigma_i=15$')
+\end{lstlisting}  
+Same way one can have TeX expression on xlabel, ylabel etc.
+
+\subsection{legends}
+Apart from using \kwrd{loc='center'} for positioning the legend, one can also mention explicit co-ordinates for placement. 
+\begin{lstlisting}
+In []: legend(['sin(2y)'], loc=(.8,.1)) 
+\end{lstlisting}
+\typ{loc = 0, 1} (left top position of graph)\\
+\typ{loc = 0.5, 0.5} (center of graph).
+
+%\subsection{Multiple figures}
+
+\subsection{Saving figures}
+One can save figure in any of these formats: png, pdf, ps, eps and svg.
   \begin{lstlisting}
 In [1]: x = linspace(0, 2*pi, 50)
 In [2]: plot(x, sin(x))
