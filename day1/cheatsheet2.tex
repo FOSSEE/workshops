@@ -34,9 +34,50 @@ In []: y = [7, 11, 15, 19]
 In []: plot(x, y)
 In []: clf()
 In []: plot(x, y, 'o')  # Plotting Circles
-#Dots - '.', #Dashed lines - '--' #Lines - '-'
 \end{lstlisting}
 
+\subsection{Line style/marker}
+\begin{lstlisting}
+The following format string characters are accepted 
+to control the line style or marker:
+    
+    ================    ===============================
+    character           description
+    ================    ===============================
+    '-'                 solid line style
+    '--'                dashed line style
+    '-.'                dash-dot line style
+    ':'                 dotted line style
+    '.'                 point marker
+    ','                 pixel marker
+    'o'                 circle marker
+    'v'                 triangle_down marker
+    '^'                 triangle_up marker
+    '<'                 triangle_left marker
+    '>'                 triangle_right marker
+    '1'                 tri_down marker
+    '2'                 tri_up marker
+    '3'                 tri_left marker
+    '4'                 tri_right marker
+    's'                 square marker
+    'p'                 pentagon marker
+    '*'                 star marker
+    'h'                 hexagon1 marker
+    'H'                 hexagon2 marker
+    '+'                 plus marker
+    'x'                 x marker
+    'D'                 diamond marker
+    'd'                 thin_diamond marker
+    '|'                 vline marker
+    '_'                 hline marker
+    ================    ===============================
+
+\end{lstlisting}
+
+\subsection{Marker combinations}
+\typ{In []: plot(x, y, 'ro')} \\
+This plots figure with red colored filled circles.\\
+Similarly other combination of colors and marker can be used.
 \section{Lists}
 
 Initializing
@@ -52,7 +93,7 @@ Out[]: [2, 3]
 In []: lst[1:-1]
 Out[]: [2, 3, 4]
 \end{lstlisting}
-Appending to lists
+\subsection{Appending to lists}
 \begin{lstlisting}
 In []: a = [ 6, 7, 8, 9]
 In []: b = lst + a
@@ -63,36 +104,47 @@ In []: lst.append(6)
 In []: lst
 Out[]: [ 1, 2, 3, 4, 5, 6]
 \end{lstlisting}
-Iterating over a List
+\subsection{Iterating over a List}
 \begin{lstlisting}
-In []: for each in b:  # Iterating over the list, element-wise
- ....:     print b       # Print each element
+In []: for element in b:  # Iterating over the list, element-wise
+ ....:     print element       # Print each element
  ....:
 \end{lstlisting}
 
-Splitting Strings
+\section{Strings}
+\subsection{Splitting Strings}
 \begin{lstlisting}
-In [20]: line = '1.2000e-01 7.4252e-01'
-In [21]: point = line.split()    # Splits the string at the space
-Out[21]: ['1.2000e-01', '7.4252e-01']
+In []: greet = ``hello world''
+In []: print greet.split()
+Out[]: ['hello', 'world']
+In []: greet = ``hello, world''
+In []: print greet.split(',')
+Out[]: ['hello', ' world'] # Note the whitespace before 'world'
 \end{lstlisting}
+A string can be split based on the delimiter specified within quotes. A combination of more than one delimiter can also be used.\\
+\typ{In []: greet.split(', ')}\\
+\typ{Out[]: ['hello', 'world']}\\Note the whitespace is not there anymore.
 
-Plotting from Files
+\section{Plotting from Files}
+\subsection{Opening, reading and writing files}
+
 \begin{lstlisting}
-In [22]: L = []
-In [23]: T = []
-
-#Open a file & operate on each line
-In [24]: for line in open('pendulum.txt'):  
-  ....     point = line.split()
-  ....     L.append(float(point[0]))
-  ....     T.append(float(point[1]))
-In [25]: TSq = []
-In [26]: for t in T:
- ....:     TSq.append(t*t)
- ....:     
- ....:     
-In [27]: plot(L, TSq, '.')
+  In []: f = open('datafile.txt') #By default opens in read mode. If file does not exist then it throws an exception
+  In []: f = open('datafile.txt','r') #Specifying the read mode
+  In []: f = open('datafile.txt', 'w') #Opens the file in write mode. If the file already exists, then it deletes all the previous content and opens.
+\end{lstlisting}
+\subsection{Plotting}
+\begin{lstlisting}
+l = []
+t = []
+for line in open('pendulum.txt'):
+    point = line.split()
+    l.append(float(point[0]))
+    t.append(float(point[1]))
+tsq = []
+for time in t:
+    tsq.append(time*time)
+plot(l, tsq, '.')
 \end{lstlisting}
 
 \end{document}
