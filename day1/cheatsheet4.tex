@@ -52,7 +52,7 @@ array([[ 1,  1,  2],
 In []: C[1,2]
 Out[]: 1
 \end{lstlisting}
-Two indexes seperated by ',' specifies row, column. So \kwrd{C[1,2]} gets third element of second row(indices starts from 0).
+Two indexes seperated by \typ{','} specifies [row, column]. So \kwrd{C[1,2]} gets third element of second row(indices starts from 0).
 \newpage
 \begin{lstlisting}
 In []: C[1]
@@ -121,6 +121,7 @@ array([[ 0,  0],
 \end{lstlisting}
 \typ{'1:'} => Start from second row, till last row\\
 \typ{':2'} => Start from first column, till and excluding third column.
+\newpage
 \subsection{Striding}
 Often apart from submatrix, one needs to get some mechanism to jump a step. For example, how can we have all alternate rows of a Matrix. \\
 Following method will return Matrix with alternate rows.
@@ -146,8 +147,7 @@ Out[]:
 array([[ 1,  2],
        [-1,  7]])
 \end{lstlisting}
-
-\Section{Matrix Operations}
+\section{Matrix Operations}
 For a Matrix A and B of equal shapes.
 \begin{lstlisting}
 In []: A.T # Transpose
@@ -158,7 +158,6 @@ In []: dot(A,b) #Matrix multiplication
 In []: inv(A) # Inverse
 In []: det(A) # Determinant
 \end{lstlisting}
-
 Eigen Values and Eigen Vectors
 \begin{lstlisting}
 In []: eig(A) #Eigen Values and Vectors
@@ -172,14 +171,33 @@ In []: eigvals(A) #Eigen Values
 %% \begin{lstlisting}
 %% In []: svd(A)
 %% \end{lstlisting}
-Least Square Fit Line
+\section{Least Square Fit Line}
 \begin{lstlisting}
-In []: A = array([L, ones_like(L)])
-In []: A = A.T
+L = []
+T = []
+for line in open('pendulum.txt'):
+    point = line.split()
+    L.append(float(point[0]))
+    T.append(float(point[1]))
+Tsq = []
+for time in T:
+    Tsq.append(time*time)
+plot(L, Tsq, '.')
+\end{lstlisting}
+This is exact curve we get from L Vs Tsq from data.This relation among L and Tsq is not of straight line. For getting Least Square Fit line, we have to solve the relations:\\
+$L=m*Tsq+c$ (something similar to $y=m*x+c$)\\
+For present scenario, we have L and corresponding Tsq values. For finding m and c at given points we use \typ{lstlq} function provided by pylab. It returns the least-squares solution to an equation. \\
+For finding Least Square Fit line for this particular data we have to do following steps:\\
+\typ{In []: A = array([L, ones\_like(L)])}\\
+A is 2x(Length of array L) array.
+\begin{lstlisting}
+In []: A = A.T #now A.shape = (Length of array L)x2
 In []: result = lstsq(A,TSq)
 In []: coef = result[0]
 In []: Tline = coef[0]*L + coef[1]
-In []: plot(L, Tline)
 \end{lstlisting}
+\typ{coef[0]} is array with all $m$ values, and \typ{coef[1]} contains $c$.\\
+To get the final plot.\\
+\typ{In []: plot(L, Tline)}
 
 \end{document}
