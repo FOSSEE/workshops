@@ -15,6 +15,7 @@ showstringspaces=false,
 \usepackage{ae,aecompl}
 \usepackage{mathpazo,courier,euler}
 \usepackage[scaled=.95]{helvet}
+\usepackage{amsmath}
 \begin{document}
 \date{}
 \vspace{-1in}
@@ -27,7 +28,7 @@ Condier following sets of equations:\\
   \begin{align*}
     3x + 2y - z  & = 1 \\
     2x - 2y + 4z  & = -2 \\
-    -x + $\frac{1}{2}$y -z & = 0
+    -x + \frac{1}{2}y -z & = 0
   \end{align*}\\
 The matrix representation is:\\
 \begin{center}
@@ -84,7 +85,7 @@ Out[96]: 0.90689968211710881
 \subsection{Roots of non-linear eqations}
 For Finding the roots of a non linear equation(defined as $f(x)=0$), around a starting estimate we use \typ{fsolve}:\\
 \typ{In []: from scipy.optimize import fsolve}\\
-\typ{fsolve} is not part of \typ{pylab}, instead it is part of \textbf{optimize} package of \textbf{scipy}, and hence we \textbf{import} it.\\
+\typ{fsolve} is not a part of \typ{pylab}, instead is a function in the \textbf{optimize} module of \textbf{scipy}, and hence we \textbf{import} it.\\
 %\typ{fsolve} takes first argument as name of function, which evaluates $f(x)$, whose roots one wants to find. And second argument is starting estimate, around which roots are found.
 For illustration, we want to find roots of equation:
 \begin{center}
@@ -103,16 +104,27 @@ Out[]: -0.66623943249251527
 \end{lstlisting}
 
 \section{ODE}
+
+We wish to solve an (a system of) Ordinary Differential Equation. For this purpose, we shall use \typ{odeint}.\\
+\typ{In []: from scipy.integrate import odeint}\\
+\typ{odeint} is a function in the \textbf{integrate} module of \textbf{scipy}.\\
+As an illustration, let us solve the ODE below:\\
+$\frac{dy}{dt} = ky(L-y)$, L = 25000, k = 0.00003, y(0) = 250\\
+We define a function (as below) that takes $y$ and time as arguments and returns the right hand side of the ODE.
 \begin{lstlisting}
-  In []: def epid(y, t):
+In []: def f(y, t):
   ....     k, L = 0.00003, 25000
   ....     return k*y*(L-y)
   ....
-  
-  In []: t = arange(0, 12, 0.2)
-
-  In []: y = odeint(epid, 250, t)
-
-  In []: plot(t, y)
 \end{lstlisting}
+Next we define the time over which we wish to solve the ODE. We also note the initial conditions given to us.
+\begin{lstlisting}
+In []: t = linspace(0, 12, 61)
+In []: y0 = 250
+\end{lstlisting}
+To solve the ODE, we call the \typ{odeint} function with three arguments - the function \typ{f}, initial conditions and the time vector. 
+\begin{lstlisting}
+In []: y = odeint(f, y0, t)
+\end{lstlisting}
+Note: To solve a system of ODEs, we need to change the function to return the right hand side of all the equations and the system and the pass the required number of initial conditions to the \typ{odeint} function.
 \end{document}
