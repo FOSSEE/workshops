@@ -156,8 +156,8 @@ array([[ 1.,  1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.,  1.]])
 
-In []: ones_like([1, 2, 3, 4, 5]) 
-Out[]: array([1, 1, 1, 1, 1])   
+In []: ones_like([1, 2, 3, 4]) 
+Out[]: array([1, 1, 1, 1])   
 
 In []: identity(2)
 Out[]: 
@@ -515,6 +515,15 @@ In []: for line in open('pendulum.txt'):
   ....
 \end{lstlisting}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Getting $L$ and $T^2$ \dots}
+\begin{lstlisting}
+In []: l = array(l)
+In []: t = array(t)
+\end{lstlisting}
+\alert{\typ{In []: tsq = t*t}}
+\end{frame}
  
 \begin{frame}[fragile]
 \frametitle{Generating $A$}
@@ -538,7 +547,7 @@ In []: A = A.T
 \item Along with a lot of things, it returns the least squares solution
 \end{itemize}
 \begin{lstlisting}
-In []: result = lstsq(A,TSq)
+In []: result = lstsq(A,tsq)
 In []: coef = result[0]
 \end{lstlisting}
 \end{frame}
