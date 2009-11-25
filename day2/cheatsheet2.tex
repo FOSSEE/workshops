@@ -201,7 +201,57 @@ In []: t[4] = 7 # ERROR: tuples are immutable
 \end{lstlisting}
 \textbf{Note:} elements cant be changed!
 \section{Dictionaries}
-statistics section? 
+Dictionaries are data structures that provide key-value mappings. They are similar to lists except that instead of the values having integer indexes, they have keys or strings as indexes.\\
+A simple dictionary can be created by:
+\begin{lstlisting}
+In []: player = {'Mat': 134,'Inn': 233,
+          'Runs': 10823, 'Avg': 52.53}
+\end{lstlisting}
+For above case, value on left of ':' is key and value on right is corresponding value. To retrieve value related to key 'Avg'
+\begin{lstlisting}
+In []: player['Avg']
+Out[]: 52.530000000000001
+\end{lstlisting}
+\subsection{Element operations}
+\begin{lstlisting}
+In []: player['Name'] = 'Rahul Dravid' #Adds new key-value pair.
+In []: player
+Out[]: 
+{'Avg': 52.530000000000001,
+ 'Inn': 233,
+ 'Mat': 134,
+ 'Name': 'Rahul Dravid',
+ 'Runs': 10823}
+In []: player.pop('Mat') # removing particular key-value pair
+Out[]: 134
+In [21]: player
+Out[21]: {'Avg': 52.530000000000001, 'Inn': 233, 
+          'Name': 'Rahul Dravid', 'Runs': 10823}
+\end{lstlisting}
+\textbf{Note:} Duplicate keys are overwritten!\\
+\begin{lstlisting}
+In []: player['Name'] = 'Dravid'
+In []: player
+Out[23]: {'Avg': 52.530000000000001, 'Inn': 233, 
+          'Name': 'Dravid', 'Runs': 10823}
+\end{lstlisting}
+\subsection{containership}
+\begin{lstlisting}
+In []: 'Inn' in player
+Out[]: True
+In []: 'Econ' in player
+Out[]: False
+\end{lstlisting}
+\textbf{Note:} Containership is always checked on 'keys' of dictionary but not 'values'.\\
+\subsection{Methods}
+\begin{lstlisting}
+In []: player.keys() # returns list of all keys
+Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
+
+In []: player.values() # returns list of all values.
+Out[]: [10823, 233, 
+        52.530000000000001, 134]  
+\end{lstlisting}
 \section{Sets}
 are an unordered collection of unique elements.\\
 Creation:
