@@ -50,7 +50,7 @@ In []: signum(-4)
 Out[]: -1
 In []: signum() # ERROR signum() takes exactly 1 argument(0 given)
 \end{lstlisting}
-\textbf{Note:} Arguments passed to a function are passed by-value \textbf{only if} they are basic Python data type(int, float). In case one passes immutable types(String, tupels), they cant be modified in the function, but objects like \typ{list} and dictionary can be manipulated.
+\textbf{Note:} Arguments passed to a function are passed by-value \textbf{only if} they are basic Python data type(int, float). In case one passes immutable types(String, tuples), they cant be modified in the function, but objects like \typ{list} and dictionary can be manipulated.
 \subsection{Default Arguments}
 This feature allow the functions to take the arguments optionally. For example:
 \begin{lstlisting}
@@ -80,12 +80,12 @@ In []: welcome("Hi", "Guido") #taking name via argument
 Hi Guido
 \end{lstlisting}
 \subsection{Keyword Arguments}
-This feature provides the facility of passing arguments by specifying the name of the parameter as defined in the function definition. You dont have to remember the order of the parameters in function definition. For example:
+This feature provides the facility of passing arguments by specifying the name of the parameter as defined in the function definition. You don't have to remember the order of the parameters in function definition. For example:
 \begin{lstlisting}
 In []: plot(y, sin(y), 'g', linewidth=2)
 In []: plot(y, cos(y), linewidth=1, color='g')
 \end{lstlisting}
-Both call to \typ{plot} function will work and paramenters are set accordingly.\\
+Both call to \typ{plot} function will work and parameters are set accordingly.\\
 One can define a function such that keyword arguments can be used in following way:
 \begin{lstlisting}
 def wish(name='World', greetings='Hello'):
@@ -97,8 +97,8 @@ In [13]: wish() #default arguments will work
 Hello World
 In [14]: wish(greetings='hey', name='madhu')
 hey madhu
-In [15]: wish(name='vattam', greetings = 'get lost')
-get lost vattam
+In [15]: wish(name='vattam', greetings = 'bye bye')
+bye bye vattam
 \end{lstlisting}
 % sorry Vattam just a joke :P
 \section{Self contained python script}
@@ -130,13 +130,13 @@ In Python everything is a object! All variables, lists, tuples, dictionaries and
 \begin{lstlisting}
 In []: a = str() # initializing a string object.
 In []: b = "Hello World"
-In []: b.split() # calling funciton on object 'b'
+In []: b.split() # calling function on object 'b'
 Out[]: ['Hello', 'World']
 \end{lstlisting}
 ``.'' is a operator used to call functions defined for given object.
 \section{Links and References}
 \begin{itemize}
-\item Some of inbult functions available with Python are listed at\\ \url{http://docs.python.org/library/functions.html}
+\item Some of inbuilt functions available with Python are listed at\\ \url{http://docs.python.org/library/functions.html}
 \item Reference manual to describe the standard libraries  that are distributed with Python is available at \url{http://docs.python.org/library/} 
 \end{itemize}
 \end{document}

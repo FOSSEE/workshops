@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 6}
+\date[] {14 December, 2009\\Day 1, Session 6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -150,7 +150,6 @@ Let us now look at how to solve this using \kwrd{matrices}
                       [-1, 0.5, -1]])
     In []: b = array([[1], [-2], [0]])
     In []: x = solve(A, b)
-    In []: Ax = dot(A,x)
   \end{lstlisting}
 \end{frame}
 
@@ -168,6 +167,7 @@ array([[ 1.],
 \begin{frame}[fragile]
 \frametitle{Let's check!}
 \begin{lstlisting}
+In []: Ax = dot(A,x)
 In []: Ax
 Out[]: 
 array([[  1.00000000e+00],
@@ -318,6 +318,7 @@ Out[]: -0.66623943249251527
 \item Define a function as below
 \end{itemize}
 \begin{lstlisting}
+In []: from scipy.integrate import odeint
 In []: def epid(y, t):
   ....     k, L = 0.00003, 25000
   ....     return k*y*(L-y)
@@ -336,6 +337,14 @@ In []: plot(t, y)
 \end{lstlisting}
 %Insert Plot
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Result}
+\begin{center}
+\includegraphics[height=2in, interpolate=true]{data/image}  
+\end{center}
+\end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{ODEs - Simple Pendulum}
@@ -392,6 +401,12 @@ In []: pend_sol = odeint(pend_int,
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Result}
+\begin{center}
+\includegraphics[height=2in, interpolate=true]{data/ode}  
+\end{center}
+\end{frame}
 
 \begin{frame}
   \frametitle{Things we have learned}

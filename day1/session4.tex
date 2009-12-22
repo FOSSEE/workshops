@@ -79,7 +79,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 4}
+\date[] {14 December, 2009\\Day 1, Session 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -287,8 +287,6 @@ In []: a = imread('lena.png')
 In []: imshow(a)
 Out[]: <matplotlib.image.AxesImage object at 0xa0384cc>
 
-In []: a.shape 
-Out[]: (512, 512, 4)
   \end{lstlisting}
 \end{small}
   \begin{itemize}
@@ -317,6 +315,11 @@ Out[]: <matplotlib.image.AxesImage object at 0xb765c8c>
 \begin{frame}[fragile]
 \frametitle{Transpose of a Matrix}
 \begin{lstlisting}
+In []: a = array([[ 1,  1,  2, -1],
+  ...:            [ 2,  5, -1, -9],
+  ...:            [ 2,  1, -1,  3],
+  ...:            [ 1, -3,  2,  7]])
+
 In []: a.T
 Out[]:
 array([[ 1,  2,  2,  1],
