@@ -40,7 +40,7 @@
 \author[FOSSEE Team] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {31, October 2009\\Day 1, Quiz 1}
+\date[] {14, December 2009\\Day 1, Quiz 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -115,26 +115,14 @@ On the top right hand corner please write down the following:
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
 \frametitle{\incqno }
-What would be the result?
-\begin{lstlisting}
-  In [1]: x
-         array([[0, 1, 2],
-                [3, 4, 5],
-                [6, 7, 8]])
-  In [2]: x[::-1,:]
-\end{lstlisting}
+What ipython magic command do you use to obtain the lines of code you have already typed in the interpreter? What command do you use to save them?
 \end{frame}
 
 \begin{frame}
 \frametitle{\incqno }
-How to read and print each line of a file.
-\end{frame}
-
-\begin{frame}
-\frametitle{\incqno }
-How to get list of third column of a data file.
+How to read and print each line of a file?
 \end{frame}
 
 \begin{frame}[fragile]
@@ -156,5 +144,19 @@ Draw a plot with line width 3.
 Setting x and y axis limits.
 \end{frame}
 
-\end{document}
+\begin{frame}[fragile]
+\frametitle{\incqno }
+The following code snippet has an error/bug:
+\begin{lstlisting}
+In []: l = [0.1, 0.2, 0.3, 0.4]
+In []: t = [0.69, 0.90, 1.19, 1.30]
+In []: tsq = []
+In []: for time in t:
+ ....:     tsq.append(time*time)
+ ....:     plot(l, tsq)
+\end{lstlisting}
 
+What is the error? How do you fix it?
+\end{frame}
+
+\end{document}
