@@ -77,7 +77,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 1}
+\date[] {14 December, 2009\\Day 1, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -125,28 +125,28 @@
 \begin{frame}
   \frametitle{Workshop Schedule: Day 1}
   \begin{description}
-	\item[Session 1] Sat 09:00--10:00
-	\item[Session 2] Sat 10:05--11:05
-	\item[Session 3] Sat 11:20--12:20
-	\item[Session 4] Sat 12:25--13:25
-        \item[Quiz 1] Sat 14:25--14:40
-        \item[Session 5] Sat 14:40--15:25
-        \item[Session 6] Sat 15:40--16:40
-        \item[Quiz 2] Sat 16:45--17:00
+	\item[Session 1] Mon 09:00--10:00
+	\item[Session 2] Mon 10:05--11:05
+	\item[Session 3] Mon 11:20--12:20
+	\item[Session 4] Mon 12:25--13:25
+        \item[Quiz 1] Mon 14:25--14:40
+        \item[Exercises] Mon 14:40--15:25
+        \item[Session 5] Mon 15:40--16:40
+        \item[Quiz 2] Mon 16:45--17:00
   \end{description}
 \end{frame}
 
 \begin{frame}
   \frametitle{Workshop Schedule: Day 2}
   \begin{description}
-	\item[Session 1] Sun 09:00--10:00
-	\item[Session 2] Sun 10:05--11:05
-	\item[Session 3] Sun 11:20--12:20
-	\item[Session 4] Sun 12:25--13:25
-        \item[Quiz 1] Sun 14:25--14:40
-        \item[Session 5] Sun 14:40--15:25
-        \item[Session 6] Sun 15:40--16:40
-        \item[Quiz 2] Sun 16:45--17:00
+	\item[Session 1] Tue 09:00--10:00
+	\item[Session 2] Tue 10:05--11:05
+	\item[Session 3] Tue 11:20--12:20
+	\item[Session 4] Tue 12:25--13:25
+        \item[Quiz 1]  Tue 14:25--14:40
+        \item[Exercises] Tue 14:40--15:25
+        \item[Session 5] Tue 15:40--16:40
+        \item[Quiz 2]  Tue 16:45--17:00
   \end{description}
 \end{frame}
 
@@ -162,7 +162,7 @@
   \begin{block}{Goal: Successful participants will be able to}
     \begin{itemize}
       \item Use Python as plotting, computational tool
-      \item Understand how Python can be used as a scripting and problem solving language.
+      \item Understand how to use Python as a scripting and problem solving language.
       \item Train students for the same
     \end{itemize}
   \end{block}
@@ -186,15 +186,19 @@
       \item \typ{sslc_allreg.py}
       \item \typ{sslc_science.py}
       \end{itemize}
+    \item Images
+      \begin{itemize}
+      \item \typ{lena.png}
+      \end{itemize}
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Starting up \ldots}
 \begin{block}{}
-\begin{verbatim}
+\begin{lstlisting}
   $ ipython -pylab  
-\end{verbatim}
+\end{lstlisting} %$
 \end{block}
 \begin{lstlisting}     
   In []: print "Hello, World!"
@@ -290,7 +294,9 @@ In []: ylabel('sin(x)')
 \frametitle{Another example}
   \begin{lstlisting}
 In []: clf()
-#Clears the plot area.
+  \end{lstlisting}
+\emphbar{Clears the plot area.}
+  \begin{lstlisting}
 In []: y = linspace(0, 2*pi, 50)
 In []: plot(y, sin(2*y))
 In []: xlabel('y')
@@ -306,7 +312,6 @@ In []: ylabel('sin(2y)')
 %  \small
 \begin{lstlisting}
 In []: title('Sinusoids')
-#Sets the title of the figure
 In []: legend(['sin(2y)'])
 \end{lstlisting}
 %  \small
@@ -329,37 +334,29 @@ In []: legend(['sin(2y)'], loc = 'center')
 \begin{columns}
     \column{0.6\textwidth}
  \includegraphics[height=2in, interpolate=true]{data/position}  
-\begin{lstlisting}
-'best', 'right', 'center'
-\end{lstlisting}
 \column{0.45\textwidth}
 \vspace{-0.2in}
 \begin{lstlisting}
-'upper right'     
-'upper left'      
-'lower left'      
-'lower right'     
-'center left'     
-'center right'    
-'lower center'    
-'upper center'    
+'best' 
+'right'
+'center'
 \end{lstlisting}
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{For arbitrary location}
-\vspace*{-0.1in}
-\begin{lstlisting}
-In []: legend(['sin(2y)'], loc=(.8,.1)) 
-# Specify south-east corner position
-\end{lstlisting}
-%\vspace*{-0.2in}
-\begin{center}
-  \includegraphics[height=2in, interpolate=true]{data/loc}  
-\end{center}
-%\inctime{10}
-\end{frame}
+%% \begin{frame}[fragile]
+%%   \frametitle{For arbitrary location}
+%% \vspace*{-0.1in}
+%% \begin{lstlisting}
+%% In []: legend(['sin(2y)'], loc=(.8,.1)) 
+%% \end{lstlisting}
+%% \emphbar{Specify south-east corner position}
+%% %\vspace*{-0.2in}
+%% \begin{center}
+%%   \includegraphics[height=2in, interpolate=true]{data/loc}  
+%% \end{center}
+%% %\inctime{10}
+%% \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Saving \& Closing}
@@ -406,7 +403,7 @@ In []: close()
 In []: plot(y, sin(y), 'g')
 
 In []: clf()
-In []: plot(y, sin(y), 'g', linewidth=2)
+In []: plot(y, cos(y), 'r', linewidth=2)
 \end{lstlisting}
 \vspace*{-0.2in}
 \begin{center}
@@ -429,13 +426,14 @@ In []: annotate('local max', xy=(1.5, 1))
 
 \begin{frame}[fragile]
 \frametitle{Axes lengths}
+\emphbar{Get the axes limits}
   \begin{lstlisting}
-#Get the axes limits
 In []: xmin, xmax = xlim() 
 In []: ymin, ymax = ylim() 
-
+  \end{lstlisting}
+\emphbar{Set the axes limits}
+  \begin{lstlisting}
 In []: xmax = 2*pi
-#Set the axes limits
 In []: xlim(xmin, xmax) 
 In []: ylim(ymin-0.2, ymax+0.2) 
   \end{lstlisting}
@@ -447,7 +445,7 @@ In []: ylim(ymin-0.2, ymax+0.2)
 \item Plot x, -x, sin(x), xsin(x) in range $-5\pi$ to $5\pi$
 \item Add a legend
 \item Annotate the origin
-\item Set axis limits to the range of x
+\item Set axes limits to the range of x
 \end{enumerate}
 \begin{lstlisting}
 In []: x=linspace(-5*pi, 5*pi, 500)
@@ -481,23 +479,28 @@ Save commands of review problem into file
 \item Identify the required line numbers
 \item Then, use \typ{\%save} command of IPython
 \end{itemize}
-\begin{lstlisting}
-  In []: %hist
-  In []: %save four_plot.py 16 18-27
-\end{lstlisting}
+\typ{In []: \%hist}\\
+\typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} 
+\begin{block}{Careful about errors!}
+  \kwrd{\%hist} will contain the errors as well,\\
+  so be careful while selecting line numbers.
+\end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Python Scripts\ldots}
  This is called a Python Script.
  \begin{itemize}
- \item run the script in IPython using \typ{\%run -i sine_plot.py}\\
+ \item run the script in IPython using \typ{\%run -i four_plot.py}\\
  \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
+    \item \kwrd{\%hist}
+    \item Saving commands to a script
+    \item Running a script using \kwrd{\%run -i}
     \item Creating simple plots.
     \item Adding labels and legends.
     \item Annotating plots.

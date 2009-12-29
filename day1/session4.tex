@@ -79,7 +79,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 4}
+\date[] {14 December, 2009\\Day 1, Session 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -134,16 +134,15 @@
 \begin{frame}[fragile]
 \frametitle{Matrices: Initializing}
 \begin{lstlisting}
-In []: A = array([[ 1,  1,  2, -1],
-                  [ 2,  5, -1, -9],
-                  [ 2,  1, -1,  3],
-                  [ 1, -3,  2,  7]])
-In []: A
+In []: c = array([[1,1,2],
+                  [2,4,1],
+                  [-1,3,7]])
+
+In []: c
 Out[]: 
-array([[ 1,  1,  2, -1],
-       [ 2,  5, -1, -9],
-       [ 2,  1, -1,  3],
-       [ 1, -3,  2,  7]])
+array([[1,1,2],
+       [2,4,1],
+       [-1,3,7]])
 \end{lstlisting}
 \end{frame}
 
@@ -157,8 +156,8 @@ array([[ 1.,  1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.,  1.]])
 
-In []: ones_like([1, 2, 3, 4, 5]) 
-Out[]: array([1, 1, 1, 1, 1])   
+In []: ones_like([1, 2, 3, 4]) 
+Out[]: array([1, 1, 1, 1])   
 
 In []: identity(2)
 Out[]: 
@@ -173,17 +172,17 @@ Also available \alert{\typ{zeros, zeros_like, empty, empty_like}}
 \begin{frame}[fragile]
   \frametitle{Accessing elements}
   \begin{lstlisting}
-In []: C = array([[1,1,2],
-                  [2,4,1],
-                  [-1,3,7]])
+In []: c
+Out[]: 
+array([[1,1,2],
+       [2,4,1],
+       [-1,3,7]])
 
-In []: C[1][2]
+In []: c[1][2]
 Out[]: 1
-
-In []: C[1,2]
+In []: c[1,2]
 Out[]: 1
-
-In []: C[1]
+In []: c[1]
 Out[]: array([2, 4, 1])
   \end{lstlisting}
 \end{frame}
@@ -192,15 +191,15 @@ Out[]: array([2, 4, 1])
   \frametitle{Changing elements}
   \begin{small}
   \begin{lstlisting}
-In []: C[1,1] = -2
-In []: C
+In []: c[1,1] = -2
+In []: c
 Out[]: 
 array([[ 1,  1,  2],
        [ 2, -2,  1],
        [-1,  3,  7]])
 
-In []: C[1] = [0,0,0]
-In []: C
+In []: c[1] = [0,0,0]
+In []: c
 Out[]: 
 array([[ 1,  1,  2],
        [ 0,  0,  0],
@@ -214,18 +213,18 @@ How to change one \alert{column}?
   \frametitle{Slicing}
 \begin{small}
   \begin{lstlisting}
-In []: C[:,1]
+In []: c[:,1]
 Out[]: array([1, 0, 3])
 
-In []: C[1,:]
+In []: c[1,:]
 Out[]: array([0, 0, 0])
 
-In []: C[0:2,:]
+In []: c[0:2,:]
 Out[]: 
 array([[1, 1, 2],
        [0, 0, 0]])
 
-In []: C[1:3,:]
+In []: c[1:3,:]
 Out[]: 
 array([[ 0,  0,  0],
        [-1,  3,  7]])
@@ -237,17 +236,17 @@ array([[ 0,  0,  0],
   \frametitle{Slicing \ldots}
 \begin{small}
   \begin{lstlisting}
-In []: C[:2,:]
+In []: c[:2,:]
 Out[]: 
 array([[1, 1, 2],
        [0, 0, 0]])
 
-In []: C[1:,:]
+In []: c[1:,:]
 Out[]: 
 array([[ 0,  0,  0],
        [-1,  3,  7]])
 
-In []: C[1:,:2]
+In []: c[1:,:2]
 Out[]: 
 array([[ 0,  0],
        [-1,  3]])
@@ -260,18 +259,18 @@ array([[ 0,  0],
   \frametitle{Striding}
   \begin{small}
   \begin{lstlisting}
-In []: C[::2,:]
+In []: c[::2,:]
 Out[]: 
 array([[ 1,  1,  2],
        [-1,  3,  7]])
 
-In []: C[:,::2]
+In []: c[:,::2]
 Out[]: 
 xarray([[ 1,  2],
        [ 0,  0],
        [-1,  7]])
 
-In []: C[::2,::2]
+In []: c[::2,::2]
 Out[]: 
 array([[ 1,  2],
        [-1,  7]])
@@ -283,13 +282,11 @@ array([[ 1,  2],
   \frametitle{Slicing \& Striding Exercises}
 \begin{small}
   \begin{lstlisting}
-In []: A = imread('lena.png')
+In []: a = imread('lena.png')
 
-In []: imshow(A)
+In []: imshow(a)
 Out[]: <matplotlib.image.AxesImage object at 0xa0384cc>
 
-In []: A.shape 
-Out[]: (512, 512, 4)
   \end{lstlisting}
 \end{small}
   \begin{itemize}
@@ -303,13 +300,13 @@ Out[]: (512, 512, 4)
   \frametitle{Solutions}
 \begin{small}
   \begin{lstlisting}
-In []: imshow(A[:256,:256])
+In []: imshow(a[:256,:256])
 Out[]: <matplotlib.image.AxesImage object at 0xb6f658c>
 
-In []: imshow(A[200:400,200:400])
+In []: imshow(a[200:400,200:400])
 Out[]: <matplotlib.image.AxesImage object at 0xb757c2c>
 
-In []: imshow(A[::2,::2])
+In []: imshow(a[::2,::2])
 Out[]: <matplotlib.image.AxesImage object at 0xb765c8c>
   \end{lstlisting}
 \end{small}
@@ -318,7 +315,12 @@ Out[]: <matplotlib.image.AxesImage object at 0xb765c8c>
 \begin{frame}[fragile]
 \frametitle{Transpose of a Matrix}
 \begin{lstlisting}
-In []: A.T
+In []: a = array([[ 1,  1,  2, -1],
+  ...:            [ 2,  5, -1, -9],
+  ...:            [ 2,  1, -1,  3],
+  ...:            [ 1, -3,  2,  7]])
+
+In []: a.T
 Out[]:
 array([[ 1,  2,  2,  1],
        [ 1,  5,  1, -3],
@@ -330,7 +332,7 @@ array([[ 1,  2,  2,  1],
 \begin{frame}[fragile]
   \frametitle{Sum of all elements}
   \begin{lstlisting}
-In []: sum(A)
+In []: sum(a)
 Out[]: 12
   \end{lstlisting}
 \end{frame}
@@ -338,11 +340,11 @@ Out[]: 12
 \begin{frame}[fragile]
   \frametitle{Matrix Addition}
   \begin{lstlisting}
-In []: B = array([[3,2,-1,5],
+In []: b = array([[3,2,-1,5],
                   [2,-2,4,9],
                   [-1,0.5,-1,-7],
                   [9,-5,7,3]])
-In []: A + B
+In []: a + b
 Out[]: 
 array([[  4. ,   3. ,   1. ,   4. ],
        [  4. ,   3. ,   3. ,   0. ],
@@ -354,7 +356,7 @@ array([[  4. ,   3. ,   1. ,   4. ],
 \begin{frame}[fragile]
 \frametitle{Elementwise Multiplication}
 \begin{lstlisting}
-In []: A*B
+In []: a*b
 Out[]: 
 array([[  3. ,   2. ,  -2. ,  -5. ],
        [  4. , -10. ,  -4. , -81. ],
@@ -367,7 +369,7 @@ array([[  3. ,   2. ,  -2. ,  -5. ],
 \begin{frame}[fragile]
 \frametitle{Matrix Multiplication}
 \begin{lstlisting}
-In []: dot(A,B)
+In []: dot(a, b)
 Out[]: 
 array([[ -6. ,   6. ,  -6. ,  -3. ],
        [-64. ,  38.5, -44. ,  35. ],
@@ -379,7 +381,7 @@ array([[ -6. ,   6. ,  -6. ,  -3. ],
 \begin{frame}[fragile]
 \frametitle{Inverse of a Matrix}
 \begin{lstlisting}
-In []: inv(A)
+In []: inv(a)
 \end{lstlisting}
 \begin{small}
 \begin{lstlisting}
@@ -395,7 +397,7 @@ array([[-0.5 ,  0.55, -0.15,  0.7 ],
 \begin{frame}[fragile]
 \frametitle{Determinant}
 \begin{lstlisting}
-In []: det(A)
+In []: det(a)
 Out[]: 80.0
 \end{lstlisting}
 \end{frame}
@@ -405,16 +407,16 @@ Out[]: 80.0
 \frametitle{Eigenvalues and Eigen Vectors}
 \begin{small}
 \begin{lstlisting}
-In []: E = array([[3,2,4],[2,0,2],[4,2,3]])
+In []: e = array([[3,2,4],[2,0,2],[4,2,3]])
 
-In []: eig(E)
+In []: eig(e)
 Out[]: 
 (array([-1.,  8., -1.]),
  array([[-0.74535599,  0.66666667, -0.1931126 ],
         [ 0.2981424 ,  0.33333333, -0.78664085],
         [ 0.59628479,  0.66666667,  0.58643303]]))
 
-In []: eigvals(E)
+In []: eigvals(e)
 Out[]: array([-1.,  8., -1.])
 \end{lstlisting}
 \end{small}
@@ -423,7 +425,7 @@ Out[]: array([-1.,  8., -1.])
 %% \begin{frame}[fragile]
 %% \frametitle{Computing Norms}
 %% \begin{lstlisting}
-%% In []: norm(E)
+%% In []: norm(e)
 %% Out[]: 8.1240384046359608
 %% \end{lstlisting}
 %% \end{frame}
@@ -432,7 +434,7 @@ Out[]: array([-1.,  8., -1.])
 %%   \frametitle{Singular Value Decomposition}
 %%   \begin{small}
 %%   \begin{lstlisting}
-%% In []: svd(E)
+%% In []: svd(e)
 %% Out[]: 
 %% (array(
 %% [[ -6.66666667e-01,  -1.23702565e-16,   7.45355992e-01],
@@ -503,9 +505,33 @@ Out[]: array([-1.,  8., -1.])
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Getting $L$ and $T^2$}
+If you \alert{closed} IPython after session 2
+\begin{lstlisting}
+In []: l = []
+In []: t = []
+In []: for line in open('pendulum.txt'):
+  ....     point = line.split()
+  ....     l.append(float(point[0]))
+  ....     t.append(float(point[1]))
+  ....
+  ....
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Getting $L$ and $T^2$ \dots}
+\begin{lstlisting}
+In []: l = array(l)
+In []: t = array(t)
+\end{lstlisting}
+\alert{\typ{In []: tsq = t*t}}
+\end{frame}
+ 
+\begin{frame}[fragile]
 \frametitle{Generating $A$}
 \begin{lstlisting}
-In []: A = array([L, ones_like(L)])
+In []: A = array([l, ones_like(l)])
 In []: A = A.T
 \end{lstlisting}
 %% \begin{itemize}
@@ -524,7 +550,7 @@ In []: A = A.T
 \item Along with a lot of things, it returns the least squares solution
 \end{itemize}
 \begin{lstlisting}
-In []: result = lstsq(A,TSq)
+In []: result = lstsq(A,tsq)
 In []: coef = result[0]
 \end{lstlisting}
 \end{frame}
@@ -533,13 +559,13 @@ In []: coef = result[0]
 \frametitle{Least Square Fit Line \ldots}
 We get the points of the line from \typ{coef}
 \begin{lstlisting}
-In []: Tline = coef[0]*L + coef[1]
+In []: Tline = coef[0]*l + coef[1]
 \end{lstlisting}
 \begin{itemize}
-\item Now plot Tline vs. L, to get the Least squares fit line. 
+\item Now plot \typ{Tline} vs. \typ{l}, to get the Least squares fit line. 
 \end{itemize}
 \begin{lstlisting}
-In []: plot(L, Tline)
+In []: plot(l, Tline)
 \end{lstlisting}
 \end{frame}
 

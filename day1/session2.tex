@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 2}
+\date[] {14 December, 2009\\Day 1, Session 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -331,7 +331,7 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
 \frametitle{What about larger data sets?}
 \alert{Data is usually present in a file!} \\
 Lets look at the \typ{pendulum.txt} file.
-\begin{lstlisting}
+\begin{lstlisting} 
 $ cat pendulum.txt 
 1.0000e-01 6.9004e-01
 1.1000e-01 6.9497e-01
@@ -339,7 +339,7 @@ $ cat pendulum.txt
 1.3000e-01 7.5360e-01
 1.4000e-01 8.3568e-01
 1.5000e-01 8.6789e-01
-\end{lstlisting}
+\end{lstlisting}  %$
 \ldots
 \begin{block}{Windows users:}
   C:> type pendulum.txt
@@ -418,12 +418,12 @@ Out[]: ['hello', 'world']
   \end{lstlisting}
 This is what happens with \typ{line}
   \begin{lstlisting}
-In []: line = '1.2000e-01 7.4252e-01'
+In []: line = '1.20 7.42'
 
 In []: point = line.split()
 
 In []: point
-Out[]: ['1.2000e-01', '7.4252e-01']
+Out[]: ['1.20', '7.42']
   \end{lstlisting}
 \end{frame}
 
