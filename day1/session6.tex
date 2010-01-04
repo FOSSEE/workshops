@@ -216,11 +216,17 @@ Use \kwrd{solve()}
 \frametitle{Scipy Methods - \typ{roots}}
 \begin{itemize}
 \item Calculates the roots of polynomials
+\item To calculate the roots of $x^2-5x+6$ 
 \end{itemize}
 \begin{lstlisting}
-  In []: coeffs = [1, 6, 13]
+  In []: coeffs = [1, -5, 6]
   In []: roots(coeffs)
+  Out[]: array([3., 2.])
 \end{lstlisting}
+\vspace*{-.2in}
+\begin{center}
+\includegraphics[height=1.6in, interpolate=true]{data/roots}    
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -291,6 +297,9 @@ Find the root of $sin(x)+cos^2(x)$ nearest to $0$
 In []: fsolve(f, 0)
 Out[]: -0.66623943249251527
 \end{lstlisting}
+\begin{center}
+\includegraphics[height=2in, interpolate=true]{data/fsolve}    
+\end{center}
 \end{frame}
 
 %% \begin{frame}[fragile]

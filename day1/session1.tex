@@ -447,25 +447,36 @@ In []: ylim(ymin-0.2, ymax+0.2)
 \item Annotate the origin
 \item Set axes limits to the range of x
 \end{enumerate}
+\vspace*{-0.1in}
+\begin{center}
+  \includegraphics[height=2.1in, interpolate=true]{data/four_plot}  
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Review Problem \ldots}
+\alert{Plotting \ldots}
 \begin{lstlisting}
 In []: x=linspace(-5*pi, 5*pi, 500)
 In []: plot(x, x, 'b')
 In []: plot(x, -x, 'b')
+In []: plot(x, sin(x), 'g', linewidth=2)
+In []: plot(x, x*sin(x), 'r', 
+            linewidth=3)
 \end{lstlisting}
 $\vdots$
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Review Problem \ldots}
-\begin{lstlisting}
-In []: plot(x, sin(x), 'g', linewidth=2)
-In []: plot(x, x*sin(x), 'r', 
-            linewidth=3)
-\end{lstlisting}
+\alert{Legend \& Annotation\ldots}
 \begin{lstlisting}
 In []: legend(['x', '-x', 'sin(x)', 
                'xsin(x)'])
 In []: annotate('origin', xy = (0, 0))
+\end{lstlisting}
+\alert{Setting Axes limits\ldots}
+\begin{lstlisting}
 In []: xlim(-5*pi, 5*pi)
 In []: ylim(-5*pi, 5*pi)
 \end{lstlisting}

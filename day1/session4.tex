@@ -488,7 +488,14 @@ Out[]: array([-1.,  8., -1.])
 \frametitle{\typ{lstsq}}
 \begin{itemize}
 \item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
-\item In matrix form, the equation can be represented as $T^2 = A \cdot p$, where A is   
+\item In matrix form, the equation can be represented as $T_{sq} = A \cdot p$, where $T_{sq}$ is
+  $\begin{bmatrix}
+  T^2_1 \\
+  T^2_2 \\
+  \vdots\\
+  T^2_N \\
+  \end{bmatrix}$
+, A is   
   $\begin{bmatrix}
   L_1 & 1 \\
   L_2 & 1 \\
