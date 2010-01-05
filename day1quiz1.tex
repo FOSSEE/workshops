@@ -154,8 +154,12 @@ is in the rectangle $(0, -1.5)$ (left bottom coordinate) and $(2\pi,
 %%   \end{lstlisting}
 %% \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
 \frametitle{\incqno }
+What ipython magic command do you use to obtain the lines of code you have already typed in the interpreter? What command do you use to save them?
+\end{frame}
+
+\begin{frame}
 \begin{lstlisting}
 In []: sc = {'A': 10, 'B': 20, 
              'C': 70}
@@ -234,6 +238,38 @@ Given the above marks, how will you calculate the \alert{mean} and
 Write the code to read a file \texttt{data.txt} and print each line of it?
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{\incqno }
+What is the output of:
+\begin{lstlisting}
+In []: x=linspace(0 , 2 * pi)
+In []: plot(x, cos(x),'go')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+Draw a plot with line width 3.
+\end{frame}
+
+\begin{frame}
+\frametitle{\incqno }
+Setting x and y axis limits.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\incqno }
+The following code snippet has an error/bug:
+\begin{lstlisting}
+In []: l = [0.1, 0.2, 0.3, 0.4]
+In []: t = [0.69, 0.90, 1.19, 1.30]
+In []: tsq = []
+In []: for time in t:
+ ....:     tsq.append(time*time)
+ ....:     plot(l, tsq)
+\end{lstlisting}
+
+What is the error? How do you fix it?
+\end{frame}
 
 \end{document}
-

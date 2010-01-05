@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {7 November, 2009\\Day 1, Session 5}
+\date[] {11 January, 2010\\Day 1, Session 5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -111,11 +111,37 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Problem 1}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/L-Tsq.png}
+    \column{0.45\textwidth}
+    \begin{block}{Example code}
+    \tiny
+    \begin{lstlisting}
+l = []
+t = []
+for line in open('pendulum.txt'):
+    point = line.split()
+    l.append(float(point[0]))
+    t.append(float(point[1]))
+tsq = []
+for time in t:
+    tsq.append(time*time)
+plot(l, tsq, '.')
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+  \begin{block}{Problem Statement}
+    Tweak above code to plot data in file 'location.txt'.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem 1 cont...}
   \begin{itemize}
-  \item Open file 'pos.txt', it has X and Y Coordinate of a particle under motion
-  \item Plot X vs Y Graph.
   \item Label both the axes.
   \item What kind of motion is this?
   \item Title the graph accordingly.
@@ -123,13 +149,49 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Problem 2}
-Write a Program that plots a regular n-gon(Let n = 5).
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/points}
+    \column{0.45\textwidth}
+    \begin{block}{Line between two points}
+    \tiny
+    \begin{lstlisting}
+In []: x = [1, 5]
+In []: y = [1, 4]
+In []: plot(x, y)
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+  Line can be plotted using arrays of coordinates.
+  \pause
+  \begin{block}{Problem statement}
+    Write a Program that plots a regular n-gon(Let n = 5).
+  \end{block}  
 \end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Problem 3}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/damp}
+    \column{0.45\textwidth}
+    \begin{block}{Damped Oscillation}
+    \tiny
+    \begin{lstlisting}
+In []: x = linspace(0, 4*pi)
+In []: plot(x, exp(x/10)*sin(x))
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 3 cont...}
 Create a sequence of images in which the damped oscillator($e^{x/10}sin(x)$) slowly evolves over time.
 \begin{columns}
 \column{0.35\textwidth}
@@ -147,16 +209,70 @@ savefig('plot'+str(i)+'.png') #i is int variable
 \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Problem 4}
-  Legendre polynomials $P_n(x)$ are defined by the following recurrence relation
-
-\center{$(n+1)P_{n+1}(x) - (2n+1)xP_n(x) + nP_{n-1}(x) = 0$}\\
-
-with $P_0(x) = 1$, $P_1(x) = x$ and $P_2(x) = (3x^2 - 1)/2$. Compute the next three 
-   Legendre polynomials and plot all 6 over the interval [-1,1].
+  \begin{lstlisting}
+In []: x = imread('smoothing.png')
+In []: x.shape
+Out[]: (256, 256)
+In []: imshow(x,cmap=cm.gray)
+  \end{lstlisting}
+\emphbar{Replace each pixel with mean of neighboring pixels}
+  \begin{center}
+  \includegraphics[height=1in, interpolate=true]{data/neighbour}
+  \end{center}
 \end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[height=3in, interpolate=true]{data/smoothing}    
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 4: Approach}
+  For \typ{y} being resultant image:
+  \begin{lstlisting}
+y[1, 1] = x[0, 1]/4 + x[1, 0]/4 
+          + x[2, 1]/4 + x[1, 2]/4    
+  \end{lstlisting}
+   \begin{columns}
+    \column{0.45\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=1.5in, interpolate=true]{data/smoothing}
+    \column{0.45\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=1.5in, interpolate=true]{data/after-filter}
+  \end{columns}
+   \begin{block}{Hint:}
+     Use array Slicing.
+   \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Solution}
+  \begin{lstlisting}
+In []: y = zeros_like(x)
+In []: y[1:-1,1:-1] = x[:-2,1:-1]/4+
+                      x[2:,1:-1]/4+
+                      x[1:-1,2:]/4+
+                      x[1:-1,:-2]/4
+In []: imshow(y,cmap=cm.gray)
+  \end{lstlisting}
+\end{frame}
+
+
 \end{document}
+
+%% \begin{frame}
+%%   \frametitle{Problem 4}
+%%   Legendre polynomials $P_n(x)$ are defined by the following recurrence relation
+
+%% \center{$(n+1)P_{n+1}(x) - (2n+1)xP_n(x) + nP_{n-1}(x) = 0$}\\
+
+%% with $P_0(x) = 1$, $P_1(x) = x$ and $P_2(x) = (3x^2 - 1)/2$. Compute the next three 
+%%    Legendre polynomials and plot all 6 over the interval [-1,1].
+%% \end{frame}
 
 %% \begin{frame}[fragile] 
 %% \frametitle{Problem Set 5}

@@ -79,7 +79,7 @@
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 
-\date[] {7 November, 2009\\Day 1, Session 3}
+\date[] {11 January, 2010\\Day 1, Session 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -147,7 +147,7 @@ In []: for line in open('pendulum.txt'):
   ....     point = line.split()
   ....     l = float(point[0])
   ....     t = float(point[1])
-  ....     g = 4 * pi * pi * l / t * t
+  ....     g = 4 * pi * pi * l / (t * t)
   ....     G.append(g)
   \end{lstlisting}
 \end{frame}
@@ -166,8 +166,8 @@ total = 0
 for g in G:
     total += g
 
-g_mean = total / len(g)
-print "Mean: ", g_mean
+g_mean = total / len(G)
+print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
 
@@ -175,7 +175,7 @@ print "Mean: ", g_mean
   \frametitle{Mean ``g''}
   \begin{lstlisting}
 g_mean = sum(G) / len(G)
-print "Mean: ", g_mean
+print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
 
@@ -183,7 +183,7 @@ print "Mean: ", g_mean
   \frametitle{Mean ``g''}
   \begin{lstlisting}
 g_mean = mean(G)
-print "Mean: ", g_mean
+print 'Mean: ', g_mean
   \end{lstlisting}
   \inctime{10}
 \end{frame}
@@ -277,11 +277,11 @@ for record in open('sslc1.txt'):
 \begin{frame}[fragile]
   \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In []: d = {"jpg" : "image file",
-      "txt" : "text file", 
-      "py" : "python code"}
+In []: d = {'jpg' : 'image file',
+      'txt' : 'text file', 
+      'py' : 'python code'}
 
-In []: d["txt"]
+In []: d['txt']
 Out[]: 'text file'
   \end{lstlisting}
 \end{frame}
@@ -289,10 +289,10 @@ Out[]: 'text file'
 \begin{frame}[fragile]
   \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In []: "py" in d
+In []: 'py' in d
 Out[]: True
 
-In []: "cpp" in d
+In []: 'cpp' in d
 Out[]: False
   \end{lstlisting}
 \end{frame}
@@ -417,11 +417,11 @@ for record in open('sslc1.txt'):
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
   \begin{lstlisting}
-print "Mean: ", mean(math_scores)
+print 'Mean: ', mean(math_scores)
 
-print "Median: ", median(math_scores)
+print 'Median: ', median(math_scores)
 
-print "Standard Deviation: ",
+print 'Standard Deviation: ',
               std(math_scores)
   \end{lstlisting}
   \inctime{10}
@@ -432,11 +432,11 @@ print "Standard Deviation: ",
   \begin{lstlisting}
 math_array = array(math_scores)
 
-print "Mean: ", mean(math_array)
+print 'Mean: ', mean(math_array)
 
-print "Median: ", median(math_array)
+print 'Median: ', median(math_array)
 
-print "Standard Deviation: ",
+print 'Standard Deviation: ',
               std(math_array)
   \end{lstlisting}
   \inctime{5}
