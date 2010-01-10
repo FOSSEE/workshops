@@ -248,21 +248,6 @@ NameError: name 'linspace' is not defined
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Remedy}
-  \begin{lstlisting}
-from scipy import *
-  \end{lstlisting}
-\alert{Now run python four\_plot.py again!}
-  \pause
-  \begin{lstlisting}
-Traceback (most recent call last):
-  File "four_plot.py", line 4, in <module>
-    plot(x, x, 'b')
-NameError: name 'plot' is not defined
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
   \frametitle{Remedy \ldots}
   \begin{lstlisting}
 from pylab import *
@@ -276,8 +261,8 @@ from pylab import *
     \item The \kwrd{import} keyword ``loads'' a module
     \item One can also use:
       \begin{lstlisting}
-In []: from scipy import *
-In []: from scipy import linspace
+In []: from pylab import *
+In []: from pylab import linspace
       \end{lstlisting}    
     \item What is the difference?
     \item \alert{Use the former only in interactive mode}
@@ -297,7 +282,7 @@ from scipy.optimize import fsolve
   \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
-from scipy import linspace, pi, sin
+from pylab import linspace, pi, sin
 from pylab import plot, legend, annotate
 from pylab import xlim, ylim
 
@@ -317,18 +302,17 @@ ylim(-5*pi, 5*pi)
   \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
-import scipy
 import pylab
 
-x = scipy.linspace(-5*scipy.pi, 5*scipy.pi, 500)
+x = pylab.linspace(-5*pylab.pi, 5*pylab.pi, 500)
 pylab.plot(x, x, 'b')
 pylab.plot(x, -x, 'b')
-pylab.plot(x, scipy.sin(x), 'g', linewidth=2)
-pylab.plot(x, x*scipy.sin(x), 'r', linewidth=3)
+pylab.plot(x, pylab.sin(x), 'g', linewidth=2)
+pylab.plot(x, x*pylab.sin(x), 'r', linewidth=3)
 pylab.legend(['x', '-x', 'sin(x)', 'xsin(x)'])
 pylab.annotate('origin', xy = (0, 0))
-pylab.xlim(-5*scipy.pi, 5*scipy.pi)
-pylab.ylim(-5*scipy.pi, 5*scipy.pi)
+pylab.xlim(-5*pylab.pi, 5*pylab.pi)
+pylab.ylim(-5*pylab.pi, 5*pylab.pi)
   \end{lstlisting}
 \end{frame}
 
