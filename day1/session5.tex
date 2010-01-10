@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Tutorial slides on Python.
 %
-% Author: FOSSEE 
-% Copyright (c) 2009, FOSSEE, IIT Bombay
+% Author: Prabhu Ramachandran <prabhu at aero.iitb.ac.in>
+% Copyright (c) 2005-2009, Prabhu Ramachandran
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[14pt,compress]{beamer}
@@ -23,7 +23,6 @@
 \usepackage[latin1]{inputenc}
 %\usepackage{times}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath}
 
 % Taken from Fernando's slides.
 \usepackage{ae,aecompl}
@@ -52,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\lstinline{#1}}
+\newcommand{\typ}[1]{\texttt{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -74,12 +73,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[]{}
+\title[Exercises]{Exercises}
 
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {11, January 2010\\Day 1, Session 5}
+\date[] {11 January, 2010\\Day 1, Session 5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -96,13 +95,6 @@
   \end{frame}
 }
 
-\AtBeginSection[]
-{
-  \begin{frame}<beamer>
-   \frametitle{Outline}
-   \tableofcontents[currentsection,currentsubsection]
-  \end{frame}
-}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
@@ -118,12 +110,194 @@
   \titlepage
 \end{frame}
 
-%% \begin{frame}
-%%   \frametitle{Outline}
-%%   \tableofcontents
-%% %  \pausesections
-%% \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 1}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/L-Tsq.png}
+    \column{0.45\textwidth}
+    \begin{block}{Example code}
+    \tiny
+    \begin{lstlisting}
+l = []
+t = []
+for line in open('pendulum.txt'):
+    point = line.split()
+    l.append(float(point[0]))
+    t.append(float(point[1]))
+tsq = []
+for time in t:
+    tsq.append(time*time)
+plot(l, tsq, '.')
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+  \begin{block}{Problem Statement}
+    Tweak above code to plot data in file 'location.txt'.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem 1 cont...}
+  \begin{itemize}
+  \item Label both the axes.
+  \item What kind of motion is this?
+  \item Title the graph accordingly.
+  \item Annotate the position where vertical velocity is zero.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 2}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/points}
+    \column{0.45\textwidth}
+    \begin{block}{Line between two points}
+    \tiny
+    \begin{lstlisting}
+In []: x = [1, 5]
+In []: y = [1, 4]
+In []: plot(x, y)
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+  Line can be plotted using arrays of coordinates.
+  \pause
+  \begin{block}{Problem statement}
+    Write a Program that plots a regular n-gon(Let n = 5).
+  \end{block}  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Problem 3}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=2in, interpolate=true]{data/damp}
+    \column{0.45\textwidth}
+    \begin{block}{Damped Oscillation}
+    \tiny
+    \begin{lstlisting}
+In []: x = linspace(0, 4*pi)
+In []: plot(x, exp(x/10)*sin(x))
+    \end{lstlisting}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 3 cont...}
+Create a sequence of images in which the damped oscillator($e^{x/10}sin(x)$) slowly evolves over time.
+\begin{columns}
+\column{0.35\textwidth}
+\includegraphics[width=1.5in,height=1.5in, interpolate=true]{data/plot2}
+\column{0.35\textwidth}
+\includegraphics[width=1.5in,height=1.5in, interpolate=true]{data/plot4}
+\column{0.35\textwidth}
+\includegraphics[width=1.5in,height=1.5in, interpolate=true]{data/plot6}
+\end{columns}
+\begin{block}{Hint}
+\small
+  \begin{lstlisting}
+savefig('plot'+str(i)+'.png') #i is int variable  
+  \end{lstlisting}  
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 4}
+  \begin{lstlisting}
+In []: x = imread('smoothing.png')
+In []: x.shape
+Out[]: (256, 256)
+In []: imshow(x,cmap=cm.gray)
+  \end{lstlisting}
+\emphbar{Replace each pixel with mean of neighboring pixels}
+  \begin{center}
+  \includegraphics[height=1in, interpolate=true]{data/neighbour}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[height=3in, interpolate=true]{data/smoothing}    
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 4: Approach}
+  For \typ{y} being resultant image:
+  \begin{lstlisting}
+y[1, 1] = x[0, 1]/4 + x[1, 0]/4 
+          + x[2, 1]/4 + x[1, 2]/4    
+  \end{lstlisting}
+   \begin{columns}
+    \column{0.45\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=1.5in, interpolate=true]{data/smoothing}
+    \column{0.45\textwidth}
+    \hspace*{-0.5in}
+    \includegraphics[height=1.5in, interpolate=true]{data/after-filter}
+  \end{columns}
+   \begin{block}{Hint:}
+     Use array Slicing.
+   \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Solution}
+  \begin{lstlisting}
+In []: y = zeros_like(x)
+In []: y[1:-1,1:-1] = x[:-2,1:-1]/4+
+                      x[2:,1:-1]/4+
+                      x[1:-1,2:]/4+
+                      x[1:-1,:-2]/4
+In []: imshow(y,cmap=cm.gray)
+  \end{lstlisting}
+\end{frame}
 
 
 \end{document}
 
+%% \begin{frame}
+%%   \frametitle{Problem 4}
+%%   Legendre polynomials $P_n(x)$ are defined by the following recurrence relation
+
+%% \center{$(n+1)P_{n+1}(x) - (2n+1)xP_n(x) + nP_{n-1}(x) = 0$}\\
+
+%% with $P_0(x) = 1$, $P_1(x) = x$ and $P_2(x) = (3x^2 - 1)/2$. Compute the next three 
+%%    Legendre polynomials and plot all 6 over the interval [-1,1].
+%% \end{frame}
+
+%% \begin{frame}[fragile] 
+%% \frametitle{Problem Set 5}
+%%   \begin{columns}
+%%     \column{0.6\textwidth}
+%%     \small{
+%%     \begin{itemize}
+%%       \item[3] Consider the iteration $x_{n+1} = f(x_n)$ where $f(x) = kx(1-x)$.  Plot the successive iterates of this process as explained below. 
+%%     \end{itemize}}
+%%     \column{0.35\textwidth}
+%%     \hspace*{-0.5in}
+%%   \includegraphics[height=1.6in, interpolate=true]{data/cobweb}  
+%% \end{columns}
+%% \end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Problem Set 5.3}
+%%   Plot the cobweb plot as follows:
+%%   \begin{enumerate}
+%%     \item Start at $(x_0, 0)$ ($\implies$ i=0)
+%%     \item Draw a line to $(x_i, f(x_i))$
+%%     \item Set $x_{i+1} = f(x_i)$
+%%     \item Draw a line to $(x_{i+1}, x_{i+1})$
+%%     \item $(i\implies i+1)$ 
+%%     \item Repeat from 2 for as long as you want 
+%%   \end{enumerate}
+%% \inctime{20}
+%% \end{frame}
