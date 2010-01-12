@@ -250,6 +250,23 @@ NameError: name 'linspace' is not defined
 \begin{frame}[fragile]
   \frametitle{Remedy \ldots}
   \begin{lstlisting}
+from scipy import *
+  \end{lstlisting}
+\alert{Now run python four\_plot.py again}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{lstlisting}
+Traceback (most recent call last):
+  File "four_plot.py", line 1, in <module>
+    x = plot(x, x, 'b')
+NameError: name 'plot' is not defined
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Remedy \ldots}
+  \begin{lstlisting}
 from pylab import *
   \end{lstlisting}
 \alert{Now run python four\_plot.py again!!}
@@ -261,8 +278,8 @@ from pylab import *
     \item The \kwrd{import} keyword ``loads'' a module
     \item One can also use:
       \begin{lstlisting}
-In []: from pylab import *
-In []: from pylab import linspace
+In []: from scipy import *
+In []: from scipy import linspace
       \end{lstlisting}    
     \item What is the difference?
     \item \alert{Use the former only in interactive mode}
@@ -282,7 +299,7 @@ from scipy.optimize import fsolve
   \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
-from pylab import linspace, pi, sin
+from scipy import linspace, pi, sin
 from pylab import plot, legend, annotate
 from pylab import xlim, ylim
 
@@ -302,17 +319,18 @@ ylim(-5*pi, 5*pi)
   \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
   \small
   \begin{lstlisting}
+import scipy
 import pylab
 
-x = pylab.linspace(-5*pylab.pi, 5*pylab.pi, 500)
+x = scipy.linspace(-5*scipy.pi, 5*scipy.pi, 500)
 pylab.plot(x, x, 'b')
 pylab.plot(x, -x, 'b')
-pylab.plot(x, pylab.sin(x), 'g', linewidth=2)
-pylab.plot(x, x*pylab.sin(x), 'r', linewidth=3)
+pylab.plot(x, scipy.sin(x), 'g', linewidth=2)
+pylab.plot(x, x*scipy.sin(x), 'r', linewidth=3)
 pylab.legend(['x', '-x', 'sin(x)', 'xsin(x)'])
 pylab.annotate('origin', xy = (0, 0))
-pylab.xlim(-5*pylab.pi, 5*pylab.pi)
-pylab.ylim(-5*pylab.pi, 5*pylab.pi)
+pylab.xlim(-5*scipy.pi, 5*scipy.pi)
+pylab.ylim(-5*scipy.pi, 5*scipy.pi)
   \end{lstlisting}
 \end{frame}
 

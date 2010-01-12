@@ -1,23 +1,15 @@
-def get_date_from_str(date_str):
-    month2mm = {
-        'January': 1,
-        'February': 2,
-        'March': 3,
-        'April': 4,
-        'May': 5,
-        'June': 6,
-        'July': 7,
-        'August': 8,
-        'September': 9,
-        'October': 10,
-        'November': 11,
-        'December': 12,
-        }
+month2mm = { 'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4, 'MAY': 5,
+'JUN': 6, 'JUL': 7, 'AUG': 8, 'SEP': 9, 'OCT': 10, 'NOV': 11,
+'DEC': 12 }
 
-    dd, month, yyyy = date_str.split()
-
-    mm = month2mm[month]
-    return int(yyyy), int(dd.strip(',')), mm
-
+COMMA = ','
+SPACE = ' '
 date_str = raw_input('Enter a date string? ')
-print get_date_from_str(date_str)
+date_str = date_str.replace( COMMA, SPACE)
+d, m, y = date_str.split()
+dd = int( d )
+mon = m[:3].upper()
+mm = month2mm[mon]
+yyyy = int( y )
+
+print dd,mm, yyyy
