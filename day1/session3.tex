@@ -142,13 +142,13 @@
 \begin{frame}[fragile]
   \frametitle{Acceleration due to gravity - ``g''\ldots}
   \begin{lstlisting}
-In []: G = []
+In []: g_list = []
 In []: for line in open('pendulum.txt'):
   ....     point = line.split()
   ....     l = float(point[0])
   ....     t = float(point[1])
   ....     g = 4 * pi * pi * l / (t * t)
-  ....     G.append(g)
+  ....     g_list.append(g)
   \end{lstlisting}
 \end{frame}
 
@@ -163,11 +163,11 @@ In []: for line in open('pendulum.txt'):
   \frametitle{Mean ``g''}
   \begin{lstlisting}
 In []: total = 0
-In []: for g in G:
+In []: for g in g_list:
  ....:     total += g
  ....:
 
-In []: g_mean = total / len(G)
+In []: g_mean = total / len(g_list)
 In []: print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
@@ -175,7 +175,7 @@ In []: print 'Mean: ', g_mean
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-In []: g_mean = sum(G) / len(G)
+In []: g_mean = sum(g_list) / len(g_list)
 In []: print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
@@ -183,7 +183,7 @@ In []: print 'Mean: ', g_mean
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-In []: g_mean = mean(G)
+In []: g_mean = mean(g_list)
 In []: print 'Mean: ', g_mean
   \end{lstlisting}
   \inctime{10}
@@ -333,7 +333,6 @@ science = {}
 science = {}
 
 for record in open('sslc1.txt'):
-    record = record.strip()
     fields = record.split(';')
 
     region_code = fields[0].strip()
@@ -396,7 +395,6 @@ savefig('science.png')
 math_scores = []
 
 for record in open('sslc1.txt'):
-    record = record.strip()
     fields = record.split(';')
 
     score_str = fields[5].strip()

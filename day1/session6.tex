@@ -250,10 +250,16 @@ Find the root of $sin(x)+cos^2(x)$ nearest to $0$
 \frametitle{\typ{fsolve}}
 Root of $sin(x)+cos^2(x)$ nearest to $0$
 \begin{lstlisting}
-In []: fsolve(sin(x)+cos(x)**2, 0)
+In []: fsolve(sin(x)+cos(x)*cos(x), 0)
 NameError: name 'x' is not defined
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve}}
+\begin{lstlisting}
 In []: x = linspace(-pi, pi)
-In []: fsolve(sin(x)+cos(x)**2, 0)
+In []: fsolve(sin(x)+cos(x)*cos(x), 0)
 \end{lstlisting}
 \begin{small}
 \alert{\typ{TypeError:}}
@@ -266,7 +272,7 @@ In []: fsolve(sin(x)+cos(x)**2, 0)
 We have been using them all along. Now let's see how to define them.
 \begin{lstlisting}
 In []: def f(x):
-           return sin(x)+cos(x)**2
+           return sin(x)+cos(x)*cos(x)
 \end{lstlisting}
 \begin{itemize}
 \item \typ{def}
@@ -332,7 +338,8 @@ Out[]: -0.66623943249251527
 \begin{lstlisting}
 In []: from scipy.integrate import odeint
 In []: def epid(y, t):
-  ....     k, L = 0.00003, 25000
+  ....     k = 0.00003
+  ....     L = 25000
   ....     return k*y*(L-y)
   ....
 \end{lstlisting}
@@ -382,8 +389,10 @@ We shall use the simple ODE of a simple pendulum.
 \end{itemize}
 \begin{lstlisting}
 In []: def pend_int(initial, t):
-  ....     theta, omega = initial
-  ....     g, L = 9.81, 0.2
+  ....     theta = initial[0]
+  ....     omega = initial[1]
+  ....     g = 9.81
+  ....     L = 0.2
   ....     f=[omega, -(g/L)*sin(theta)]
   ....     return f
   ....
@@ -397,7 +406,7 @@ In []: def pend_int(initial, t):
 \item \typ{initial} has the initial values
 \end{itemize}
 \begin{lstlisting}
-In []: t = linspace(0, 10, 101)
+In []: t = linspace(0, 20, 101)
 In []: initial = [10*2*pi/360, 0]
 \end{lstlisting} 
 \end{frame}

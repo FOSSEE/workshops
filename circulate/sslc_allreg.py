@@ -2,7 +2,7 @@ scores = [[], [], [], [], []]
 ninety_percents = [{}, {}, {}, {}, {}]
 
 for record in open('sslc1.txt'):
-    record = record.strip()
+#    record = record.strip()
     fields = record.split(';')
 
     region_code = fields[0].strip()
