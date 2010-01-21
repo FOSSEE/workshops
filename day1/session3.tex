@@ -162,28 +162,29 @@ In []: for line in open('pendulum.txt'):
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-total = 0
-for g in G:
-    total += g
+In []: total = 0
+In []: for g in G:
+ ....:     total += g
+ ....:
 
-g_mean = total / len(G)
-print 'Mean: ', g_mean
+In []: g_mean = total / len(G)
+In []: print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-g_mean = sum(G) / len(G)
-print 'Mean: ', g_mean
+In []: g_mean = sum(G) / len(G)
+In []: print 'Mean: ', g_mean
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Mean ``g''}
   \begin{lstlisting}
-g_mean = mean(G)
-print 'Mean: ', g_mean
+In []: g_mean = mean(G)
+In []: print 'Mean: ', g_mean
   \end{lstlisting}
   \inctime{10}
 \end{frame}

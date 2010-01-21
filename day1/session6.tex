@@ -148,7 +148,7 @@ Let us now look at how to solve this using \kwrd{matrices}
     In []: A = array([[3,2,-1],
                       [2,-2,4],                   
                       [-1, 0.5, -1]])
-    In []: b = array([[1], [-2], [0]])
+    In []: b = array([1, -2, 0])
     In []: x = solve(A, b)
   \end{lstlisting}
 \end{frame}
@@ -157,22 +157,16 @@ Let us now look at how to solve this using \kwrd{matrices}
 \frametitle{Solution:}
 \begin{lstlisting}
 In []: x
-Out[]: 
-array([[ 1.],
-       [-2.],
-       [-2.]])
+Out[]: array([ 1., -2., -2.])
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Let's check!}
 \begin{lstlisting}
-In []: Ax = dot(A,x)
+In []: Ax = dot(A, x)
 In []: Ax
-Out[]: 
-array([[  1.00000000e+00],
-       [ -2.00000000e+00],
-       [  2.22044605e-16]])
+Out[]: array([  1.00000000e+00,  -2.00000000e+00,  -1.11022302e-16])
 \end{lstlisting}
 \begin{block}{}
 The last term in the matrix is actually \alert{0}!\\
@@ -246,6 +240,15 @@ Use \kwrd{solve()}
 \begin{frame}[fragile]
 \frametitle{\typ{fsolve}}
 Find the root of $sin(x)+cos^2(x)$ nearest to $0$
+\vspace{-0.1in}
+\begin{center}
+\includegraphics[height=2.8in, interpolate=true]{data/fsolve}    
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve}}
+Root of $sin(x)+cos^2(x)$ nearest to $0$
 \begin{lstlisting}
 In []: fsolve(sin(x)+cos(x)**2, 0)
 NameError: name 'x' is not defined

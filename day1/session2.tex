@@ -179,10 +179,10 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 \begin{frame}[fragile]
 \frametitle{Additional Plotting Attributes}
 \begin{itemize}
-  \item \kwrd{'o'} - Filled circles
-  \item \kwrd{'.'} - Small Dots
-  \item \kwrd{'-'} - Lines
-  \item \kwrd{'- -'} - Dashed lines
+  \item \typ{'o'} - Filled circles
+  \item \typ{'.'} - Small Dots
+  \item \typ{'-'} - Lines
+  \item \typ{'--'} - Dashed lines
 \end{itemize}
 \end{frame}
 
@@ -190,7 +190,7 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 \begin{frame}[fragile]
   \frametitle{Lists: Introduction}
   \begin{lstlisting}
-    In []: x = [0, 1, 2, 3]
+    In []: x = [4, 2, 1, 3]
 
     In []: y = [7, 11, 15, 19]
 
@@ -208,17 +208,17 @@ In []: mtlist = []
 \end{lstlisting}
 \emphbar{Empty List}
 \begin{lstlisting}
-In []: a = [ 1, 2, 3, 4, 5] 
+In []: a = [ 5, 2, 3, 1, 4] 
 
 In []: a[0]+a[1]+a[-1]
-Out[]: 8
+Out[]: 11
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{List: Slicing}
   \begin{block}{Remember\ldots}
-	\kwrd{In []: a = [ 1, 2, 3, 4, 5]}
+	\kwrd{In []: a = [ 5, 2, 3, 1, 4]}
   \end{block}
 \begin{lstlisting}
 In []: a[1:3]
@@ -227,7 +227,7 @@ Out[]: [2, 3]
 \emphbar{A slice}
 \begin{lstlisting}
 In []: a[1:-1]
-Out[]: [2, 3, 4]
+Out[]: [2, 3, 1]
 \end{lstlisting}
 \alert{\typ{list[initial:final]}}
 \end{frame}
@@ -236,15 +236,15 @@ Out[]: [2, 3, 4]
 \begin{frame}[fragile]
 \frametitle{List operations}
 \begin{lstlisting}
-In []: b = [ 6, 7, 8, 9]
+In []: b = [ 8, 6, 9, 9]
 In []: c = a + b
 
 In []: c
-Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Out[]: [5, 2, 3, 1, 4, 8, 6, 9, 9]
 
 In []: a.append(6)
 In []: a
-Out[]: [ 1, 2, 3, 4, 5, 6]
+Out[]: [5, 2, 3, 1, 4, 6]
 \end{lstlisting}
 %\inctime{10}
 \end{frame}
@@ -303,29 +303,23 @@ In []: for time in t:
  ....:     tsq.append(time*time)
  ....:
  ....:
+\end{lstlisting}
+Hit the ``ENTER'' key twice to come to the previous indentation level
+\begin{lstlisting}
+In []: print tsq
+\end{lstlisting}
+\kwrd{tsq} is the list of squares of \typ{t} values.
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Plotting $L$ vs $T^2$ \ldots}
+\begin{lstlisting}
 In []: plot(l, tsq)
 Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
 \end{lstlisting}
-This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{How to come out of the \texttt{for} loop?}
-  Hit the ``ENTER'' key twice to come to the previous indentation level
-  \begin{lstlisting}
-    In []: for time in t:
-     ....:     tsq.append(time*time)
-     ....:     
-     ....:     
-
-    In []: print tsq
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
+This gives the required plot. 
 \begin{figure}
-\includegraphics[width=3.5in]{data/L-TSq-limited.png}
+\includegraphics[width=2.2in]{data/L-TSq-limited.png}
 \end{figure}
 \end{frame}
 
@@ -371,6 +365,7 @@ tsq = []
 for time in t:
     tsq.append(time*time)
 plot(l, tsq, '.')
+show()
 \end{lstlisting}
 \end{frame}
 
@@ -457,6 +452,7 @@ tsq = []
 for time in t:
     tsq.append(time*time)
 plot(l, tsq, '.')
+show()
 \end{lstlisting}
 \end{frame}
 
