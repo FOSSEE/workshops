@@ -451,6 +451,9 @@ In []: a = "# Not a comment!"
 In []: a = raw_input()
 5
 
+In []: a
+Out[]: '5'
+
 In []: a = raw_input('Enter a value: ')
 Enter a value: 5
       \end{lstlisting}
@@ -463,8 +466,8 @@ Enter a value: 5
 \begin{frame}[fragile]
   \frametitle{Simple IO: Console output}
   \begin{itemize}
-    \item \texttt{print} is straight forward
-    \item Put the following code snippet in a file \emph{hello1.py}
+    \item \typ{print} is straight forward
+    \item Put the following code snippet in a file \typ{hello1.py}
   \end{itemize}
   \begin{lstlisting}
 print "Hello"
@@ -479,7 +482,7 @@ World
 
 \begin{frame}[fragile]
   \frametitle{Simple IO: Console output \ldots}
-Put the following code snippet in a file \emph{hello2.py}
+Put the following code snippet in a file \typ{hello2.py}
   \begin{lstlisting}
 print "Hello",
 print "World"
@@ -489,7 +492,7 @@ In []: %run -i hello2.py
 Hello World
   \end{lstlisting}
 
-\emphbar{Note the distinction between \texttt{print x} and \texttt{print x,}}
+\emphbar{Note the distinction between \typ{print x} and \typ{print x,}}
 \end{frame}
 
 \section{Control flow}
@@ -497,7 +500,7 @@ Hello World
   \frametitle{Control flow constructs}  
   \begin{itemize}
   \item \kwrd{if/elif/else}: branching
-  \item \kwrd{C if X else Y}: Ternary conditional operator
+  \item \kwrd{C if X else D}: Ternary conditional operator
   \item \kwrd{while}: looping
   \item \kwrd{for}: iterating
   \item \kwrd{break, continue}: modify loop 
@@ -508,20 +511,19 @@ Hello World
 \subsection{Basic Conditional flow}
 \begin{frame}[fragile]
   \frametitle{\typ{If...elif...else} example}
+Type out the code below in an editor. 
   \small
   \begin{lstlisting}
-In []: x = int(raw_input("Enter an integer:"))
+x = int(raw_input("Enter an integer:"))
+if x < 0:
+    print 'Be positive!'
+elif x == 0:
+    print 'Zero'
+elif x == 1:
+    print 'Single'
+else:
+    print 'More'
 
-In []: if x < 0:
-  ...:     print 'Be positive!'
-  ...: elif x == 0:
-  ...:     print 'Zero'
-  ...: elif x == 1:
-  ...:     print 'Single'
-  ...: else:
-  ...:     print 'More'
-  ...:
-  ...:
   \end{lstlisting}
   \inctime{10}
 \end{frame}
@@ -542,7 +544,7 @@ num = int(a) if a != 'Q' else 0
     \item Data types: int, float, complex, boolean, string
     \item Operators: +, -, *, /, \%, **, +=, -=, *=, /=, >, <, <=, >=, ==, !=, a < b < c
     \item Simple IO: \kwrd{raw\_input} and \kwrd{print}
-    \item Conditional structures: \kwrd{if/elif/else},\\ \kwrd{C if X else Y}
+    \item Conditional structures: \kwrd{if/elif/else},\\ \kwrd{C if X else D}
   \end{itemize}
 \end{frame}
 

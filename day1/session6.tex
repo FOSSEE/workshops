@@ -148,7 +148,7 @@ Let us now look at how to solve this using \kwrd{matrices}
     In []: A = array([[3,2,-1],
                       [2,-2,4],                   
                       [-1, 0.5, -1]])
-    In []: b = array([[1], [-2], [0]])
+    In []: b = array([1, -2, 0])
     In []: x = solve(A, b)
   \end{lstlisting}
 \end{frame}
@@ -157,22 +157,16 @@ Let us now look at how to solve this using \kwrd{matrices}
 \frametitle{Solution:}
 \begin{lstlisting}
 In []: x
-Out[]: 
-array([[ 1.],
-       [-2.],
-       [-2.]])
+Out[]: array([ 1., -2., -2.])
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Let's check!}
 \begin{lstlisting}
-In []: Ax = dot(A,x)
+In []: Ax = dot(A, x)
 In []: Ax
-Out[]: 
-array([[  1.00000000e+00],
-       [ -2.00000000e+00],
-       [  2.22044605e-16]])
+Out[]: array([  1.00000000e+00,  -2.00000000e+00,  -1.11022302e-16])
 \end{lstlisting}
 \begin{block}{}
 The last term in the matrix is actually \alert{0}!\\
@@ -246,11 +240,26 @@ Use \kwrd{solve()}
 \begin{frame}[fragile]
 \frametitle{\typ{fsolve}}
 Find the root of $sin(x)+cos^2(x)$ nearest to $0$
+\vspace{-0.1in}
+\begin{center}
+\includegraphics[height=2.8in, interpolate=true]{data/fsolve}    
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve}}
+Root of $sin(x)+cos^2(x)$ nearest to $0$
 \begin{lstlisting}
-In []: fsolve(sin(x)+cos(x)**2, 0)
+In []: fsolve(sin(x)+cos(x)*cos(x), 0)
 NameError: name 'x' is not defined
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{fsolve}}
+\begin{lstlisting}
 In []: x = linspace(-pi, pi)
-In []: fsolve(sin(x)+cos(x)**2, 0)
+In []: fsolve(sin(x)+cos(x)*cos(x), 0)
 \end{lstlisting}
 \begin{small}
 \alert{\typ{TypeError:}}
@@ -263,7 +272,7 @@ In []: fsolve(sin(x)+cos(x)**2, 0)
 We have been using them all along. Now let's see how to define them.
 \begin{lstlisting}
 In []: def f(x):
-           return sin(x)+cos(x)**2
+           return sin(x)+cos(x)*cos(x)
 \end{lstlisting}
 \begin{itemize}
 \item \typ{def}
@@ -329,7 +338,8 @@ Out[]: -0.66623943249251527
 \begin{lstlisting}
 In []: from scipy.integrate import odeint
 In []: def epid(y, t):
-  ....     k, L = 0.00003, 25000
+  ....     k = 0.00003
+  ....     L = 25000
   ....     return k*y*(L-y)
   ....
 \end{lstlisting}
@@ -379,8 +389,10 @@ We shall use the simple ODE of a simple pendulum.
 \end{itemize}
 \begin{lstlisting}
 In []: def pend_int(initial, t):
-  ....     theta, omega = initial
-  ....     g, L = 9.81, 0.2
+  ....     theta = initial[0]
+  ....     omega = initial[1]
+  ....     g = 9.81
+  ....     L = 0.2
   ....     f=[omega, -(g/L)*sin(theta)]
   ....     return f
   ....
@@ -394,7 +406,7 @@ In []: def pend_int(initial, t):
 \item \typ{initial} has the initial values
 \end{itemize}
 \begin{lstlisting}
-In []: t = linspace(0, 10, 101)
+In []: t = linspace(0, 20, 101)
 In []: initial = [10*2*pi/360, 0]
 \end{lstlisting} 
 \end{frame}
