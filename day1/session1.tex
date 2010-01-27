@@ -77,7 +77,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {11 January, 2010\\Day 1, Session 1}
+\date[] {28 January, 2010\\Day 1, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -123,34 +123,6 @@
 %% \end{frame}
 
 \begin{frame}
-  \frametitle{Workshop Schedule: Day 1}
-  \begin{description}
-	\item[Session 1] Mon 09:00--10:00
-	\item[Session 2] Mon 10:05--11:05
-	\item[Session 3] Mon 11:20--12:20
-	\item[Session 4] Mon 12:25--13:25
-        \item[Quiz 1] Mon 14:25--14:40
-        \item[Exercises] Mon 14:40--15:25
-        \item[Session 5] Mon 15:40--16:40
-        \item[Quiz 2] Mon 16:45--17:00
-  \end{description}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Workshop Schedule: Day 2}
-  \begin{description}
-	\item[Session 1] Tue 09:00--10:00
-	\item[Session 2] Tue 10:05--11:05
-	\item[Session 3] Tue 11:20--12:20
-	\item[Session 4] Tue 12:25--13:25
-        \item[Quiz 1]  Tue 14:25--14:40
-        \item[Exercises] Tue 14:40--15:25
-        \item[Session 5] Tue 15:40--16:40
-        \item[Quiz 2]  Tue 16:45--17:00
-  \end{description}
-\end{frame}
-
-\begin{frame}
   \frametitle{About the Workshop}
   \begin{block}{Intended Audience}
   \begin{itemize}
@@ -168,68 +140,7 @@
   \end{block}
 \end{frame}
 
-\section{Getting started}
-\begin{frame}
-\frametitle{Checklist}
-  \begin{enumerate}
-    \item IPython
-    \item Editor: We recommend \alert{scite}.
-    \item Data files: 
-      \begin{itemize}
-      \item \typ{sslc1.txt}
-      \item \typ{pendulum.txt}
-      \item \typ{points.txt}
-      \item \typ{pos.txt}
-      \item \typ{holmes.txt}
-      \end{itemize}
-    \item Python scripts: 
-      \begin{itemize}
-      \item \typ{sslc_allreg.py}
-      \item \typ{sslc_science.py}
-      \end{itemize}
-    \item Images
-      \begin{itemize}
-      \item \typ{lena.png}
-      \item \typ{smoothing.gif}
-      \end{itemize}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Starting up \ldots}
-\begin{block}{}
-\begin{lstlisting}
-  $ ipython -pylab  
-\end{lstlisting} %$
-\end{block}
-\begin{lstlisting}     
-  In []: print "Hello, World!"
-  Hello, World!
-\end{lstlisting}
-Exiting
-\begin{lstlisting}     
-  In []: ^D(Ctrl-D)
-  Do you really want to exit([y]/n)? y
-\end{lstlisting}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{Loops}
-%% Breaking out of loops
-%% \begin{lstlisting}     
-%%   In []: while True:
-%%     ...:     print "Hello, World!"
-%%     ...:     
-%%   Hello, World!
-%%   Hello, World!^C(Ctrl-C)
-%%   ------------------------------------
-%%   KeyboardInterrupt                   
-
-%% \end{lstlisting}
-%% \end{frame}
-
 \section{Plotting}
-
 \subsection{Drawing plots}
 \begin{frame}[fragile]
 \frametitle{First Plot}
@@ -248,7 +159,6 @@ In []: plot(x, sin(x))
     \end{block}
 \end{columns}
 \end{frame}
-
 
 \begin{frame}[fragile]
 \frametitle{Walkthrough}
@@ -488,9 +398,9 @@ In []: ylim(-5*pi, 5*pi)
 \frametitle{Saving Commands}
 Save commands of review problem into file
 \begin{itemize}
-\item Use \typ{\%hist} command of IPython 
+\item Use \typ{\%hist} command of IPython (Recall \%\typ{hist} from the previous session)
 \item Identify the required line numbers
-\item Then, use \typ{\%save} command of IPython
+\item Then, use \typ{\%save} command of IPython (Recall \%\typ{save} from the previous session)
 \end{itemize}
 \typ{In []: \%hist}\\
 \typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} 
@@ -511,8 +421,6 @@ Save commands of review problem into file
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item \kwrd{\%hist}
-    \item Saving commands to a script
     \item Running a script using \kwrd{\%run -i}
     \item Creating simple plots.
     \item Adding labels and legends.

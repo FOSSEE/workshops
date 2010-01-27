@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {11 January, 2010\\Day 1, Session 5}
+\date[] {28 January, 2010\\Day 1, Session 5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -127,10 +127,7 @@ for line in open('pendulum.txt'):
     point = line.split()
     l.append(float(point[0]))
     t.append(float(point[1]))
-tsq = []
-for time in t:
-    tsq.append(time*time)
-plot(l, tsq, '.')
+plot(l, t, '.')
     \end{lstlisting}
     \end{block}
   \end{columns}
