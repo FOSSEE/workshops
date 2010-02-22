@@ -77,7 +77,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {28 January, 2010\\Day 1, Session 1}
+\date[] {12 February, 2010\\Day 1, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -123,6 +123,65 @@
 %% \end{frame}
 
 \begin{frame}
+  \frametitle{Workshop Schedule: Day 1}
+  \begin{description}
+	\item[Session 1] Fri 14:00--15:00
+	\item[Session 2] Fri 15:05--16:05
+	\item[Session 3] Fri 16:10--17:10
+        \item[Quiz 1] Fri 17:10--17:25
+        \item[Exercises] Thu 17:30--18:00
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Workshop Schedule: Day 2}
+  \begin{description}
+	\item[Session 1] Sat 09:00--10:00
+	\item[Session 2] Sat 10:05--11:05
+	\item[Session 3] Sat 11:20--12:20
+        \item[Quiz 2]  Fri 14:25--14:40
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Workshop Schedule: Day 3}
+  \begin{description}
+        \item[Session 1] Sun 09:00--10:00
+        \item[Session 2] Sun 10:05--11:05
+        \item[Session 3] Sun 11:20--12:20
+        \item[Quiz 3] Sun 12:20--12:30
+        \item[Exercises] Sun 12:30--13:00
+  \end{description}
+\end{frame}
+
+\section{Checklist}
+\begin{frame}
+\frametitle{Checklist}
+  \begin{enumerate}
+    \item IPython
+    \item Editor
+    \item Data files: 
+      \begin{itemize}
+      \item \typ{sslc1.txt}
+      \item \typ{pendulum.txt}
+      \item \typ{points.txt}
+      \item \typ{pos.txt}
+      \item \typ{holmes.txt}
+      \end{itemize}
+    \item Python scripts: 
+      \begin{itemize}
+      \item \typ{sslc_allreg.py}
+      \item \typ{sslc_science.py}
+      \end{itemize}
+    \item Images
+      \begin{itemize}
+      \item \typ{lena.png}
+      \item \typ{smoothing.gif}
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
   \frametitle{About the Workshop}
   \begin{block}{Intended Audience}
   \begin{itemize}
@@ -138,6 +197,40 @@
       \item Train students for the same.
     \end{itemize}
   \end{block}
+\end{frame}
+
+\section{Starting up Ipython}
+\begin{frame}[fragile]
+\frametitle{Starting up \ldots}
+\begin{block}{}
+\begin{lstlisting}
+  $ ipython -pylab  
+\end{lstlisting} %$
+\end{block}
+\begin{lstlisting}     
+  In []: print "Hello, World!"
+  Hello, World!
+\end{lstlisting}
+Exiting
+\begin{lstlisting}
+  In []: ^D(Ctrl-D)
+  Do you really want to exit([y]/n)? y
+\end{lstlisting}
+\end{frame}
+
+\section{Loops}
+\begin{frame}[fragile]
+\frametitle{Loops}
+Breaking out of loops
+\begin{lstlisting}     
+  In []: while True:
+    ...:     print "Hello, World!"
+    ...:     
+  Hello, World!
+  Hello, World!^C(Ctrl-C)
+  ------------------------------------
+  KeyboardInterrupt                   
+\end{lstlisting}
 \end{frame}
 
 \section{Plotting}
@@ -301,8 +394,10 @@ In []: figure(1)
 In []: plot(y, sin(y))
 In []: figure(2)
 In []: plot(y, cos(y))
+In []: savefig('cosine.png')
 In []: figure(1)
 In []: title('sin(y)')
+In []: savefig('sine.png')
 In []: close()
 In []: close()
 \end{lstlisting}
@@ -312,10 +407,10 @@ In []: close()
 \frametitle{Showing it better}
 \vspace{-0.15in}
 \begin{lstlisting}
-In []: plot(y, sin(y), 'g')
+In []: plot(y, cos(y), 'r')
 
 In []: clf()
-In []: plot(y, cos(y), 'r', linewidth=2)
+In []: plot(y, sin(y), 'g', linewidth=2)
 \end{lstlisting}
 \vspace*{-0.2in}
 \begin{center}
@@ -345,8 +440,7 @@ In []: ymin, ymax = ylim()
   \end{lstlisting}
 \emphbar{Set the axes limits}
   \begin{lstlisting}
-In []: xmax = 2*pi
-In []: xlim(xmin, xmax) 
+In []: xlim(xmin, 2*pi) 
 In []: ylim(ymin-0.2, ymax+0.2) 
   \end{lstlisting}
 \end{frame}
@@ -398,9 +492,9 @@ In []: ylim(-5*pi, 5*pi)
 \frametitle{Saving Commands}
 Save commands of review problem into file
 \begin{itemize}
-\item Use \typ{\%hist} command of IPython (Recall \%\typ{hist} from the previous session)
+\item Use \typ{\%hist} command of IPython 
 \item Identify the required line numbers
-\item Then, use \typ{\%save} command of IPython (Recall \%\typ{save} from the previous session)
+\item Then, use \typ{\%save} command of IPython 
 \end{itemize}
 \typ{In []: \%hist}\\
 \typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} 
@@ -421,6 +515,9 @@ Save commands of review problem into file
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
+    \item Starting up IPython
+    \item \kwrd{\%hist} - History of commands
+    \item \kwrd{\%save} - Saving commands 
     \item Running a script using \kwrd{\%run -i}
     \item Creating simple plots.
     \item Adding labels and legends.

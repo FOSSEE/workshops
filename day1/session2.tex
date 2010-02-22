@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {28 January, 2010\\Day 1, Session 2}
+\date[] {12 February, 2010\\Day 1, Session 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -208,43 +208,45 @@ In []: mtlist = []
 \end{lstlisting}
 \emphbar{Empty List}
 \begin{lstlisting}
-In []: a = [ 1, 2, 3, 4, 5] 
+In []: p = [ 2, 3, 5, 7] 
 
-In []: a[0]+a[1]+a[-1]
-Out[]: 8
+In []: p[0]+p[1]+p[-1]
+Out[]: 12
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{List: Slicing}
   \begin{block}{Remember\ldots}
-	\kwrd{In []: a = [ 1, 2, 3, 4, 5]}
+	\kwrd{In []: p = [ 2, 3, 5, 7]}
   \end{block}
 \begin{lstlisting}
-In []: a[1:3]
-Out[]: [2, 3]
+In []: p[1:3]
+Out[]: [3, 5]
 \end{lstlisting}
 \emphbar{A slice}
 \begin{lstlisting}
-In []: a[1:-1]
-Out[]: [2, 3, 4]
+In []: p[0:-1]
+Out[]: [2, 3, 5]
+In []: p[::2]
+Out[]: [2, 5]
 \end{lstlisting}
-\alert{\typ{list[initial:final]}}
+\alert{\typ{list[initial:final:step]}}
 \end{frame}
 
 %% more on list slicing
 \begin{frame}[fragile]
 \frametitle{List operations}
 \begin{lstlisting}
-In []: b = [ 6, 7, 8, 9]
-In []: c = a + b
+In []: b = [ 11, 13, 17]
+In []: c = p + b
 
 In []: c
-Out[]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Out[]: [2, 3, 5, 7, 11, 13, 17]
 
-In []: a.append(6)
-In []: a
-Out[]: [ 1, 2, 3, 4, 5, 6]
+In []: p.append(11)
+In []: p
+Out[]: [ 2, 3, 5, 7, 11]
 \end{lstlisting}
 %\inctime{10}
 \end{frame}
@@ -299,6 +301,12 @@ In []: t = [0.69, 0.90, 1.19,
 \begin{lstlisting}
 In []: tsq = []
 
+In []: len(l)
+Out[]: 9
+
+In []: len(t)
+Out[]: 9
+
 In []: for time in t:
  ....:     tsq.append(time*time)
  ....:
@@ -312,14 +320,15 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
 
 \begin{frame}[fragile]
   \frametitle{How to come out of the \texttt{for} loop?}
-  Recall that hitting the ``ENTER'' key twice returns the cursor to the previous indentation level
+  Hitting the ``ENTER'' key twice returns the cursor to the previous indentation level
   \begin{lstlisting}
     In []: for time in t:
      ....:     tsq.append(time*time)
      ....:     
      ....:     
 
-    In []: print tsq
+    In []: print tsq, len(tsq)
+    In []: plot(l, tsq)
   \end{lstlisting}
 \end{frame}
 

@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {12 January, 2010\\Day 2, Session 2}
+\date[] {13 February, 2010\\Day 3, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -208,19 +208,6 @@ In []: for i in range(3, 10, 2):
   \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
 \end{enumerate}
     Write a program that accepts the starting value and prints out the Collatz sequence.
-\end{frame}
-
-\begin{frame}[fragile]{Problem 1.3}
-  Write a program that prints the following pyramid on the screen. 
-  \begin{lstlisting}
-1
-2  2
-3  3  3
-4  4  4  4
-  \end{lstlisting}
-The number of lines must be obtained from the user.\\
-\pause
-\emphbar{When can your code fail?}
 \inctime{5}
 \end{frame}
 
@@ -518,6 +505,24 @@ def what( n ):
     return i * i == n, i
   \end{lstlisting}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle {What does this function do?}
+  \begin{lstlisting}
+def what( x, n ):
+    if n < 0: 
+       n = -n
+       x = 1.0 / x
+
+    z = 1.0
+    while n > 0:
+        if n % 2 == 1:
+            z *= x
+        x *= x
+        n /= 2
+    return z
+  \end{lstlisting}
+\end{frame} 
 
 \begin{frame}
   \frametitle{What did we learn?}

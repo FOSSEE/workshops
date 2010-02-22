@@ -79,7 +79,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {28 January, 2010\\Day 1, Session 4}
+\date[] {13 February, 2010\\Day 2, Session 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -276,6 +276,21 @@ array([[11, 13],
        [31, 33]])
   \end{lstlisting}
   \end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Shape of a matrix}
+  \begin{lstlisting}
+In []: c
+Out[]: 
+array([[11, 12, 13],
+       [ 0,  0,  0],
+       [31, 32, 33]])
+
+In []: c.shape
+Out[]: (3, 3)
+  \end{lstlisting}
+\emphbar{Shape specifies shape or dimensions of a matrix}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -518,7 +533,7 @@ Out[]: array([-1.,  8., -1.])
 
 \begin{frame}[fragile]
 \frametitle{Getting $L$ and $T^2$}
-If you \alert{closed} IPython after session 2
+%If you \alert{closed} IPython after session 2
 \begin{lstlisting}
 In []: l = []
 In []: t = []
