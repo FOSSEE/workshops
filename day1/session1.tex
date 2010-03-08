@@ -154,24 +154,24 @@
 \frametitle{Checklist}
   \begin{enumerate}
     \item IPython
-    \item Editor
+    \item Editor - we recommend \alert{scite}
     \item Data files: 
       \begin{itemize}
-      \item \typ{sslc1.txt}
-      \item \typ{pendulum.txt}
-      \item \typ{points.txt}
-      \item \typ{pos.txt}
-      \item \typ{holmes.txt}
+      \item \typ{sslc/sslc1.txt}
+      \item \typ{pendulum/pendulum.txt}
+      \item \typ{motion-plot/pos.txt}
+      \item \typ{word-freq/holmes.txt}
+      \item \typ{anagrams/anag.txt}
       \end{itemize}
     \item Python scripts: 
       \begin{itemize}
-      \item \typ{sslc_allreg.py}
-      \item \typ{sslc_science.py}
+      \item \typ{sslc/sslc_allreg.py}
+      \item \typ{sslc/sslc_science.py}
       \end{itemize}
     \item Images
       \begin{itemize}
-      \item \typ{lena.png}
-      \item \typ{smoothing.gif}
+      \item \typ{lena/lena.png}
+      \item \typ{smoothing/smoothing.gif}
       \end{itemize}
   \end{enumerate}
 \end{frame}
@@ -210,8 +210,6 @@ Exiting
   >>> ^D(Ctrl-D)
   $
 \end{lstlisting} %$
-\alert{Note the change in the prompt}\\
-\alert{IPython provides many additional features}\\
 \end{frame}
 
 \section{Starting up Ipython}
@@ -231,13 +229,16 @@ Exiting
   In []: ^D(Ctrl-D)
   Do you really want to exit([y]/n)? y
 \end{lstlisting}
-\alert{IPython is an improved interpreter}\\
-\alert{Recommended for use in Scientific Computing work}\\
+An alternative to IPython is bpython
 \end{frame}
 
 \section{Ipython with magic}
 \begin{frame}[fragile]
 \frametitle{Let the magic begin \ldots}
+\begin{itemize}
+\item \alert{IPython is an improved interpreter}\\
+\item \alert{Recommended for Scientific and Computing work}\\
+\end{itemize}
 \begin{block}{}
 \begin{lstlisting}
   $ ipython -pylab  
@@ -397,6 +398,17 @@ In []: savefig('sin.png')
 
 In []: close()
 \end{lstlisting}
+Supported formats to store images:
+\begin{itemize}
+\item png
+\item eps - Easy to embed in Latex files
+\item emf
+\item pdf
+\item ps
+\item raw
+\item rgba
+\item svg
+\end{itemize}
 \end{frame}
 
 \section{Multiple plots}
@@ -459,16 +471,23 @@ In []: annotate('local max', xy=(1.5, 1))
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Axes lengths}
-\emphbar{Get the axes limits}
+\frametitle{Getting axes lengths}
   \begin{lstlisting}
-In []: xmin, xmax = xlim() 
-In []: ymin, ymax = ylim() 
+In []: orig_xmin, orig_xmax = xlim() 
+In []: orig_ymin, orig_ymax = ylim() 
   \end{lstlisting}
-\emphbar{Set the axes limits}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Set the axes limits}
   \begin{lstlisting}
-In []: xlim(xmin, 2*pi) 
-In []: ylim(ymin-0.2, ymax+0.2) 
+In []: up_xmin = orig_xmin
+In []: up_xmax = 2*pi
+In []: up_ymin = ymin-0.2
+In []: up_ymax = ymax+0.2
+
+In []: xlim(up_xmin, up_xmax)
+In []: ylim(up_ymin, up_ymax)
   \end{lstlisting}
 \end{frame}
 
@@ -516,40 +535,55 @@ In []: ylim(-5*pi, 5*pi)
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Saving Commands}
-Save commands of review problem into file
-\begin{itemize}
-\item Use \typ{\%hist} command of IPython 
-\item Identify the required line numbers
-\item Then, use \typ{\%save} command of IPython 
-\end{itemize}
+\frametitle{Command History}
+Use the \typ{\%hist} \alert{magic} command of IPython 
 \typ{In []: \%hist}\\
-\typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} 
+This displays all the commands typed in so far aka Command History.
 \begin{block}{Careful about errors!}
-  \kwrd{\%hist} will contain the errors as well,\\
-  so be careful while selecting line numbers.
+  \kwrd{\%hist} will contain the errors as well.\\
 \end{block}
+\begin{block}{Magic Commands?}
+  Magic commands are commands provided by IPython to make our life easier.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saving commands into script}
+Use the \typ{\%save} \alert{magic} command of IPython
+\begin{block}{}
+\typ{In []: \%save script_name line_numbers}
+\end{block}
+Line numbers can be specified individually separated by commas or as a range separated by a dash.\\
+\begin{block}{}
+\typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} \\  
+\end{block}
+This saves from the history the commands entered on line numbers \alert{16, 18, 19, 20, \ldots 27}
 \end{frame}
 
 \begin{frame}
 \frametitle{Python Scripts\ldots}
- This is called a Python Script.
+Now, four\_plot.py is called a Python Script.
  \begin{itemize}
- \item run the script in IPython using \typ{\%run -i four_plot.py}\\
+ \item run the script in IPython using \typ{\%run four_plot.py}\\
  \end{itemize}
+\pause
+\alert{\typ{NameError: name 'linspace' is not defined}}
+\begin{block}{}
+To avoid this, run using \alert{\typ{\%run -i four_plot.py}}\\
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
   \begin{itemize}
     \item Starting up IPython
-    \item \kwrd{\%hist} - History of commands
-    \item \kwrd{\%save} - Saving commands 
-    \item Running a script using \kwrd{\%run -i}
     \item Creating simple plots.
     \item Adding labels and legends.
     \item Annotating plots.
     \item Changing the looks: size, linewidth
+    \item \kwrd{\%hist} - History of commands
+    \item \kwrd{\%save} - Saving commands 
+    \item Running a script using \kwrd{\%run -i}
   \end{itemize}
 \end{frame}
 

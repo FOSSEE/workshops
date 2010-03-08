@@ -151,14 +151,17 @@ plot(l, t, '.')
   \begin{columns}
     \column{0.5\textwidth}
     \hspace*{-0.5in}
-    \includegraphics[height=2in, interpolate=true]{data/points}
+    \includegraphics[height=2in, interpolate=true]{data/triangle}
     \column{0.45\textwidth}
     \begin{block}{Line between two points}
     \tiny
     \begin{lstlisting}
-In []: x = [1, 5]
-In []: y = [1, 4]
+In []: x = [3, 1]
+In []: y = [2, -3]
+In []: z = [-2, 4]
 In []: plot(x, y)
+In []: plot(y, z)
+In []: plot(x, z)
     \end{lstlisting}
     \end{block}
   \end{columns}

@@ -73,7 +73,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Statistics]{Python for Science and Engg: Statistics}
+\title[Statistics]{Python for Scienc and Engg: Statistics}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -152,15 +152,8 @@ In []: for line in open('pendulum.txt'):
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Computing mean ``g''}
-  \begin{block}{Exercise}
-    Obtain the mean of ``g''
-  \end{block}
-\end{frame}
-
 \begin{frame}[fragile]
-  \frametitle{Mean ``g''}
+  \frametitle{Mean ``g'' - Classical method}
   \begin{lstlisting}
 In []: total = 0
 In []: for g in g_list:
@@ -173,7 +166,7 @@ In []: print 'Mean: ', g_mean
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Mean ``g''}
+  \frametitle{Mean ``g'' - Slightly improved method}
   \begin{lstlisting}
 In []: g_mean = sum(g_list) / len(g_list)
 In []: print 'Mean: ', g_mean
@@ -181,7 +174,7 @@ In []: print 'Mean: ', g_mean
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Mean ``g''}
+  \frametitle{Mean ``g'' - One liner}
   \begin{lstlisting}
 In []: g_mean = mean(g_list)
 In []: print 'Mean: ', g_mean
@@ -215,7 +208,7 @@ In []: print 'Mean: ', g_mean
     \item Region Code
     \item Roll Number
     \item Name
-    \item Marks of 5 subjects: English, Hindi, Maths, Science, Social
+    \item Marks of 5 subjects: SLang, Flang Maths, Science, Social
     \item Total marks
     \item Pass/Fail (P/F)
     \item Withheld (W)
@@ -257,30 +250,33 @@ In []: print 'Mean: ', g_mean
 \subsection{Data processing}
 \begin{frame}[fragile]
   \frametitle{File reading and parsing \ldots}
+\emphbar{Reading files line by line is the same as we had done with the pendulum example.}
+
   \begin{lstlisting}
 for record in open('sslc1.txt'):
     fields = record.split(';')
   \end{lstlisting}
-\begin{block}{}
-\centerline{Recall pendulum example!}
-\end{block}
 \end{frame}
 
 \subsection{Dictionaries}
 \begin{frame}[fragile]
   \frametitle{Dictionaries: Introduction}
   \begin{itemize}
-    \item lists index: 0 \ldots n
-    \item dictionaries index using strings
+    \item Lists index using integers\\
+Recall \typ{p = [2, 3, 5, 7]} and\\
+\typ{p[1]} is equal to \typ{3}
+    \item Dictionaries index using strings
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Dictionaries \ldots}
   \begin{lstlisting}
-In []: d = {'jpg' : 'image file',
+In []: d = {'png' : 'image file',
       'txt' : 'text file', 
-      'py' : 'python code'}
+      'py' : 'python code'
+      'java': 'bad code', 
+      'cpp': 'complex code'}
 
 In []: d['txt']
 Out[]: 'text file'
@@ -293,7 +289,7 @@ Out[]: 'text file'
 In []: 'py' in d
 Out[]: True
 
-In []: 'cpp' in d
+In []: 'jpg' in d
 Out[]: False
   \end{lstlisting}
 \end{frame}
@@ -366,6 +362,14 @@ print science.values()
 
 \subsection{Visualizing data}
 \begin{frame}[fragile]
+  \frametitle{Pie Chart}
+  \begin{lstlisting}
+    pie(science.values())
+  \end{lstlisting}
+\includegraphics[height=2in, interpolate=true]{data/science_nolabel}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Pie chart}
   \small
   \begin{lstlisting}
@@ -406,13 +410,6 @@ for record in open('sslc1.txt'):
 \end{frame}
 
 \subsection{Obtaining statistics}
-\begin{frame}[fragile]
-  \frametitle{Obtaining statistics}
-  \begin{block}{Exercise}
-    Obtain the mean of Math scores
-  \end{block}
-\end{frame}
-
 \begin{frame}[fragile]
   \frametitle{Obtaining statistics}
   \begin{lstlisting}

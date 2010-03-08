@@ -210,6 +210,9 @@ In []: mtlist = []
 \begin{lstlisting}
 In []: p = [ 2, 3, 5, 7] 
 
+In []: p[1]
+Out[]: 3
+
 In []: p[0]+p[1]+p[-1]
 Out[]: 12
 \end{lstlisting}
@@ -301,19 +304,12 @@ In []: t = [0.69, 0.90, 1.19,
 \begin{lstlisting}
 In []: tsq = []
 
-In []: len(l)
-Out[]: 9
-
-In []: len(t)
-Out[]: 9
-
 In []: for time in t:
  ....:     tsq.append(time*time)
  ....:
  ....:
 
-In []: plot(l, tsq)
-Out[]: [<matplotlib.lines.Line2D object at 0xa5b05ac>]
+In []: print len(l), len(t), len(tsq)
 \end{lstlisting}
 This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
 \end{frame}
@@ -327,7 +323,6 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
      ....:     
      ....:     
 
-    In []: print tsq, len(tsq)
     In []: plot(l, tsq)
   \end{lstlisting}
 \end{frame}
@@ -343,26 +338,23 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
 \alert{Data is usually present in a file!} \\
 Lets look at the \typ{pendulum.txt} file.
 \begin{lstlisting} 
-$ cat pendulum.txt 
+In []: cd circulate/pendulum/
+In []: cat pendulum.txt 
 1.0000e-01 6.9004e-01
 1.1000e-01 6.9497e-01
 1.2000e-01 7.4252e-01
 1.3000e-01 7.5360e-01
-1.4000e-01 8.3568e-01
-1.5000e-01 8.6789e-01
 \end{lstlisting}  %$
 \ldots
-\begin{block}{Windows users:}
-  C:> type pendulum.txt
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Reading \typ{pendulum.txt}}
 \begin{itemize}
-  \item Let us generate a plot from the data file
   \item File contains L vs. T values 
-  \item L - Column1; T - Column2
+  \item First Column - L values
+  \item Second Column - T values
+  \item Let us generate a plot from the data file
 \end{itemize}
 \end{frame}
 

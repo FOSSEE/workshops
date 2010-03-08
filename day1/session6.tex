@@ -311,6 +311,25 @@ Out[]: -0.66623943249251527
 \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Exercise Problem}
+  Find the root of the equation $x^2 - sin(x) + cos^2(x)$ nearest to $0$
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Solution}
+  \begin{small}
+  \begin{lstlisting}
+    def f(x):
+        return x**2 - sin(x) + cos(x)*cos(x)
+    fsolve(f, 0)
+  \end{lstlisting}
+  \end{small}
+  \begin{center}
+\includegraphics[height=2in, interpolate=true]{data/fsolve_tanx}
+  \end{center}
+\end{frame}
+
 %% \begin{frame}[fragile]
 %% \frametitle{Scipy Methods \dots}
 %% \begin{small}
