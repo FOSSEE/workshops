@@ -1,11 +1,13 @@
-f = open('/home/madhu/pyprogs/pytriads.py')
+f = open('/home/vattam/Desktop/circulate/word-freq/holmes.txt')
 
 freq = {}
 for line in f:
     words = line.split()
     for word in words:
         key = word.strip(',.!;?\'" ')
-        value = freq.get(key, 1)
-        freq[key] = value + 1
+        if key in freq:
+            freq[key] += 1
+        else:
+            freq[key] = 1
 
 print freq

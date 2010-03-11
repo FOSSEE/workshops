@@ -10,8 +10,8 @@ def gcd(a, b):
     else:
         return gcd(b, a%b)
 
-for a in range(3, 501):
-    for b in range( a+1, 501, 2):
+for a in range(3, 101):
+    for b in range( a+1, 101, 2):
         if gcd( a, b ) == 1:
             is_ps, c = is_perfect_square((a * a) + (b * b))
             if is_ps: print a, b, c

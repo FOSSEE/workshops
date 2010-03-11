@@ -1,6 +1,3 @@
-import keyword
-f = open('amicable.py')
-
 freq = {}
 for line in f:
     words = line.split()

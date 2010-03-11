@@ -1,16 +1,20 @@
 import math
 
 def aliquot(n):
-    sum = 0
-    for i in range(1, math.sqrt(n)+1):
+    sum = 1
+    i = 2
+
+    while i * i < n: 
         if n % i == 0:
-            sum += i + n/i
+            sum += i + (n / i)
+        i += 1
+    if i*i == n: sum += i
     return sum
 
 amicable = []
-for n in range(10000, 100000):
+for n in range(1000, 10000):
     m = aliquot(n)
-    if aliquot(m) == n:
+    if m > n and aliquot(m) == n:
         amicable.append((m, n))
 
 print amicable

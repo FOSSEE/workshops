@@ -11,4 +11,4 @@ while i <= 94:
     square = i * i
     if all_digits_even(square):
         print square
-    i += 1
+    i += 2
