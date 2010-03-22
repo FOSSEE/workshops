@@ -401,7 +401,7 @@ In []: close()
 Supported formats to store images:
 \begin{itemize}
 \item png
-\item eps - Easy to embed in Latex files
+\item eps - Easy to embed in LaTeX files
 \item emf
 \item pdf
 \item ps
@@ -471,23 +471,16 @@ In []: annotate('local max', xy=(1.5, 1))
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Getting axes lengths}
+\frametitle{Axes lengths}
+\emphbar{Getting axes lengths}
   \begin{lstlisting}
-In []: orig_xmin, orig_xmax = xlim() 
-In []: orig_ymin, orig_ymax = ylim() 
+In []: xmin, xmax = xlim() 
+In []: ymin, ymax = ylim() 
   \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Set the axes limits}
+\emphbar{Set the axes limits}
   \begin{lstlisting}
-In []: up_xmin = orig_xmin
-In []: up_xmax = 2*pi
-In []: up_ymin = ymin-0.2
-In []: up_ymax = ymax+0.2
-
-In []: xlim(up_xmin, up_xmax)
-In []: ylim(up_ymin, up_ymax)
+In []: xlim(xmin, 2*pi )
+In []: ylim(ymin-0.2, ymax+0.2)
   \end{lstlisting}
 \end{frame}
 
@@ -551,11 +544,11 @@ This displays all the commands typed in so far aka Command History.
   \frametitle{Saving commands into script}
 Use the \typ{\%save} \alert{magic} command of IPython
 \begin{block}{}
-\typ{In []: \%save script_name line_numbers}
+\typ{\%save script_name line_numbers}
 \end{block}
 Line numbers can be specified individually separated by commas or as a range separated by a dash.\\
 \begin{block}{}
-\typ{In []: \%save four_plot.py} \alert{\typ{16 18-27}} \\  
+\typ{\%save four_plot.py} \alert{\typ{16 18-27}} \\  
 \end{block}
 This saves from the history the commands entered on line numbers \alert{16, 18, 19, 20, \ldots 27}
 \end{frame}

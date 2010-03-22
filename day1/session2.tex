@@ -281,7 +281,7 @@ $L$ & $T$ & $T^2$ \\ \hline
 \begin{frame}[fragile]
 \frametitle{Lets use lists}
 \begin{lstlisting}
-In []: l = [0.1, 0.2, 0.3, 0.4, 0.5, 
+In []: L = [0.1, 0.2, 0.3, 0.4, 0.5, 
             0.6, 0.7, 0.8, 0.9]
 
 In []: t = [0.69, 0.90, 1.19, 
@@ -309,9 +309,12 @@ In []: for time in t:
  ....:
  ....:
 
-In []: print len(l), len(t), len(tsq)
 \end{lstlisting}
 This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
+\begin{lstlisting}
+In []: print len(L), len(t), len(tsq)
+Out[]: 9 9 9
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -323,7 +326,7 @@ This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
      ....:     
      ....:     
 
-    In []: plot(l, tsq)
+    In []: plot(L, tsq)
   \end{lstlisting}
 \end{frame}
 
@@ -362,16 +365,16 @@ In []: cat pendulum.txt
 \frametitle{Plotting from \typ{pendulum.txt}}
 Open a new script and type the following:
 \begin{lstlisting}
-l = []
+L = []
 t = []
 for line in open('pendulum.txt'):
     point = line.split()
-    l.append(float(point[0]))
+    L.append(float(point[0]))
     t.append(float(point[1]))
 tsq = []
 for time in t:
     tsq.append(time*time)
-plot(l, tsq, '.')
+plot(L, tsq, '.')
 \end{lstlisting}
 \end{frame}
 
@@ -448,16 +451,16 @@ Out[]: <type 'float'>
 \begin{frame}[fragile]
 \frametitle{Let's review the code}
 \begin{lstlisting}
-l = []
+L = []
 t = []
 for line in open('pendulum.txt'):
     point = line.split()
-    l.append(float(point[0]))
+    L.append(float(point[0]))
     t.append(float(point[1]))
 tsq = []
 for time in t:
     tsq.append(time*time)
-plot(l, tsq, '.')
+plot(L, tsq, '.')
 \end{lstlisting}
 \end{frame}
 
