@@ -73,13 +73,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Statistics]{Python for Scienc and Engg: Statistics}
+\title[Statistics]{Python for Science and Engg: Statistics}
 
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
 
-\date[] {08 March, 2010\\Day 1, Session 3}
+\date[] {02 April, 2010\\Day 1, Session 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -145,9 +145,9 @@
 In []: g_list = []
 In []: for line in open('pendulum.txt'):
   ....     point = line.split()
-  ....     l = float(point[0])
+  ....     L = float(point[0])
   ....     t = float(point[1])
-  ....     g = 4 * pi * pi * l / (t * t)
+  ....     g = 4 * pi * pi * L / (t * t)
   ....     g_list.append(g)
   \end{lstlisting}
 \end{frame}
@@ -274,7 +274,7 @@ Recall \typ{p = [2, 3, 5, 7]} and\\
   \begin{lstlisting}
 In []: d = {'png' : 'image file',
       'txt' : 'text file', 
-      'py' : 'python code'
+      'py' : 'python code',
       'java': 'bad code', 
       'cpp': 'complex code'}
 
@@ -296,14 +296,17 @@ Out[]: False
 
 \begin{frame}[fragile]
   \frametitle{Dictionaries \ldots}
-  \begin{lstlisting}
+  \begin{small}
+    \begin{lstlisting}
 In []: d.keys()
-Out[]: ['py', 'txt', 'jpg']
+Out[]: ['cpp', 'py', 'txt', 'java', 'png']
 
 In []: d.values()
-Out[]: ['python code', 'text file',
-       'image file']
-  \end{lstlisting}
+Out[]: ['complex code', 'python code',
+        'text file', 'bad code', 
+        'image file']
+    \end{lstlisting}
+  \end{small}
   \inctime{10}
 \end{frame}
 

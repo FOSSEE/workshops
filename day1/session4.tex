@@ -79,7 +79,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {08 March, 2010\\Day 1, Session 4}
+\date[] {02 April, 2010\\Day 1, Session 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -171,6 +171,7 @@ Also available \alert{\typ{zeros, zeros_like}}
 
 \begin{frame}[fragile]
   \frametitle{Accessing elements}
+  \begin{small}
   \begin{lstlisting}
 In []: c
 Out[]: 
@@ -182,16 +183,17 @@ In []: c[1][2]
 Out[]: 23
 In []: c[1,2]
 Out[]: 23
+
+In []: c[1]
+Out[]: array([21, 22, 23])
   \end{lstlisting}
+  \end{small}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Changing elements}
   \begin{small}
   \begin{lstlisting}
-In []: c[1]
-Out[]: array([21, 22, 23])
-
 In []: c[1,1] = -22
 In []: c
 Out[]: 
@@ -394,10 +396,11 @@ array([[ -6. ,   6. ,  -6. ,  -3. ],
 \begin{frame}[fragile]
 \frametitle{Inverse of a Matrix}
 \begin{lstlisting}
-In []: inv(a)
+
 \end{lstlisting}
 \begin{small}
 \begin{lstlisting}
+In []: inv(a)
 Out[]: 
 array([[-0.5 ,  0.55, -0.15,  0.7 ],
        [ 0.75, -0.5 ,  0.5 , -0.75],
@@ -405,6 +408,7 @@ array([[-0.5 ,  0.55, -0.15,  0.7 ],
        [ 0.25, -0.25,  0.25, -0.25]])
 \end{lstlisting}
 \end{small}
+\emphbar{Try this: \typ{I = dot(a, inv(a))}}
 \end{frame}
 
 \begin{frame}[fragile]
