@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {02 April, 2010\\Day 1, Session 6}
+\date[] {22 April, 2010\\Day 1, Session 6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -163,11 +163,13 @@ Out[]: array([ 1., -2., -2.])
 
 \begin{frame}[fragile]
 \frametitle{Let's check!}
+\begin{small}
 \begin{lstlisting}
 In []: Ax = dot(A, x)
 In []: Ax
 Out[]: array([  1.00000000e+00,  -2.00000000e+00,  -1.11022302e-16])
 \end{lstlisting}
+\end{small}
 \begin{block}{}
 The last term in the matrix is actually \alert{0}!\\
 We can use \kwrd{allclose()} to check.

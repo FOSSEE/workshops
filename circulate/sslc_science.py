@@ -11,7 +11,12 @@ for record in open('sslc1.txt'):
 
     score_str = fields[6].strip()
 
-    score = int(score_str) if score_str != 'AA' else 0
+#    score = int(score_str) if score_str != 'AA' else 0
+
+    if score_str != 'AA':
+        score = int(score_str)
+    else:
+        score = 0
 
     if score > 90:
         science[region_code] += 1
