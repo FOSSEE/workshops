@@ -311,6 +311,22 @@ Out[]: ['complex code', 'python code',
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Inserting elements into dictionary}
+  \emphbar{\alert{d[key] = value}}
+  \begin{lstlisting}
+    In []: d['bin'] = 'binary file'
+    In []: d
+    Out[]: 
+    {'bin': 'binary file',
+     'cpp': 'complex code',
+     'java': 'bad code',
+     'png': 'image file',
+     'py': 'python code',
+     'txt': 'text file'}
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Getting back to the problem}
   Let our dictionary be:
   \begin{lstlisting}
