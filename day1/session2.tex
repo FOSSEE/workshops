@@ -129,17 +129,17 @@
 Do we plot analytical functions or experimental data?
 \begin{small}
 \begin{lstlisting}
-In []: x = [0, 1, 2, 3]
+In []: time = [0, 1, 2, 3]
 
-In []: y = [7, 11, 15, 19]
+In []: distance = [7, 11, 15, 19]
 
-In []: plot(x, y)
+In []: plot(time,distance)
 Out[]: [<matplotlib.lines.Line2D object at 0xa73aa8c>]
 
-In []: xlabel('X')
+In []: xlabel('time')
 Out[]: <matplotlib.text.Text object at 0x986e9ac>
 
-In []: ylabel('Y')
+In []: ylabel('distance')
 Out[]: <matplotlib.text.Text object at 0x98746ec>
 \end{lstlisting}
 \end{small}
@@ -160,11 +160,11 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 \begin{lstlisting}
   In []: clf()
 
-  In []: plot(x, y, 'o')
+  In []: plot(time, distance, 'o')
   Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 
   In []: clf()
-  In []: plot(x, y, '.')
+  In []: plot(time, distance, '.')
   Out[]: [<matplotlib.lines.Line2D object at 0xac17e0c>]
 \end{lstlisting}
 \end{frame}
@@ -190,9 +190,9 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 \begin{frame}[fragile]
   \frametitle{Lists: Introduction}
   \begin{lstlisting}
-    In []: x = [0, 1, 2, 3]
+    In []: time = [0, 1, 2, 3]
 
-    In []: y = [7, 11, 15, 19]
+    In []: distance = [7, 11, 15, 19]
 
   \end{lstlisting}
 What are \typ{x} and \typ{y}?\\
@@ -363,7 +363,7 @@ In []: cat pendulum.txt
 \begin{frame}[fragile]
 \frametitle{Plotting from \typ{pendulum.txt}}
 Open a new script\\
-Save as \typ{pendulum.py} after typing first line
+Save as \typ{pendulum_plot.py} after typing first line
 \begin{lstlisting}
 L = []
 t = []
