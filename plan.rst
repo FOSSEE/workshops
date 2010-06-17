@@ -54,31 +54,37 @@ as we go over the slides and also add more material as we see fit.
     - Solving ODEs.
 
   - Session 7 (Mon 16:00) (Python language basics.): (KD)
+    - *day2 session1 material*
     - Data types, numbers, booleans, strings.
     - operators
     - simple i/o
     - basic control flow:  if/elif/else
 
   - Session 8 (Mon 15:00): (PR)
+    - *day2 session2 material*
     - Control flow (while, for, range etc.)
     - exercises.
     - Lists, tuples, dicts, sets.
     - Functions.
 
   - Session 9 (Tue 8:00): (CB)
+    - *day2 session3 material*
     - More on functions.
     - Modules.
     - Objects.
 
   - Session 10 (Tue 9:00) (Python development): (CB)
+    - *day2 session4 material*
     - tests
     - coding style.
     - Debugging.
 
   - Session 11 (Tue 10:20): (PR + CB)
+    - *day2 session5 material*
     - Exercises.
 
   - Session 12 (Tue 11:20): (PR)
+    - *day2 session6 material*
     - 3D plotting with Mayavi??
 
 
