@@ -44,7 +44,7 @@ as we go over the slides and also add more material as we see fit.
   - Session 5: (KD)
     - Exercises.
 
-  - Session 6: (CB)
+  - Session 6: (PR)
     - Solving systems of equations.
     - Finding roots.
       - Introducing functions.
@@ -56,7 +56,7 @@ as we go over the slides and also add more material as we see fit.
     - simple i/o
     - basic control flow:  if/elif/else
 
-  - Session 8: (PR)
+  - Session 8: (CB)
     - Control flow (while, for, range etc.)
     - exercises.
     - Lists, tuples, dicts, sets.
