@@ -337,6 +337,32 @@ In []: ylabel('sin(2y)')
   \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{IPython tips \ldots}
+
+\begin{itemize}
+    \item Use \typ{TAB} to complete command 
+\end{itemize}
+        \vspace*{0.5in}
+
+        {\Large \structure{History}}
+\begin{itemize}
+    \item Accesses history (also from past sessions)
+
+    \item Up and down arrows (\typ{Ctrl-p}/\typ{Ctrl-n})
+
+    \item Search: \typ{Ctrl-r} and start typing
+
+    \item \typ{Ctrl-a}: go to start of line
+
+    \item \typ{Ctrl-e}: end of line
+
+    \item \typ{Ctrl-k}: kill to end of line
+\end{itemize}
+
+\end{frame}
+
+
 \subsection{More decoration}
 \begin{frame}[fragile]
 \frametitle{Title and Legends}
@@ -492,6 +518,29 @@ In []: ylim(ymin-0.2, ymax+0.2)
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{IPython tips \ldots}
+
+\begin{itemize}
+
+    \item Try:
+\begin{lstlisting}
+In []: plot?
+\end{lstlisting}
+        to get more information on \typ{plot} 
+
+        \vspace*{0.5in}
+    \item Try: 
+\begin{lstlisting}
+In []: plot?
+\end{lstlisting}
+    to see source code
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
 \frametitle{Review Problem}
 \begin{enumerate}
 \item Plot x, -x, sin(x), xsin(x) in range $-5\pi$ to $5\pi$
@@ -584,10 +633,11 @@ To avoid this, run using \alert{\typ{\%run -i four_plot.py}}\\
   \frametitle{What did we learn?}
   \begin{itemize}
     \item Starting up IPython
-    \item Creating simple plots.
-    \item Adding labels and legends.
-    \item Annotating plots.
+    \item Creating simple plots
+    \item Adding labels and legends
+    \item Annotating plots
     \item Changing the looks: size, linewidth
+    \item Accessing history, documentation
     \item \kwrd{\%hist} - History of commands
     \item \kwrd{\%save} - Saving commands 
     \item Running a script using \kwrd{\%run -i}
