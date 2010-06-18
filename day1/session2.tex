@@ -75,10 +75,10 @@
 % Title page
 \title[Plotting with Python]{Python for Science and Engg: Plotting experimental data}
 
-\author[FOSSEE] {FOSSEE}
+\author[FOSSEE group] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {30 April, 2010\\Day 1, Session 2}
+\date[] {SciPy 2010, Introductory tutorials,\\Day 1, Session 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -155,7 +155,7 @@ Out[]: <matplotlib.text.Text object at 0x98746ec>
 \begin{frame}[fragile]
 \frametitle{Plotting points}
 \begin{itemize}
-\item What if we want to plot the points!
+\item What if we want to plot the points?
 \end{itemize}
 \begin{lstlisting}
   In []: clf()
@@ -237,6 +237,17 @@ Out[]: [2, 5]
 \alert{\typ{list[initial:final:step]}}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{List: Slicing}
+  What is the output of the following?
+\begin{lstlisting}
+In []: p[1::2]
+
+In []: p[1:-1:2]
+\end{lstlisting}
+\end{frame}
+
+
 %% more on list slicing
 \begin{frame}[fragile]
 \frametitle{List operations}
@@ -251,6 +262,7 @@ In []: p.append(11)
 In []: p
 Out[]: [ 2, 3, 5, 7, 11]
 \end{lstlisting}
+Question: Does \typ{c} change now that \typ{p} is changed?
 %\inctime{10}
 \end{frame}
 
@@ -288,13 +300,20 @@ In []: t = [0.69, 0.90, 1.19,
             1.30, 1.47, 1.58, 
             1.77, 1.83, 1.94]
 \end{lstlisting}
+\alert{Gotcha}: Make sure \typ{L} and \typ{t} have the same number
+of elements
+
+\begin{lstlisting}
+In []: print len(L), len(t)
+\end{lstlisting}
+
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Plotting $L$ vs $T^2$}
 \begin{itemize}
 \item We must square each of the values in \typ{t}
-\item How to do it?
+\item How do we do it?
 \item We use a \kwrd{for} loop to iterate over \typ{t}
 \end{itemize}
 \end{frame}
@@ -310,7 +329,7 @@ In []: for time in t:
  ....:
 
 \end{lstlisting}
-This gives \kwrd{tsq} which is the list of squares of \typ{t} values.
+This gives \typ{tsq} which is the list of squares of \typ{t} values.
 \begin{lstlisting}
 In []: print len(L), len(t), len(tsq)
 Out[]: 9 9 9
@@ -318,7 +337,7 @@ Out[]: 9 9 9
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{How to come out of the \texttt{for} loop?}
+  \frametitle{How do you exit the \texttt{for} loop?}
   Hitting the ``ENTER'' key twice returns the cursor to the previous indentation level
   \begin{lstlisting}
     In []: for time in t:
@@ -353,7 +372,7 @@ In []: cat pendulum.txt
 \begin{frame}[fragile]
 \frametitle{Reading \typ{pendulum.txt}}
 \begin{itemize}
-  \item File contains L vs. T values 
+  \item File contains L vs.\ T values 
   \item First Column - L values
   \item Second Column - T values
   \item Let us generate a plot from the data file
@@ -361,9 +380,28 @@ In []: cat pendulum.txt
 \end{frame}
 
 \begin{frame}[fragile]
+    \frametitle{Gotcha and an aside}
+    Ensure you are in the same directory as \typ{pendulum.txt}\\
+    if not, do the following on IPython:
+    \begin{lstlisting}
+In []: %cd directory_containing_file
+# Check if pendulum.txt is there.
+In []: ls
+# Also try 
+In []: !ls
+    \end{lstlisting}
+
+    \alert{Note:} \typ{\%cd} is an IPython magic command.  For more information
+    do:
+    \begin{lstlisting}
+In []: ?
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
 \frametitle{Plotting from \typ{pendulum.txt}}
-Open a new script\\
-Save as \typ{pendulum_plot.py} after typing first line
+Open a new script and save as \typ{pendulum_plot.py}
 \begin{lstlisting}
 L = []
 t = []
@@ -381,7 +419,7 @@ plot(L, tsq, '.')
 \begin{frame}
 \frametitle{Save and run}
 \begin{itemize}
-  \item Save as pendulum\_plot.py.
+    \item Save as \typ{pendulum\_plot.py}
   \item Run using \kwrd{\%run -i pendulum\_plot.py}
 \end{itemize}
 \end{frame}
@@ -403,6 +441,7 @@ plot(L, tsq, '.')
 \end{frame}
 
 \section{Strings}
+
 \begin{frame}[fragile]
 \frametitle{Strings}
 Anything within ``quotes'' is a string!
@@ -411,6 +450,23 @@ Anything within ``quotes'' is a string!
 " This too! "
 """ This one too! """
 ''' And one more! '''
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Strings}
+Why so many?
+\begin{lstlisting}
+' "Do or do not.  No try." said Yoda.'  
+" ' is a mighty lonely quote."
+\end{lstlisting}
+The triple quoted ones can span multiple lines!
+
+\begin{lstlisting}
+""" The quick brown
+fox jumped over
+    the lazy dingbat. 
+"""
 \end{lstlisting}
 \end{frame}
 
@@ -474,8 +530,7 @@ plot(L, tsq, '.')
 \begin{frame}[fragile]
 \frametitle{What did we learn?}
 \begin{itemize}
-  \item Plotting points
-  \item Plot attributes
+  \item Plot attributes and plotting points
   \item Lists
   \item \kwrd{for}
   \item Reading files
