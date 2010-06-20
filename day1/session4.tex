@@ -74,12 +74,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Matrices \& Curve Fitting]{Python for Science and Engg: Matrices \& Least Square Fit}
+\title[Matrices \& Curve Fitting]{Python for Science and Engg: Matrices
+\& Least Squares Fit}
 
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {30 April, 2010\\Day 1, Session 4}
+\date[] {SciPy 2010, Introductory tutorials\\Day 1, Session 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -164,7 +165,7 @@ Out[]:
 array([[ 1.,  0.],
        [ 0.,  1.]])
   \end{lstlisting}
-Also available \alert{\typ{zeros, zeros_like}}
+Also available \alert{\typ{zeros, zeros_like, empty, empty_like}}
 \end{small}
 \end{frame}
 
@@ -209,7 +210,7 @@ array([[11, 12, 13],
        [31, 32, 33]])
   \end{lstlisting}
   \end{small}
-How to access one \alert{column}?
+How do you access one \alert{column}?
 \end{frame}
 
 \begin{frame}[fragile]
@@ -444,32 +445,31 @@ Out[]: array([-1.,  8., -1.])
 \end{small}
 \end{frame}
 
-%% \begin{frame}[fragile]
-%% \frametitle{Computing Norms}
-%% \begin{lstlisting}
-%% In []: norm(e)
-%% Out[]: 8.1240384046359608
-%% \end{lstlisting}
-%% \end{frame}
+\begin{frame}[fragile]
+\frametitle{Computing Norms}
+\begin{lstlisting}
+In []: norm(e)
+Out[]: 8.1240384046359608
+\end{lstlisting}
+\end{frame}
 
-%% \begin{frame}[fragile]
-%%   \frametitle{Singular Value Decomposition}
-%%   \begin{small}
-%%   \begin{lstlisting}
-%% In []: svd(e)
-%% Out[]: 
-%% (array(
-%% [[ -6.66666667e-01,  -1.23702565e-16,   7.45355992e-01],
-%%  [ -3.33333333e-01,  -8.94427191e-01,  -2.98142397e-01],
-%%  [ -6.66666667e-01,   4.47213595e-01,  -5.96284794e-01]]),
-%%  array([ 8.,  1.,  1.]),
-%%  array([[-0.66666667, -0.33333333, -0.66666667],
-%%         [-0.        ,  0.89442719, -0.4472136 ],
-%%         [-0.74535599,  0.2981424 ,  0.59628479]]))
-%%   \end{lstlisting}
-%%   \end{small}
-%% \inctime{15}
-%% \end{frame}
+\begin{frame}[fragile]
+  \frametitle{Singular Value Decomposition}
+  \begin{small}
+  \begin{lstlisting}
+In []: svd(e)
+Out[]: 
+(array(
+[[ -6.66666667e-01,  -1.23702565e-16,   7.45355992e-01],
+ [ -3.33333333e-01,  -8.94427191e-01,  -2.98142397e-01],
+ [ -6.66666667e-01,   4.47213595e-01,  -5.96284794e-01]]),
+ array([ 8.,  1.,  1.]),
+ array([[-0.66666667, -0.33333333, -0.66666667],
+        [-0.        ,  0.89442719, -0.4472136 ],
+        [-0.74535599,  0.2981424 ,  0.59628479]]))
+  \end{lstlisting}
+  \end{small}
+\end{frame}
 
 \section{Least Squares Fit}
 \begin{frame}[fragile]
@@ -618,8 +618,7 @@ In []: plot(L, tsq, 'o')
       \item Inverse of a matrix
       \item Determinant
       \item Eigenvalues and Eigen vector
-      %% \item Norms
-      %% \item Singular Value Decomposition
+      \item Singular Value Decomposition
     \end{itemize}
   \item Least Square Curve fitting
   \end{itemize}
