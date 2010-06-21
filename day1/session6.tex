@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {30 April, 2010\\Day 1, Session 6}
+\date[] {SciPy 2010, Introductory tutorials\\Day 1, Session 6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -145,11 +145,11 @@ Solution:
 \frametitle{Solving using Matrices}
 Let us now look at how to solve this using \kwrd{matrices}
   \begin{lstlisting}
-    In []: A = array([[3,2,-1],
-                      [2,-2,4],                   
-                      [-1, 0.5, -1]])
-    In []: b = array([1, -2, 0])
-    In []: x = solve(A, b)
+In []: A = array([[3,2,-1],
+                  [2,-2,4],                   
+                  [-1, 0.5, -1]])
+In []: b = array([1, -2, 0])
+In []: x = solve(A, b)
   \end{lstlisting}
 \end{frame}
 
@@ -178,10 +178,8 @@ We can use \kwrd{allclose()} to check.
 In []: allclose(Ax, b)
 Out[]: True
 \end{lstlisting}
-\inctime{15}
+\inctime{10}
 \end{frame}
-
-\subsection{Exercises}
 
 \begin{frame}[fragile]
 \frametitle{Problem}
@@ -192,7 +190,7 @@ Solve the set of equations:
   2x + y -z + 3w & = -11 \\
   x - 3y + 2z + 7w & = -5\\
 \end{align*}
-\inctime{10}
+\inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -209,7 +207,7 @@ Use \kwrd{solve()}
 \section{Finding Roots}
 
 \begin{frame}[fragile]
-\frametitle{Scipy Methods - \typ{roots}}
+\frametitle{SciPy: \typ{roots}}
 \begin{itemize}
 \item Calculates the roots of polynomials
 \item To calculate the roots of $x^2-5x+6$ 
@@ -226,7 +224,7 @@ Use \kwrd{solve()}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Scipy Methods - \typ{fsolve}}
+\frametitle{SciPy: \typ{fsolve}}
 \begin{small}
 \begin{lstlisting}
   In []: from scipy.optimize import fsolve
@@ -277,10 +275,10 @@ In []: def g(z):
  ....:     return sin(z)+cos(z)*cos(z)
 \end{lstlisting}
 \begin{itemize}
-\item \typ{def}
-\item name
-\item arguments
-\item \typ{return}
+\item \typ{def} -- keyword
+\item name: \typ{g}
+\item arguments: \typ{z}
+\item \typ{return} -- keyword
 \end{itemize}
 \end{frame}
 
@@ -350,17 +348,17 @@ fsolve(g, 0)
 \begin{frame}[fragile]
 \frametitle{Solving ODEs using SciPy}
 \begin{itemize}
-\item Let's consider the spread of an epidemic in a population
+\item Consider the spread of an epidemic in a population
 \item $\frac{dy}{dt} = ky(L-y)$ gives the spread of the disease
-\item L is the total population.
-\item Use L = 250000, k = 0.00003, y(0) = 250
+\item $L$ is the total population.
+\item Use $L = 2.5E5, k = 3E-5, y(0) = 250$
 \item Define a function as below
 \end{itemize}
 \begin{lstlisting}
 In []: from scipy.integrate import odeint
 In []: def epid(y, t):
-  ....     k = 0.00003
-  ....     L = 250000
+  ....     k = 3.0e-5
+  ....     L = 2.5e5
   ....     return k*y*(L-y)
   ....
 \end{lstlisting}
@@ -450,6 +448,71 @@ In []: pend_sol = odeint(pend_int,
 \end{center}
 \end{frame}
 
+\section{FFTs}
+
+\begin{frame}[fragile]
+\frametitle{The FFT}
+\begin{itemize}
+    \item We have a simple signal $y(t)$
+    \item Find the FFT and plot it
+\end{itemize}
+\begin{lstlisting}
+In []: t = linspace(0, 2*pi, 500)
+In []: y = sin(4*pi*t)
+
+In []: f = fft(y)
+In []: freq = fftfreq(500, t[1] - t[0])
+
+In []: plot(freq[:250], abs(f)[:250])
+In []: grid()
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{FFTs cont\dots}
+\begin{lstlisting}
+In []: y1 = ifft(f) # inverse FFT
+In []: allclose(y, y1)
+Out[]: True
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{FFTs cont\dots}
+Let us add some noise to the signal
+\begin{lstlisting}
+In []: yr = y + random(size=500)*0.2
+In []: yn = y + normal(size=500)*0.2
+
+In []: plot(t, yr)
+In []: figure()
+In []: plot(freq[:250],
+  ...:      abs(fft(yn))[:250])
+\end{lstlisting}
+\begin{itemize}
+    \item \typ{random}: produces uniform deviates in $[0, 1)$
+    \item \typ{normal}: draws random samples from a Gaussian
+        distribution
+    \item Useful to create a random matrix of any shape
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{FFTs cont\dots}
+Filter the noisy signal:
+\begin{lstlisting}
+In []: from scipy import signal
+In []: yc = signal.wiener(yn, 5)
+In []: clf()
+In []: plot(t, yc)
+In []: figure()
+In []: plot(freq[:250], 
+  ...:      abs(fft(yc))[:250])
+\end{lstlisting}
+Only scratched the surface here \dots
+\end{frame}
+
+
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
@@ -457,6 +520,8 @@ In []: pend_sol = odeint(pend_int,
   \item Defining Functions
   \item Finding Roots
   \item Solving ODEs
+  \item Random number generation
+  \item FFTs and basic signal processing
   \end{itemize}
 \end{frame}
 
