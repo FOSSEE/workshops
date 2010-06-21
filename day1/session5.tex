@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\texttt{#1}}
+\newcommand{\typ}[1]{\lstinline{#1}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -78,7 +78,7 @@
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {30 April, 2010\\Day 1, Session 5}
+\date[] {SciPy 2010, Introductory tutorials\\Day 1, Session 5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -132,7 +132,7 @@ plot(l, t, '.')
     \end{block}
   \end{columns}
   \begin{block}{Problem Statement}
-    Tweak above code to plot data in file `pos.txt'.
+      Tweak above code to plot data in file \typ{pos.txt}.
   \end{block}
 \end{frame}
 
@@ -180,8 +180,8 @@ In []: plot(x, y)
     \begin{block}{Damped Oscillation}
     \tiny
     \begin{lstlisting}
-In []: x = linspace(0, 4*pi)
-In []: plot(x, exp(x/10)*sin(x))
+In []: t = linspace(0, 4*pi)
+In []: plot(t, exp(t/10)*sin(t))
     \end{lstlisting}
     \end{block}
   \end{columns}
@@ -189,7 +189,8 @@ In []: plot(x, exp(x/10)*sin(x))
 
 \begin{frame}[fragile]
   \frametitle{Problem 3 cont...}
-Create a sequence of images in which the damped oscillator($e^{-x/10}sin(x)$) slowly evolves over time.
+Create a sequence of images in which the damped
+oscillator($e^{-t/10}sin(t)$) slowly evolves over time $t$.
 \begin{columns}
 \column{0.35\textwidth}
 \includegraphics[width=1.5in,height=1.5in, interpolate=true]{data/plot2}
@@ -201,7 +202,7 @@ Create a sequence of images in which the damped oscillator($e^{-x/10}sin(x)$) sl
 \begin{block}{Hint}
 \small
   \begin{lstlisting}
-savefig('plot'+str(i)+'.png') #i is int variable  
+savefig('plot'+str(i)+'.png') #i is some int 
   \end{lstlisting}  
 \end{block}
 \end{frame}
@@ -209,11 +210,12 @@ savefig('plot'+str(i)+'.png') #i is int variable
 \begin{frame}[fragile]
   \frametitle{Problem 4}
   \begin{lstlisting}
-In []: x = imread('smoothing.png')
+In []: x = imread('smoothing.gif')
 In []: x.shape
 Out[]: (256, 256)
 In []: imshow(x,cmap=cm.gray)
-  \end{lstlisting}
+In []: colorbar()
+\end{lstlisting}
 \emphbar{Replace each pixel with mean of neighboring pixels}
   \begin{center}
   \includegraphics[height=1in, interpolate=true]{data/neighbour}
@@ -250,12 +252,114 @@ y[1, 1] = x[0, 1]/4 + x[1, 0]/4
   \frametitle{Solution}
   \begin{lstlisting}
 In []: y = zeros_like(x)
-In []: y[1:-1,1:-1] = x[:-2,1:-1]/4+
-                      x[2:,1:-1]/4+
-                      x[1:-1,2:]/4+
+In []: y[1:-1,1:-1] = x[:-2,1:-1]/4 +
+                      x[2:,1:-1]/4 +
+                      x[1:-1,2:]/4 +
                       x[1:-1,:-2]/4
 In []: imshow(y,cmap=cm.gray)
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 4 cont\ldots}
+  \begin{itemize}
+      \item Apply the smoothing operation repeatedly to the original
+          image
+
+      \item Subtract the smoothed image from the original to obtain
+          the edges
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 5}
+
+  What if you did the following in problem 4?
+  \begin{lstlisting}
+In []: y1[1:-1,1:-1] = (x[:-2,1:-1] +
+                        x[2:,1:-1] +
+                        x[1:-1,2:] +
+                        x[1:-1,:-2])/4
+  \end{lstlisting}
+
+    Are the answers different? 
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 5 cont\ldots}
+  Why? The answer lies in the following:
+\begin{lstlisting}
+In []: x.dtype
+Out[]: dtype('uint8')
+
+In []: print x.itemsize
+1
+
+In []: z = x/4.0
+
+In []: print z.dtype
+float64
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 5 cont\ldots}
+What if you did this?
+
+\begin{lstlisting}
+x = imread('smoothing.gif')
+y2 = zeros_like(x)
+y2[1:-1,1:-1] = x[:-2,1:-1]/4. + 
+                x[2:,1:-1]/4.  +
+                x[1:-1,2:]/4.  +
+                x[1:-1,:-2]/4.
+\end{lstlisting}
+\begin{itemize}
+    \item Will the answer be any different from \typ{y}?
+    \item What will the dtype of \typ{y2} be?
+    \item Discuss what is going on!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 5 cont\ldots}
+  Did you do the right thing to find the edges earlier in problem 4? Fix it! 
+  
+  Note that:
+\begin{lstlisting}
+In []: print x.dtype
+uint8
+In []: x1 = x.astype('float64')
+In []: print x1.dtype
+float64
+In []: print x.dtype.char
+d
+In []: x.dtype.<TAB> # Explore!
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Problem 6}
+
+  Edge detection looks much nicer with \typ{lena.png}, try it!  The
+  gotcha is that it is a 4 component RGBA image with elements in the
+  range $[0.0, 1.0]$.
+
+\begin{lstlisting}
+In []: x = imread('lena.png')
+
+In []: print x.shape
+(512, 512, 4)
+
+In []: print x.min(), x.max()
+0.0 1.0
+\end{lstlisting}
+
+ Repeat the edge detection with this image.
+
 \end{frame}
 
 
