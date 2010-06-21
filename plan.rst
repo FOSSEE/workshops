@@ -42,7 +42,9 @@ as we go over the slides and also add more material as we see fit.
     - More matrices -- determinant, inverse.
     - Least squares fit for data.
 
-  - Session 5 (Mon 13:40): (KD)
+  - Quiz 1 (Mon 13:40 -- 13:55) (KD)
+
+  - Session 5 (Mon 13:55): (KD)
     - Exercises.
 
   - Session 6 (Mon 14:40): (CB)
@@ -53,7 +55,9 @@ as we go over the slides and also add more material as we see fit.
     
     - Solving ODEs.
 
-  - Session 7 (Mon 16:00) (Python language basics.): (KD)
+  - Quiz 2 (16:00 -- 16:15) (KD)
+
+  - Session 7 (Mon 16:15) (Python language basics.): (KD)
     - *day2 session1 material*
     - Data types, numbers, booleans, strings.
     - operators
@@ -79,12 +83,14 @@ as we go over the slides and also add more material as we see fit.
     - coding style.
     - Debugging.
 
+  - Quiz 3 (Tue: 10:20 -- 10:35) (KD)
+
   - Session 11 (Tue 10:20): (PR + CB)
     - *day2 session5 material*
     - Exercises.
 
   - Session 12 (Tue 11:20): (PR)
     - *day2 session6 material*
-    - 3D plotting with Mayavi??
+    - 3D plotting with Mayavi
 
 
