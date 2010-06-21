@@ -54,6 +54,8 @@ as we go over the slides and also add more material as we see fit.
       - Introducing functions.
     
     - Solving ODEs.
+    - Random numbers.
+    - FFTs and basic signal processing.
 
   - Quiz 2 (16:00 -- 16:15) (KD)
 
