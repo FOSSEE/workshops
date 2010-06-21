@@ -159,11 +159,11 @@ Day 1, Session 1}
     \item Editor - we recommend \alert{scite}
     \item Data files: 
       \begin{itemize}
-      \item \typ{sslc1.txt}
+      \item \typ{anag.txt}
+      \item \typ{holmes.txt}
       \item \typ{pendulum.txt}
       \item \typ{pos.txt}
-      \item \typ{holmes.txt}
-      \item \typ{anag.txt}
+      \item \typ{sslc1.txt}
       \end{itemize}
     \item Python scripts: 
       \begin{itemize}
@@ -531,9 +531,9 @@ In []: plot?
         \vspace*{0.5in}
     \item Try: 
 \begin{lstlisting}
-In []: plot?
+In []: plot??
 \end{lstlisting}
-    to see source code
+    to see the source code for \typ{plot}
 
 \end{itemize}
 
@@ -558,7 +558,7 @@ In []: plot?
 \frametitle{Review Problem \ldots}
 \alert{Plotting \ldots}
 \begin{lstlisting}
-In []: x=linspace(-5*pi, 5*pi, 500)
+In []: x = linspace(-5*pi, 5*pi, 500)
 In []: plot(x, x, 'b')
 In []: plot(x, -x, 'b')
 In []: plot(x, sin(x), 'g', linewidth=2)
@@ -602,7 +602,7 @@ Use the \typ{\%save} \alert{magic} command of IPython
 \begin{block}{}
 \typ{\%save script_name line_numbers}
 \end{block}
-Line numbers can be specified individually separated by commas or as a range separated by a dash.\\
+Line numbers can be specified individually separated by spaces or as a range separated by a dash.\\
 \begin{block}{}
 \typ{\%save four_plot.py} \alert{\typ{  16 18-27}} \\  
 \end{block}
