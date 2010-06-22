@@ -26,6 +26,8 @@ as we go over the slides and also add more material as we see fit.
     - Strings
     - Summary
 
+  - COFFEE (10:00 - 10:20)
+
   - Session 3 (Mon 10:20): (CB)
     - Basic statistical calculations
     - Handling larger data (sslc data)
@@ -42,12 +44,14 @@ as we go over the slides and also add more material as we see fit.
     - More matrices -- determinant, inverse.
     - Least squares fit for data.
 
+  - LUNCH (12:20 - 13:40)
+
   - Quiz 1 (Mon 13:40 -- 13:55) (KD)
 
   - Session 5 (Mon 13:55): (KD)
     - Exercises.
 
-  - Session 6 (Mon 14:40): (CB)
+  - Session 6 (Mon 14:40): (PR)
     - Solving systems of equations.
     - Finding roots.
 
@@ -56,6 +60,8 @@ as we go over the slides and also add more material as we see fit.
     - Solving ODEs.
     - Random numbers.
     - FFTs and basic signal processing.
+
+  - COFFEE (15:40 - 16:00)
 
   - Quiz 2 (16:00 -- 16:15) (KD)
 
@@ -66,7 +72,7 @@ as we go over the slides and also add more material as we see fit.
     - simple i/o
     - basic control flow:  if/elif/else
 
-  - Session 8 (Mon 15:00): (PR)
+  - Session 8 (Mon 17:00): (CB)
     - *day2 session2 material*
     - Control flow (while, for, range etc.)
     - exercises.
@@ -85,6 +91,8 @@ as we go over the slides and also add more material as we see fit.
     - coding style.
     - Debugging.
 
+  - COFFEE (10:00 - 10:20)
+
   - Quiz 3 (Tue: 10:20 -- 10:35) (KD)
 
   - Session 11 (Tue 10:20): (PR + CB)
@@ -95,4 +103,5 @@ as we go over the slides and also add more material as we see fit.
     - *day2 session6 material*
     - 3D plotting with Mayavi
 
+  - LUNCH (12:20 - 13:40)
 
