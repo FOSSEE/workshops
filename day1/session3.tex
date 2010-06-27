@@ -361,16 +361,17 @@ for record in open('sslc1.txt'):
 \begin{frame}[fragile]
   \frametitle{Building parsed data \ldots}
   \begin{lstlisting}
-if region_code not in science:
-    science[region_code] = 0
+    if region_code not in science:
+        science[region_code] = 0
 
-score_str = fields[6].strip()
+    score_str = fields[6].strip()
 
-score = int(score_str) if \
-    score_str != 'AA' else 0
+    score = 0
+    if score_str != 'AA':
+        score = int(score_str)
 
-if score > 90:
-    science[region_code] += 1
+    if score > 90:
+        science[region_code] += 1
   \end{lstlisting}
 \end{frame}
 
@@ -425,8 +426,9 @@ for record in open('sslc1.txt'):
     fields = record.split(';')
 
     score_str = fields[5].strip()
-    score = int(score_str) if \
-      score_str != 'AA' else 0
+    score = 0
+    if score_str != 'AA':
+        score = int(score_str)
 
     math_scores.append(score)
   \end{lstlisting}
