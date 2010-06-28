@@ -3,8 +3,8 @@ for i in range(10):
     cubes.append(i ** 3)
 
 for i in range(100, 1000):
-    a = i % 10
-    b = (i / 10) % 10
-    c = (i / 100) % 10
-    if i == cubes[a] + cubes[b] + cubes[c]:
+    ones = i % 10
+    tens = (i / 10) % 10
+    hundreds = (i / 100) % 10
+    if i == cubes[ones] + cubes[tens] + cubes[hundreds]:
         print "Armstrong Number: ", i
