@@ -289,6 +289,31 @@ if __name__ == '__main__':
    \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+ \frametitle{Whitespace}
+ Whitespace... it's not just for compilers!
+  \begin{lstlisting}
+
+def myfanfunc(somevar,another,yetmore):
+    if a%b==0:return b
+    return myfanfunc(b,a%b)
+      
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+ \frametitle{Whitespace}
+ The compiler doesn't care!  Humans do!
+  \begin{lstlisting}
+
+def my_fan_func(some_var, another, yet_more):
+    if a % b == 0:
+        return b
+    return my_fan_func(b, a % b)
+      
+  \end{lstlisting}
+\end{frame}
+
 \begin{frame}{Comments}
   \begin{itemize}
         \item No comments better than contradicting comments
