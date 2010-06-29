@@ -285,6 +285,27 @@ In []: from scipy import linspace
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{IPython namespace}
+  \begin{lstlisting}
+
+In [4]: whos
+Interactive namespace is empty.
+
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{IPython namespace}
+  \begin{lstlisting}
+
+In [5]: from numpy import *
+
+In [6]: whos
+
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Package hierarchies}
   \begin{lstlisting}
 from scipy.integrate import odeint
@@ -329,6 +350,19 @@ pylab.legend(['x', '-x', 'sin(x)', 'xsin(x)'])
 pylab.annotate('origin', xy = (0, 0))
 pylab.xlim(-5*scipy.pi, 5*scipy.pi)
 pylab.ylim(-5*scipy.pi, 5*scipy.pi)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\texttt{import} - the community convention}
+  \begin{lstlisting}
+
+import numpy as np
+np.linspace(-5 * np.pi, 5 * np.pi, 500)
+
+import scipy as sp
+sp.linspace(-5 * sp.pi, 5 * sp.pi, 500)
+
   \end{lstlisting}
 \end{frame}
 
