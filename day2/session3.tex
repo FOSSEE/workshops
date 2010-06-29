@@ -399,6 +399,27 @@ sp.linspace(-5 * sp.pi, 5 * sp.pi, 500)
   \end{description}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{From which module?}
+  
+This plot function in pylab is cool, 
+from where do I import it to include it in 
+my\_nifty\_module.py?
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{From which module?}
+  \begin{lstlisting}
+   
+In [15]: plot.__module__
+Out[15]: 'matplotlib.pyplot'
+
+from matplotlib.pyplot import plot
+
+  \end{lstlisting}
+\end{frame}
+
 \section{Objects}
 \begin{frame}{Everything is an Object!}
   \begin{itemize}
