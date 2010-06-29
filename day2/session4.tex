@@ -202,6 +202,23 @@ Edit \texttt{gcd.py} file to:
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}[fragile]
+  \frametitle{Automating tests}
+  \begin{lstlisting}
+  
+def gcd(a, b):
+    if a % b == 0:
+        return b
+    return gcd(b, a % b)
+
+if __name__ == '__main__':
+    assert gcd(15, 65) == 5
+    assert gcd(16, 76) == 4
+
+  \end{lstlisting}  
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Automating tests}
   \begin{lstlisting}
@@ -215,6 +232,18 @@ if __name__ == '__main__':
             print "Failed gcd test
                           for", x, y
   \end{lstlisting}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Python Test Packages}
+    \begin{itemize}
+
+\item Python's \typ{unittest}:\linebreak
+  \url{http://docs.python.org/library/unittest.html}
+\linebreak
+\item \typ{nose}:\linebreak
+  \url{http://code.google.com/p/python-nose/}
+  \end{itemize}
 \end{frame}
 
 \section{Coding Style}
