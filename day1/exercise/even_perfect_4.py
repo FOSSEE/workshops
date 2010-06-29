@@ -5,7 +5,8 @@ def is_perfect_square(n):
     return i * i == n
 
 def all_digits_even(n):
-    if n < 0: n = -n
+    if n < 0:
+        n = -n
     while n > 0:
         if n % 2 == 1:
             return False
