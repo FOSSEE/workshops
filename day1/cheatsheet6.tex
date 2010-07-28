@@ -126,7 +126,67 @@ To solve the ODE, we call the \typ{odeint} function with three arguments - the f
 \begin{lstlisting}
 In []: y = odeint(f, y0, t)
 \end{lstlisting}
-Note: To solve a system of ODEs, we need to change the function to return the right hand side of all the equations and the system and the pass the required number of initial conditions to the \typ{odeint} function.
+Note: To solve a system of ODEs, we need to change the function to
+return the right hand side of all the equations and the system and the
+pass the required number of initial conditions to the \typ{odeint}
+function.
+
+\section{FFT}
+\begin{itemize}
+    \item We have a simple signal $y(t)$
+    \item Find the FFT and plot it
+\end{itemize}
+\begin{lstlisting}
+In []: t = linspace(0, 2*pi, 500)
+In []: y = sin(4*pi*t)
+
+In []: f = fft(y)
+In []: freq = fftfreq(500, t[1] - t[0])
+
+In []: plot(freq[:250], abs(f)[:250])
+In []: grid()
+\end{lstlisting} 
+\begin{itemize}
+    \item We now calculate the inverse Fourier transform.
+    \item Then, verify the solution obtained. 
+\end{itemize}
+\begin{lstlisting}
+In []: y1 = ifft(f) # inverse FFT
+In []: allclose(y, y1)
+Out[]: True
+\end{lstlisting} 
+\begin{itemize}
+\item Let us add some noise to the signal
+\end{itemize}
+\begin{lstlisting}
+In []: yr = y + random(size=500)*0.2
+In []: yn = y + normal(size=500)*0.2
+
+In []: plot(t, yr)
+In []: figure()
+In []: plot(freq[:250],
+  ...:      abs(fft(yn))[:250])
+\end{lstlisting}
+\begin{itemize}
+    \item \typ{random}: produces uniform deviates in $[0, 1)$
+    \item \typ{normal}: draws random samples from a Gaussian
+        distribution
+    \item Useful to create a random matrix of any shape
+\end{itemize}
+
+\begin{itemize}
+\item Now, we filter the noisy signal using a Wiener filter
+\end{itemize}
+\begin{lstlisting}
+In []: from scipy import signal
+In []: yc = signal.wiener(yn, 5)
+In []: clf()
+In []: plot(t, yc)
+In []: figure()
+In []: plot(freq[:250], 
+  ...:      abs(fft(yc))[:250])
+\end{lstlisting}
+
 \section{Links and References}
 \begin{itemize}
 \item Documentation for Numpy and Scipy is available at:\\ http://docs.scipy.org/doc/
