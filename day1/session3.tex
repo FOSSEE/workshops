@@ -74,7 +74,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Arrays]{Python for Science and Engg: Arrays}
+\title[Arrays]{Python for Science and Engg: \\Arrays}
 
 \author[FOSSEE] {FOSSEE}
 
@@ -123,16 +123,45 @@
   \tableofcontents
 %  \pausesections
 \end{frame}
+\section{Motivation}
 
-\section{Matrices}
-
-\begin{frame}
-\frametitle{Matrices: Introduction}
-\alert{All matrix operations are done using \kwrd{arrays}}
+\begin{frame}[fragile]
+  \frametitle{Why arrays?}
+  \begin{itemize}
+  \item Speed!
+  \item Convenience
+  \item Easier to handle multi-dimensional data
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Matrices: Initializing}
+  \frametitle{Speed}
+    \begin{lstlisting}
+In []: a = random(1000000) 
+# array with a million random elements
+In []: b = []
+In []: for each in a:
+  ...:     b.append(sin(each))
+  ...:     
+  ...:     
+In []: sin(a)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Convenience}
+The pendulum problem could've been solved as below::
+    \begin{lstlisting}
+In []: L, T = loadtxt('pendulum.txt', 
+                      unpack=True)
+In []: tsq = T*T
+In []: plot (L, tsq, '.')
+  \end{lstlisting}
+\end{frame}
+
+\section{Initializing}
+\begin{frame}[fragile]
+\frametitle{Initializing}
 \begin{lstlisting}
 In []: c = array([[11,12,13],
                   [21,22,23],
@@ -147,7 +176,7 @@ array([[11, 12, 13],
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Initializing some special matrices}
+\frametitle{Some special arrays}
 \begin{small}
   \begin{lstlisting}
 In []: ones((3,5))
@@ -188,6 +217,7 @@ In []: c[1]
 Out[]: array([21, 22, 23])
   \end{lstlisting}
   \end{small}
+Similar to \kwrd{lists} but improved!
 \end{frame}
 
 \begin{frame}[fragile]
@@ -209,11 +239,58 @@ array([[11, 12, 13],
        [31, 32, 33]])
   \end{lstlisting}
   \end{small}
-How do you access one \alert{column}?
+How do you access one \alert{column}? -- Enter Slicing!
+\end{frame}
+
+\section{Slicing \& Striding}
+
+\begin{frame}[fragile]
+  \frametitle{Slicing: Lists}
+  \begin{block}{Define a list}
+	\kwrd{In []: p = [ 2, 3, 5, 7, 11, 13]}
+  \end{block}
+\begin{lstlisting}
+In []: p[1:3]
+Out[]: [3, 5]
+\end{lstlisting}
+\emphbar{A slice}
+\begin{lstlisting}
+In []: p[0:-1]
+Out[]: [2, 3, 5, 7, 11]
+In []: p[:]
+Out[]: [2, 3, 5, 7, 11, 13]
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Slicing}
+  \frametitle{Striding: Lists}
+\emphbar{Striding over \typ{p}}
+\begin{lstlisting}
+In []: p[::2]
+Out[]: [2, 5, 11]
+In []: p[1::2]
+Out[]: [3, 7, 13]
+In []: p[1:-1:2]
+Out[]: [3, 7]
+In []: p[::3]
+Out[]: [2, 7]
+\end{lstlisting}
+\alert{\typ{list[initial:final:step]}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Slicing \& Striding: Lists}
+  What is the output of the following?
+\begin{lstlisting}
+In []: p[1::4]
+
+In []: p[1:-1:3]
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Slicing: \typ{arrays}}
 \begin{small}
   \begin{lstlisting}
 In []: c[:,1]
@@ -236,7 +313,7 @@ array([[ 0,  0,  0],
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Slicing \ldots}
+  \frametitle{Slicing: \typ{arrays} \ldots}
 \begin{small}
   \begin{lstlisting}
 In []: c[:2,:]
@@ -259,7 +336,7 @@ array([[ 0,  0],
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Striding}
+  \frametitle{Striding: \typ{arrays}}
   \begin{small}
   \begin{lstlisting}
 In []: c[::2,:]
@@ -282,7 +359,7 @@ array([[11, 13],
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Shape of a matrix}
+  \frametitle{Shape of an \typ{array}}
   \begin{lstlisting}
 In []: c
 Out[]: 
@@ -293,7 +370,7 @@ array([[11, 12, 13],
 In []: c.shape
 Out[]: (3, 3)
   \end{lstlisting}
-\emphbar{Shape specifies shape or dimensions of a matrix}
+\emphbar{Shape specifies shape or dimensions of an array}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -335,36 +412,21 @@ Out[]: <matplotlib.image.AxesImage object at 0xb765c8c>
 \end{small}
 \end{frame}
 
+\section{Operations on \typ{arrays}}
 \begin{frame}[fragile]
-\frametitle{Transpose of a Matrix}
-\begin{lstlisting}
-In []: a = array([[ 1,  1,  2, -1],
-  ...:            [ 2,  5, -1, -9],
-  ...:            [ 2,  1, -1,  3],
-  ...:            [ 1, -3,  2,  7]])
-
-In []: a.T
-Out[]:
-array([[ 1,  2,  2,  1],
-       [ 1,  5,  1, -3],
-       [ 2, -1, -1,  2],
-       [-1, -9,  3,  7]])
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Matrix Addition}
+  \frametitle{Operations: Addition}
+  Operations on arrays, as already mentioned, are \alert{element-wise}
   \begin{lstlisting}
-In []: b = array([[3,2,-1,5],
-                  [2,-2,4,9],
-                  [-1,0.5,-1,-7],
-                  [9,-5,7,3]])
+In []: a = array([[-3,2.5],
+                  [2.5,2]])
+
+In []: b = array([[3,2],
+                  [2,-2]])
+
 In []: a + b
 Out[]: 
-array([[  4. ,   3. ,   1. ,   4. ],
-       [  4. ,   3. ,   3. ,   0. ],
-       [  1. ,   1.5,  -2. ,  -4. ],
-       [ 10. ,  -8. ,   9. ,  10. ]])
+array([[ 0. ,  4.5],
+       [ 4.5,  0. ]])
   \end{lstlisting}
 \end{frame}
 
@@ -373,121 +435,49 @@ array([[  4. ,   3. ,   1. ,   4. ],
 \begin{lstlisting}
 In []: a*b
 Out[]: 
-array([[  3. ,   2. ,  -2. ,  -5. ],
-       [  4. , -10. ,  -4. , -81. ],
-       [ -2. ,   0.5,   1. , -21. ],
-       [  9. ,  15. ,  14. ,  21. ]])
-
+array([[-9.,  5.],
+       [ 5., -4.]])
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Matrix Multiplication}
-\begin{lstlisting}
-In []: dot(a, b)
-Out[]: 
-array([[ -6. ,   6. ,  -6. ,  -3. ],
-       [-64. ,  38.5, -44. ,  35. ],
-       [ 36. , -13.5,  24. ,  35. ],
-       [ 58. , -26. ,  34. , -15. ]])
-\end{lstlisting}
-\end{frame}
+\frametitle{Matrix Operations using \typ{arrays}}
 
-\begin{frame}[fragile]
-\frametitle{Inverse of a Matrix}
-\begin{lstlisting}
+We can perform various matrix operations on \kwrd{arrays}\\ 
+A few are listed below.
 
-\end{lstlisting}
-\begin{small}
-\begin{lstlisting}
-In []: inv(a)
-Out[]: 
-array([[-0.5 ,  0.55, -0.15,  0.7 ],
-       [ 0.75, -0.5 ,  0.5 , -0.75],
-       [ 0.5 , -0.15, -0.05, -0.1 ],
-       [ 0.25, -0.25,  0.25, -0.25]])
-\end{lstlisting}
-\end{small}
-\emphbar{Try this: \typ{I = dot(a, inv(a))}}
-\end{frame}
+\vspace{-0.2in}
 
-\begin{frame}[fragile]
-\frametitle{Determinant and sum of all elements}
-\begin{lstlisting}
-In []: det(a)
-Out[]: 80.0
-\end{lstlisting}
-  \begin{lstlisting}
-In []: sum(a)
-Out[]: 12
-  \end{lstlisting}
+\begin{center}
+\begin{tabular}{lll}
+ Operation                    &  How?           &  Example           \\
+\hline
+ Transpose                    &  \typ{.T}       &  \typ{A.T}         \\
+ Product                      &  \typ{dot}      &  \typ{dot(A, B)}   \\
+ Inverse                      &  \typ{inv}      &  \typ{inv(A)}      \\
+ Determinant                  &  \typ{det}      &  \typ{det(A)}      \\
+ Sum of all elements          &  \typ{sum}      &  \typ{sum(A)}      \\
+ Eigenvalues                  &  \typ{eigvals}  &  \typ{eigvals(A)}  \\
+ Eigenvalues \& Eigenvectors  &  \typ{eig}      &  \typ{eig(A)}      \\
+ Norms                        &  \typ{norm}     &  \typ{norm(A)}     \\
+ SVD                          &  \typ{svd}      &  \typ{svd(A)}      \\
+\end{tabular}
+\end{center}
 
-\end{frame}
-
-%%use S=array(X,Y)
-\begin{frame}[fragile]
-\frametitle{Eigenvalues and Eigen Vectors}
-\begin{small}
-\begin{lstlisting}
-In []: e = array([[3,2,4],[2,0,2],[4,2,3]])
-
-In []: eig(e)
-Out[]: 
-(array([-1.,  8., -1.]),
- array([[-0.74535599,  0.66666667, -0.1931126 ],
-        [ 0.2981424 ,  0.33333333, -0.78664085],
-        [ 0.59628479,  0.66666667,  0.58643303]]))
-
-In []: eigvals(e)
-Out[]: array([-1.,  8., -1.])
-\end{lstlisting}
-\end{small}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Computing Norms}
-\begin{lstlisting}
-In []: norm(e)
-Out[]: 8.1240384046359608
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Singular Value Decomposition}
-  \begin{small}
-  \begin{lstlisting}
-In []: svd(e)
-Out[]: 
-(array(
-[[ -6.66666667e-01,  -1.23702565e-16,   7.45355992e-01],
- [ -3.33333333e-01,  -8.94427191e-01,  -2.98142397e-01],
- [ -6.66666667e-01,   4.47213595e-01,  -5.96284794e-01]]),
- array([ 8.,  1.,  1.]),
- array([[-0.66666667, -0.33333333, -0.66666667],
-        [-0.        ,  0.89442719, -0.4472136 ],
-        [-0.74535599,  0.2981424 ,  0.59628479]]))
-  \end{lstlisting}
-  \end{small}
 \end{frame}
 
 \section{Summary}
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
-  \item Matrices
+  \item Arrays
     \begin{itemize}
-      \item Initializing
-      \item Accessing elements
-      \item Slicing and Striding
-      \item Transpose
-      \item Addition
-      \item Multiplication
-      \item Inverse of a matrix
-      \item Determinant
-      \item Eigenvalues and Eigen vector
-      \item Singular Value Decomposition
+    \item Initializing
+    \item Accessing elements
+    \item Slicing \& Striding
+    \item Element-wise Operations
+    \item Matrix Operations
     \end{itemize}
-  \item Least Square Curve fitting
   \end{itemize}
 \end{frame}
 
