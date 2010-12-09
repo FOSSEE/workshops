@@ -77,8 +77,7 @@
 \author[FOSSEE group] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {SciPy 2010, Introductory tutorials,\\
-Day 1, Session 1}
+\date[] {SciPy.in 2010, Tutorials}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -123,47 +122,6 @@ Day 1, Session 1}
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
 
-\begin{frame}
-    \frametitle{Acknowledgement}
-    \Large
-    \begin{center}
-        \alert{FOSSEE group (\url{fossee.in})} \\
-        based at\\ 
-        \alert{IIT Bombay}\\
-        and funded by\\
-        The National Mission on Education through ICT, \\
-        \alert{Ministry of HRD, India}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Tutorial Schedule: Day 1}
-  \begin{description}
-	\item[Session 1-2] 08:00--10:00
-	\item[Coffee Break] 10:00--10:20
-	\item[Session 3-4] 10:20--12:20
-	\item[Lunch Break] 12:20--13:40
-        \item[Quiz 1] 13:40--13:55
-        \item[Exercises] 14:00--14:40
-        \item[Session 5] 14:40--15:40
-	\item[Coffee Break] 15:40--16:00
-        \item[Quiz 2] 16:00--16:15
-        \item[Session 6-7] 16:15--18:00
-  \end{description}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Tutorial Schedule: Day 2}
-  \begin{description}
-	\item[Session 1] 08:00--9:00
-	\item[Session 2] 9:00--10:00
-	\item[Coffee] 10:00--10:20
-        \item[Quiz 3] 10:20--10:35
-        \item[Exercises] 10:35--11:30
-        \item[Session 3] 11:30--12:20
-  \end{description}
-\end{frame}
-
 \section{Checklist}
 \begin{frame}
 \frametitle{Checklist}
@@ -191,41 +149,6 @@ Day 1, Session 1}
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{About the Tutorial}
-  \begin{block}{Intended Audience}
-  \begin{itemize}
-       \item Engg., Mathematics and Science researchers with a
-           reasonable programming background.
-  \end{itemize}
-  \end{block}  
-
-  \begin{block}{Goal: Successful participants will be able to}
-    \begin{itemize}
-      \item Use Python as plotting, computational tool.
-      \item Understand how to use Python as a scripting and problem solving language.
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%% \frametitle{The Python interpreter \ldots}
-%% \begin{block}{}
-%% \begin{lstlisting}
-%%   $ python
-%% \end{lstlisting} %$
-%% \end{block}
-%% \begin{lstlisting}     
-%%   >>> print "Hello, World!"
-%%   Hello, World!
-%% \end{lstlisting}
-%% Exiting
-%% \begin{lstlisting}     
-%%   >>> ^D(Ctrl-D)
-%%   $
-%% \end{lstlisting} %$
-%% \end{frame}
-
 \section{Starting up IPython}
 \begin{frame}[fragile]
 \frametitle{Starting up \ldots}
@@ -242,35 +165,6 @@ Exiting
 \begin{lstlisting}
   In []: ^D(Ctrl-D)
   Do you really want to exit([y]/n)? y
-\end{lstlisting}
-\end{frame}
-
-%% \section{Ipython with magic}
-%% \begin{frame}[fragile]
-%% \frametitle{Let the magic begin \ldots}
-%% \begin{itemize}
-%% \item \alert{IPython is an improved interpreter}\\
-%% \item \alert{Recommended for Scientific and Computing work}\\
-%% \end{itemize}
-%% \begin{block}{}
-%% \begin{lstlisting}
-%%   $ ipython -pylab  
-%% \end{lstlisting} %$
-%% \end{block}
-%% \end{frame}
-
-\section{Breaking out of loops}
-\begin{frame}[fragile]
-\frametitle{Breaking out of Loops}
-Breaking out of loops
-\begin{lstlisting}     
-  In []: while True:
-    ...:     print "Hello, World!"
-    ...:     
-  Hello, World!
-  Hello, World!^C(Ctrl-C)
-  ------------------------------------
-  KeyboardInterrupt                   
 \end{lstlisting}
 \end{frame}
 
@@ -351,84 +245,20 @@ In []: ylabel('sin(2y)')
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{IPython tips \ldots}
-
-\begin{itemize}
-    \item Use \typ{TAB} to complete command 
-\end{itemize}
-        \vspace*{0.5in}
-
-        {\Large \structure{History}}
-\begin{itemize}
-    \item Accesses history (also from past sessions)
-
-    \item Up and down arrows (\typ{Ctrl-p}/\typ{Ctrl-n})
-
-    \item Search: \typ{Ctrl-r} and start typing
-
-    \item \typ{Ctrl-a}: go to start of line
-
-    \item \typ{Ctrl-e}: end of line
-
-    \item \typ{Ctrl-k}: kill to end of line
-\end{itemize}
-
-\end{frame}
-
-
-\subsection{More decoration}
-\begin{frame}[fragile]
-\frametitle{Title and Legends}
+\frametitle{Title}
 \vspace*{-0.15in}
 %  \begin{block}{}
 %  \small
 \begin{lstlisting}
 In []: title('Sinusoids')
-In []: legend(['sin(2y)'])
 \end{lstlisting}
 %  \small
 %  \end{block}
   \vspace*{-0.1in}
   \begin{center}
-  \includegraphics[height=2in, interpolate=true]{data/legend}  
+  \includegraphics[height=2in, interpolate=true]{data/title}  
   \end{center}
 \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Legend Placement}
-\begin{block}{}
-    \small
-\begin{lstlisting}
-In []: legend(['sin(2y)'], loc = 'center')
-\end{lstlisting}
-\end{block}
-
-\begin{columns}
-    \column{0.6\textwidth}
- \includegraphics[height=2in, interpolate=true]{data/position}  
-\column{0.45\textwidth}
-\vspace{-0.2in}
-\begin{lstlisting}
-'best' 
-'right'
-'center'
-\end{lstlisting}
-\end{columns}
-\end{frame}
-
-%% \begin{frame}[fragile]
-%%   \frametitle{For arbitrary location}
-%% \vspace*{-0.1in}
-%% \begin{lstlisting}
-%% In []: legend(['sin(2y)'], loc=(.8,.1)) 
-%% \end{lstlisting}
-%% \emphbar{Specify south-east corner position}
-%% %\vspace*{-0.2in}
-%% \begin{center}
-%%   \includegraphics[height=2in, interpolate=true]{data/loc}  
-%% \end{center}
-%% %\inctime{10}
-%% \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Saving \& Closing}
@@ -450,6 +280,23 @@ Supported formats to store images:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{IPython tips \ldots}
+
+\begin{itemize}
+    \item Use \typ{TAB} to complete command 
+\end{itemize}
+        \vspace*{0.5in}
+
+        {\Large \structure{History}}
+\begin{itemize}
+    \item Accesses history (also from past sessions)
+
+    \item Up and down arrows (\typ{Ctrl-p}/\typ{Ctrl-n})
+\end{itemize}
+
+\end{frame}
+
 \section{Multiple plots}
 \begin{frame}[fragile]
 \frametitle{Overlaid Plots}
@@ -459,9 +306,46 @@ In []: plot(y, sin(y))
 In []: plot(y, cos(y))
 In []: xlabel('y')
 In []: ylabel('f(y)')
-In []: legend(['sin(y)', 'cos(y)']) 
 \end{lstlisting}
 \emphbar{By default plots would be overlaid!}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Legend}
+\vspace*{-0.15in}
+%  \begin{block}{}
+%  \small
+\begin{lstlisting}
+In []: legend(['sin(y)', 'cos(y)']) 
+\end{lstlisting}
+%  \small
+%  \end{block}
+  \vspace*{-0.1in}
+  \begin{center}
+  \includegraphics[height=2in, interpolate=true]{data/legend}  
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Legend Placement}
+\begin{block}{}
+    \small
+\begin{lstlisting}
+In []: legend(['sin(y)', 'cos(y)'], loc='center')
+\end{lstlisting}
+\end{block}
+
+\begin{columns}
+    \column{0.6\textwidth}
+ \includegraphics[height=2in, interpolate=true]{data/position}  
+\column{0.45\textwidth}
+\vspace{-0.2in}
+\begin{lstlisting}
+'best' 
+'right'
+'center'
+\end{lstlisting}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -618,9 +502,9 @@ Use the \typ{\%save} \alert{magic} command of IPython
 \end{block}
 Line numbers can be specified individually separated by spaces or as a range separated by a dash.\\
 \begin{block}{}
-\typ{\%save four_plot.py} \alert{\typ{  16 18-27}} \\  
+\typ{\%save four_plot.py} \alert{\typ{  16-18 21 25 27-32}} \\  
 \end{block}
-This saves from the history the commands entered on line numbers \alert{16, 18, 19, 20, \ldots 27}
+This saves from the history the commands entered on line numbers \alert{16, 17, 18, 21, 25, 27, 28, 29, 30, 31, 32}
 \end{frame}
 
 \begin{frame}
@@ -637,10 +521,17 @@ To avoid this, run using \alert{\typ{\%run -i four_plot.py}}\\
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Result graph}
-  \begin{center}
-    \includegraphics[height=3in, interpolate=true]{data/four_plot}
-  \end{center}
+\frametitle{Doing this in Sage\ldots}
+ \begin{itemize}
+ \item Change the language to =Python= 
+ \item Make a simple plot and save it
+   \begin{lstlisting}
+     from pylab import *
+     x = linspace(0, 2*pi, 50)
+     plot(x, sin(x))
+     savefig('sample-sin.png')
+   \end{lstlisting}
+ \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -655,6 +546,7 @@ To avoid this, run using \alert{\typ{\%run -i four_plot.py}}\\
     \item \kwrd{\%hist} - History of commands
     \item \kwrd{\%save} - Saving commands 
     \item Running a script using \kwrd{\%run -i}
+    \item Using \lstinline|pylab| in Sage
   \end{itemize}
 \end{frame}
 
