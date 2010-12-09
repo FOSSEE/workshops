@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\lstinline{#1}}
+\newcommand{\typ}[1]{\textbf{\texttt{#1}}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {1 May, 2010\\Day 2, Session 2}
+\date[] {SciPy.in 2010, Tutorials}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -121,93 +121,6 @@
   \frametitle{Outline}
   \tableofcontents
   % You might wish to add the option [pausesections]
-\end{frame}
-
-\section{Control flow}
-\subsection{Basic Looping}
-\begin{frame}[fragile]
-  \frametitle{\typ{while}}
-\begin{block}{Example: Fibonacci series}
-  Sum of previous two elements defines the next
-\end{block}
-  \begin{lstlisting}
-In []: a, b = 0, 1
-In []: while b < 10:
-  ...:     print b,
-  ...:     a, b = b, a + b
-  ...:
-  ...:
-\end{lstlisting}
-\typ{1 1 2 3 5 8}\\
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\typ{range()}}
-\kwrd{range([start,] stop[, step])}\\
-\begin{itemize}
-  \item \typ{range()} returns a list of integers
-  \item The \typ{start} and the \typ{step} arguments are optional
-  \item \typ{stop} is not included in the list
-\end{itemize}
-\vspace*{.5in}
-\begin{block}{Documentation convention}
-  \begin{itemize}
-    \item \alert{Anything within \typ{[]} is optional}
-    \item Nothing to do with Python.
-  \end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{\texttt{for} \ldots \typ{range()}}
-Example: print squares of first \typ{5} numbers
-  \begin{lstlisting}
-In []: for i in range(5):
- ....:     print i, i * i
- ....:
- ....:
-0 0
-1 1
-2 4
-3 9
-4 16
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{\texttt{for} \ldots \typ{range()}}
-Example: print squares of odd numbers from 3 to 9
-  \begin{lstlisting}
-In []: for i in range(3, 10, 2):
- ....:     print i, i * i
- ....:
- ....:
-3 9
-5 25
-7 49
-9 81
-\end{lstlisting}
-\inctime{5}
-\end{frame}
-
-\subsection{Exercises}
-
-\begin{frame}{Problem set 1: Problem 1.1}
-  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
-For example, $153 = 1^3 + 5^3 + 3^3$\\
-\vspace*{0.2in}
-\emphbar{These are called $Armstrong$ numbers.}
-\end{frame}
-
-\begin{frame}{Problem 1.2 - Collatz sequence}
-\begin{enumerate}
-  \item Start with an arbitrary (positive) integer. 
-  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
-  \item Repeat the procedure with the new number.
-  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
-\end{enumerate}
-    Write a program that accepts the starting value and prints out the Collatz sequence.
-\inctime{5}
 \end{frame}
 
 \section{Data structures}
@@ -256,42 +169,6 @@ In []: num
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Lists: slicing}
-  \begin{itemize}
-    \item \typ{list[initial:final]}
-  \end{itemize}
-\begin{lstlisting}
-In []: a = [1, 2, 3, 4, 5]
-
-In []: a[1:3]
-Out[]: [2, 3]
-
-In []: a[1:-1]
-Out[]: [2, 3, 4]
-
-In []: a[:3]
-Out[]: [1, 2, 3]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Lists: slicing}
-  \begin{itemize}
-    \item \typ{list[initial:final:step]}
-  \end{itemize}
-\begin{lstlisting}
-In []: a[1:-1:2]
-Out[]: [2, 4]
-
-In []: a[::2]
-Out[]: [1, 3, 5]
-
-In []: a[::-1]
-Out[]: [5, 4, 3, 2, 1]
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
 \frametitle{List containership}
 \emphbar{Recall \typ{num} is \typ{[9, 8, 2, 3, 7]}}
 \begin{lstlisting}
@@ -324,7 +201,7 @@ In []: t[4] = 7
   \item Tuples are immutable - cannot be changed
 \end{itemize}
 \end{block}
-  \inctime{10}
+
 \end{frame}
 
 \begin{frame}
@@ -341,28 +218,82 @@ They need not be of the same type!
 \end{frame}
 
 \subsection{Dictionaries}
-\begin{frame}[fragile]
-  \frametitle{Dictionaries: recall}
-  \begin{lstlisting}
-In []: player = {'Mat': 134,'Inn': 233,
-          'Runs': 10823, 'Avg': 52.53}
 
-In []: player['Avg']
-Out[]: 52.530000000000001
+\begin{frame}[fragile]
+  \frametitle{Dictionaries: Introduction}
+  \begin{itemize}
+    \item Lists index using integers\\
+Recall \typ{p = [2, 3, 5, 7]} and\\
+\typ{p[1]} is equal to \typ{3}
+    \item Dictionaries index using strings
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionaries \ldots}
+  \begin{lstlisting}
+In []: d = {'png' : 'image file',
+      'txt' : 'text file', 
+      'py' : 'python code',
+      'java': 'bad code', 
+      'cpp': 'complex code'}
+
+In []: d['txt']
+Out[]: 'text file'
   \end{lstlisting}
-  \begin{block}{Note!}
-    Duplicate keys $\Rightarrow$ overwritten!\\
-    You can iterate through a dictionary using keys.
-  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionaries \ldots}
+  \begin{lstlisting}
+In []: 'py' in d
+Out[]: True
+
+In []: 'jpg' in d
+Out[]: False
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Dictionaries \ldots}
+  \begin{small}
+    \begin{lstlisting}
+In []: d.keys()
+Out[]: ['cpp', 'py', 'txt', 'java', 'png']
+
+In []: d.values()
+Out[]: ['complex code', 'python code',
+        'text file', 'bad code', 
+        'image file']
+    \end{lstlisting}
+  \end{small}
+%%  \inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Inserting elements into dictionary}
+  \emphbar{\alert{\typ{d[key] = value}}}
+  \begin{lstlisting}
+In []: d['bin'] = 'binary file'
+In []: d
+Out[]: 
+{'bin': 'binary file',
+ 'cpp': 'complex code',
+ 'java': 'bad code',
+ 'png': 'image file',
+ 'py': 'python code',
+ 'txt': 'text file'}
+  \end{lstlisting}
+  \emphbar{\alert{Duplicate keys are overwritten!}}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Dictionaries: containership}
   \begin{lstlisting}
-In []: 'Inn' in player
+In []: 'bin' in d
 Out[]: True
 
-In []: 'Econ' in player
+In []: 'hs' in d
 Out[]: False
   \end{lstlisting}
   \begin{block}{Note}
@@ -376,12 +307,17 @@ Out[]: False
 \begin{frame}[fragile]
   \frametitle{Dictionaries: methods}
   \begin{lstlisting}
-In []: player.keys()
-Out[]: ['Runs', 'Inn', 'Avg', 'Mat']
+In []: d.keys()
+Out[]: ['bin', 'java', 'py', 'cpp', 'txt', 'png']
 
-In []: player.values()
-Out[]: [10823, 233, 
-        52.530000000000001, 134]
+In []: d.values()
+Out[]: 
+['binary file',
+ 'bad code',
+ 'python code',
+ 'complex code',
+ 'text file',
+ 'image file']
   \end{lstlisting}
 \end{frame}
 
@@ -454,79 +390,9 @@ Given a list of words, find all the anagrams in the list.
 
 \end{frame}
 
-\section{Functions}
-\begin{frame}[fragile]
-  \frametitle{Functions}
-  \begin{itemize}
-    \item \kwrd{def} - keyword to define a function
-    \item Arguments are local to a function
-    \item Functions can return multiple values
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Functions: example}
-  \begin{lstlisting}
-def signum( r ):
-    """returns 0 if r is zero
-    -1 if r is negative
-    +1 if r is positive"""
-    if r < 0:
-        return -1
-    elif r > 0:
-        return 1
-    else:
-        return 0
-  \end{lstlisting}
-  \emphbar{Note docstrings}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle {What does this function do?}
-  \begin{lstlisting}
-def what( n ):
-    if n < 0: n = -n
-    while n > 0:
-        if n % 2 == 1:
-            return False
-        n /= 10
-    return True
-  \end{lstlisting}
-\end{frame} 
-
-\begin{frame}[fragile]
-  {What does this function do?}
-\begin{lstlisting}
-def what( n ):
-    i = 1
-    while i * i < n:
-        i += 1
-    return i * i == n, i
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle {What does this function do?}
-  \begin{lstlisting}
-def what( x, n ):
-    if n < 0: 
-       n = -n
-       x = 1.0 / x
-
-    z = 1.0
-    while n > 0:
-        if n % 2 == 1:
-            z *= x
-        x *= x
-        n /= 2
-    return z
-  \end{lstlisting}
-\end{frame} 
-
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
-    \item Loops: \kwrd{while}, \kwrd{for}
     \item Advanced Data structures:
     \begin{itemize}
       \item Lists
@@ -534,8 +400,6 @@ def what( x, n ):
       \item Dictionaries
       \item Sets
     \end{itemize}
-    \item Functions
-    \item Docstrings
   \end{itemize}
 \end{frame}
 
