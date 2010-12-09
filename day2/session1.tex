@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\lstinline{#1}}
+\newcommand{\typ}[1]{\textbf{\texttt{{#1}}}}
 
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
@@ -79,7 +79,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {SciPy 2010, Introductory tutorials\\Day 2, Session 1}
+\date[] {SciPy.in 2010, Tutorials}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -149,23 +149,11 @@ In []: b = 99999999999999999999
   \begin{lstlisting}
 In []: p = 3.141592
   \end{lstlisting}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Complex numbers}
+    \item \kwrd{complex}
   \begin{lstlisting}
 In []: c = 3+4j
-
-In []: abs(c)
-Out[]: 5.0
-
-In []: c.imag
-Out[]: 4.0
-
-In []: c.real
-Out[]: 3.0
   \end{lstlisting}
+  \end{itemize}
 \end{frame}
 
 \subsection{Booleans}
@@ -182,7 +170,7 @@ Out[]: True
 In []: F and t
 Out[]: False
   \end{lstlisting}
-  \inctime{5}
+%%  \inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -198,19 +186,45 @@ Out[]: True
 In []: a and (b or c)
 Out[]: False
   \end{lstlisting}
-  \inctime{5}
+%%  \inctime{5}
 \end{frame}
 
 \subsection{Strings}
 
 \begin{frame}[fragile]
+\frametitle{Strings}
+Anything within ``quotes'' is a string!
+\begin{lstlisting}
+' This is a string '  
+" This too! "
+""" This one too! """
+''' And one more! '''
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Strings}
+Why so many?
+\begin{lstlisting}
+' "Do or do not.  No try." said Yoda.'  
+" ' is a mighty lonely quote."
+\end{lstlisting}
+The triple quoted ones can span multiple lines!
+
+\begin{lstlisting}
+""" The quick brown
+fox jumped over
+    the lazy dingbat. 
+"""
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Strings}
-Strings were introduced previously, let us now look at them in a little more detail.
   \begin{lstlisting}
 In []: w = "hello"
 
-In []: print w[0] + w[2] + w[-1]
-Out[]: hlo
+In []: print w[0], w[1], w[-1]
 
 In []: len(w)
 Out[]: 5
@@ -235,68 +249,8 @@ TypeError: 'str' object does not
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{String methods}
-  \begin{lstlisting}
-In []: a = 'Hello World'
-In []: a.startswith('Hell')
-Out[]: True
-
-In []: a.endswith('ld')
-Out[]: True
-
-In []: a.upper()
-Out[]: 'HELLO WORLD'
-
-In []: a.lower()
-Out[]: 'hello world'
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{A bit about IPython}
-  Recall, we showed a few features of IPython, here is one more:
-  \begin{itemize}
-    \item IPython provides better help
-    \item object.function?
-    \begin{lstlisting}
-In []: a = 'Hello World'
-In []: a.lower?
-    \end{lstlisting}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Still with strings}
-  \begin{itemize}
-    \item We saw split() yesterday
-    \item join() is the opposite of split()
-  \end{itemize}
-  \begin{lstlisting}
-In []: ''.join(['a', 'b', 'c'])
-Out[]: 'abc'
-
-In []: ', '.join(['a', 'b', 'c'])
-Out[]: 'a, b, c'
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{String formatting}
-  \begin{lstlisting}
-In []: x, y = 1, 1.234
-
-In []: 'x is %s, y is %s' %(x, y)
-Out[]: 'x is 1, y is 1.234'
-  \end{lstlisting}
-  \begin{itemize}
-    \item \emph{\%d}, \emph{\%f} etc. available
-  \end{itemize}
-  \emphbar{\url{http://docs.python.org/library/stdtypes.html}}
-  \inctime{10}
-\end{frame}
-
 \section{Operators}
+
 \begin{frame}[fragile]
   \frametitle{Arithmetic operators}
   \small
@@ -333,6 +287,22 @@ Out[]: 8.5
 
 In []: 17.0 / 8.5
 Out[]: 2.0
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Arithmetic operators}
+  \begin{lstlisting}
+In []: c = 3+4j
+
+In []: abs(c)
+Out[]: 5.0
+
+In []: c.imag
+Out[]: 4.0
+
+In []: c.real
+Out[]: 3.0
   \end{lstlisting}
 \end{frame}
 
@@ -387,6 +357,58 @@ TypeError: can`t multiply sequence by
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{String methods}
+  \begin{lstlisting}
+In []: a = 'Hello World'
+In []: a.startswith('Hell')
+Out[]: True
+
+In []: a.endswith('ld')
+Out[]: True
+
+In []: a.upper()
+Out[]: 'HELLO WORLD'
+
+In []: a.lower()
+Out[]: 'hello world'
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Strings: \typ{split} \& \typ{join}}
+  \begin{lstlisting}
+In []: chars = 'a b c'
+In []: chars.split()
+Out[]: ['a', 'b', 'c']
+In []: ' '.join(['a', 'b', 'c'])
+Out[]: 'a b c'
+  \end{lstlisting}
+
+  \begin{lstlisting}
+In []: alpha = ', '.join(['a', 'b', 'c'])
+In []: alpha
+Out[]: 'a, b, c'
+In []: alpha.split(', ')
+Out[]: ['a', 'b', 'c']
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{String formatting}
+  \begin{lstlisting}
+In []: x, y = 1, 1.234
+
+In []: 'x is %s, y is %s' %(x, y)
+Out[]: 'x is 1, y is 1.234'
+  \end{lstlisting}
+  \begin{itemize}
+    \item \emph{\%d}, \emph{\%f} etc. available
+  \end{itemize}
+  \emphbar{\url{http://docs.python.org/library/stdtypes.html}}
+%%  \inctime{10}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Relational and logical operators}
   \begin{lstlisting}
 In []: p, z, n = 1, 0, -1
@@ -438,7 +460,7 @@ In []: # A comment line.
 In []: a = "# Not a comment!"
       \end{lstlisting}
   \end{itemize}
-  \inctime{15}
+%%  \inctime{15}
 \end{frame}
 
 \section{Simple IO}
@@ -459,7 +481,7 @@ Enter a value: 5
       \end{lstlisting}
     \item Prompt string is optional.
     \item All keystrokes are strings!
-    \item \texttt{int()} converts string to int.
+    \item \typ{int()} converts string to int.
   \end{itemize}
 \end{frame}
 
@@ -500,7 +522,6 @@ Hello World
   \frametitle{Control flow constructs}  
   \begin{itemize}
   \item \kwrd{if/elif/else}: branching
-  \item \kwrd{C if X else D}: Ternary conditional operator
   \item \kwrd{while}: looping
   \item \kwrd{for}: iterating
   \item \kwrd{break, continue}: modify loop 
@@ -510,7 +531,7 @@ Hello World
 
 \subsection{Basic Conditional flow}
 \begin{frame}[fragile]
-  \frametitle{\typ{If...elif...else} example}
+  \frametitle{\typ{if...elif...else} example}
 Type the following code in an editor \& save as \alert{ladder.py}
   \small
   \begin{lstlisting}
@@ -525,18 +546,95 @@ else:
     print 'More'
 
   \end{lstlisting}
-  \inctime{10}
+%%  \inctime{10}
+\end{frame}
+
+\section{Control flow}
+\subsection{Basic Looping}
+\begin{frame}[fragile]
+  \frametitle{\typ{while}}
+\begin{block}{Example: Fibonacci series}
+  Sum of previous two elements defines the next
+\end{block}
+  \begin{lstlisting}
+In []: a, b = 0, 1
+In []: while b < 10:
+  ...:     print b,
+  ...:     a, b = b, a + b
+  ...:
+  ...:
+\end{lstlisting}
+\typ{1 1 2 3 5 8}\\
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Ternary conditional operator}
-  \begin{lstlisting}
-...
-a = raw_input('Enter number(Q to quit):')
-num = int(a) if a != 'Q' else 0
-...
-  \end{lstlisting}
+\frametitle{\typ{range()}}
+\kwrd{range([start,] stop[, step])}\\
+\begin{itemize}
+  \item \typ{range()} returns a list of integers
+  \item The \typ{start} and the \typ{step} arguments are optional
+  \item \typ{stop} is not included in the list
+\end{itemize}
+\vspace*{.5in}
+\begin{block}{Documentation convention}
+  \begin{itemize}
+    \item \alert{Anything within \typ{[]} is optional}
+    \item Nothing to do with Python.
+  \end{itemize}
+\end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\typ{for} \ldots \typ{range()}}
+Example: print squares of first \typ{5} numbers
+  \begin{lstlisting}
+In []: for i in range(5):
+ ....:     print i, i * i
+ ....:
+ ....:
+0 0
+1 1
+2 4
+3 9
+4 16
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\typ{for} \ldots \typ{range()}}
+Example: print squares of odd numbers from 3 to 9
+  \begin{lstlisting}
+In []: for i in range(3, 10, 2):
+ ....:     print i, i * i
+ ....:
+ ....:
+3 9
+5 25
+7 49
+9 81
+\end{lstlisting}
+%% \inctime{5}
+\end{frame}
+
+\subsection{Exercises}
+
+\begin{frame}{Problem 1.1: \emph{Armstrong} numbers}
+  Write a program that displays all three digit numbers that are equal to the sum of the cubes of their digits. That is, print numbers $abc$ that have the property $abc = a^3 + b^3 + c^3$\\
+For example, $153 = 1^3 + 5^3 + 3^3$\\
+\vspace*{0.2in}
+\end{frame}
+
+\begin{frame}{Problem 1.2: Collatz sequence}
+\begin{enumerate}
+  \item Start with an arbitrary (positive) integer. 
+  \item If the number is even, divide by 2; if the number is odd, multiply by 3 and add 1.
+  \item Repeat the procedure with the new number.
+  \item It appears that for all starting values there is a cycle of 4, 2, 1 at which the procedure loops.
+\end{enumerate}
+    Write a program that accepts the starting value and prints out the Collatz sequence.
+%% \inctime{5}
+\end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{What did we learn?}
@@ -544,7 +642,8 @@ num = int(a) if a != 'Q' else 0
     \item Data types: int, float, complex, boolean, string
     \item Operators: +, -, *, /, \%, **, +=, -=, *=, /=, >, <, <=, >=, ==, !=, a < b < c
     \item Simple IO: \kwrd{raw\_input} and \kwrd{print}
-    \item Conditional structures: \kwrd{if/elif/else},\\ \kwrd{C if X else D}
+    \item Conditionals: \kwrd{if elif else}
+    \item Looping: \kwrd{while} \& \kwrd{for} 
   \end{itemize}
 \end{frame}
 
