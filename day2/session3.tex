@@ -51,7 +51,7 @@
 \setcounter{time}{0}
 \newcommand{\inctime}[1]{\addtocounter{time}{#1}{\tiny \thetime\ m}}
 
-\newcommand{\typ}[1]{\lstinline{#1}}
+\newcommand{\typ}[1]{\textbf{\texttt{#1}}}
 
 \newcommand{\kwrd}[1]{ \texttt{\textbf{\color{blue}{#1}}}  }
 
@@ -193,6 +193,22 @@ def what( x, n ):
   \end{lstlisting}
 \end{frame} 
 
+\subsection{Exercises}
+\begin{frame}{Problem 3.1}
+  Write a function to return the gcd of two numbers.
+\end{frame}
+
+\begin{frame}{Problem 3.2}
+Write a program to print all primitive pythagorean triads (a, b, c) where a, b are in the range 1---100 \\
+A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive we mean triads that do not `depend' on others. For example, (4,3,5) is a variant of (3,4,5) and hence is not primitive. And (10,24,26) is easily derived from (5,12,13) and is also not primitive.
+\end{frame}
+
+\begin{frame}{Problem 3.3}
+  Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\newline\\\emph{For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).}
+
+% \inctime{15}
+\end{frame}
+
 \subsection{Default arguments}
 \begin{frame}[fragile]
   \frametitle{Functions: default arguments}
@@ -267,28 +283,12 @@ Hey Guido
       \item Refer here:
           \url{http://docs.python.org/library/functions.html}
   \end{itemize}
-  \inctime{10} 
-\end{frame}
-
-\subsection{Exercises}
-\begin{frame}{Problem set 3: Problem 3.1}
-  Write a function to return the gcd of two numbers.
-\end{frame}
-
-\begin{frame}{Problem 3.2}
-Write a program to print all primitive pythagorean triads (a, b, c) where a, b are in the range 1---100 \\
-A pythagorean triad $(a,b,c)$ has the property $a^2 + b^2 = c^2$.\\By primitive we mean triads that do not `depend' on others. For example, (4,3,5) is a variant of (3,4,5) and hence is not primitive. And (10,24,26) is easily derived from (5,12,13) and is also not primitive.
-\end{frame}
-
-\begin{frame}{Problem 3.3}
-  Write a program that generates a list of all four digit numbers that have all their digits even and are perfect squares.\newline\\\emph{For example, the output should include 6400 but not 8100 (one digit is odd) or 4248 (not a perfect square).}
-
-\inctime{15}
+%  \inctime{10} 
 \end{frame}
 
 \section{Modules}
 \begin{frame}[fragile]
-  \frametitle{\texttt{from} \ldots \texttt{import} magic}
+  \frametitle{\typ{from} \ldots \typ{import} magic}
   \begin{lstlisting}
 from scipy.integrate import odeint
 
@@ -384,7 +384,7 @@ from scipy.optimize import fsolve
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
+  \frametitle{\typ{from} \ldots \typ{import} - conventional way!}
   \small
   \begin{lstlisting}
 from scipy import linspace, pi, sin
@@ -404,7 +404,7 @@ ylim(-5*pi, 5*pi)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\texttt{from} \ldots \texttt{import} - conventional way!}
+  \frametitle{\typ{from} \ldots \typ{import} - conventional way!}
   \small
   \begin{lstlisting}
 import scipy
@@ -423,7 +423,7 @@ pylab.ylim(-5*scipy.pi, 5*scipy.pi)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{\texttt{import} - the community convention}
+  \frametitle{\typ{import} - the community convention}
   \begin{lstlisting}
 
 import numpy as np
@@ -452,19 +452,19 @@ sp.linspace(-5 * sp.pi, 5 * sp.pi, 500)
   \item Check out the Python Library reference:
     \url{http://docs.python.org/library/}
   \end{itemize}
-\inctime{5}
+% \inctime{5}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Modules of special interest}
   \begin{description}[matplotlibfor2d]
-    \item[\texttt{pylab}] Easy, interactive, 2D plotting
+    \item[\typ{pylab}] Easy, interactive, 2D plotting
 
-    \item[\texttt{scipy}] arrays, statistics, optimization, integration, linear
+    \item[\typ{scipy}] arrays, statistics, optimization, integration, linear
             algebra, Fourier transforms, signal and image processing,
             genetic algorithms, ODE solvers, special functions, and more
 
-    \item[\texttt{Mayavi}] Easy, interactive, 3D plotting
+    \item[\typ{mayavi}] Easy, interactive, 3D plotting
   \end{description}
 \end{frame}
 
@@ -543,12 +543,14 @@ for line in open("myfile.txt"):
 for line in urllib2.urlopen('http://site.com'):
     print line
   \end{lstlisting}
-  \inctime{10}
+%  \inctime{10}
 \end{frame}
 
 \begin{frame}
   \frametitle{What did we learn?}
   \begin{itemize}
+    \item Functions: Definition
+    \item Functions: Docstrings
     \item Functions: Default and Keyword arguments
     \item Modules
     \item Objects
