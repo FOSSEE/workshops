@@ -78,7 +78,7 @@
 \author[FOSSEE Team] {The FOSSEE Group}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {1 May, 2010\\Day 2, Session 3}
+\date[] {SciPy.in 2010, Tutorials}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -124,6 +124,75 @@
 \end{frame}
 
 \section{Functions}
+
+\begin{frame}[fragile]
+  \frametitle{Functions}
+  \begin{itemize}
+    \item \kwrd{def} - keyword to define a function
+    \item Arguments are local to a function
+    \item Functions can return multiple values
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Functions: example}
+  \begin{lstlisting}
+def signum( r ):
+    """returns 0 if r is zero
+    -1 if r is negative
+    +1 if r is positive"""
+    if r < 0:
+        return -1
+    elif r > 0:
+        return 1
+    else:
+        return 0
+  \end{lstlisting}
+  \emphbar{Note docstrings}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle {What does this function do?}
+  \begin{lstlisting}
+def what( n ):
+    if n < 0: n = -n
+    while n > 0:
+        if n % 2 == 1:
+            return False
+        n /= 10
+    return True
+  \end{lstlisting}
+\end{frame} 
+
+\begin{frame}[fragile]
+  {What does this function do?}
+\begin{lstlisting}
+def what( n ):
+    i = 1
+    while i * i < n:
+        i += 1
+    return i * i == n, i
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle {What does this function do?}
+  \begin{lstlisting}
+def what( x, n ):
+    if n < 0: 
+       n = -n
+       x = 1.0 / x
+
+    z = 1.0
+    while n > 0:
+        if n % 2 == 1:
+            z *= x
+        x *= x
+        n /= 2
+    return z
+  \end{lstlisting}
+\end{frame} 
+
 \subsection{Default arguments}
 \begin{frame}[fragile]
   \frametitle{Functions: default arguments}
