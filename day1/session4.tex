@@ -73,12 +73,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
-\title[Solving Equations \& ODEs]{Python for Science and Engg:\\Solving Equations \& ODEs}
+\title[Solving Equations \& ODEs]{Python for Science and Engg:\\SciPy}
 
 \author[FOSSEE] {FOSSEE}
 
 \institute[IIT Bombay] {Department of Aerospace Engineering\\IIT Bombay}
-\date[] {SciPy 2010, Introductory tutorials\\Day 1, Session 6}
+\date[] {SciPy 2010, Tutorials}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\pgfdeclareimage[height=0.75cm]{iitmlogo}{iitmlogo}
@@ -122,6 +122,117 @@
 %%   \tableofcontents
 %%   % You might wish to add the option [pausesections]
 %% \end{frame}
+
+\section{Least Squares Fit}
+\begin{frame}[fragile]
+\frametitle{$L$ vs. $T^2$ - Scatter}
+Linear trend visible.
+\vspace{-0.1in}
+\begin{figure}
+\includegraphics[width=4in]{data/L-Tsq-points}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{$L$ vs. $T^2$ - Line}
+This line does not make any mathematical sense.
+\vspace{-0.1in}
+\begin{figure}
+\includegraphics[width=4in]{data/L-Tsq-Line}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{$L$ vs. $T^2$ - Least Square Fit}
+This is what our intention is.
+\vspace{-0.1in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Matrix Formulation}
+\begin{itemize}
+\item We need to fit a line through points for the equation $T^2 = m \cdot L+c$
+\item In matrix form, the equation can be represented as $T_{sq} = A \cdot p$, where $T_{sq}$ is
+  $\begin{bmatrix}
+  T^2_1 \\
+  T^2_2 \\
+  \vdots\\
+  T^2_N \\
+  \end{bmatrix}$
+, A is   
+  $\begin{bmatrix}
+  L_1 & 1 \\
+  L_2 & 1 \\
+  \vdots & \vdots\\
+  L_N & 1 \\
+  \end{bmatrix}$
+  and p is 
+  $\begin{bmatrix}
+  m\\
+  c\\
+  \end{bmatrix}$
+\item We need to find $p$ to plot the line
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Getting $L$ and $T^2$}
+%If you \alert{closed} IPython after session 2
+\begin{lstlisting}
+In []: L, T = loadtxt('pendulum.txt', 
+                      unpack=True)
+In []: tsq = T*T
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Generating $A$}
+\begin{lstlisting}
+In []: A = array([L, ones_like(L)])
+In []: A = A.T
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\typ{lstsq} \ldots}
+\begin{itemize}
+\item Now use the \typ{lstsq} function
+\item Along with a lot of things, it returns the least squares solution
+\end{itemize}
+\begin{lstlisting}
+In []: result = lstsq(A,tsq)
+In []: coef = result[0]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Square Fit Line \ldots}
+We get the points of the line from \typ{coef}
+\begin{lstlisting}
+In []: Tline = coef[0]*L + coef[1]
+
+In []: Tline.shape
+\end{lstlisting}
+\begin{itemize}
+\item Now plot \typ{Tline} vs. \typ{L}, to get the Least squares fit line. 
+\end{itemize}
+\begin{lstlisting}
+In []: plot(L, Tline, 'r')
+
+In []: plot(L, tsq, 'o')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Least Squares Fit}
+\vspace{-0.15in}
+\begin{figure}
+\includegraphics[width=4in]{data/least-sq-fit}
+\end{figure}
+\end{frame}
 
 \section{Solving linear equations}
 
@@ -516,6 +627,7 @@ Only scratched the surface here \dots
 \begin{frame}
   \frametitle{Things we have learned}
   \begin{itemize}
+  \item Least Square Fit
   \item Solving Linear Equations
   \item Defining Functions
   \item Finding Roots
