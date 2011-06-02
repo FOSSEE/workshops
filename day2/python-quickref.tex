@@ -1,0 +1,241 @@
+\documentclass{article}
+\usepackage{graphicx}  
+\usepackage[landscape]{geometry}
+\usepackage[pdftex]{color}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand{\ex}{\color{blue}}
+\pagestyle{empty}
+\advance\topmargin-.9in
+\advance\textheight2in
+\advance\textwidth3.0in
+\advance\oddsidemargin-1.45in
+\advance\evensidemargin-1.45in
+\parindent0pt
+\parskip2pt
+
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+\newcommand{\skipin}{\hspace*{12pt}}
+
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\lstset{language=Python,
+    basicstyle=\ttfamily\bfseries,
+    commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries}
+
+\begin{document}
+\begin{multicols*}{3}
+\begin{center}
+\textbf{Python}\\
+\textbf{Quick Reference}\\
+FOSSEE -- Dec 1, 2010\\
+\end{center}
+\vspace{-2ex}
+
+%*********************************************
+ \hr\textbf{Basic Data types}
+
+Declaring an Integer:\\
+{\ex \lstinline|  b=9999999999999999999 |}
+
+Declaring a float:\\
+{\ex \lstinline|  p=3.141592 |}
+
+Declaring a Complex number:\\
+{\ex \lstinline|   c = 3.2+4.6j |}
+
+%*********************************************
+\hr\textbf{Arithmetic Operators}
+
+\begin{tabular}{lll}
+Addition: {\ex \lstinline|+|} & 
+Subtraction: {\ex \lstinline|-|} &
+Multiplication: {\ex \lstinline|*|} \\ 
+Division: {\ex \lstinline|/|} &
+Modulo: {\ex \lstinline|%|} &
+Exponentiation: {\ex \lstinline|**|}
+\end{tabular}
+
+%*********************************************
+\hr\textbf{Strings} (immutable)
+
+Declaring a string:\\
+{\ex \lstinline|k='Single quote' |}\\
+{\ex \lstinline|l="Double quote contain's single quote" |}\\
+{\ex \lstinline|m='''"Contain's both"''' |}\\
+{\ex \lstinline|s[5]|} -- Elements can be accessed with their index
+
+%*********************************************
+ \hr\textbf{Manipulating Strings}
+
+String indexing starts from 0, like lists.\\
+\lstinline|s = `Hello World'|
+
+\begin{tabular}{lll}
+\lstinline|s[0:5]| --  \texttt{Hello} &
+\lstinline|s[6:]| --   \texttt{World} &
+\lstinline|s[6::2]| -- \texttt{Wrd} 
+\end{tabular}
+\lstinline|s.replace('e', 'a')| new string; `e' replaced by `a'
+
+%*********************************************
+\hr\textbf{Input-Output}
+
+Output:\\
+{\ex \lstinline|    print x|} -- print variable \texttt{x} (with new line)\\
+{\ex \lstinline|    print x, |} -- print with out new line\\
+{\ex \lstinline|    print "a is %d b is %f" %(a, b)|} -- formatting
+
+Input:\\
+{\ex \lstinline|    x = raw_input()|} -- take input from user\\
+{\ex \lstinline|    x = raw_input("Age: ")|} -- take input with prompt
+
+%*********************************************
+\hr\textbf{Control Flow}
+
+Writing an if/elif/else block:
+\vspace{-8pt}
+\begin{lstlisting}
+if condition1:
+   # do A, B, C
+elif condition2:
+   # do D, E
+else:
+   # do Y, Z
+\end{lstlisting}
+\vspace{-8pt}
+The ternary operator:\\
+{\ex \lstinline|C if X else Y|} -- Do C if X is True else do Y. 
+
+For loop:\\
+{\ex \lstinline|for i in range(1,11,2):|}\\ 
+{\ex \lstinline|    s = s + i|}
+
+%*********************************************
+\hr\textbf{Lists}
+
+{\ex \lstinline|empty=[]|} -- empty list\\
+{\ex \lstinline|nonempty = ['spam', 'eggs', 100, 1.234]|} -- filled list\\
+{\ex \lstinline|nonempty[0]|} -- accessing elements\\
+{\ex \lstinline|nonempty[-1]|} -- accessing elements: negative indexing\\
+{\ex \lstinline|len(nonempty)|} -- obtain length of list\\
+{\ex \lstinline|nonempty.append('python')|} -- append element to list\\
+{\ex \lstinline|del(nonempty[1])|} -- delete elements\\
+{\ex \lstinline|nonempty.remove(100)|} -- remove elements\\
+{\ex \lstinline|A[start:stop:step]|} -- slicing a list \lstinline|stop| excluded
+{\ex \lstinline|sorted(A)|} -- returns a new sorted list\\
+{\ex \lstinline|A.sort()|} -- in-place sort\\
+{\ex \lstinline|A[::-1]|} -- returns new reversed list\\
+{\ex \lstinline|A.reverse()|} -- in-place reverse\\
+{\ex \lstinline|x in A|} -- check for container-ship
+
+%*********************************************
+\hr\textbf{Tuples}
+
+{\ex \lstinline|t = (1, "hello", 2.5)|} -- creating a tuple\\
+{\ex \lstinline|t[index] Ex: t[2]|} -- accessing elements\\
+{\ex \lstinline|t[start:stop:step]|} -- accessing slices\\
+{\ex \lstinline|a, b = b, a|} -- swapping: tuple packing, unpacking
+ 
+%*********************************************
+\hr\textbf{Dictionaries} (key value pairs)
+
+{\ex \lstinline|d = {'k1':'v1', 'k2':'v2'}|} -- creating \\
+{\ex \lstinline|print d['k1']|} -- accessing values using keys\\
+{\ex \lstinline|d['k3'] = 'v3'|} -- adding a key-value pair\\
+{\ex \lstinline|del d['k1']|} -- deleting a key-value pair
+
+%*********************************************
+\hr\textbf{Sets}
+
+{\ex \lstinline|p10 = set([2, 3, 5, 7]) |} -- creating a set
+
+Operators:\\
+{\ex \lstinline+s1 | s2 +} -- Union
+Other operations available:\\
+{\ex \lstinline|&|} -- Intersection, {\ex \lstinline|-|} -- Difference, 
+{\ex \lstinline|^|} -- Symmetric Difference, {\ex \lstinline|<|} -- Subset
+
+%*********************************************
+\hr\textbf{Functions}
+
+Defining a function:
+\vspace{-8pt}
+\begin{lstlisting}
+def name([arguments]):
+    code
+    [return values]
+\end{lstlisting}
+\vspace{-8pt}
+
+Arguments of functions can have default arguments. Arguments with default arguments are at end of definition
+
+Functions can be called with keyword arguments. All keyword arguments
+should be at the end of the argument list.
+
+%*********************************************
+\hr\textbf{Modules}
+
+Import all definitions to current name-space:\\
+{\ex \lstinline|    from scipy import *|}
+
+Import few definitions to current name-space:\\
+{\ex \lstinline|    from scipy import linspace, pi, sin|}
+
+Import a module as a new name-space:\\
+{\ex \lstinline|    import scipy|}
+
+%*********************************************
+\hr\textbf{Writing python scripts}
+
+See where python searches for modules:\\
+{\ex \lstinline|sys.path|}
+
+Include our own path in PYTHONPATH:\\
+{\ex \lstinline|sys.path.append(our_path)|}
+
+Run certian code only if executed and not if imported:\\
+{\ex \lstinline|if __name__=="__main__": #do something|}
+
+%*********************************************
+\hr\textbf{Skeleton of a Test}
+
+{\ex \lstinline| if __name__ == '__main__':|}\\
+{\ex \lstinline|      result = gcd(48, 64) |}\\
+{\ex \lstinline|      if result != 16:     |}\\
+{\ex \lstinline|           print ``Test Failed'' |}\\
+{\ex \lstinline|      print ``Test Passed''      |}
+
+%*********************************************
+\hr\textbf{Testing}
+
+Get results from function or unit of code being tested. \\
+Compare it to original output. \\
+Test passed if they match else failed.
+
+%*********************************************
+\hr\textbf{Try-Catch} (Skeleton)
+
+{\ex \lstinline|     try:                  |}\\
+{\ex \lstinline|      	  num = int(a)     |}\\
+{\ex \lstinline|     except:               |}\\
+{\ex \lstinline|         print ``Wrong input...'' |}
+
+\hr\textbf{Code Style}
+
+Four Space Indentation\\
+79 character limit on a line\\
+Funtions should be seperated by blank line\\
+Use Docstrings\\
+White space around operators
+   
+\end{multicols*}
+
+\end{document}
