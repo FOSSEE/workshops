@@ -9,7 +9,6 @@ SLIDES= session1.pdf \
 	session3.pdf \
 	session4.pdf \
 	session5.pdf \
-	session6.pdf
 
 CHEATS= cheatsheet1.pdf \
 	cheatsheet2.pdf \
